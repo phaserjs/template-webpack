@@ -1,6 +1,7 @@
-# phaser3-project-template
+# Phaser 3 Webpack Project Template
+
 A Phaser 3 Project Template
 
 ## How to run:
 
-npm start
+`npm run build`
