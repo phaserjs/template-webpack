@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack && node_modules/.bin/live-server --port=8000"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
   "devDependencies": {
-    "live-server": "^1.2.0",
-    "phaser": "^3.0.0-beta.16",
+    "webpack-dev-server": "^2.11.0",
     "webpack": "^3.4.1"
+  },
+  "dependencies": {
+    "phaser": "^3.0.0-beta.16"
   }
 }
