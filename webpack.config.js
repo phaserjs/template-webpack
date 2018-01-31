@@ -13,6 +13,15 @@ module.exports = {
         filename: 'project.bundle.js'
     },
 
+    module: {
+        rules: [
+          {
+            test: [ /\.vert$/, /\.frag$/ ],
+            use: 'raw-loader'
+          }
+        ]
+    },
+
     plugins: [
         new webpack.DefinePlugin({
             'CANVAS_RENDERER': JSON.stringify(true),
