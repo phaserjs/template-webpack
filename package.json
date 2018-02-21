@@ -1,6 +1,6 @@
 {
   "name": "phaser3-project-template",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Phaser 3 Project Template",
   "main": "src/index.js",
   "scripts": {
@@ -24,6 +24,6 @@
     "raw-loader": "^0.5.1"
   },
   "dependencies": {
-    "phaser": "^3.0.0-beta.20"
+    "phaser": "^3.1.1"
   }
 }
