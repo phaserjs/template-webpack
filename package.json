@@ -1,11 +1,11 @@
 {
   "name": "phaser3-project-template",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A Phaser 3 Project Template",
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "npm run build && live-server --port=8000"
   },
   "repository": {
     "type": "git",
