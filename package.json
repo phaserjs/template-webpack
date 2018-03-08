@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
-    "start": "npm run build && live-server --port=8000"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
