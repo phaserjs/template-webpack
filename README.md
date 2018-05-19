@@ -1,6 +1,6 @@
-# Phaser 3 Webpack Project Template
+# Phaser 3 Webpack Project Template with SASS Complier
 
-A Phaser 3 Project Template
+A modified version of the [Phaser 3 Project Template](https://github.com/photonstorm/phaser3-project-template) with includes sass compiling configured through webpack.
 
 ### Requirements
 
