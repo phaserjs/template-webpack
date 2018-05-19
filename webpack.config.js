@@ -5,7 +5,7 @@ const path = require('path');
 
 module.exports = {
 
-    entry: './src/index.js',
+    entry: './src/dockit.js',
 
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -15,10 +15,18 @@ module.exports = {
 
     module: {
         rules: [
-          {
-            test: [ /\.vert$/, /\.frag$/ ],
-            use: 'raw-loader'
-          }
+            {
+                test: /\.s?css/,
+                use: [
+                    "style-loader", //created style nodes from JS strings and HAS TO BE FIRST
+                    "css-loader", //translates CSS into CommonJS
+                    "sass-loader" //compiles Sass to CSS
+                ]
+            },
+            {
+                test: [/\.vert$/, /\.frag$/],
+                use: 'raw-loader'
+            }
         ]
     },
 
