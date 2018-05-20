@@ -16,6 +16,6 @@ Run next commands in your terminal:
 | `npm start` | Launch browser to show the examples. <br> Press `Ctrl + c` to kill **http-server** process. |
 =======
 
-# SASS usage
+## SASS usage
 
-Once you have an `npm start` process initiated, simply add or modify CSS code in '_theme.scss' locted under the ;`src/styles` directory. 
+Once you have an `npm start` process initiated, simply add or modify CSS code in `_theme.scss` file, located under the `src/styles` directory. Upon saving the file, changes will show automatically in the browser.
