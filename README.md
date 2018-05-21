@@ -2,12 +2,6 @@
 
 A modified version of the [Phaser 3 Project Template](https://github.com/photonstorm/phaser3-project-template) with includes sass compiling configured through webpack. 
 
-To properly clone this branch from the command line, use the following command from your terminal, where `<custom-folder-name>`, can be any name you desire for your directory.
-```
-git clone -b webpack-phaser-sass git@github.com:blachawk/phaser3-project-template.git <custom-folder-name>
-```
-
-
 ### Requirements
 
 We need [Node.js](https://nodejs.org) to install and run scripts.
