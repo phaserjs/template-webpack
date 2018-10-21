@@ -1,11 +1,11 @@
 {
   "name": "phaser3-project-template",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "A Phaser 3 Project Template",
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
-    "start": "npm run build && webpack-dev-server --port=8000"
+    "start": "webpack-dev-server --port=8000 --mode=development"
   },
   "repository": {
     "type": "git",
@@ -19,11 +19,16 @@
   },
   "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
   "devDependencies": {
-    "webpack-dev-server": "^2.11.0",
-    "webpack": "^3.4.1",
-    "raw-loader": "^0.5.1"
+    "@babel/core": "7",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "raw-loader": "^0.5.1",
+    "webpack-dev-server": "^3.1.9",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "phaser": "^3.3.0"
+    "npm": "^6.4.1",
+    "phaser": "^3.14.0"
   }
 }
