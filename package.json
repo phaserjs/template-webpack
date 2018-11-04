@@ -20,12 +20,12 @@
   "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
   "devDependencies": {
     "@babel/core": "7",
+    "@babel/preset-env": "^7.1.0",
     "babel-loader": "^8.0.4",
-    "babel-preset-env": "^1.7.0",
     "raw-loader": "^0.5.1",
-    "webpack-dev-server": "^3.1.9",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
     "npm": "^6.4.1",
