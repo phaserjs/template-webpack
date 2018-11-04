@@ -29,6 +29,6 @@
   },
   "dependencies": {
     "npm": "^6.4.1",
-    "phaser": "^3.14.0"
+    "phaser": ">= 3.0"
   }
 }
