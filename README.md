@@ -19,7 +19,7 @@ Run next commands in your terminal:
 
 ## Getting Started
 
-After running `nom start` visit: http://localhost:8000 in your browser. Your project is running here! 
+After running `npm start` visit: http://localhost:8000 in your browser. Your project is running here! 
 
 ### src directory
 
