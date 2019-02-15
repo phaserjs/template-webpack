@@ -1,4 +1,4 @@
-https://travis-ci.org/soggybag/phaser3-project-template.svg?branch=master
+![travis badge](https://travis-ci.org/soggybag/phaser3-project-template.svg?branch=master)
 
 # Phaser 3 Webpack Project Template
 
