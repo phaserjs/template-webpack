@@ -15,11 +15,11 @@ const config = {
 const game = new Phaser.Game(config);
 
 function preload() {
-  this.load.image("logo", logoImg);
+  this.load.image(imageKey, logoImg);
 }
 
 function create() {
-  const logo = this.add.image(400, 150, "logo");
+  const logo = this.add.image(400, 150, imageKey);
 
   this.tweens.add({
     targets: logo,
@@ -30,3 +30,4 @@ function create() {
     loop: -1
   });
 }
+const imageKey = "logo";
