@@ -1,5 +1,4 @@
-// @ts-check
-import Phaser from "phaser";
+import "phaser";
 // @ts-ignore // this works via webpack file-loader
 import logoImg from "./assets/logo.png";
 

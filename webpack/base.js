@@ -4,10 +4,16 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
+  entry: './src/index.ts',
   mode: "development",
   devtool: "eval-source-map",
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -25,6 +31,9 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
+  },
   plugins: [
     new CleanWebpackPlugin(["dist"], {
       root: path.resolve(__dirname, "../")
@@ -36,5 +45,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html"
     })
-  ]
+  ],
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
 };
