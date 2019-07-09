@@ -22,11 +22,10 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-var platforms;
-
-var player;
-
-var cursors;
+//GLOBAL VARIABLES
+var platforms; //PLATFORMS
+var player; //PLAYER
+var cursors; //CONTROLLER
 
 function preload() {
 
@@ -43,25 +42,30 @@ function preload() {
 }
 
 function create() {
-
+  
+  //BACKGROUND
   this.add.image(400, 300, 'sky');
 
+  //PLATFORMS
   platforms = this.physics.add.staticGroup();
   platforms.create(400, 568, 'ground').setScale(2).refreshBody();
   platforms.create(600, 400, 'ground');
   platforms.create(50, 250, 'ground');
   platforms.create(750, 220, 'ground');
 
-
+  //PLAYER
   player = this.physics.add.sprite(100, 450, 'dude');
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
 
-
+  //PLATFORM + PLAYER COLLISION
   this.physics.add.collider(player, platforms);
-
+  
+  //CONTROLLER
   cursors = this.input.keyboard.createCursorKeys();
 
+  //PLAYER ANIMATIONS
+  //MOVE LEFT
   this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
@@ -69,12 +73,14 @@ function create() {
       repeat: -1
   });
 
+  //TURN (LOOKING FORWARD)
   this.anims.create({
       key: 'turn',
       frames: [ { key: 'dude', frame: 4 } ],
       frameRate: 20
   });
 
+  //MOVE RIGHT
   this.anims.create({
       key: 'right',
       frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
@@ -85,6 +91,8 @@ function create() {
 }
 
 function update(){
+  
+  //MOVE PLAYER + SET ANIMATIONS
   if (cursors.left.isDown)
   {
       player.setVelocityX(-160);
@@ -108,4 +116,5 @@ function update(){
   {
       player.setVelocityY(-330);
   }
+  
 }
