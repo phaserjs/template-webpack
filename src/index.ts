@@ -21,19 +21,25 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+//END PHASER CONGIG
+
 
 //GLOBAL VARIABLES
-var platforms; //PLATFORMS
-var player; //PLAYER
-var cursors; //CONTROLLER
+var platforms; //GLOBAL PLATFORMS
+var stars; //GLOBAL COLLECTABLES
+var player; //GLOBAL PLAYER
+var cursors; //GLOBAL CONTROLLER
+
 
 function preload() {
 
+  //PRELOAD IMAGES
   this.load.image('sky', 'src/assets/sky.png');
   this.load.image('ground', 'src/assets/platform.png');
   this.load.image('star', 'src/assets/star.png');
   this.load.image('bomb', 'src/assets/bomb.png');
 
+  //PRELOAD SPRITES
   this.load.spritesheet('dude',
       'src/assets/dude.png',
       { frameWidth: 32, frameHeight: 48 }
@@ -42,30 +48,54 @@ function preload() {
 }
 
 function create() {
-  
-  //BACKGROUND
+
+
+  //DRAW BACKGROUND
   this.add.image(400, 300, 'sky');
 
-  //PLATFORMS
+
+  //CREATE PLATFORMS
   platforms = this.physics.add.staticGroup();
   platforms.create(400, 568, 'ground').setScale(2).refreshBody();
   platforms.create(600, 400, 'ground');
   platforms.create(50, 250, 'ground');
   platforms.create(750, 220, 'ground');
 
-  //PLAYER
+
+  //CREATE PLAYER
   player = this.physics.add.sprite(100, 450, 'dude');
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
 
+  //CREATE COLLECTABLES
+  stars = this.physics.add.group({ //CREATE GROUP OF COLLECTABLES
+      key: 'star', //NAME OF SPRITE
+      repeat: 11, //NUMBER OF STARS TO CREATE
+      setXY: { x: 12, y: 0, stepX: 70 } //XY ORIGIN
+  });
+
+  stars.children.iterate(function (child) {
+
+      child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+  });
+
+  //OVERLAP ALL
+  this.physics.add.overlap(player, stars, collectStar, null, this);
+
+  //COLLECTABLES COLLISION
+  this.physics.add.collider(stars, platforms);
+
   //PLATFORM + PLAYER COLLISION
   this.physics.add.collider(player, platforms);
-  
-  //CONTROLLER
+
+
+  //ADD CONTROLLER
   cursors = this.input.keyboard.createCursorKeys();
 
+
   //PLAYER ANIMATIONS
-  //MOVE LEFT
+  //LEFT MOVEMENT ANIMATION
   this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
@@ -73,14 +103,14 @@ function create() {
       repeat: -1
   });
 
-  //TURN (LOOKING FORWARD)
+  //TURN ANIMATION (LOOKING FORWARD)
   this.anims.create({
       key: 'turn',
       frames: [ { key: 'dude', frame: 4 } ],
       frameRate: 20
   });
 
-  //MOVE RIGHT
+  //RIGHT MOVEMENT ANIMATION
   this.anims.create({
       key: 'right',
       frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
@@ -88,33 +118,39 @@ function create() {
       repeat: -1
   });
 
+  //ACTION WHEN COLLE
+  function collectStar (player, star)
+  {
+      star.disableBody(true, true);
+  }
+
 }
 
 function update(){
-  
-  //MOVE PLAYER + SET ANIMATIONS
-  if (cursors.left.isDown)
-  {
-      player.setVelocityX(-160);
 
-      player.anims.play('left', true);
+
+  //MOVE PLAYER & ANIMATE
+  if (cursors.left.isDown) //IS LEFT ARROW DOWN?
+  {
+      player.setVelocityX(-160); //MOVE LEFT
+      player.anims.play('left', true); //& PLAY LEFT ANIMATION
   }
-  else if (cursors.right.isDown)
+  else if (cursors.right.isDown) //IS RIGHT ARROW DOWN?
   {
-      player.setVelocityX(160);
-
-      player.anims.play('right', true);
+      player.setVelocityX(160); //MOVE RIGHT
+      player.anims.play('right', true); //& PLAY RIGHT ANIMATION
   }
-  else
+  else //IF NO KEYS ARE PRESSED
   {
-      player.setVelocityX(0);
-
-      player.anims.play('turn');
+      player.setVelocityX(0); //NO MOVEMENT
+      player.anims.play('turn'); //PLAY TURN ANIMATION
   }
 
+
+  //JUMP!
   if (cursors.up.isDown && player.body.touching.down)
   {
-      player.setVelocityY(-330);
+      player.setVelocityY(-330); //ADD UPWARD VELOCITY
   }
-  
+
 }
