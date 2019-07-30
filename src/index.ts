@@ -27,12 +27,16 @@ const game = new Phaser.Game(config);
 //GLOBAL VARIABLES
 var platforms; //GLOBAL PLATFORMS
 var stars; //GLOBAL COLLECTABLES
+var bombs; //ENEMIES
 var player; //GLOBAL PLAYER
 var cursors; //GLOBAL CONTROLLER
+var score = 0; //SCORE VALUE
+var gameOver = false; //GAME OVER?
+var scoreText; //SCORE TEXT FOR DISPLAY
 
 
-function preload() {
-
+function preload()
+{
   //PRELOAD IMAGES
   this.load.image('sky', 'src/assets/sky.png');
   this.load.image('ground', 'src/assets/platform.png');
@@ -47,20 +51,23 @@ function preload() {
 
 }
 
-function create() {
-
-
+function create()
+{
   //DRAW BACKGROUND
   this.add.image(400, 300, 'sky');
 
 
-  //CREATE PLATFORMS
+  //CREATE PLATFORM GROUP PHYSICS
   platforms = this.physics.add.staticGroup();
+
+  //CREATE BOMB GROUP PHYSICS
+  bombs = this.physics.add.group();
+
+  //CREATE PLATFORMS
   platforms.create(400, 568, 'ground').setScale(2).refreshBody();
   platforms.create(600, 400, 'ground');
   platforms.create(50, 250, 'ground');
   platforms.create(750, 220, 'ground');
-
 
   //CREATE PLAYER
   player = this.physics.add.sprite(100, 450, 'dude');
@@ -74,10 +81,9 @@ function create() {
       setXY: { x: 12, y: 0, stepX: 70 } //XY ORIGIN
   });
 
+  //SET RANDOM BOUNCE TO ADD VARIETY TO COLLECTABLES
   stars.children.iterate(function (child) {
-
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-
   });
 
   //OVERLAP ALL
@@ -89,10 +95,17 @@ function create() {
   //PLATFORM + PLAYER COLLISION
   this.physics.add.collider(player, platforms);
 
+  //PLATFORM + BOMB COLLISION (BOUNCE)
+  this.physics.add.collider(bombs, platforms);
+
+  //PLAYER + BOMB COLLISION (DIE)
+  this.physics.add.collider(player, bombs, hitBomb, null);
 
   //ADD CONTROLLER
   cursors = this.input.keyboard.createCursorKeys();
 
+  //DISPLAY TEXT
+  scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
   //PLAYER ANIMATIONS
   //LEFT MOVEMENT ANIMATION
@@ -118,17 +131,10 @@ function create() {
       repeat: -1
   });
 
-  //ACTION WHEN COLLE
-  function collectStar (player, star)
-  {
-      star.disableBody(true, true);
-  }
-
 }
 
-function update(){
-
-
+function update()
+{
   //MOVE PLAYER & ANIMATE
   if (cursors.left.isDown) //IS LEFT ARROW DOWN?
   {
@@ -152,5 +158,57 @@ function update(){
   {
       player.setVelocityY(-330); //ADD UPWARD VELOCITY
   }
+
+}
+
+//DELETE STARS WHEN COLLECTED
+function collectStar (player, star)
+{
+    //DISABLE STAR
+    star.disableBody(true, true);
+
+    //ADD POINTS TO SCORE
+    score += 10;
+
+    //UPDATE SCORE
+    scoreText.setText('Score: ' + score);
+
+    if (stars.countActive(true) === 0)
+    {
+        stars.children.iterate(function (child) {
+
+            child.enableBody(true, child.x, 0, true, true);
+
+        });
+    }
+
+    drawBomb();
+}
+
+//PLAYER DEATH FROM BOMB
+function hitBomb (player, bomb)
+{
+    //MAKE PLAYER RED
+    player.setTint(0xff0000);
+
+    //SET TO FORWARD FACING FRAME
+    player.anims.play('turn');
+
+    //STOP GAME
+    this.physics.pause();
+
+    //END GAME
+    gameOver = true;
+}
+
+function drawBomb()
+{
+    var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+    var bomb = bombs.create(x, 16, 'bomb');
+    bomb.setBounce(1);
+    bomb.setCollideWorldBounds(true);
+    bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+
 
 }
