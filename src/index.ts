@@ -188,7 +188,8 @@ function collectStar (player, star)
 //PLAYER DEATH FROM BOMB
 function hitBomb (player, bomb)
 {
-    //MAKE PLAYER RED
+    //MAKE PLAYER RED --- FOR SOME REASON THIS DOESNT WORK? IT WORKS IF WE REMOVE PAUSE()
+    //MAYBE PHYSICS ARE UPDATED MORE FREQUENTLY? MAYBE A CUSTOM GAME LOOP CAN FIX?
     player.setTint(0xff0000);
 
     //SET TO FORWARD FACING FRAME
@@ -203,11 +204,19 @@ function hitBomb (player, bomb)
 
 function drawBomb()
 {
+    //choose a random x value within the game space, under 400 pts from player
     var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
+    //draw bomb at x value, 16 up
     var bomb = bombs.create(x, 16, 'bomb');
+
+    //give bomb standard bounce value
     bomb.setBounce(1);
+
+    //set collider to game frame, so it cannot leave game world
     bomb.setCollideWorldBounds(true);
+
+    //set random velocity to bomb
     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
 
 
