@@ -99,7 +99,7 @@ function create()
   this.physics.add.collider(bombs, platforms);
 
   //PLAYER + BOMB COLLISION (DIE)
-  this.physics.add.collider(player, bombs, hitBomb, null);
+  this.physics.add.collider(player, bombs, hitBomb, null, this);
 
   //ADD CONTROLLER
   cursors = this.input.keyboard.createCursorKeys();
