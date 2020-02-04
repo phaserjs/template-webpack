@@ -19,20 +19,20 @@
   },
   "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
-    "file-loader": "^4.2.0",
+    "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
-    "raw-loader": "^3.1.0",
-    "terser-webpack-plugin": "^2.2.1",
-    "webpack": "^4.41.2",
+    "raw-loader": "^4.0.0",
+    "terser-webpack-plugin": "^2.3.4",
+    "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
+    "webpack-dev-server": "^3.10.2",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "phaser": "^3.20.1"
+    "phaser": "^3.22.0"
   }
 }
