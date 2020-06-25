@@ -36,16 +36,22 @@ function preload() {
 }
 
 function create() {
+
+  //creating player via paddle
   player = this.physics.add.sprite(
     400, //x position
     600, //y position
     'paddle'
   ).setScale(.15),
+
+  //create ball
   ball = this.physics.add.sprite(
     400,
     565,
     'ball'
   ).setScale(.015)
+
+  //add bricks
   blueBricks = this.physics.add.group({
     key: 'brick1',
     repeat: 8,
@@ -98,6 +104,9 @@ function create() {
       y: .13
     }
   })
+
+  //add keyboard movement - up, down, left, right, shift, space
+  cursors = this.input.keyboard.createCursorKeys()
 }
 
 function update(){
@@ -106,7 +115,14 @@ function update(){
   } else if (win()) {
     TODO: "you win"
   } else {
-    TODO: "something else?"
+    //while the game is live
+    player.body.setVelocityX(0) //keeps player still if not pressing keyboard
+
+    if(cursors.left.isDown) {
+      player.body.setVelocityX(-350)
+    } else if (cursors.right.isDown) {
+      player.body.setVelocityX(350)
+    }
   }
 }
 
