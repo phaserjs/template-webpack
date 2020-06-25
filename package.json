@@ -2,7 +2,7 @@
   "name": "phaser3-project-template",
   "version": "1.1.0",
   "description": "A Phaser 3 Project Template",
-  "main": "src/index.js",
+  "main": "client/breakout.js",
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
     "start": "webpack-dev-server --config webpack/base.js --open"
@@ -33,6 +33,6 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "phaser": "^3.20.1"
+    "phaser": "^3.23.0"
   }
 }
