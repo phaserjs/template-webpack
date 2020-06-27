@@ -49,6 +49,8 @@ function create() {
     600, //y position
     'paddle'
   ).setScale(.15),
+  player.setImmovable(true)
+  player.body.collideWorldBounds = true;
 
   //create ball
   ball = this.physics.add.sprite(
@@ -57,12 +59,14 @@ function create() {
     'ball'
   ).setScale(.015)
 
+  ball.body.collideWorldBounds = true;
   ball.body.setBounce(1)
 
   //add bricks
   blueBricks = this.physics.add.group({
     key: 'brick1',
     repeat: 8,
+    immovable: true,
     setXY: {
       x: 120,
       y: 45,
@@ -76,6 +80,7 @@ function create() {
   greenBricks = this.physics.add.group({
     key: 'brick2',
     repeat: 7,
+    immovable: true,
     setXY: {
       x: 150,
       y: 80,
@@ -89,6 +94,7 @@ function create() {
   redBricks = this.physics.add.group({
     key: 'brick3',
     repeat: 9,
+    immovable: true,
     setXY: {
       x: 87,
       y: 115,
@@ -102,6 +108,7 @@ function create() {
   yellowBricks = this.physics.add.group({
     key: 'brick4',
     repeat: 8,
+    immovable: true,
     setXY: {
       x: 120,
       y: 150,
@@ -115,9 +122,30 @@ function create() {
 
   //add keyboard movement - up, down, left, right, shift, space
   cursors = this.input.keyboard.createCursorKeys()
+
+  //create collisions between brick and ball
+  this.physics.add.collider(ball, blueBricks, brickCollision, null, this)
+  this.physics.add.collider(ball, greenBricks, brickCollision, null, this)
+  this.physics.add.collider(ball, redBricks, brickCollision, null, this)
+  this.physics.add.collider(ball, yellowBricks, brickCollision, null, this)
+
+  //create collision between paddle and ball
+  this.physics.add.collider(ball, player, playerCollision, null, this)
 }
 
 function update(){
+  //GameStart on space
+  if (!gameStart) {
+    ball.setX(player.x)
+    ball.setVelocityY(0) //prevents ball from floating up
+    ball.setVelocityX(0) //prevents ball from floating left or right
+
+    if(cursors.space.isDown) {
+      gameStart = true
+      ball.setVelocityY(-250)
+    }
+  }
+
   if (gameOver(this.physics.world)) {
     TODO: "you lose"
   } else if (win()) {
@@ -132,16 +160,32 @@ function update(){
     } else if (cursors.right.isDown) {
       player.body.setVelocityX(350) //num is px per second to the right
     }
+  }
+}
 
-    //GameStart on space
-    if (!gameStart) {
-      ball.setX(player.x)
+//collision functions
+function brickCollision(ball, brick) {
+  brick.disableBody(true, true)
 
-      if(cursors.space.isDown) {
-        gameStart = true
-        ball.setVelocityY(-250)
-      }
+  if (ball.body.velocity.x === 0) {
+    num = Math.random()
+    if (num >= 0.5) {
+      ball.body.setVelocityX(150)
+    } else {
+      ball.body.setVelocityY(-150)
     }
+  }
+}
+
+function playerCollision(ball, player) {
+  ball.setVelocityY(ball.body.velocity.y - 20)
+
+  let newVelX = Math.abs(ball.body.velocity.x) + 10;
+
+  if (ball.x < player.x) {
+    ball.setVelocityX(-newVelX)
+  } else {
+    ball.setVelocityX(newVelX)
   }
 }
 
