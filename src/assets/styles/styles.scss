@@ -1,0 +1,19 @@
+@import "variables";
+
+body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: $background-col;
+}
+
+@font-face {
+	font-family: gameFont;
+	src: url($fontpath) format("woff");
+	font-weight: normal;
+}
+.fontloader {
+	position: absolute;
+	left: -1000px;
+	visibility: hidden;
+}
