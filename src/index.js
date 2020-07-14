@@ -2,20 +2,23 @@ import Phaser from "phaser";
 import "./assets/styles/styles.scss";
 import BootScene from "./scenes/BootScene";
 import SFXScene from "./scenes/SFXScene";
+import LoadScene from "./scenes/LoadScene";
+import GameScene from "./scenes/GameScene";
+import GameOverScene from "./scenes/GameOverScene";
+
+let game;
 
 const config = {
 	type: Phaser.AUTO,
-	backgroundColor: 0x232323,
-	scale: {
-		mode: Phaser.Scale.FIT,
-		autoCenter: Phaser.Scale.CENTER_BOTH,
-		width: 1280,
-		height: 720,
-	},
-	scene: [BootScene, SFXScene],
+	backgroundColor: 0x454545,
+	width: window.innerWidth,
+	height: window.innerHeight,
+	scene: [BootScene, SFXScene, LoadScene, GameScene, GameOverScene],
 };
 
 window.onload = function () {
 	window.focus();
-	const game = new Phaser.Game(config);
+	game = new Phaser.Game(config);
 };
+
+export { game };

@@ -1,13 +1,13 @@
-import Json from '../../assets/data/**/*.json';
-import Xml from '../../assets/data/**/*.xml';
-import Text from '../../assets/data/**/*.txt';
+function importAll(r) {
+	let data = {};
+	r.keys().map((item, index) => {
+		data[item.replace("./", "")] = r(item);
+	});
+	return data;
+}
 
-import { iterate } from './utils/utils';
+const data = importAll(
+	require.context("../assets/data", false, /\.(xml|json|txt)$/)
+);
 
-export default {
-  data: {
-    json: Object.assign(...iterate(Json, '')),
-    xml: Object.assign(...iterate(Xml, '')),
-    txt: Object.assign(...iterate(Text, '')),
-  },
-};
+export { data };
