@@ -6,6 +6,13 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   mode: "development",
   devtool: "eval-source-map",
+  devServer: {
+    before: (app) => {
+      app.get('/assets/*.png', (req, res) => {
+        res.sendFile(`./src${req.url}`, { root: '.' })
+      })
+    },
+  },
   module: {
     rules: [
       {
