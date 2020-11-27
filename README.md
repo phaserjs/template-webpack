@@ -27,7 +27,7 @@ After starting the development server with `npm start`, you can edit any files i
 and webpack will automatically recompile and reload your server (available at `http://localhost:8080`
 by default).
 
-## Customizing Template
+## Customizing the Template
 
 ### Babel
 You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you
