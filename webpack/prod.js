@@ -2,6 +2,7 @@ const merge = require("webpack-merge");
 const path = require("path");
 const base = require("./base");
 const TerserPlugin = require("terser-webpack-plugin");
+var webpack = require('webpack');
 
 module.exports = merge(base, {
   mode: "production",
@@ -14,13 +15,16 @@ module.exports = merge(base, {
     maxAssetSize: 900000
   },
   optimization: {
+    minimize: true,
+    nodeEnv: 'production',
     minimizer: [
       new TerserPlugin({
         terserOptions: {
-          output: {
-            comments: false
-          }
-        }
+          format: {
+            comments: false,
+          },
+        },
+        extractComments: false
       })
     ]
   }
