@@ -16,3 +16,4 @@ dist/
 .cache/
 .env
 coverage/
+package-lock.json
