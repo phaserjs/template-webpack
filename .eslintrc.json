@@ -26,5 +26,10 @@
         "jest/globals": true,
         "jest": true
     },
-    "settings": {}
+    "settings": {
+        "import/core-modules": ["phaser"]
+    },
+    "globals": {
+        "Phaser": true
+    }
 }
