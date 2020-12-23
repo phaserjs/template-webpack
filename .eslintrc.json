@@ -2,23 +2,29 @@
     "extends": [
         "eslint:recommended",
         "plugin:import/errors",
+        "plugin:jest/recommended",
         "prettier"
     ],
-    "plugins": ["import"],
+    "plugins": ["jest", "import"],
     "rules": {
-        "no-console": 1
+        "no-console": 1,
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
     },
     "parserOptions": {
         "ecmaVersion": 2019,
         "sourceType": "module",
-        "ecmaFeatures": {
-        }
+        "ecmaFeatures": {}
     },
     "env": {
         "es6": true,
         "browser": true,
-        "node": true
+        "node": true,
+        "jest/globals": true,
+        "jest": true
     },
-    "settings": {
-    }
+    "settings": {}
 }

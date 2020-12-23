@@ -1,5 +1,5 @@
-import sum from "../src/sum";
+import sum from '../src/sum';
 
-test("test", () => {
+test('this is a test', () => {
     expect(sum(1, 2)).toBe(3);
 });
