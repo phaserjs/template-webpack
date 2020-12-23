@@ -5,6 +5,7 @@ Thumbs.db
 *.suo
 *.sublime-project
 *.sublime-workspace
+.vscode/
 
 # Vendors
 node_modules/
@@ -12,3 +13,6 @@ node_modules/
 # Build
 dist/
 /npm-debug.log
+.cache/
+.env
+coverage/
