@@ -7,7 +7,8 @@
     "build": "webpack --config webpack/prod.js ",
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "eslint \"./src/**/*.js\" --quiet",
-    "start": "webpack-dev-server --config webpack/base.js --open"
+    "start": "webpack-dev-server --config webpack/base.js --open",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
   "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
   "devDependencies": {
     "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-env": "^7.12.11",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^7.16.0",
@@ -30,15 +32,20 @@
     "eslint-plugin-import": "^2.22.1",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "raw-loader": "^3.1.0",
     "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
+    "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "phaser": "^3.50.0"
+  },
+  "jest": {
+    "verbose": true,
+    "testMatch": ["**/test/**/*.js"]
   }
 }
