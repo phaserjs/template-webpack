@@ -1,5 +1,5 @@
-import Scene from './core/scene';
+import MyScene from './game/my-scene';
 
 export default {
-    scenes: [{ key: 'Scene', scene: Scene }],
+    scenes: [{ key: 'Scene', scene: MyScene }],
 };
