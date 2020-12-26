@@ -4,8 +4,8 @@
     "description": "A Phaser 3 Project Template",
     "main": "src/index.js",
     "scripts": {
-        "build": "webpack --config webpack/prod.js ",
-        "clean": "rm -rf node_modules && rm -rf dist && npm install",
+        "build": "rm -rf dist && webpack --config webpack/prod.js ",
+        "clean": "rm -rf node_modules && npm install",
         "format": "prettier --write \"src/**/*.js\"",
         "host": "http-server dist",
         "lint": "eslint \"./src/**/*.js\" --quiet",

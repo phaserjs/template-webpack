@@ -1,0 +1,9 @@
+{
+    "assets": [
+        {
+            "key": "logoImg",
+            "type": "image",
+            "path": "./logo.png"
+        }
+    ]
+}
