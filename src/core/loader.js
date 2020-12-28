@@ -19,6 +19,9 @@ export default class Loader extends Phaser.Scene {
     }
 }
 
+// OK- so because you want to load assets that are not part of the logical tree of the app,
+// those need to be served from somewhere- so, we need to pass some config to an http client.
+
 const loadAssetJson = (scene) => {
     // atlas.forEach((pack) => loadAssetPackJson({ scene, pack }));
     atlas.forEach((pack) => {
