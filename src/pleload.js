@@ -39,8 +39,7 @@ export default class Preload extends Phaser.Scene {
     this.load.image("door", Door)
     this.load.audio("jump", Jump)
     this.load.audio("collect", Coinsound)
-    this.load.atlas("wilma", Wilmatex, Wilma)
-    this.load.image("Sohaimg", Sohaimg)
+    this.load.atlas("soha",Sohaimg,Soha))
   }
 
 
@@ -50,4 +49,4 @@ export default class Preload extends Phaser.Scene {
     this.scene.start("game")
 
   }
-}
+} 
