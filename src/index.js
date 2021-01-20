@@ -16,7 +16,7 @@ const config= {
       debug:true
     }
   },
-  scene:[Preload,Game,Game2],
+  scene:[Preload, level1, level2],
 }
 
 export default new Phaser.Game(config)
