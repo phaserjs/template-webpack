@@ -91,7 +91,7 @@ export default class PreloaderScene extends Phaser.Scene {
   this.load.image('map','assets/grass.png')
   this.load.image('coins','assets/coin.png', { width: 32, height: 32 })
   this.load.image('bg','assets/bg.png')
-  this.load.spritesheet('cowboy','assets/cowboy.png', { frameWidth: 45, frameHeight: 44 })
+  this.load.spritesheet('soha','assets/soha.png', { frameWidth: 45, frameHeight: 44 })
   this.load.spritesheet('bullets','assets/bullets.png', { frameWidth: 32, frameHeight: 32 })
   this.load.image('up', 'assets/up.png');
   this.load.image('left', 'assets/left.png');
