@@ -1,49 +1,97 @@
-# Phaser 3 Webpack Project Template
+# GETCOINS
 
-A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/) that includes hot-reloading for development and production-ready builds.
+# GetCoins (JavaScript)
 
-This has been updated for Phaser 3.50.0 version and above.
+This project is a game build with javascript, when user can collect coins to get score ,without touching the fire.
 
-Loading images via JavaScript module `import` is also supported, although not recommended.
+## Live Demo
 
-## Requirements
+[Link here](https://peaceful-aryabhata-69b861.netlify.app/)
 
-[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
+## ScreenShoot
 
-## Available Commands
+![screenshoot](dist/assets/images/screenshot1.PNG)
+![screenshoot](dist/assets/images/screenshot2.PNG)
 
-| Command | Description |
-|---------|-------------|
-| `npm install` | Install project dependencies |
-| `npm start` | Build project and open web server running project |
-| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
+## Built With
 
-## Writing Code
+- JavaScript
+- ESLint
+- Phaser 3
+- VS Code
 
-After cloning the repo, run `npm install` from your project directory. Then, you can start the local development server by running `npm start`.
+### Design Process
 
-After starting the development server with `npm start`, you can edit any files in the `src` folder and webpack will automatically recompile and reload your server (available at `http://localhost:8080` by default).
+GetCoins design process started with the idea of creating a simple and beautiful RPG.  I got inspired by the RPG classic the supermario. and thanks to opengameart.org  for posting all of these amazing spirites and tiels  used in the game.
 
-## Customizing the Template
+the game entire map was built with Tiled on a 32 x 32 collection other than the cowboy that was built on 45 x 44   of squares.
+first I created player and coins to get scores then I added the fire so the player will have some obstacles to run from.
 
-### Babel
+## Prerequisites
 
-You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you want your project to support. The targeted browsers are set in the `.babelrc` file and the default currently targets all browsers with total usage over "0.25%" but excludes IE11 and Opera Mini.
+You must have a browser on your PC in order to use the application. [Click here](https://www.mozilla.org/en-US/firefox/new/) to download one.
 
- ```
-"browsers": [
-  ">0.25%",
-  "not ie 11",
-  "not op_mini all"
-]
- ```
+## Getting Started
 
-### Webpack
+1. clone the project
 
-If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create new configuration files and target them in specific npm tasks inside of `package.json'.
+```bash
+# Clone this repository
+$ git clone https://github.com/rida-elbahtouri/GetCoins.git
 
-## Deploying Code
+# Go into the repository
+$ cd GetCoins
 
-After you run the `npm run build` command, your code will be built into a single bundle located at `dist/bundle.min.js` along with any other assets you project depended. 
 
-If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), you should be able to open `http://mycoolserver.com/index.html` and play your game.
+```
+
+## for webpack run:
+
+the dependencies needed in this project are:
+
+- webpack
+- webpack-cli
+- webpack-dev-server
+
+- and Jest for testing
+
+**You can Install the dependencies with this commands**
+
+```bash
+$ npm run install
+
+```
+### start the game
+```bash 
+$ npm run start
+ # and open the link provided 
+```
+## Usage
+
+- USE <-  -> to move left and right 
+- use up key to jumb
+- collect coins without touching the fire
+
+## Authors
+
+👤 **Rida Elbahtouri**
+
+- [Github](https://github.com/rida-elbahtouri)
+- [Twitter](https://twitter.com/RElbahtouri)
+- [Linkedin](https://www.linkedin.com/in/rida-elbahtouri/)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the <a href="https://github.com/rida-elbahtouri/WeatherApp/issues" target="_blank">issues page</a>.
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- <a href="https://www.theodinproject.com/" target="_blank">The Odin Project</a>
+
+- <a href="https://www.opengameart.org" target="_blank">Opengameart</a>
