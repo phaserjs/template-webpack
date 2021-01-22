@@ -7,13 +7,13 @@ export default {
   height: 600,
   pixelArt: true,
   dom: {
-    createContainer: true
-},
-  physics:{
+    createContainer: true,
+  },
+  physics: {
     default: 'arcade',
     arcade: {
-        gravity: { y: 300 },
-        debug: false
-    }
-  }
+      gravity: { y: 300 },
+      debug: false,
+    },
+  },
 };

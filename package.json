@@ -25,6 +25,10 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^26.4.2",
     "raw-loader": "^3.1.0",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.17.2",
     "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
@@ -33,6 +37,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "phaser": "^3.24.1"
+    "phaser": "^3.24.1",
+    "regenerator-runtime": "^0.13.7"
   }
 }

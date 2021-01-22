@@ -1,8 +1,10 @@
+/* eslint-disable */
 import Phaser from 'phaser';
 import Button from '../Objects/Button';
 import config from '../Config/config';
-import { save} from '../Objects/apiScore';
+import { save } from '../Objects/apiScore';
 import 'regenerator-runtime';
+
 export default class GameOverScene extends Phaser.Scene {
   constructor() {
     super({ key: 'GameOver' });
@@ -25,11 +27,11 @@ export default class GameOverScene extends Phaser.Scene {
 
     this.score = this.add.text(230, 30,
       `${user}, your score is: ${this.sys.game.globals.model.score}`, {
-        fontSize: 24,
-        fontStyle: 'bold',
-        color: '#ffffff',
-        align: 'center',
-      });
+      fontSize: 24,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center',
+    });
 
     await save(this.model.userName, this.model.score);
 
