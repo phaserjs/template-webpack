@@ -11,7 +11,6 @@
 
 ![screenshot](./dist/assets/coin1.png)
 ![screenshot](./dist/assets/coin2.png)
-![screenshot](./dist/assets/coin3.png)
 
 ## Prerequisites
 
