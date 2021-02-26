@@ -6,6 +6,7 @@ Thumbs.db
 *.sublime-project
 
 # Vendors
+**/*.js
 node_modules/
 
 # Build

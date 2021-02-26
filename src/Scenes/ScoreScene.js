@@ -28,7 +28,6 @@ export default class ScoreScene extends Phaser.Scene {
       }
     }
 
-
     this.menuButton = new Button(this, 400, 500, 'blueButton1', 'blueButton2', 'Restart', 'Title');
 
     this.menuButton.on('click', () => {
