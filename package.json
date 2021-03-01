@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open",
+    "start:dev": "webpack-dev-server",
     "test": "jest"
   },
   "author": "",
@@ -32,7 +32,7 @@
     "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
