@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+import axios from 'axios'
 const API_KEY = 'yH70Z5n0oU15qLEnrj0K';
 const BASE = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games';
 

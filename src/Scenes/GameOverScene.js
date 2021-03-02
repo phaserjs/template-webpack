@@ -29,7 +29,7 @@ export default class GameOverScene extends Phaser.Scene {
       `${user}, your score is: ${this.sys.game.globals.model.score}`, {
       fontSize: 24,
       fontStyle: 'bold',
-      color: '#ffffff',
+      color: '#dddddd',
       align: 'center',
     });
 
