@@ -22,7 +22,7 @@ export default class HelpScene extends Phaser.Scene {
 
     this.menuButton = new Button(this, 400, 550, 'blueButton1', 'blueButton2', 'Menu', 'Title');
 
-    this.intro = this.add.text(215, 400, 'Enter your name: ', { fontSize: 22 });
+    this.intro = this.add.text(215, 400, ' your pseudoname: ', { fontSize: 22 });
 
     const input = this.add.dom(510, 410, 'input', {
       type: 'text',

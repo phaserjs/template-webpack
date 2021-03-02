@@ -2,7 +2,7 @@
 
 ## Description
 
-> This is the Capstone project for Javascript in Microverse Curriculum. The player has to collect Coins to get score ,without touching the fire from various platforms by avoiding different obstacles and enemies.  Please read the Game Design Document for further information about the story and the gameplay.
+This is the Capstone project for Javascript in Microverse Curriculum. The player has to collect Coins to get score ,without touching the fire from various platforms by avoiding different obstacles and enemies.  Please read the Game Design Document for further information about the story and the gameplay.
 
 ## Game Design Documentation
 [Documentation](./gamedoc.md)
@@ -14,7 +14,7 @@
 
 ## Prerequisites
 
-You must have a browser on your PC in order to use the application. [Click here](https://www.mozilla.org/en-US/firefox/new/) to download one.
+You must have a browser on your PC in order to use the application. [Click here](https://www.google.com/chrome/?brand=BNSD&gclid=Cj0KCQiAvvKBBhCXARIsACTePW--A0qs3Kbv1U6UvAZa4xW4Oog_Y19cI2opD2oZ-IIZAni4jzH6MQgaAi-6EALw_wcB&gclsrc=aw.ds) to download one.
 
 
 ## Instructions
@@ -30,7 +30,7 @@ To move the player:
 
 - Javascript
 - Phaser 3
-- Atom text editor
+- VS code
 - Stylelint
 - Eslint
 - Npm
@@ -74,7 +74,7 @@ $ All tests will pass ✅
 
 👨 **Guy Gustave NIGABA**
 - Github: [@Gustave](https://github.com/Guy-Gustave)
-- Linkedin: [Guy-Gustave](https://www.linkedin.com/in/guy-gustave-nigaba-7988ba181/)
+- Linkedin: [Guy-Gustave](https://www.linkedin.com/in/guy-gustave-nigaba/)
 - E-mail: [guymoustapha@gmail.com](guymoustapha@gmail.com)
 
 ## 🤝 Contributing
