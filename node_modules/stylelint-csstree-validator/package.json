@@ -1,0 +1,59 @@
+{
+  "name": "stylelint-csstree-validator",
+  "version": "1.9.0",
+  "description": "Stylelint plugin to validate CSS syntax",
+  "repository": "csstree/stylelint-validator",
+  "author": "Roman Dvornov <rdvornov@gmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "keywords": [
+    "stylelint-plugin",
+    "stylelint",
+    "csstree",
+    "css",
+    "validator",
+    "syntax"
+  ],
+  "scripts": {
+    "test": "tape test | tap-spec",
+    "travis": "npm run test"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "css-tree": "^1.0.0"
+  },
+  "peerDependencies": {
+    "stylelint": ">=7.0.0 <14.0.0"
+  },
+  "devDependencies": {
+    "postcss-less": "^3.1.4",
+    "postcss-scss": "^2.0.0",
+    "stylelint": "^13.0.0",
+    "stylelint-rule-tester": "^0.6.2",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.11.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "no-duplicate-case": 2,
+      "no-undef": 2,
+      "no-unused-vars": [
+        2,
+        {
+          "vars": "all",
+          "args": "after-used"
+        }
+      ]
+    }
+  },
+  "files": [
+    "syntax-extension",
+    "index.js"
+  ]
+}
