@@ -10,6 +10,11 @@ This is the Capstone project for Javascript in Microverse Curriculum. The player
 ## Live demo
 
 https://wonderful-thompson-ca3d46.netlify.app/
+
+# video description
+
+https://www.loom.com/share/d3c7609fa7014b3a9e2bac23d5ab93bd
+
 ## Screenshots
 
 ![screenshot](./assets/coin1.png)
