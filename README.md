@@ -7,10 +7,13 @@ This is the Capstone project for Javascript in Microverse Curriculum. The player
 ## Game Design Documentation
 [Documentation](./gamedoc.md)
 
+## Live demo
+
+https://wonderful-thompson-ca3d46.netlify.app/
 ## Screenshots
 
-![screenshot](./dist/assets/coin1.png)
-![screenshot](./dist/assets/coin2.png)
+![screenshot](./assets/coin1.png)
+![screenshot](./assets/coin2.png)
 
 ## Prerequisites
 
