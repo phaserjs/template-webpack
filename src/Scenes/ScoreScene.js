@@ -1,3 +1,5 @@
+/* eslint-disable */ 
+ 
 import Phaser from 'phaser';
 import Button from '../Objects/Button';
 import { get } from '../Objects/apiScore';

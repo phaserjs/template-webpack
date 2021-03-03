@@ -14,3 +14,8 @@ node_modules/
 /npm-debug.log
 **/*.js
 vendor/**/*.css
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
