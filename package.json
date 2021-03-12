@@ -34,7 +34,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "phaser": "^3.50.0",
+    "phaser": "^3.53.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.0.0"
