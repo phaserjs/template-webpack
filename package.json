@@ -29,10 +29,11 @@
     "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
+    "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "phaser": "^3.50.0"
+    "matter-js": "^0.16.1",
+    "phaser": "^3.53.1"
   }
 }
