@@ -7,8 +7,8 @@ class Mirror extends Phaser.GameObjects.Container {
     this.scene = scene;
     this.x = x;
     this.y = y;
-    //this.rotated = false;
-    const that = this;
+    this.itemRotated = false;
+
 
     const box = this.scene.add.graphics( 
       { lineStyle: { width: 5, color: 0x00b2e3 } } )
@@ -18,9 +18,9 @@ class Mirror extends Phaser.GameObjects.Container {
       { lineStyle: { width: 4, color: 0xa9a9a9 } } )
       .strokeLineShape( new Phaser.Geom.Line ( 120, 0, 0, 120 ) );
 
-    const lineTL = () => this.scene.add.graphics( 
+    const lineTL = (x1, y1, x2, y2) => this.scene.add.graphics( 
       { lineStyle: { width: 4, color: 0xa9a9a9 } } )
-      .strokeLineShape( new Phaser.Geom.Line ( 120, 0, 0, 120 ) );
+      .strokeLineShape( new Phaser.Geom.Line ( x1, y1, x2, y2 ) );
 
     this.setSize(120, 120);
     this.setInteractive();
@@ -31,7 +31,7 @@ class Mirror extends Phaser.GameObjects.Container {
 
     const changeAngle  = () => { 
       lineTR.clear();
-      lineTL();
+      lineTL( x, y, x + 120, y + 120 );
       console.log(`clicked x:${x} y:${y}`)
     }
 
