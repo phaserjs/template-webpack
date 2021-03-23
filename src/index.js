@@ -7,15 +7,18 @@ class Mirror extends Phaser.GameObjects.Container {
     this.scene = scene;
     this.x = x;
     this.y = y;
-    this.angle = 0;
-
-    //const boxShape = new Phaser.Geom.Rectangle( 5, 5, 110, 110 );
+    //this.rotated = false;
+    const that = this;
 
     const box = this.scene.add.graphics( 
       { lineStyle: { width: 5, color: 0x00b2e3 } } )
       .strokeRectShape( new Phaser.Geom.Rectangle( 5, 5, 110, 110 ) );
 
-    const line = this.scene.add.graphics( 
+    const lineTR = this.scene.add.graphics( 
+      { lineStyle: { width: 4, color: 0xa9a9a9 } } )
+      .strokeLineShape( new Phaser.Geom.Line ( 120, 0, 0, 120 ) );
+
+    const lineTL = () => this.scene.add.graphics( 
       { lineStyle: { width: 4, color: 0xa9a9a9 } } )
       .strokeLineShape( new Phaser.Geom.Line ( 120, 0, 0, 120 ) );
 
@@ -24,11 +27,16 @@ class Mirror extends Phaser.GameObjects.Container {
     this.input.hitArea.x = 60;
     this.input.hitArea.y = 60;
     this.add(box);
-    this.add(line);
+    this.add(lineTR);
 
-    const changeAngle  = () => { line.setAngle(90); }
+    const changeAngle  = () => { 
+      lineTR.clear();
+      lineTL();
+      console.log(`clicked x:${x} y:${y}`)
+    }
 
-    this.on( 'pointerdown',  () => { line.setTo( 0, 120, 120, 0 ) } );
+
+    this.on( 'pointerdown',  changeAngle );
 
     this.scene.add.existing(this);
   }
