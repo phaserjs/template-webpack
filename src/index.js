@@ -18,9 +18,9 @@ class Mirror extends Phaser.GameObjects.Container {
       { lineStyle: { width: 4, color: 0xa9a9a9 } } )
       .strokeLineShape( new Phaser.Geom.Line ( 120, 0, 0, 120 ) );
 
-    const lineTL = (x1, y1, x2, y2) => this.scene.add.graphics( 
-      { lineStyle: { width: 4, color: 0xa9a9a9 } } )
-      .strokeLineShape( new Phaser.Geom.Line ( x1, y1, x2, y2 ) );
+    // const lineTL = (x1, y1, x2, y2) => this.scene.add.graphics( 
+    //   { lineStyle: { width: 4, color: 0xa9a9a9 } } )
+    //   .strokeLineShape( new Phaser.Geom.Line ( x1, y1, x2, y2 ) );
 
     this.setSize(120, 120);
     this.setInteractive();
@@ -29,10 +29,22 @@ class Mirror extends Phaser.GameObjects.Container {
     this.add(box);
     this.add(lineTR);
 
-    const changeAngle  = () => { 
-      lineTR.clear();
-      lineTL( x, y, x + 120, y + 120 );
-      console.log(`clicked x:${x} y:${y}`)
+    const lineTL = this.scene.add.graphics( { lineStyle: { width: 4, color: 0xa9a9a9 } } );
+    const tLPoints = () => new Phaser.Geom.Line( x, y, x + 120, y + 120 );
+
+    const addTLLine  = () => {
+      lineTL.strokeLineShape( tLPoints );
+      console.log(`clicked x:${x} y:${y}`);
+    }
+
+    const changeAngle = () => {
+      if(this.itemRotated) {
+        lineTL.clear();
+        this.add(lineTR);
+      } else {
+        lineTR.clear();
+        addTLLine();
+      }
     }
 
 
