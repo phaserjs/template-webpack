@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
-const mirrorArray = [[360, 30]];
+let mirrorArray = [];
+
 let laserGraphic;
 let laserDirection = 1; //1 = right, 2 = down, 3 = left, 4 = up
 
@@ -149,10 +150,12 @@ class MyGame extends Phaser.Scene
       let thisX = 330 + tile[0] * 60;
       let thisY = 30 + tile[1] * 60;
       let newPoint = [ (thisX), (thisY) ];
-      mirrorArray.push(newPoint)
+      mirrorArray.push(newPoint);
     }
 
     const shootLaser = (direction, tile) => {
+      mirrorArray = [[360, 30]];
+      laserDirection = 1;
       while (laserDirection) {
         let lastTile = Array.from(tile);
         findNextTile(laserDirection);
@@ -163,6 +166,7 @@ class MyGame extends Phaser.Scene
       makeBeam(mirrorArray);
     }
 
+    // draws the beam. this seems to be working right. The beam isn't resetting correctly for some reason.
     const makeBeam = (pointArray) => {
       for ( let x = 0; x < pointArray.length; x++ ) {
         console.log(x);
