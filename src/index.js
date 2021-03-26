@@ -1,105 +1,239 @@
 import Phaser from 'phaser';
 
-const mirrorArr = [];
+const mirrorArray = [[360, 30]];
+let laserGraphic;
+let laserDirection = 1; //1 = right, 2 = down, 3 = left, 4 = up
 
-let graphics;
-let laserOrigin;
-let reflectedLaser;
-let thisReflector;
-let reflectAngle;
-let aMirror;
+const makeLaser = ( x1, y1, x2, y2 ) => { new Phaser.Geom.Line( x1, y1, x2, y2 ) }
 
-class Mirror extends Phaser.GameObjects.Container {
-  constructor(scene, x, y) {
-    super(scene);
-
-    this.scene = scene;
-    this.x = x;
-    this.y = y;
-
-    const box = this.scene.add.graphics( 
-      { lineStyle: { width: 5, color: 0x00b2e3 } } )
-      .strokeRectShape( new Phaser.Geom.Rectangle( 8, 8, 104, 104 ) );
-
-    // const rotateDamnit = (pointer) => {
-    //   if( pointer.rightButtonDown() ) {
-    //     this.angle += 45;
-    //     console.log("clicked")}};
-    
-    this.line = this.scene.add.graphics( { lineStyle: { width: 4, color: 0xa9a9a9 } } );
-
-    this.setSize( 120, 120 );
-    this.setInteractive();
-    this.input.hitArea.x = 60;
-    this.input.hitArea.y = 60;
-    this.scene.input.setDraggable(this);
-
-    this.scene.input.mouse.disableContextMenu();
-    // this.scene.input.on('pointerdown', rotateDamnit);
-    this.scene.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-      gameObject.x = dragX;
-      gameObject.y = dragY;
-    });
-    this.add( box );
-    this.add( this.line.strokeLineShape( new Phaser.Geom.Line ( 10, 10, 110, 110 ) ) );
-  
-    this.scene.add.existing(this);
-  }
-}
+const laserUp = (x, y) => {}
 
 class MyGame extends Phaser.Scene
 {
-    constructor ()
-    {
-        super();
+  constructor ()
+  {
+      super();
+  }
+
+  preload ()
+  {
+    this.load.image('tiles', 'src/assets/metal.png');
+  }
+    
+  create ()
+  {
+    //main grid
+    const board = [
+      [6, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+
+    // populate the tiles
+    const map = this.make.tilemap({ data: board,  tileWidth: 60, tileHeight: 60 });
+    const tileset = map.addTilesetImage('metal.png', 'tiles', 60, 60);
+    const layer = map.createLayer( 0, tileset, 300, 0 );
+
+    // prep the laser
+    laserGraphic = this.add.graphics({ lineStyle: { width: 4, color: 0x00ff00, alpha: .7 } });
+
+    // turn the mirrors
+    const mirrorChange = (tileIndex, clickedX, clickedY) => layer.putTileAt(tileIndex, clickedX, clickedY);
+    this.input.on('pointerdown', function (pointer) {
+      laserGraphic.clear();
+      if (game.input.mousePointer.x >= 300){
+        let clickedTile = map.getTileAtWorldXY(pointer.worldX, pointer.worldY);
+        let indexClicked = clickedTile.index;
+        if (indexClicked < 4) {
+          indexClicked++
+        } else if (indexClicked == 4) {
+          indexClicked = 0
+        }
+        mirrorChange(indexClicked, clickedTile.x, clickedTile.y);
+      }
+    });
+
+    // PEW!
+    let thisTile = [0, 0];
+
+    const pewButton = this.add.text(75, 100, 'PEW!', { fill: '#0f0' }).setInteractive().on('pointerup', () => { shootLaser(laserDirection, thisTile) });
+
+    const findNextTile = (direction) => {
+      switch(direction) {
+        case 1: 
+          thisTile[0] = thisTile[0] +1;
+          break;
+          
+        case 3: 
+          thisTile[0] = thisTile[0] -1;
+          break;
+          
+        case 4: 
+          thisTile[1] = thisTile[1] -1;
+          break;
+          
+        case 2: 
+          thisTile[1] = thisTile[1] +1;
+          break;
+      }
     }
 
-    preload ()
-    {
-    }
+    const tileTest = (tileValue, tile) => {
+      if (tileValue) {
+        addToMirrorArray(tile)
+        if (tileValue == 1) {
+          if (laserDirection == 1) {
+            laserDirection = 2;
+          } else if (laserDirection == 4) {
+            laserDirection = 3
+          } else {
+            laserDirection = null
+          }}
+
+        else if (tileValue == 2) {
+          if (laserDirection == 3) {
+            laserDirection = 2
+          } else if (laserDirection == 4) {
+            laserDirection = 1
+          } else {
+            laserDirection = null
+          }}
+        
+        else if (tileValue == 3) {
+          if (laserDirection == 3) {
+            laserDirection = 4
+          } else if (laserDirection == 2) {
+            laserDirection = 1
+          } else {
+            laserDirection = null
+          }}
+        
+        else if (tileValue == 4) {
+          if (laserDirection == 1) {
+            laserDirection = 4
+          } else if (laserDirection == 2) {
+            laserDirection = 3
+          } else {
+            laserDirection = null
+          }}
+
+        else {
+            laserDirection = null;
+          }
+        }
+      }
+
+    const findTileIndex = (tile, lastTile) => {
+      let thisX = 330 + tile[0] * 60;
+      let thisY = 30 + tile[1] * 60;
       
-    create ()
-    {
-      //main grid
-      const mainBoardGrid = this.add.grid( 300, 300, 600, 600, 120, 120, 0x000, 1, 0xFFF, 1 );
+      if ( thisX > 900 || thisX < 300 || thisY > 600 || thisY < 0) {
+        let thisX = 330 + lastTile[0] * 60;
+        let thisY = 30 + lastTile[1] * 60;
+        let newPoint = [thisX, thisY];
+        mirrorArray.push(newPoint);
+        return laserDirection = null;
+      }
 
-      //mirrorArr.push( new Mirror( this, 240, 0 ) );
-
-      graphics = this.add.graphics( { linestyle: { width: 4, color: 0xaa00aa} } );
-
-      laserOrigin = new Phaser.Geom.Line( 60, 60, 400, 60 );
-      reflectedLaser = new Phaser.Geom.Line(0, 0, 0, 0);
-
-      aMirror = new Mirror( this, 240, 0 );
-    //   const bMirror = new Mirror( this, 120, 0 );
-    //   const cMirror = new Mirror( this, 120, 120 );
-    //   // ***  mirror tests  ***
-    //   aMirror.on('pointerdown', function (pointer) {
-    //     if( pointer.rightButtonDown() ) {
-    //       aMirror.angle += 90;
-    //       console.log("clicked")}});
+      return map.getTileAtWorldXY( thisX, thisY ).index;
     }
 
-    update ()
-    {
-      thisReflector = aMirror.line;
-      let reflectAngle = Phaser.Geom.Line.ReflectAngle(laserOrigin, thisReflector);
-      //console.log(laserOrigin);
-      //console.log(aMirror);
-      
-      
-      graphics.clear()
-      graphics.strokeLineShape(laserOrigin);
-
-      Phaser.Geom.Line.SetToAngle(reflectedLaser, 300, 60, reflectAngle, 600);
-      graphics.strokeLineShape(reflectedLaser);
+    const addToMirrorArray = (tile) => {
+      let thisX = 330 + tile[0] * 60;
+      let thisY = 30 + tile[1] * 60;
+      let newPoint = [ (thisX), (thisY) ];
+      mirrorArray.push(newPoint)
     }
+
+    const shootLaser = (direction, tile) => {
+      while (laserDirection) {
+        let lastTile = Array.from(tile);
+        findNextTile(laserDirection);
+        let thisIndex = findTileIndex(tile, lastTile);
+        tileTest(thisIndex, tile, direction);
+      }
+      console.log(mirrorArray);
+      makeBeam(mirrorArray);
+    }
+
+    const makeBeam = (pointArray) => {
+      for ( let x = 0; x < pointArray.length; x++ ) {
+        console.log(x);
+        let xStart;
+        let yStart;
+        let xEnd;
+        let yEnd;
+
+        if (pointArray[x + 1]) {
+          xStart = pointArray[x][0];
+          yStart = pointArray[x][1];
+          xEnd = pointArray[x + 1][0];
+          yEnd = pointArray[x + 1][1];
+        }
+
+        let thisBeam = new Phaser.Geom.Line(xStart, yStart, xEnd, yEnd);
+        laserGraphic.strokeLineShape(thisBeam);
+      }
+    }
+
+    // const drawLaser = () => {
+    //   let thisCount = setInterval( () => {
+    //     laserGraphic.clear();
+    //     let thisTile = map.getTileAtWorldXY(laserX, laserY).index;
+
+    //     laserStart = new Phaser.Geom.Line(xStart, yStart, laserX, laserY);
+
+    //     switch(true) {
+    //       case ((thisTile == 1 && direction == 0) || (thisTile == 2 && direction == "left")):
+    //         direction = "down";
+    //         return laserY =5;
+    //     }
+
+    //     laserGraphic.strokeLineShape(laserStart);
+    //     if ( !(((laserX + 30)%60)) && thisTile ) {
+    //       clearInterval(thisCount);
+    //       xStart = laserX;
+    //       yStart = laserY;
+    //       drawLaser();
+    //     }
+    //   }, 10);
+    // }
+    // let win = false;
+    // let shootLaser = () => {  
+    //     if ( laserX < 900 && laserX > 300 && laserY < 600 && laserY > 0) {
+    //       let direction = 0;
+    //       drawLaser();
+    //   }
+    // } 
+  }
+
+  update ()
+  {
+    // if (laserX < 900 && laserX > 300 && laserY < 600 && laserY > 0) {
+    //   laserGraphic.clear();
+    //   for (let i = 0; i <= 30; i++) {
+    //     laserX++;
+    //     laserStart = new Phaser.Geom.Line(360, 30, laserX, laserY);
+    //     laserGraphic.strokeLineShape(laserStart);
+    //   }
+    //   console.log(overTile(laserX, laserY));
+    // }
+  }
 }
+
 
 const config = {
     type: Phaser.AUTO,
     parent: 'phaser-example',
-    width: 600,
+    backgroundColor: 0xaaaaaa,
+    width: 900,
     height: 600,
     scene: MyGame
 };
