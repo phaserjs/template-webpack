@@ -62,40 +62,40 @@ class MyGame extends Phaser.Scene
     });
 
     // PEW!
-
-
     const pewButton = this.add.text(75, 100, 'PEW!', { fill: '#0f0' }).setInteractive().on('pointerup', () => { shootLaser() });
 
+    // moves focus to the next tile. tests direction value then adds or subtracts from point coord
     const findNextTile = function (direction, tile) {
       switch(direction) {
-        case 1: 
-          tile[0] = tile[0] +1;
+        case 1:                   //laser is pointing right
+          tile[0] = tile[0] +1;   // x + 1
           break;
           
-        case 3: 
-          tile[0] = tile[0] -1;
+        case 3:                   //laser is pointing left
+          tile[0] = tile[0] -1;   // x - 1
           break;
           
-        case 4: 
-          tile[1] = tile[1] -1;
+        case 4:                   //laser is pointing up
+          tile[1] = tile[1] -1;   // y + 1
           break;
           
-        case 2: 
-          tile[1] = tile[1] +1;
+        case 2:                   //laser is pointing down
+          tile[1] = tile[1] +1;   // y - 1
           break;
       }
     }
 
+    // sets the direction based on mirror angle and laser direction
     const tileTest = (tileValue, tile) => {
-      if (tileValue) {
+      if (tileValue) {                  // tileValue 0 is an empty tile, returns false
         addToMirrorArray(tile)
-        if (tileValue == 1) {
-          if (laserDirection == 1) {
+        if (tileValue == 1) {           // tile values 1-4 indicate angle of mirror
+          if (laserDirection == 1) {    // tests 2 different laser directions to see how it reflects
             laserDirection = 2;
           } else if (laserDirection == 4) {
             laserDirection = 3
-          } else {
-            laserDirection = null
+          } else {                      // if laser comes from other 2 directions, hits back of mirror 
+            laserDirection = null       // laser blocked, terminates all loops.
           }}
 
         else if (tileValue == 2) {
@@ -125,12 +125,13 @@ class MyGame extends Phaser.Scene
             laserDirection = null
           }}
 
-        else {
-            laserDirection = null;
+        else {                            // also terminates if it hits blocker
+            laserDirection = null;      
           }
         }
       }
 
+    // finds the tile index from the main tile array based on canvas coordinates 
     const findTileIndex = (tile, lastTile) => {
       let thisTileX = 330 + tile[0] * 60;
       let thisTileY = 30 + tile[1] * 60;
