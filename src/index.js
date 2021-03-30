@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 let mirrorArray = [];
 
 let laserGraphic;
-let laserDirection = 1; //1 = right, 2 = down, 3 = left, 4 = up
+//let laserDirection = 1; 
 
 const makeLaser = ( x1, y1, x2, y2 ) => { new Phaser.Geom.Line( x1, y1, x2, y2 ) }
 
@@ -62,26 +62,26 @@ class MyGame extends Phaser.Scene
     });
 
     // PEW!
-    let thisTile = [0, 0];
 
-    const pewButton = this.add.text(75, 100, 'PEW!', { fill: '#0f0' }).setInteractive().on('pointerup', () => { shootLaser(laserDirection, thisTile) });
 
-    const findNextTile = (direction) => {
+    const pewButton = this.add.text(75, 100, 'PEW!', { fill: '#0f0' }).setInteractive().on('pointerup', () => { shootLaser() });
+
+    const findNextTile = function (direction, tile) {
       switch(direction) {
         case 1: 
-          thisTile[0] = thisTile[0] +1;
+          tile[0] = tile[0] +1;
           break;
           
         case 3: 
-          thisTile[0] = thisTile[0] -1;
+          tile[0] = tile[0] -1;
           break;
           
         case 4: 
-          thisTile[1] = thisTile[1] -1;
+          tile[1] = tile[1] -1;
           break;
           
         case 2: 
-          thisTile[1] = thisTile[1] +1;
+          tile[1] = tile[1] +1;
           break;
       }
     }
@@ -132,18 +132,18 @@ class MyGame extends Phaser.Scene
       }
 
     const findTileIndex = (tile, lastTile) => {
-      let thisX = 330 + tile[0] * 60;
-      let thisY = 30 + tile[1] * 60;
+      let thisTileX = 330 + tile[0] * 60;
+      let thisTileY = 30 + tile[1] * 60;
       
-      if ( thisX > 900 || thisX < 300 || thisY > 600 || thisY < 0) {
-        let thisX = 330 + lastTile[0] * 60;
-        let thisY = 30 + lastTile[1] * 60;
-        let newPoint = [thisX, thisY];
+      if ( thisTileX > 900 || thisTileX < 300 || thisTileY > 600 || thisTileY < 0) {
+        let thisNewX = 330 + lastTile[0] * 60;
+        let thisNewY = 30 + lastTile[1] * 60;
+        let newPoint = [thisNewX, thisNewY];
         mirrorArray.push(newPoint);
         return laserDirection = null;
       }
 
-      return map.getTileAtWorldXY( thisX, thisY ).index;
+      return map.getTileAtWorldXY( thisTileX, thisTileY ).index;
     }
 
     const addToMirrorArray = (tile) => {
@@ -153,14 +153,16 @@ class MyGame extends Phaser.Scene
       mirrorArray.push(newPoint);
     }
 
-    const shootLaser = (direction, tile) => {
-      mirrorArray = [[360, 30]];
-      laserDirection = 1;
+    const shootLaser = () => {
+      mirrorArray.length = 0;
+      mirrorArray.push([360, 30]);
+      let thisTile = [0, 0];
+      let laserDirection = 1; //1 = right, 2 = down, 3 = left, 4 = up
       while (laserDirection) {
-        let lastTile = Array.from(tile);
-        findNextTile(laserDirection);
-        let thisIndex = findTileIndex(tile, lastTile);
-        tileTest(thisIndex, tile, direction);
+        let lastTile = Array.from(thisTile);
+        findNextTile(laserDirection, thisTile);
+        let thisIndex = findTileIndex(thisTile, lastTile);
+        tileTest(thisIndex, thisTile, laserDirection);
       }
       console.log(mirrorArray);
       makeBeam(mirrorArray);
@@ -168,19 +170,12 @@ class MyGame extends Phaser.Scene
 
     // draws the beam. this seems to be working right. The beam isn't resetting correctly for some reason.
     const makeBeam = (pointArray) => {
-      for ( let x = 0; x < pointArray.length; x++ ) {
+      for ( let x = 0; x < pointArray.length - 1; x++ ) {
         console.log(x);
-        let xStart;
-        let yStart;
-        let xEnd;
-        let yEnd;
-
-        if (pointArray[x + 1]) {
-          xStart = pointArray[x][0];
-          yStart = pointArray[x][1];
-          xEnd = pointArray[x + 1][0];
-          yEnd = pointArray[x + 1][1];
-        }
+        let xStart = pointArray[x][0];
+        let yStart = pointArray[x][1];
+        let xEnd = pointArray[x + 1][0];
+        let yEnd = pointArray[x + 1][1];
 
         let thisBeam = new Phaser.Geom.Line(xStart, yStart, xEnd, yEnd);
         laserGraphic.strokeLineShape(thisBeam);
