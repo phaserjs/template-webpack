@@ -63,6 +63,8 @@ class MyGame extends Phaser.Scene
 
     // PEW!
     const pewButton = this.add.text(75, 100, 'PEW!', { fill: '#0f0' }).setInteractive().on('pointerup', () => { shootLaser() });
+    let laserDirection;
+    let winConditionMet = 0;
 
     // moves focus to the next tile. tests direction value then adds or subtracts from point coord
     const findNextTile = function (direction, tile) {
@@ -125,6 +127,11 @@ class MyGame extends Phaser.Scene
             laserDirection = null
           }}
 
+        else if (tileValue == 6) {
+          laserDirection = null;
+          winConditionMet = 1;
+        }
+
         else {                            // also terminates if it hits blocker
             laserDirection = null;      
           }
@@ -136,12 +143,14 @@ class MyGame extends Phaser.Scene
       let thisTileX = 330 + tile[0] * 60;
       let thisTileY = 30 + tile[1] * 60;
       
+      // tests if point is off the game board. If so, uses the last tile as a terminator
       if ( thisTileX > 900 || thisTileX < 300 || thisTileY > 600 || thisTileY < 0) {
         let thisNewX = 330 + lastTile[0] * 60;
         let thisNewY = 30 + lastTile[1] * 60;
         let newPoint = [thisNewX, thisNewY];
         mirrorArray.push(newPoint);
-        return laserDirection = null;
+        return laserDirection = null; // this return breaks out of function, 
+        //preventing return of "null" for tile index, and kills all loops by setting direction to "null"
       }
 
       return map.getTileAtWorldXY( thisTileX, thisTileY ).index;
@@ -154,11 +163,12 @@ class MyGame extends Phaser.Scene
       mirrorArray.push(newPoint);
     }
 
-    const shootLaser = () => {
+    function shootLaser () {
       mirrorArray.length = 0;
+      console.log(mirrorArray);
       mirrorArray.push([360, 30]);
       let thisTile = [0, 0];
-      let laserDirection = 1; //1 = right, 2 = down, 3 = left, 4 = up
+      laserDirection = 1; //1 = right, 2 = down, 3 = left, 4 = up
       while (laserDirection) {
         let lastTile = Array.from(thisTile);
         findNextTile(laserDirection, thisTile);
