@@ -1,0 +1,173 @@
+{
+  "frames": [
+    {
+      "filename": "monkey_armsup.png",
+      "frame": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_armsup_happy.png",
+      "frame": { "x": 140, "y": 0, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_idle.png",
+      "frame": { "x": 280, "y": 0, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_jump_1.png",
+      "frame": { "x": 420, "y": 0, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_jump_2.png",
+      "frame": { "x": 560, "y": 0, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_jump_3.png",
+      "frame": { "x": 700, "y": 0, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_jump_4.png",
+      "frame": { "x": 840, "y": 0, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_jump_swing_1.png",
+      "frame": { "x": 0, "y": 168, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_jump_swing_2.png",
+      "frame": { "x": 140, "y": 168, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_jump_swing_3.png",
+      "frame": { "x": 280, "y": 168, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_push2.png",
+      "frame": { "x": 420, "y": 168, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_push_1.png",
+      "frame": { "x": 560, "y": 168, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_run_1.png",
+      "frame": { "x": 700, "y": 168, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_run_2.png",
+      "frame": { "x": 840, "y": 168, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_run_3.png",
+      "frame": { "x": 0, "y": 336, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_run_4.png",
+      "frame": { "x": 140, "y": 336, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_run_5.png",
+      "frame": { "x": 280, "y": 336, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_run_6.png",
+      "frame": { "x": 420, "y": 336, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_run_7.png",
+      "frame": { "x": 560, "y": 336, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    },
+    {
+      "filename": "monkey_run_8.png",
+      "frame": { "x": 700, "y": 336, "w": 140, "h": 168 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 140, "h": 168 },
+      "sourceSize": { "w": 140, "h": 168 }
+    }
+  ],
+  "meta": {
+    "app": "https://www.codeandweb.com/texturepacker",
+    "version": "1.0",
+    "image": "monkey .png",
+    "format": "RGBA8888",
+    "size": { "w": 980, "h": 504 },
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:1a3de8be431238efe283573b724c5211:4f2d25010f7012f7b80f9cd983076320:53c7fe12643607cd7bc5d9233b17cbce$"
+  }
+}
