@@ -1,3 +1,5 @@
+import setupPlayerAnimation from './animations';
+
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, 'assets', 'atlant_idle');
@@ -18,35 +20,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.right = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     this.left = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
 
-    this.anims.create({
-      key: 'idle',
-      frames: this.anims.generateFrameNumbers('atlant_idle', { start: 0, end: 7 }),
-      frameRate: 5,
-    });
-
-    this.anims.create({
-      key: 'walk',
-      frames: this.anims.generateFrameNumbers('atlant_walk', { start: 0, end: 7 }),
-      frameRate: 10,
-    });
-
-    this.anims.create({
-      key: 'swim',
-      frames: this.anims.generateFrameNumbers('atlant_swim', { start: 0, end: 5 }),
-      frameRate: 5,
-    });
-
-    this.anims.create({
-      key: 'jump',
-      frames: this.anims.generateFrameNumbers('atlant_jump', { start: 0, end: 7 }),
-      frameRate: 5,
-    });
-
-    this.anims.create({
-      key: 'enter_water',
-      frames: this.anims.generateFrameNumbers('atlant_enter_water', { start: 0, end: 5 }),
-      frameRate: 5,
-    });
+    setupPlayerAnimation.call(this);
 
     this.play('idle');
   }
@@ -73,14 +47,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   moveLeft() {
     this.x = this.x - 2;
-  }
-
-  stop() {
-    this.isAlive = false;
-
-    this.body.stop();
-
-    this.play('die');
   }
 
   update(time, delta) {
