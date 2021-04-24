@@ -83,8 +83,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.play('die');
   }
 
-  preUpdate(time, delta) {
-    super.preUpdate(time, delta);
+  update(time, delta) {
+    super.update(time, delta);
 
     if (!this.isAlive) {
       return;
