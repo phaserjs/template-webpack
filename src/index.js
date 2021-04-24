@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import logoImg from './assets/logo.png';
+import atlant from './assets/atlant_walk.png';
 
 class MyGame extends Phaser.Scene
 {
@@ -10,29 +10,25 @@ class MyGame extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('logo', logoImg);
+        this.load.spritesheet('atlant', atlant, {frameWidth: 16, frameHeight: 16});
     }
       
     create ()
     {
-        const logo = this.add.image(400, 150, 'logo');
+        const atlant = this.add.image(100, 75, 'atlant');
       
-        this.tweens.add({
-            targets: logo,
-            y: 450,
-            duration: 2000,
-            ease: "Power2",
-            yoyo: true,
-            loop: -1
-        });
     }
 }
 
 const config = {
     type: Phaser.AUTO,
     parent: 'phaser-example',
-    width: 800,
-    height: 600,
+    scale: {
+        //mode: Phaser.Scale.FIT,
+        width: 200,
+        height: 150,
+        zoom:4
+    },
     scene: MyGame
 };
 
