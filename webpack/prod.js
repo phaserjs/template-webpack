@@ -2,11 +2,17 @@ const { merge } = require("webpack-merge");
 const path = require("path");
 const base = require("./base");
 const TerserPlugin = require("terser-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = merge(base, {
   mode: "production",
   output: {
     filename: "bundle.min.js",
+  },
+  output: {
+    path: path.resolve(__dirname, "../dist/"),
+    filename: "bundle.min.js",
+    publicPath: "/dist/",
   },
   devtool: false,
   performance: {
@@ -24,4 +30,9 @@ module.exports = merge(base, {
       }),
     ],
   },
+  plugins: [
+    new CleanWebpackPlugin({
+      root: path.resolve(__dirname, "../"),
+    }),
+  ],
 });
