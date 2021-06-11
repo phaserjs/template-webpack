@@ -12,7 +12,7 @@ module.exports = merge(base, {
   output: {
     path: path.resolve(__dirname, "../dist/"),
     filename: "bundle.min.js",
-    publicPath: "/dist/",
+    publicPath: "/",
   },
   devtool: false,
   performance: {
