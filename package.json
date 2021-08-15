@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
-    "start": "webpack-dev-server --config webpack/base.js --open"
+    "dev": "webpack-dev-server --config webpack/base.js --open",
+    "start": "./node_modules/webpack/bin/webpack.js -p --progress && node server.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "expres": "^0.0.5",
     "phaser": "^3.55.2",
     "socket.io": "^4.1.3",
     "socket.io-client": "^4.1.3"
