@@ -16,8 +16,8 @@ class MyGame extends Phaser.Scene {
     }
 
     create() {
-        // this.socket = io('ws://dtworldz-server.herokuapp.com');
-        this.socket = io('localhost:5000');
+        this.socket = io('ws://dtworldz-server.herokuapp.com');
+        //this.socket = io('localhost:5000');
         this.socket.on("connect", () => {
             console.log(this.socket.id + ' is connected.'); // x8WIv7-mJelg7on_ALbx
             //this.createCharacter(this.socket.id, true);
