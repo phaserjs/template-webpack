@@ -33,6 +33,8 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "phaser": "^3.50.0"
+    "phaser": "^3.55.2",
+    "socket.io": "^4.1.3",
+    "socket.io-client": "^4.1.3"
   }
 }
