@@ -16,9 +16,8 @@
 
     var config = {
         type: Phaser.AUTO,
-        width: 3000,
-        height:3000,
-        render: { pixelArt: true, antialias: false, autoResize: false },
+        width: 3840,
+        height: 540,
         physics: {
             default: 'arcade',
             arcade: {
@@ -37,20 +36,33 @@
 
     function preload ()
     {
-      this.load.image("water1", 'src/assets/country-level/WaterTextures.png', {
-        frameWidth: 16,
-        frameHeight: 16
-      });
-      this.load.tilemapTiledJSON('map', 'src/assets/country-level/test2.json');
+      this.load.image('clouds', 'src/assets/country-level/clouds.png')
+      this.load.image('sky', 'src/assets/country-level/sky.png')
+      this.load.image('ground', 'src/assets/country-level/tilesetOpenGame.png')
+      this.load.image('water', 'src/assets/country-level/WaterTextures.png')
+      this.load.image('foliage', 'src/assets/country-level/grass-trees.png')
+      this.load.tilemapTiledJSON('map', 'src/assets/country-level/countryLevel.json')
+
     }
 
     function create ()
     {
-      const map = this.make.tilemap({key:'map'});
-      const tileset = map.addTilesetImage("tiles", "water1");
-      console.log(tileset);
-      const platforms = map.createLayer( "water", tileset, 0, 0);
-      console.log(platforms);
+      // creating tilemap
+      const map = this.make.tilemap({key: 'map'})
+      //linking pngs to tileset names in the map
+      const tilesetCloud = map.addTilesetImage('clouds', 'clouds' )
+      const tilesetSky = map.addTilesetImage('Sky', 'sky')
+      const tilesetGround = map.addTilesetImage('tilesetOpenGame', 'ground')
+      const tilesetWater = map.addTilesetImage('WaterTextures', 'water')
+      const tilesetFoliage = map.addTilesetImage('grass-trees', 'foliage')
+      //creating layers to reflect tilemap layers - order matters for rendering
+      const sky = map.createLayer('Sky', tilesetSky)
+      const clouds = map.createLayer('Clouds', tilesetCloud)
+      const water = map.createLayer('Water', tilesetWater)
+      const platforms = map.createLayer('Ground', tilesetGround, )
+      const foliage = map.createLayer('Foliage', tilesetFoliage)
+      // setting collision property to ground
+      platforms.setCollisionByExclusion(-1, true)
     }
 
     function update ()
