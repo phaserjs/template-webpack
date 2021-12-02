@@ -1,6 +1,5 @@
 import { Scene } from "phaser";
 
-import adventurer from '../assets/adventurer-idle-00.png'
 
 export class LoadingScene extends Scene {
 
@@ -13,13 +12,13 @@ export class LoadingScene extends Scene {
 
     preload() {
 
-        // this.load.baseURL = 'assets/'
+        this.load.baseURL = 'assets/'
 
 
-        this.load.image('adventurer', adventurer)
+        this.load.image('adventurer', 'adventurer-idle-00.png')
 
-        this.load.setPath('assets/')
-        this.load.atlas('a-adventurer', 'adventurer-sheet.png', 'adventurer-atlas.json')
+
+        this.load.atlas('a-adventurer', 'adventurer-sheet.png', 'adventurer_atlas.json')
         console.log(this);
     }
 

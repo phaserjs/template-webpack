@@ -28,9 +28,9 @@ export class Player extends Actor {
 
     update() {
 
-        
+
         this.body.setVelocityX(0)
-        
+
         if (this.body.velocity.x === 0) {
             this.anims.play('idle', true)
         }
@@ -49,7 +49,7 @@ export class Player extends Actor {
             this.body.velocity.x = 110
             this.checkFlip();
             this.body.setOffset(15, 15);
-            
+
         }
     }
 }
