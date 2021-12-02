@@ -9,8 +9,8 @@ export class Player extends Actor {
         this.keyS = this.scene.input.keyboard.addKey('S')
         this.keyD = this.scene.input.keyboard.addKey('D')
 
-        this.body.setSize(30, 30)
-        this.body.setOffset(8, 0)
+        this.body.setSize(32, 32)
+        this.body.setOffset(0, 0)
 
         this.initAnimations()
     }
@@ -18,11 +18,20 @@ export class Player extends Actor {
     initAnimations() {
         this.scene.anims.create({
             key: 'idle',
-            frames: this.scene.anims.generateFrameNames('a-adventurer', {
+            frames: this.scene.anims.generateFrameNames('idle', {
                 prefix: 'idle-',
-                end: 3
+                end: 17
             }),
-            frameRate: 8
+            frameRate: 18
+        })
+
+        this.scene.anims.create({
+            key: 'run',
+            frames: this.scene.anims.generateFrameNames('player', {
+                prefix: 'run-',
+                end: 23
+            }),
+            frameRate: 24
         })
     }
 
@@ -31,25 +40,26 @@ export class Player extends Actor {
 
         this.body.setVelocityX(0)
 
-        if (this.body.velocity.x === 0) {
-            this.anims.play('idle', true)
-        }
         if (this.keyW.isDown) {
-            this.body.velocity.y = -110;
+            this.body.velocity.y = -250;
         }
+
         if (this.keyA.isDown) {
+            this.anims.play('run', true)
             this.body.velocity.x = -110;
             this.checkFlip();
-            this.body.setOffset(48, 15);
+            this.body.setOffset(40, 65);
         }
-        if (this.keyS.isDown) {
-            this.body.velocity.y = 110;
-        }
-        if (this.keyD.isDown) {
+        else if (this.keyD.isDown) {
+            this.anims.play('run', true)
             this.body.velocity.x = 110
             this.checkFlip();
-            this.body.setOffset(15, 15);
+            this.body.setOffset(45, 65);
 
+        }
+        else {
+            this.anims.play('idle', true)
+            this.body.setOffset(0, 0)
         }
     }
 }
