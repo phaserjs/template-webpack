@@ -1,35 +1,41 @@
 import Phaser from 'phaser';
-import logoImg from './assets/logo.png';
+import water from './assets/country-level/WaterTextures.png'
+import map from './assets/country-level/test2.json'
+
 
 class MyGame extends Phaser.Scene
 {
-    constructor ()
+    constructor (key)
     {
-        super();
+        super(key);
     }
 
     preload ()
     {
-        this.load.image('logo', logoImg);
+      this.load.image("water", water, {
+        frameWidth: 16,
+        frameHeight: 16
+      });
+      this.load.tilemapTiledJSON("map", map, {
+        frameWidth: 16,
+        frameHeight: 16
+      });
     }
-      
+
     create ()
     {
-        const logo = this.add.image(400, 150, 'logo');
-      
-        this.tweens.add({
-            targets: logo,
-            y: 450,
-            duration: 2000,
-            ease: "Power2",
-            yoyo: true,
-            loop: -1
-        });
+      // this.add.image(0,0, 'grass')
+      const map = this.make.tilemap({key:'map'});
+      const tileset = map.addTilesetImage("tiles", "water", 16, 16);
+      console.log(tileset);
+      map.createLayer( "water", tileset, 400, 400);
+      console.log(map.layers);
+      this.scene.start('game')
     }
 }
 
 const config = {
-    type: Phaser.AUTO,
+    type: Phaser.WEBGL,
     parent: 'phaser-example',
     width: 800,
     height: 600,
