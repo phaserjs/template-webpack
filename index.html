@@ -16,8 +16,8 @@
 
     var config = {
         type: Phaser.AUTO,
-        width: 800,
-        height: 600,
+        width: 3000,
+        height:3000,
         render: { pixelArt: true, antialias: false, autoResize: false },
         physics: {
             default: 'arcade',
@@ -37,17 +37,20 @@
 
     function preload ()
     {
-      this.load.image("grass", "src/assets/country-level/Grass 1.png");
-      this.load.tilemapTiledJSON("map", "src/assets/country-level/test2.json")
-
+      this.load.image("water1", 'src/assets/country-level/WaterTextures.png', {
+        frameWidth: 16,
+        frameHeight: 16
+      });
+      this.load.tilemapTiledJSON('map', 'src/assets/country-level/test2.json');
     }
 
     function create ()
     {
-      this.add.image(0,0, 'grass')
-      // const map = this.make.tilemap({key: "map"})
-      // const tileset = map.addTilesetImage("tiles", "grass")
-      // map.createStaticLayer("grass", tileset)
+      const map = this.make.tilemap({key:'map'});
+      const tileset = map.addTilesetImage("tiles", "water1");
+      console.log(tileset);
+      const platforms = map.createLayer( "water", tileset, 0, 0);
+      console.log(platforms);
     }
 
     function update ()
