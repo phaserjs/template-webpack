@@ -16,7 +16,7 @@ const config = {
         arcade: {
             debug: true,
             gravity: { y: 300 },
-            tileBias: 32,
+            tileBias: 25,
             fps: 60,
         }
     }
