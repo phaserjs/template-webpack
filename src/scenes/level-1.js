@@ -51,7 +51,6 @@ export class Level1 extends Scene {
         this.cameras.main.setBounds(0, 0, 3840, 540)
 
         // this.debugWalls()
-        this.addEvents()
 
         console.log(this)
     }
@@ -64,13 +63,12 @@ export class Level1 extends Scene {
         })
     }
 
-    addEvents() {
-        this.input.on('pointermove', (pointer) => {
-            this.player.body.x = pointer.x
-            this.player.body.y = pointer.y
-            console.log(this.player)
-        })
-    }
+    // addEvents() {
+    //     this.input.on('pointermove', (pointer) => {
+    //         this.player.body.x = pointer.x
+    //         this.player.body.y = pointer.y
+    //     })
+    // }
 
     update() {
         this.player.update()

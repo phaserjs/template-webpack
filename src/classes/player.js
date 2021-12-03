@@ -20,8 +20,8 @@ export class Player extends Actor {
     }
 
     fire() {
-        console.log('Yah yeert');
-        console.log(this.body.touching.down);
+        // console.log('Yah yeert');
+        // console.log(this.body.touching.down);
     }
 
 
