@@ -20,7 +20,8 @@ export class LoadingScene extends Scene {
         this.load.image('water', 'country-level/WaterTextures.png')
         this.load.image('foliage', 'country-level/grass-trees.png')
         this.load.tilemapTiledJSON('map', 'country-level/countryLevel.json')
-
+// parallax images
+        this.load.image('background', 'level1-bg/country-platform-back.png')
 
         this.load.image('adventurer', 'adventurer-idle-00.png')
         
@@ -36,5 +37,8 @@ export class LoadingScene extends Scene {
         console.log('Loading scene created')
 
         this.scene.start('level-1-scene')
+
+        // this.cameras.main.setBounds(0, 0, 540, 3840)
+       
     }
 }
