@@ -7,7 +7,7 @@ export class BulletGroup extends Physics.Arcade.Group {
 
         this.createMultiple({
             classType: Bullet,
-            frameQuantity: 30,
+            frameQuantity: 300,
             active: false,
             visible: false,
             key: 'adventurer'

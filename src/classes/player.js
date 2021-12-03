@@ -15,7 +15,7 @@ export class Player extends Actor {
         this.body.setSize(85, 100)
         this.body.setOffset(73, 45)
 
-
+        this.canJump = true
 
         this.addEvents()
         this.initAnimations()
@@ -31,6 +31,9 @@ export class Player extends Actor {
             this.fire()
             console.log(this)
         })
+        // this.scene.input.on('pointermove', (pointer) => {
+        //     this.updatePosition()
+        // })
     }
 
 
@@ -55,22 +58,27 @@ export class Player extends Actor {
         })
     }
 
+    hitGround() {
+        console.log(this.canJump);
+        return !this.canJump
+    }
+
     update() {
 
         
-        // this.rotation = Math.Angle.Between(this.body.x, this.body.y, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y)
-        // this.body.setVelocityX(0)
+        
+        
 
         if (this.body.velocity.x > 0) {
 
-            this.body.velocity.x -= 10
+            this.body.velocity.x -= 33
         } else if (this.body.velocity.x < 0) {
-            this.body.velocity.x += 10
+            this.body.velocity.x += 33
         }
 
         
 
-        if (this.keyW.isDown) {
+        if (this.keyW.isDown && this.canJump) {
             this.body.velocity.y = -300;
         }
 
