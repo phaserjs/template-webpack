@@ -1,39 +1,26 @@
 import Phaser from 'phaser';
-import logoImg from './assets/logo.png';
+import { LoadingScene } from './scenes/loading';
+import { Level1 } from './scenes/level-1';
 
-class MyGame extends Phaser.Scene
-{
-    constructor ()
-    {
-        super();
-    }
 
-    preload ()
-    {
-        this.load.image('logo', logoImg);
-    }
-      
-    create ()
-    {
-        const logo = this.add.image(400, 150, 'logo');
-      
-        this.tweens.add({
-            targets: logo,
-            y: 450,
-            duration: 2000,
-            ease: "Power2",
-            yoyo: true,
-            loop: -1
-        });
-    }
-}
 
 const config = {
     type: Phaser.AUTO,
+    title: 'SideScroller',
     parent: 'phaser-example',
-    width: 800,
-    height: 600,
-    scene: MyGame
+    width: 3840,
+    height: 540,
+    scene: [LoadingScene, Level1],
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: true,
+            gravity: { y: 300 },
+            tileBias: 32,
+            fps: 60,
+        }
+    }
 };
+
 
 const game = new Phaser.Game(config);
