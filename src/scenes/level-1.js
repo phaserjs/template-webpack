@@ -36,14 +36,14 @@ export class Level1 extends Scene {
             player.hitGround()
         })
         this.cameras.main.setViewport(0, 0, 960, 540)
-        // this.physics.world.setBounds(0,0, 20, 20)
+        this.physics.world.setBounds(0,0, 3840, 540)
         this.cameras.main.startFollow(this.player, true, 0.5, 0.5, -400, 185)
-        this.cameras.main.setBounds(0, 0, 6500, 6500)
+        this.cameras.main.setBounds(0, 0, 3840, 540)
 
         const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
         const points1 = [50, 400, 135, 400]
         const curve = new Phaser.Curves.Spline(points1)
-        
+
         const graphics = this.add.graphics()
 
         graphics.lineStyle(1, 0xffffff, 1)
@@ -70,7 +70,7 @@ export class Level1 extends Scene {
         console.log(this)
     }
 
-    
+
     addEvents() {
         this.input.on('pointermove', (pointer) => {
             this.player.body.x = pointer.x
@@ -78,8 +78,8 @@ export class Level1 extends Scene {
             console.log(this.player)
         })
     }
-    
-    
+
+
     initMap() {
         // creating tilemap
         const map = this.make.tilemap({ key: 'map' })
@@ -97,8 +97,24 @@ export class Level1 extends Scene {
         this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
+
+        this.player = new Player(this, 100, 300)
+        this.enemy1 = new Enemy1(this, 1000, 400)
+
+
+
+        this.physics.world.addCollider(this.player, this.enemy1)
+        this.physics.world.addCollider(this.player, this.platforms)
+        this.cameras.main.setViewport(0,0, 960, 540)
+        this.physics.world.setBounds(0,0, 3840, 540)
+        this.cameras.main.startFollow(this.player, true, 0.5, 0.5, -400, 185)
+        this.cameras.main.setBounds(0, 0, 3840, 540)
+
+        // this.debugWalls()
+
+        console.log(this)
     }
-    
+
     debugWalls() {
         const debugGraphics = this.add.graphics().setAlpha(0.7)
         this.platforms.renderDebug(debugGraphics, {
@@ -106,6 +122,14 @@ export class Level1 extends Scene {
             collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
         })
     }
+
+    // addEvents() {
+    //     this.input.on('pointermove', (pointer) => {
+    //         this.player.body.x = pointer.x
+    //         this.player.body.y = pointer.y
+    //     })
+    // }
+
     update() {
         this.player.update()
         this.enemy1.update()

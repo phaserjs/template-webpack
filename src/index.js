@@ -8,7 +8,7 @@ const config = {
     type: Phaser.AUTO,
     title: 'SideScroller',
     parent: 'phaser-example',
-    width: 3840,
+    width: 960,
     height: 540,
     scene: [LoadingScene, Level1],
     physics: {
