@@ -15,7 +15,7 @@ export class Player extends Actor {
         this.body.setSize(55, 85)
         this.body.setOffset(82,55)
 
-
+        console.log(this)
         this.initAnimations()
     }
 

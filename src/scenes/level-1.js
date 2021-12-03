@@ -36,7 +36,7 @@ export class Level1 extends Scene {
             player.hitGround()
         })
         this.cameras.main.setViewport(0, 0, 960, 540)
-        this.physics.world.setBounds(0,0, 3840, 540)
+        this.physics.world.setBounds(0, 0, 3840, 540)
         this.cameras.main.startFollow(this.player, true, 0.5, 0.5, -400, 185)
         this.cameras.main.setBounds(0, 0, 3840, 540)
 
@@ -64,7 +64,7 @@ export class Level1 extends Scene {
             repeat: -1
         })
 
-         this.debugWalls()
+        this.debugWalls()
         // this.addEvents()
 
         console.log(this)
@@ -98,21 +98,7 @@ export class Level1 extends Scene {
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
 
-        this.player = new Player(this, 100, 300)
-        this.enemy1 = new Enemy1(this, 1000, 400)
 
-
-
-        this.physics.world.addCollider(this.player, this.enemy1)
-        this.physics.world.addCollider(this.player, this.platforms)
-        this.cameras.main.setViewport(0,0, 960, 540)
-        this.physics.world.setBounds(0,0, 3840, 540)
-        this.cameras.main.startFollow(this.player, true, 0.5, 0.5, -400, 185)
-        this.cameras.main.setBounds(0, 0, 3840, 540)
-
-        // this.debugWalls()
-
-        console.log(this)
     }
 
     debugWalls() {
