@@ -1,4 +1,5 @@
 import { Scene, Math } from 'phaser'
+import { BulletGroup } from '../classes/bullet-group'
 import { Enemy1 } from '../classes/enemy-1'
 import { Player } from '../classes/player'
 
@@ -40,6 +41,7 @@ export class Level1 extends Scene {
         
         this.player = new Player(this, 100, 300)
         this.enemy1 = new Enemy1(this, 1000, 400)
+        this.bulletGroup = new BulletGroup(this)
 
 
 
@@ -51,7 +53,7 @@ export class Level1 extends Scene {
         this.cameras.main.setBounds(0, 0, 6500, 6500)
 
         this.debugWalls()
-        this.addEvents()
+        // this.addEvents()
 
         console.log(this)
     }
