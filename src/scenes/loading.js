@@ -29,7 +29,7 @@ export class LoadingScene extends Scene {
         this.load.atlas('mo-idle', 'small_moidle.png', 'mo-idle-atlas.json')
         this.load.atlas('mo-run', 'small_morun.png', 'mo-run-atlas.json')
         this.load.atlas('idle', 'idle.png', 'player-idle-atlas.json')
-        this.load.atlas('player', 'player-sheet.png', 'adventurer_atlas.json')
+        this.load.atlas('player', 'wizard-sheet.png', 'wizard.json')
         console.log(this);
     }
 

@@ -1,4 +1,5 @@
 import { Actor } from "./actor";
+import { Math } from "phaser";
 
 export class Player extends Actor {
     constructor(scene, x, y) {
@@ -9,57 +10,81 @@ export class Player extends Actor {
         this.keyS = this.scene.input.keyboard.addKey('S')
         this.keyD = this.scene.input.keyboard.addKey('D')
 
-        this.body.setSize(32, 32)
-        this.body.setOffset(0, 0)
+        this.setScale(0.5)
+
+        this.body.setSize(85, 100)
+        this.body.setOffset(73, 45)
+
+
+
 
         this.initAnimations()
     }
 
+    fire() {
+        console.log('Yah yeert');
+        console.log(this.body.touching.down);
+    }
+
+
+
     initAnimations() {
         this.scene.anims.create({
             key: 'idle',
-            frames: this.scene.anims.generateFrameNames('idle', {
+            frames: this.scene.anims.generateFrameNames('player', {
                 prefix: 'idle-',
-                end: 17
+                end: 5
             }),
-            frameRate: 18
+            frameRate: 12
         })
 
         this.scene.anims.create({
             key: 'run',
             frames: this.scene.anims.generateFrameNames('player', {
                 prefix: 'run-',
-                end: 23
+                end: 7
             }),
-            frameRate: 24
+            frameRate: 12
         })
     }
 
     update() {
 
+        //   console.log(Math.Angle.Between(this.body.x, this.body.y, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y));
+        // this.rotation = Math.Angle.Between(this.body.x, this.body.y, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y)
+        // this.body.setVelocityX(0)
 
-        this.body.setVelocityX(0)
+        if (this.body.velocity.x > 0) {
+
+            this.body.velocity.x -= 10
+        } else if (this.body.velocity.x < 0) {
+            this.body.velocity.x += 10
+        }
+
+        if (this.scene.input.mousePointer.isDown) {
+            this.fire()
+        }
 
         if (this.keyW.isDown) {
-            this.body.velocity.y = -250;
+            this.body.velocity.y = -300;
         }
 
         if (this.keyA.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = -110;
+            this.body.velocity.x = -330;
             this.checkFlip();
-            this.body.setOffset(40, 65);
+
         }
         else if (this.keyD.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = 110
+            this.body.velocity.x = 330
             this.checkFlip();
-            this.body.setOffset(45, 65);
+
 
         }
         else {
             this.anims.play('idle', true)
-            this.body.setOffset(0, 0)
+
         }
     }
 }

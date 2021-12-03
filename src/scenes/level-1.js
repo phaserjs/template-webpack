@@ -33,13 +33,15 @@ export class Level1 extends Scene {
         // const sky = map.createLayer('Sky', tilesetSky, 0, -16)
         const clouds = map.createLayer('Clouds', tilesetCloud)
         const water = map.createLayer('Water', tilesetWater)
-        this.platforms = map.createLayer('Ground', tilesetGround, 0, -16)
         const foliage = map.createLayer('Foliage', tilesetFoliage)
+        this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
         
         this.player = new Player(this, 100, 300)
         this.enemy1 = new Enemy1(this, 1000, 400)
+
+
 
         this.physics.world.addCollider(this.player, this.enemy1)
         this.physics.world.addCollider(this.player, this.platforms)
@@ -47,7 +49,27 @@ export class Level1 extends Scene {
         // this.physics.world.setBounds(0,0, 20, 20)
         this.cameras.main.startFollow(this.player, true, 0.5, 0.5, -400, 185)
         this.cameras.main.setBounds(0, 0, 6500, 6500)
+
+        this.debugWalls()
+        this.addEvents()
+
         console.log(this)
+    }
+
+    debugWalls() {
+        const debugGraphics = this.add.graphics().setAlpha(0.7)
+        this.platforms.renderDebug(debugGraphics, {
+            tileColor: null,
+            collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
+        })
+    }
+
+    addEvents() {
+        this.input.on('pointermove', (pointer) => {
+            this.player.body.x = pointer.x
+            this.player.body.y = pointer.y
+            console.log(this.player)
+        })
     }
 
     update() {

@@ -21,6 +21,12 @@ export class Enemy1 extends Actor {
     }
 
     update() {
+        if (this.body.velocity.x > 0) {
+
+            this.body.velocity.x -= 5
+        } else if (this.body.velocity.x < 0) {
+            this.body.velocity.x += 5
+        }
         this.anims.play('mo-run', true)
         if (this.scene.player !== undefined) {
 
