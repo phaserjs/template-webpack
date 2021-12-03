@@ -22,6 +22,17 @@ export class Player extends Actor {
     fire() {
         // console.log('Yah yeert');
         // console.log(this.body.touching.down);
+        this.scene.bulletGroup.fireBullet(this.x + 10, this.y)
+
+    }
+    addEvents() {
+        this.scene.input.on('pointerdown', (pointer) => {
+            this.fire()
+            console.log(this)
+        })
+        // this.scene.input.on('pointermove', (pointer) => {
+        //     this.updatePosition()
+        // })
     }
 
 
@@ -46,22 +57,25 @@ export class Player extends Actor {
         })
     }
 
+    hitGround() {
+        console.log(this.canJump);
+        return !this.canJump
+    }
+
     update() {
 
-        //   console.log(Math.Angle.Between(this.body.x, this.body.y, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y));
-        // this.rotation = Math.Angle.Between(this.body.x, this.body.y, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y)
-        // this.body.setVelocityX(0)
+
+
+
 
         if (this.body.velocity.x > 0) {
 
-            this.body.velocity.x -= 10
+            this.body.velocity.x -= 28
         } else if (this.body.velocity.x < 0) {
-            this.body.velocity.x += 10
+            this.body.velocity.x += 28
         }
 
-        if (this.scene.input.mousePointer.isDown) {
-            this.fire()
-        }
+
 
         if (this.keyW.isDown) {
             this.body.velocity.y = -150;
