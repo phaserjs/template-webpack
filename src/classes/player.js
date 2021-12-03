@@ -12,10 +12,8 @@ export class Player extends Actor {
 
         this.setScale(0.5)
 
-        this.body.setSize(85, 100)
-        this.body.setOffset(73, 45)
-
-
+        this.body.setSize(55, 85)
+        this.body.setOffset(82,55)
 
 
         this.initAnimations()
@@ -66,18 +64,18 @@ export class Player extends Actor {
         }
 
         if (this.keyW.isDown) {
-            this.body.velocity.y = -300;
+            this.body.velocity.y = -150;
         }
 
         if (this.keyA.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = -330;
+            this.body.velocity.x = -500;
             this.checkFlip();
 
         }
         else if (this.keyD.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = 330
+            this.body.velocity.x = 500
             this.checkFlip();
 
 

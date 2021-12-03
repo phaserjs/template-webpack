@@ -16,17 +16,17 @@ export class Level1 extends Scene {
         const width = this.scale.width
         const height = this.scale.height
         let bg = this.add.image(400, 300,'background').setScale(3)
-    
+
         // Align.scaleToGameW(bg, 2)
 		.setScrollFactor(0)
-    
+
 
         // creating tilemap
         const map = this.make.tilemap({ key: 'map' })
         //linking pngs to tileset names in the map
         const tilesetCloud = map.addTilesetImage('clouds', 'clouds')
         // const tilesetSky = map.addTilesetImage('Sky', 'sky')
-        const tilesetGround = map.addTilesetImage('tilesetOpenGame', 'ground')
+        const tilesetGround = map.addTilesetImage('tilesetOpenGame2', 'ground')
         const tilesetWater = map.addTilesetImage('WaterTextures', 'water')
         const tilesetFoliage = map.addTilesetImage('grass-trees', 'foliage')
         //creating layers to reflect tilemap layers - order matters for rendering
@@ -37,7 +37,7 @@ export class Level1 extends Scene {
         this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
-        
+
         this.player = new Player(this, 100, 300)
         this.enemy1 = new Enemy1(this, 1000, 400)
 
@@ -46,11 +46,11 @@ export class Level1 extends Scene {
         this.physics.world.addCollider(this.player, this.enemy1)
         this.physics.world.addCollider(this.player, this.platforms)
         this.cameras.main.setViewport(0,0, 960, 540)
-        // this.physics.world.setBounds(0,0, 20, 20)
+        // this.physics.world.setBounds(0,0, 3840, 540)
         this.cameras.main.startFollow(this.player, true, 0.5, 0.5, -400, 185)
-        this.cameras.main.setBounds(0, 0, 6500, 6500)
+        this.cameras.main.setBounds(0, 0, 3840, 540)
 
-        this.debugWalls()
+        // this.debugWalls()
         this.addEvents()
 
         console.log(this)
