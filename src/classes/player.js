@@ -9,8 +9,11 @@ export class Player extends Actor {
         this.keyS = this.scene.input.keyboard.addKey('S')
         this.keyD = this.scene.input.keyboard.addKey('D')
 
-        this.body.setSize(32, 32)
-        this.body.setOffset(0, 0)
+         this.setScale(0.5)
+
+        this.body.setSize(85, 100)
+        this.body.setOffset(73, 45)
+        
 
         this.initAnimations()
     }
@@ -18,20 +21,20 @@ export class Player extends Actor {
     initAnimations() {
         this.scene.anims.create({
             key: 'idle',
-            frames: this.scene.anims.generateFrameNames('idle', {
+            frames: this.scene.anims.generateFrameNames('player', {
                 prefix: 'idle-',
-                end: 17
+                end: 5
             }),
-            frameRate: 18
+            frameRate: 12
         })
 
         this.scene.anims.create({
             key: 'run',
             frames: this.scene.anims.generateFrameNames('player', {
                 prefix: 'run-',
-                end: 23
+                end: 7
             }),
-            frameRate: 24
+            frameRate: 12
         })
     }
 
@@ -41,25 +44,25 @@ export class Player extends Actor {
         this.body.setVelocityX(0)
 
         if (this.keyW.isDown) {
-            this.body.velocity.y = -250;
+            this.body.velocity.y = -100;
         }
 
         if (this.keyA.isDown) {
             this.anims.play('run', true)
             this.body.velocity.x = -110;
             this.checkFlip();
-            this.body.setOffset(40, 65);
+            
         }
         else if (this.keyD.isDown) {
             this.anims.play('run', true)
             this.body.velocity.x = 110
             this.checkFlip();
-            this.body.setOffset(45, 65);
+            
 
         }
         else {
             this.anims.play('idle', true)
-            this.body.setOffset(0, 0)
+            
         }
     }
 }

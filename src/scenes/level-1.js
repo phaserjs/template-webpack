@@ -24,16 +24,18 @@ export class Level1 extends Scene {
         const sky = map.createLayer('Sky', tilesetSky, 0, -16)
         const clouds = map.createLayer('Clouds', tilesetCloud)
         const water = map.createLayer('Water', tilesetWater)
-        this.platforms = map.createLayer('Ground', tilesetGround, 0, -16)
+        const platforms = map.createDynamicLayer('Ground', tilesetGround, 0, -16)
         const foliage = map.createLayer('Foliage', tilesetFoliage)
         // setting collision property to ground
-        this.platforms.setCollisionByExclusion(-1, true)
+         platforms.setCollisionBetween(-1, true)
 
         this.player = new Player(this, 100, 300)
         this.enemy1 = new Enemy1(this, 1000, 400)
 
+        console.log(sky)
+
         this.physics.world.addCollider(this.player, this.enemy1)
-        this.physics.world.addCollider(this.player, this.platforms)
+        this.physics.world.addCollider(this.player, platforms)
 
         console.log(this)
     }
