@@ -46,7 +46,7 @@ export class Level1 extends Scene {
         this.physics.world.addCollider(this.player, this.enemy1)
         this.physics.world.addCollider(this.player, this.platforms)
         this.cameras.main.setViewport(0,0, 960, 540)
-        // this.physics.world.setBounds(0,0, 3840, 540)
+        this.physics.world.setBounds(0,0, 3840, 540)
         this.cameras.main.startFollow(this.player, true, 0.5, 0.5, -400, 185)
         this.cameras.main.setBounds(0, 0, 3840, 540)
 
