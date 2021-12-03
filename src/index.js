@@ -1,6 +1,4 @@
 import Phaser from 'phaser';
-import logoImg from './assets/logo.png';
-
 import { LoadingScene } from './scenes/loading';
 import { Level1 } from './scenes/level-1';
 
@@ -8,18 +6,21 @@ import { Level1 } from './scenes/level-1';
 
 const config = {
     type: Phaser.AUTO,
-    title: 'game practice',
+    title: 'SideScroller',
     parent: 'phaser-example',
-    width: 800,
-    height: 600,
+    width: 3840,
+    height: 540,
     scene: [LoadingScene, Level1],
     physics: {
         default: 'arcade',
         arcade: {
             debug: true,
-            gravity: { y: 300 }
+            gravity: { y: 300 },
+            tileBias: 32,
+            fps: 60,
         }
     }
 };
+
 
 const game = new Phaser.Game(config);

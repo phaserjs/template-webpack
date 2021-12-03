@@ -14,6 +14,13 @@ export class LoadingScene extends Scene {
 
         this.load.baseURL = 'assets/'
 
+        this.load.image('clouds', 'country-level/clouds.png')
+        this.load.image('sky', 'country-level/sky.png')
+        this.load.image('ground', 'country-level/tilesetOpenGame.png')
+        this.load.image('water', 'country-level/WaterTextures.png')
+        this.load.image('foliage', 'country-level/grass-trees.png')
+        this.load.tilemapTiledJSON('map', 'country-level/countryLevel.json')
+
 
         this.load.image('adventurer', 'adventurer-idle-00.png')
         
