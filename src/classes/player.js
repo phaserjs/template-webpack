@@ -21,7 +21,6 @@ export class Player extends Actor {
         this.body.setSize(55, 85)
         this.body.setOffset(82, 55)
 
-        this.addEvents()
         this.initAnimations()
     }
 
@@ -35,13 +34,7 @@ export class Player extends Actor {
         }
 
     }
-    addEvents() {
-        this.scene.input.on('pointerdown', (pointer) => {
-            this.fire()
 
-        })
-
-    }
 
 
 
@@ -87,21 +80,21 @@ export class Player extends Actor {
         if (this.keyW.isDown && this.canJump) {
             console.log(this);
             this.canJump = false
-            this.body.velocity.y = -250;
+            this.body.velocity.y = -220;
         }
 
 
 
         if (this.keyA.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = -260;
+            this.body.velocity.x = -200;
             this.checkFlip();
             this.body.setOffset(95, 55)
 
         }
         else if (this.keyD.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = 260
+            this.body.velocity.x = 200
             this.checkFlip();
 
 

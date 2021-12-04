@@ -3,6 +3,7 @@ import { BulletGroup } from '../classes/groups/bullet-group'
 import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
+import { MobSpawner } from '../classes/groups/mob-spawner'
 
 
 
@@ -21,6 +22,10 @@ export class Level1 extends Scene {
         this.colliderSetup()
         this.cameraSetup()
         this.debugSetup()
+
+        this.input.on('pointerdown', () => {
+            this.spawner.spawnMob(this.input.activePointer.worldX, this.input.activePointer.worldY)
+        })
     }
 
 
@@ -60,11 +65,16 @@ export class Level1 extends Scene {
 
     colliderSetup() {
         this.physics.world.addCollider(this.player, this.enemy1)
+
+        this.physics.world.addCollider(this.enemy1, this.platforms)
         this.physics.world.addCollider(this.player, this.platforms, () => {
             this.player.canJump = true
             this.player.jumpCount = 2
         })
+
+
         this.physics.world.addCollider(this.player, this.enemy3, () => {
+            this.player.getDamage()
             this.enemy3.destroy()
         })
     }
@@ -78,10 +88,14 @@ export class Level1 extends Scene {
     }
 
     enemySetup() {
+
+        this.spawner = new MobSpawner(this)
         this.enemy1 = new Enemy1(this, 500, 400)
         this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
         this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
         this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
+
+
 
         this.enemy.startFollow({
             duration: 700,
@@ -127,7 +141,7 @@ export class Level1 extends Scene {
         this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
         this.mouseCoords.x = this.player.x
 
-      
+
 
     }
 }

@@ -35,10 +35,12 @@ export class LoadingScene extends Scene {
         this.load.atlas('enemy', 'sprites/anims/enemy-1-idle.png', 'sprites/atlas/enemy-1-atlas.json')
         this.load.atlas('player', 'sprites/anims/wizard-sheet.png', 'sprites/atlas/wizard.json')
 
+        
     }
-
+    
     create() {
         console.log('Loading scene created')
+        console.log(this)
 
         this.scene.start('level-1-scene')
 
