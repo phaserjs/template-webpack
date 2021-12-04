@@ -5,6 +5,7 @@ import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { MobSpawner } from '../classes/groups/mob-spawner'
 import { Boss1 } from '../classes/enemies/boss'
+import { Trigger } from '../classes/triggers'
 
 
 
@@ -26,6 +27,7 @@ export class Level1 extends Scene {
         this.colliderSetup()
         this.cameraSetup()
         this.debugSetup()
+        this.trigger = new Trigger(this,3785, 448)
 
         this.input.on('pointerdown', () => {
             this.player.godMode = !this.player.godMode
