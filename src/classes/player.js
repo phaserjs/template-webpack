@@ -68,14 +68,15 @@ export class Player extends Actor {
 
 
 
-        if (this.body.velocity.x > 0) {
+        // if (this.body.velocity.x > 0) {
 
-            this.body.velocity.x -= 28
-        } else if (this.body.velocity.x < 0) {
-            this.body.velocity.x += 28
-        }
+        //     this.body.velocity.x -= 28
+        // } else if (this.body.velocity.x < 0) {
+        //     this.body.velocity.x += 28
+        // }
 
-
+        this.setVelocityX(0)
+        this.body.setOffset(82,55)
 
         if (this.keyW.isDown) {
             this.body.velocity.y = -150;
@@ -85,6 +86,7 @@ export class Player extends Actor {
             this.anims.play('run', true)
             this.body.velocity.x = -500;
             this.checkFlip();
+            this.body.setOffset(95,55)
 
         }
         else if (this.keyD.isDown) {
@@ -96,7 +98,9 @@ export class Player extends Actor {
         }
         else {
             this.anims.play('idle', true)
-
+            if (this.flipX) {
+              this.body.setOffset(95,55)
+            }
         }
     }
 }
