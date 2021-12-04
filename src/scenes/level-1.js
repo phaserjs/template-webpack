@@ -54,6 +54,7 @@ export class Level1 extends Scene {
     initPlayer() {
         this.player = new Player(this, 100, 300)
         this.bulletGroup = new BulletGroup(this)
+
     }
 
     cameraSetup() {
@@ -134,9 +135,9 @@ export class Level1 extends Scene {
     }
 
     update() {
-        this.player.update()
-        this.enemy1.update()
 
+        this.enemy1.update()
+        this.player.update()
 
         this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
         this.mouseCoords.x = this.player.x

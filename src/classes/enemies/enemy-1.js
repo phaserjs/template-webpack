@@ -3,7 +3,9 @@ import { Actor } from "../actor"
 export class Enemy1 extends Actor {
     constructor(scene, x, y) {
         super(scene, x, y, 'enemy')
+        
         scene.physics.add.existing(this)
+
         this.setAnims()
         this.setScale(2)
         this.setSize(30, 30)
@@ -12,7 +14,7 @@ export class Enemy1 extends Actor {
         scene.physics.world.addCollider(this.scene.player, this)
         scene.physics.world.addCollider(this, this.scene.platforms)
         scene.physics.world.addCollider(this, this.scene.spawner)
-        console.log(this);
+        
     }
 
     setAnims() {
@@ -35,12 +37,14 @@ export class Enemy1 extends Actor {
     }
 
     update() {
-        if (this.body.velocity.x > 0) {
+        // if (this.body.velocity.x > 0) {
 
-            this.body.velocity.x -= 5
-        } else if (this.body.velocity.x < 0) {
-            this.body.velocity.x += 5
-        }
+        //     this.body.velocity.x -= 5
+        // } else if (this.body.velocity.x < 0) {
+        //     this.body.velocity.x += 5
+        // }
+
+        this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
         this.anims.play('idle-enemy', true)
         
     }
