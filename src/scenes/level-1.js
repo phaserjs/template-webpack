@@ -64,9 +64,7 @@ export class Level1 extends Scene {
     }
 
     colliderSetup() {
-        this.physics.world.addCollider(this.player, this.enemy1)
 
-        this.physics.world.addCollider(this.enemy1, this.platforms)
         this.physics.world.addCollider(this.player, this.platforms, () => {
             this.player.canJump = true
             this.player.jumpCount = 2
@@ -90,6 +88,7 @@ export class Level1 extends Scene {
     enemySetup() {
 
         this.spawner = new MobSpawner(this)
+        this.add.existing(this.spawner)
         this.enemy1 = new Enemy1(this, 500, 400)
         this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
         this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
@@ -137,6 +136,7 @@ export class Level1 extends Scene {
     update() {
         this.player.update()
         this.enemy1.update()
+
 
         this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
         this.mouseCoords.x = this.player.x
