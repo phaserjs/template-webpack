@@ -3,7 +3,7 @@ import { Actor } from "../actor"
 export class Enemy1 extends Actor {
     constructor(scene, x, y) {
         super(scene, x, y, 'enemy')
-        
+
         scene.physics.add.existing(this)
 
         this.setAnims()
@@ -11,10 +11,12 @@ export class Enemy1 extends Actor {
         this.setSize(30, 30)
         this.setOffset(50, 8)
 
-        scene.physics.world.addCollider(this.scene.player, this)
+        scene.physics.world.addCollider(this.scene.player, this, () => {
+            this.scene.player.getDamage(20)
+            this.destroy()
+        })
         scene.physics.world.addCollider(this, this.scene.platforms)
-        scene.physics.world.addCollider(this, this.scene.spawner)
-        
+
     }
 
     setAnims() {
@@ -28,24 +30,21 @@ export class Enemy1 extends Actor {
         })
     }
 
-    spawn(x,y) {
+    spawn(x, y) {
         this.x = x
         this.y = y
         console.log(this);
         this.setActive(true)
         this.setVisible(true)
+        this.body.allowGravity = true
+
     }
 
     update() {
-        // if (this.body.velocity.x > 0) {
+        if (this.active) {
 
-        //     this.body.velocity.x -= 5
-        // } else if (this.body.velocity.x < 0) {
-        //     this.body.velocity.x += 5
-        // }
-
-        this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-        this.anims.play('idle-enemy', true)
-        
+            this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
+            this.anims.play('idle-enemy', true)
+        }
     }
 }

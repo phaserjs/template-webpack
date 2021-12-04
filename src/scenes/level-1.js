@@ -4,6 +4,7 @@ import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { MobSpawner } from '../classes/groups/mob-spawner'
+import { Boss1 } from '../classes/enemies/boss'
 
 
 
@@ -71,6 +72,8 @@ export class Level1 extends Scene {
             this.player.jumpCount = 2
         })
 
+        this.physics.world.addCollider(this.spawner, this.spawner)
+
 
         this.physics.world.addCollider(this.player, this.enemy3, () => {
             this.player.getDamage()
@@ -88,14 +91,14 @@ export class Level1 extends Scene {
 
     enemySetup() {
 
-        this.spawner = new MobSpawner(this)
+        this.spawner = new MobSpawner(this, 30, 30)
         this.add.existing(this.spawner)
         this.enemy1 = new Enemy1(this, 500, 400)
         this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
         this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
         this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
 
-
+        this.boss = new Boss1(this, 3300, 220)
 
         this.enemy.startFollow({
             duration: 700,
@@ -138,6 +141,7 @@ export class Level1 extends Scene {
 
         this.enemy1.update()
         this.player.update()
+        this.boss.update()
 
         this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
         this.mouseCoords.x = this.player.x

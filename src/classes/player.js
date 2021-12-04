@@ -1,5 +1,4 @@
 import { Actor } from "./actor";
-import { Math } from "phaser";
 
 export class Player extends Actor {
     constructor(scene, x, y) {
@@ -64,45 +63,51 @@ export class Player extends Actor {
     }
 
     update() {
-
-        this.setVelocityX(0)
-        this.body.setOffset(82, 55)
-
-        if (this.keyShoot.isDown && this.canShoot) {
-            this.canShoot = false
-            this.fire()
+        if (this.hp === 0) {
+            this.destroy()
         }
-
-        if (this.keyShoot.isUp) {
-            this.canShoot = true
-        }
-
-        if (this.keyW.isDown && this.canJump) {
-            console.log(this);
-            this.canJump = false
-            this.body.velocity.y = -220;
-        }
+        if (this.active) {
 
 
+            this.setVelocityX(0)
+            this.body.setOffset(82, 55)
 
-        if (this.keyA.isDown) {
-            this.anims.play('run', true)
-            this.body.velocity.x = -200;
-            this.checkFlip();
-            this.body.setOffset(95, 55)
+            if (this.keyShoot.isDown && this.canShoot) {
+                this.canShoot = false
+                this.fire()
+            }
 
-        }
-        else if (this.keyD.isDown) {
-            this.anims.play('run', true)
-            this.body.velocity.x = 200
-            this.checkFlip();
+            if (this.keyShoot.isUp) {
+                this.canShoot = true
+            }
+
+            if (this.keyW.isDown && this.canJump) {
+                console.log(this);
+                this.canJump = false
+                this.body.velocity.y = -440;
+            }
 
 
-        }
-        else {
-            this.anims.play('idle', true)
-            if (this.flipX) {
+
+            if (this.keyA.isDown) {
+                this.anims.play('run', true)
+                this.body.velocity.x = -440;
+                this.checkFlip();
                 this.body.setOffset(95, 55)
+
+            }
+            else if (this.keyD.isDown) {
+                this.anims.play('run', true)
+                this.body.velocity.x = 440
+                this.checkFlip();
+
+
+            }
+            else {
+                this.anims.play('idle', true)
+                if (this.flipX) {
+                    this.body.setOffset(95, 55)
+                }
             }
         }
     }

@@ -2,12 +2,11 @@ import { Physics } from "phaser"
 import { Enemy1 } from "../enemies/enemy-1"
 
 export class MobSpawner extends Physics.Arcade.Group {
-    constructor(scene) {
+    constructor(scene, x, y) {
         super(scene.physics.world, scene)
 
-        scene.physics.add.existing(this)
-
         this.defaults.setCollideWorldBounds = true
+        this.defaults.setAllowGravity = false
 
         this.runChildUpdate = true
         this.createMultiple({
@@ -15,7 +14,8 @@ export class MobSpawner extends Physics.Arcade.Group {
             frameQuantity: 30,
             active: false,
             visible: false,
-            key: 'enemy'
+            key: 'enemy',
+            setXY: {x, y, stepX: 50}
         })
         console.log(this);
     }
@@ -28,4 +28,5 @@ export class MobSpawner extends Physics.Arcade.Group {
         }
     }
 
+    
 }
