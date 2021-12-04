@@ -31,12 +31,6 @@ export class Title extends Scene {
 
         farMount.on('pointerover', () => 
         start.clearTint())
-
-    // start.events.onInputDown.
-        // this.cameras.main.setViewport(0, 0, 960, 540)
-        // this.physics.world.setBounds(0, 0, 3840, 540)
-        // this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 185)
-        // this.cameras.main.setBounds(0, 0, 3840, 540)
     }
 
 
