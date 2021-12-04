@@ -12,6 +12,8 @@ export class Player extends Actor {
 
         this.setScale(0.5)
 
+        this.godMode = false
+
         this.canShoot = true
         this.canJump = true
 
@@ -66,6 +68,9 @@ export class Player extends Actor {
         if (this.hp === 0) {
             this.destroy()
         }
+
+        
+
         if (this.active) {
 
 
@@ -81,32 +86,56 @@ export class Player extends Actor {
                 this.canShoot = true
             }
 
-            if (this.keyW.isDown && this.canJump) {
-                console.log(this);
-                this.canJump = false
-                this.body.velocity.y = -440;
-            }
+            if (this.godMode) {
 
-
-
-            if (this.keyA.isDown) {
-                this.anims.play('run', true)
-                this.body.velocity.x = -440;
-                this.checkFlip();
-                this.body.setOffset(95, 55)
-
-            }
-            else if (this.keyD.isDown) {
-                this.anims.play('run', true)
-                this.body.velocity.x = 440
-                this.checkFlip();
-
-
-            }
-            else {
-                this.anims.play('idle', true)
-                if (this.flipX) {
+                if (this.keyW.isDown) {
+                    console.log(this);
+                    this.canJump = false
+                    this.body.velocity.y = -440;
+                }
+                if (this.keyA.isDown) {
+                    this.anims.play('run', true)
+                    this.body.velocity.x = -440;
+                    this.checkFlip();
                     this.body.setOffset(95, 55)
+
+                }
+                else if (this.keyD.isDown) {
+                    this.anims.play('run', true)
+                    this.body.velocity.x = 440
+                    this.checkFlip();
+
+
+                }
+            
+            } else {
+                if (this.keyW.isDown && this.canJump) {
+                    console.log(this);
+                    this.canJump = false
+                    this.body.velocity.y = -220;
+                }
+
+
+
+                if (this.keyA.isDown) {
+                    this.anims.play('run', true)
+                    this.body.velocity.x = -220;
+                    this.checkFlip();
+                    this.body.setOffset(95, 55)
+
+                }
+                else if (this.keyD.isDown) {
+                    this.anims.play('run', true)
+                    this.body.velocity.x = 220
+                    this.checkFlip();
+
+
+                }
+                else {
+                    this.anims.play('idle', true)
+                    if (this.flipX) {
+                        this.body.setOffset(95, 55)
+                    }
                 }
             }
         }

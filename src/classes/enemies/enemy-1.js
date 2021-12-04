@@ -16,6 +16,10 @@ export class Enemy1 extends Actor {
             this.destroy()
         })
         scene.physics.world.addCollider(this, this.scene.platforms)
+        scene.physics.world.addCollider(this, this.scene.bulletGroup, (boss, bullet) => {
+            this.destroy()
+            bullet.destroy()
+        })
 
     }
 

@@ -10,13 +10,14 @@ export class Boss1 extends Actor {
         this.setOffset(50, 3)
         this.setAnims()
 
-        this.spawner = new MobSpawner(this.scene, 60, 60)
+        this.spawner = new MobSpawner(this.scene, 30, 30)
         this.scene.add.existing(this.spawner)
-        
+
         scene.physics.world.addCollider(this.scene.player, this)
         scene.physics.world.addCollider(this, this.scene.platforms)
         scene.physics.world.addCollider(this, this.scene.bulletGroup, (boss, bullet) => {
             this.spawner.spawnMob(this.x, this.y)
+            this.getDamage(10)
             bullet.destroy()
         })
     }
@@ -34,8 +35,15 @@ export class Boss1 extends Actor {
 
     update() {
         // this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-        this.anims.play('idle-enemy', true)
-        
+        if (this.hp === 0) {
+            this.destroy()
+        }
+
+        if (this.active) {
+
+            this.anims.play('idle-enemy', true)
+        }
+
 
     }
 }

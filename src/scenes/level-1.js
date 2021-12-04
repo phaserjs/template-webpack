@@ -25,7 +25,7 @@ export class Level1 extends Scene {
         this.debugSetup()
 
         this.input.on('pointerdown', () => {
-            this.spawner.spawnMob(this.input.activePointer.worldX, this.input.activePointer.worldY)
+            this.player.godMode = !this.player.godMode
         })
     }
 
@@ -72,7 +72,7 @@ export class Level1 extends Scene {
             this.player.jumpCount = 2
         })
 
-        this.physics.world.addCollider(this.spawner, this.spawner)
+        //  this.physics.world.addCollider(this.spawner, this.spawner)
 
 
         this.physics.world.addCollider(this.player, this.enemy3, () => {
@@ -91,8 +91,6 @@ export class Level1 extends Scene {
 
     enemySetup() {
 
-        this.spawner = new MobSpawner(this, 30, 30)
-        this.add.existing(this.spawner)
         this.enemy1 = new Enemy1(this, 500, 400)
         this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
         this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
@@ -126,6 +124,7 @@ export class Level1 extends Scene {
             collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
         })
         this.mouseCoords = this.add.text(50, 25)
+        this.godMode = this.add.text(50, 45)
 
         const graphics = this.add.graphics()
 
@@ -145,6 +144,8 @@ export class Level1 extends Scene {
 
         this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
         this.mouseCoords.x = this.player.x
+        this.godMode.setText('God mode: ' + this.player.godMode)
+        this.godMode.x = this.player.x
 
 
 
