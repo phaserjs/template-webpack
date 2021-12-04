@@ -19,7 +19,7 @@ export class Level1 extends Scene {
         // Align.scaleToGameW(bg, 2)
         let bg = this.add.image(400, 300,'background').setScale(3)
 		.setScrollFactor(0)
-        foreground = this.add.tileSprite(200, 450, width, 350, 'foreground')
+        foreground = this.add.tileSprite(200, 450, 4500, 350, 'foreground')
         .setScrollFactor(0.5)
 
         // creating tilemap
@@ -118,11 +118,6 @@ export class Level1 extends Scene {
     update() {
         this.player.update()
         this.enemy1.update()
-        // foreground.tilePositionX += 0.5
-        // foreground.tilePosition += 0.5
-        // foreground.tilePosition += 0.5
-
-
 
         this.physics.accelerateToObject(this.enemy1, this.player, 30, 140, 140)
 
