@@ -1,8 +1,9 @@
 import { Scene, Math } from 'phaser'
-import { BulletGroup } from '../classes/bullet-group'
-import { Enemy1 } from '../classes/enemy-1'
+import { BulletGroup } from '../classes/groups/bullet-group'
+import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
-import { Patroller } from '../classes/patroller'
+import { Patroller } from '../classes/enemies/patroller'
+
 
 
 
@@ -13,100 +14,19 @@ export class Level1 extends Scene {
         super('level-1-scene')
     }
     create() {
-
-        //creating bg
-        const width = this.scale.width
-        const height = this.scale.height
-        let bg = this.add.image(400, 300, 'background').setScale(3)
-
-            // Align.scaleToGameW(bg, 2)
-            .setScrollFactor(0)
-
-
-        // creating tilemap
         this.initMap()
-
-        this.player = new Player(this, 100, 300)
-        this.enemy1 = new Enemy1(this, 1000, 400)
-        this.bulletGroup = new BulletGroup(this)
-
-
-
-        this.physics.world.addCollider(this.player, this.enemy1)
-        this.physics.world.addCollider(this.player, this.platforms)
-
-
-        this.cameras.main.setViewport(0, 0, 960, 540)
-        this.physics.world.setBounds(0, 0, 3840, 540)
-        this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 185)
-        this.cameras.main.setBounds(0, 0, 3840, 540)
-
-        const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
-        const points1 = [50, 400, 135, 400]
-        const flyingPoints = [50, 400, 125, 320, 200, 400]
-        const curve = new Phaser.Curves.Spline(points1)
-        const flying = new Phaser.Curves.Spline(flyingPoints)
-
-        const graphics = this.add.graphics()
-
-        graphics.lineStyle(1, 0xffffff, 1)
-
-        curve.draw(graphics, 64)
-        flying.draw(graphics, 64)
-
-        graphics.fillStyle(0x00ff00, 1)
-
-
-
-        const enemy = this.add.follower(curve, 818, 413, 'adventurer')
-        const enemy2 = this.add.follower(curve, 1712, 412, 'adventurer')
-        this.enemy3 = new Patroller(this, flying, 1535, 392, 'adventurer')
-
-        enemy.startFollow({
-            duration: 700,
-            yoyo: true,
-            repeat: -1
-        })
-
-        enemy2.startFollow(
-            {
-                duration: 700,
-                yoyo: true,
-                repeat: -1
-            }
-        )
-
-        this.enemy3.startFollow(
-            {
-                duration: 1300,
-                yoyo: true,
-                repeat: -1
-            }
-        )
-        this.mouseCoords = this.add.text(100, 200)
-
-        this.physics.world.addCollider(this.player, this.enemy3, () => {
-            this.enemy3.destroy()
-        })
-
+        this.initPlayer()
+        this.pathSetup()
+        this.enemySetup()
+        this.colliderSetup()
+        this.cameraSetup()
         this.debugSetup()
-        // this.addEvents()
-
-        console.log(this.enemy3)
-        
-    }
-
-
-    addEvents() {
-        this.input.on('pointermove', (pointer) => {
-            this.player.body.x = pointer.x
-            this.player.body.y = pointer.y
-            console.log(this.player)
-        })
     }
 
 
     initMap() {
+        //creating bg
+        this.bg = this.add.image(400, 300, 'background').setScale(3).setScrollFactor(0)
         // creating tilemap
         const map = this.make.tilemap({ key: 'map' })
         //linking pngs to tileset names in the map
@@ -127,6 +47,59 @@ export class Level1 extends Scene {
 
     }
 
+    initPlayer() {
+        this.player = new Player(this, 100, 300)
+        this.bulletGroup = new BulletGroup(this)
+    }
+
+    cameraSetup() {
+        this.cameras.main.setViewport(0, 0, 960, 540)
+        this.physics.world.setBounds(0, 0, 3840, 540)
+        this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 185)
+        this.cameras.main.setBounds(0, 0, 3840, 540)
+    }
+
+    colliderSetup() {
+        this.physics.world.addCollider(this.player, this.enemy1)
+        this.physics.world.addCollider(this.player, this.platforms)
+        this.physics.world.addCollider(this.player, this.enemy3, () => {
+            this.enemy3.destroy()
+        })
+    }
+
+    pathSetup() {
+        const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
+        const points1 = [50, 400, 135, 400]
+        const flyingPoints = [50, 400, 125, 320, 200, 400]
+        this.curve = new Phaser.Curves.Spline(points1)
+        this.flying = new Phaser.Curves.Spline(flyingPoints)
+    }
+
+    enemySetup() {
+        this.enemy1 = new Enemy1(this, 1000, 400)
+        this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
+        this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
+        this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
+
+        this.enemy.startFollow({
+            duration: 700,
+            yoyo: true,
+            repeat: -1
+        })
+
+        this.enemy2.startFollow({
+            duration: 700,
+            yoyo: true,
+            repeat: -1
+        })
+
+        this.enemy3.startFollow({
+            duration: 1300,
+            yoyo: true,
+            repeat: -1
+        })
+    }
+
     debugSetup() {
         const debugGraphics = this.add.graphics().setAlpha(0.7)
         this.platforms.renderDebug(debugGraphics, {
@@ -134,14 +107,16 @@ export class Level1 extends Scene {
             collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
         })
         this.mouseCoords = this.add.text(50, 25)
-    }
 
-    // addEvents() {
-    //     this.input.on('pointermove', (pointer) => {
-    //         this.player.body.x = pointer.x
-    //         this.player.body.y = pointer.y
-    //     })
-    // }
+        const graphics = this.add.graphics()
+
+        graphics.lineStyle(1, 0xffffff, 1)
+
+        this.curve.draw(graphics, 64)
+        this.flying.draw(graphics, 64)
+
+        graphics.fillStyle(0x00ff00, 1)
+    }
 
     update() {
         this.player.update()
