@@ -4,17 +4,17 @@ import { Enemy1 } from '../classes/enemy-1'
 import { Player } from '../classes/player'
 
 
-export class Level1 extends Scene {
+export class Level3 extends Scene {
     constructor() {
-        super('level-1-scene')
+        super('level-3-scene')
     }
     create() {
 
         //creating bg
 
         // Align.scaleToGameW(bg, 2)
-        // let bg = this.add.image(400, 300,'background').setScale(3)
-		// .setScrollFactor(0)
+        let bg = this.add.image(400, 300,'background').setScale(3)
+		.setScrollFactor(0)
         // foreground = this.add.tileSprite(200, 450, 4500, 350, 'foreground')
         // .setScrollFactor(0.5)
 
@@ -24,8 +24,6 @@ export class Level1 extends Scene {
         this.player = new Player(this, 100, 300)
         this.enemy1 = new Enemy1(this, 1000, 400)
         this.bulletGroup = new BulletGroup(this)
-
-
 
         this.physics.world.addCollider(this.player, this.enemy1)
         this.physics.world.addCollider(this.player, this.platforms, (player) => {
@@ -60,7 +58,7 @@ export class Level1 extends Scene {
             repeat: -1
         })
 
-        this.debugWalls()
+        // this.debugWalls()
         // this.addEvents()
 
         console.log(this)
@@ -79,9 +77,10 @@ export class Level1 extends Scene {
     initMap() {
         // creating tilemap
         const level3map = this.make.tilemap({ key: 'level3-map' })
+        const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files','level2-tiles')
         //linking pngs to tileset names in the map
         //creating layers to reflect tilemap layers - order matters for rendering
-        this.platforms = level3map.createLayer('Platforms', level3map, 0, 0)
+        this.platforms = level3map.createLayer('Platforms', tileSetLevel2, 0, 0)
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
 

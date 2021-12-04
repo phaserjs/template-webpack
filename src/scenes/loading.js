@@ -13,6 +13,14 @@ export class LoadingScene extends Scene {
     preload() {
 
         this.load.baseURL = 'assets/'
+// title scene
+        this.load.image('titleBg', 'title/parallax-mountain-bg.png')
+        this.load.image('titleFarMount', 'title/parallax-mountain-montain-far.png')
+        this.load.image('titleMount', 'title/parallax-mountain-mountains.png')
+        this.load.image('titleTrees', 'title/parallax-mountain-trees.png')
+        this.load.image('titleForeground', 'title/parallax-mountain-foreground-trees.png')
+        this.load.image('start-game', 'title/start-game.png')
+        this.load.image('game-logo', 'title/game-logo.png')
 // level 1
         this.load.image('clouds', 'country-level/clouds.png')
         this.load.image('sky', 'country-level/sky.png')
@@ -41,9 +49,7 @@ export class LoadingScene extends Scene {
     create() {
         console.log('Loading scene created')
 
-        this.scene.start('level-1-scene')
-
-        // this.cameras.main.setBounds(0, 0, 540, 3840)
+        this.scene.start('title-scene')
        
     }
 }

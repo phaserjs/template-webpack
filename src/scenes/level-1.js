@@ -12,7 +12,9 @@ export class Level1 extends Scene {
         super('level-1-scene')
     }
     create() {
-
+        this.input.on('pointerdown', () => 
+        this.scene.start('level-3-scene'), console.log('loading scene 2'))
+        
         //creating bg
         const width = this.scale.width
         const height = this.scale.height
@@ -21,7 +23,7 @@ export class Level1 extends Scene {
 		.setScrollFactor(0)
         foreground = this.add.tileSprite(200, 450, 4500, 350, 'foreground')
         .setScrollFactor(0.5)
-
+        
         // creating tilemap
         this.initMap()
 
@@ -66,11 +68,10 @@ export class Level1 extends Scene {
 
         this.debugWalls()
         // this.addEvents()
-
-        console.log(this)
+        
     }
-
-
+    
+    
     addEvents() {
         this.input.on('pointermove', (pointer) => {
             this.player.body.x = pointer.x
@@ -78,8 +79,8 @@ export class Level1 extends Scene {
             console.log(this.player)
         })
     }
-
-
+    
+    
     initMap() {
         // creating tilemap
         const map = this.make.tilemap({ key: 'map' })
@@ -96,10 +97,10 @@ export class Level1 extends Scene {
         this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
-
-
+        
+        
     }
-
+    
     debugWalls() {
         const debugGraphics = this.add.graphics().setAlpha(0.7)
         this.platforms.renderDebug(debugGraphics, {
@@ -107,19 +108,19 @@ export class Level1 extends Scene {
             collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
         })
     }
-
+    
     // addEvents() {
-    //     this.input.on('pointermove', (pointer) => {
-    //         this.player.body.x = pointer.x
-    //         this.player.body.y = pointer.y
-    //     })
-    // }
-
-    update() {
-        this.player.update()
-        this.enemy1.update()
-
-        this.physics.accelerateToObject(this.enemy1, this.player, 30, 140, 140)
-
-    }
-}
+        //     this.input.on('pointermove', (pointer) => {
+            //         this.player.body.x = pointer.x
+            //         this.player.body.y = pointer.y
+            //     })
+            // }
+            
+            update() {
+                this.player.update()
+                this.enemy1.update()
+                
+                this.physics.accelerateToObject(this.enemy1, this.player, 30, 140, 140)
+                
+            }
+        }
