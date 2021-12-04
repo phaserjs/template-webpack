@@ -7,7 +7,7 @@ export class Level3 extends Scene {
         super('level-3-scene')
     }
     create() {
-        this.input.on('pointerdown', () => 
+        this.input.on('pointerdown', () =>
         this.scene.start('level-3-scene'), console.log('loading scene 2'))
 
         this.initMap()
@@ -50,8 +50,10 @@ export class Level3 extends Scene {
     }
 
     colliderSetup() {
-        this.physics.world.addCollider(this.player, this.platforms)
-
+        this.physics.world.addCollider(this.player, this.platforms, () => {
+          this.player.canJump = true
+          this.player.jumpCount = 2
+        })
     }
 
     pathSetup() {
@@ -86,7 +88,7 @@ export class Level3 extends Scene {
         this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
         this.mouseCoords.x = this.player.x
 
-      
+
 
     }
 }
