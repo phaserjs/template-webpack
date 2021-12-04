@@ -4,9 +4,6 @@ import { Enemy1 } from '../classes/enemy-1'
 import { Player } from '../classes/player'
 
 
-var foreground
-
-
 export class Level1 extends Scene {
     constructor() {
         super('level-1-scene')
@@ -14,13 +11,12 @@ export class Level1 extends Scene {
     create() {
 
         //creating bg
-        const width = this.scale.width
-        const height = this.scale.height
+
         // Align.scaleToGameW(bg, 2)
-        let bg = this.add.image(400, 300,'background').setScale(3)
-		.setScrollFactor(0)
-        foreground = this.add.tileSprite(200, 450, 4500, 350, 'foreground')
-        .setScrollFactor(0.5)
+        // let bg = this.add.image(400, 300,'background').setScale(3)
+		// .setScrollFactor(0)
+        // foreground = this.add.tileSprite(200, 450, 4500, 350, 'foreground')
+        // .setScrollFactor(0.5)
 
         // creating tilemap
         this.initMap()
@@ -82,18 +78,10 @@ export class Level1 extends Scene {
 
     initMap() {
         // creating tilemap
-        const map = this.make.tilemap({ key: 'map' })
+        const level3map = this.make.tilemap({ key: 'level3-map' })
         //linking pngs to tileset names in the map
-        const tilesetCloud = map.addTilesetImage('clouds', 'clouds')
-        // const tilesetSky = map.addTilesetImage('Sky', 'sky')
-        const tilesetGround = map.addTilesetImage('tilesetOpenGame2', 'ground')
-        const tilesetWater = map.addTilesetImage('WaterTextures', 'water')
-        const tilesetFoliage = map.addTilesetImage('grass-trees', 'foliage')
         //creating layers to reflect tilemap layers - order matters for rendering
-        const clouds = map.createLayer('Clouds', tilesetCloud)
-        const water = map.createLayer('Water', tilesetWater)
-        const foliage = map.createLayer('Foliage', tilesetFoliage)
-        this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
+        this.platforms = level3map.createLayer('Platforms', level3map, 0, 0)
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
 
