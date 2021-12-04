@@ -9,9 +9,14 @@ export class Player extends Actor {
         this.keyA = this.scene.input.keyboard.addKey('A')
         this.keyS = this.scene.input.keyboard.addKey('S')
         this.keyD = this.scene.input.keyboard.addKey('D')
-        this.keyF = this.scene.input.keyboard.addKey('F')
+        this.keyShoot = this.scene.input.keyboard.addKey('SPACE')
 
         this.setScale(0.5)
+
+        this.canShoot = true
+        this.canJump = true
+
+        this.jumpCount = 2
 
         this.body.setSize(55, 85)
         this.body.setOffset(82, 55)
@@ -64,11 +69,22 @@ export class Player extends Actor {
         this.setVelocityX(0)
         this.body.setOffset(82, 55)
 
+        if (this.keyShoot.isDown && this.canShoot) {
+            this.canShoot = false
+            this.fire()
+        }
 
+        if (this.keyShoot.isUp) {
+            this.canShoot = true
+        }
 
-        if (this.keyW.isDown) {
+        if (this.keyW.isDown && this.canJump) {
+            console.log(this);
+            this.canJump = false
             this.body.velocity.y = -250;
         }
+
+
 
         if (this.keyA.isDown) {
             this.anims.play('run', true)

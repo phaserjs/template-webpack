@@ -2,19 +2,19 @@ import { Actor } from "../actor"
 
 export class Enemy1 extends Actor {
     constructor(scene, x, y) {
-        super(scene, x, y, 'mo-run')
+        super(scene, x, y, 'enemy')
 
         this.setAnims()
-        this.setScale(5)
+        this.setScale(2)
         console.log(this);
     }
 
     setAnims() {
         this.scene.anims.create({
-            key: 'mo-run',
-            frames: this.scene.anims.generateFrameNames('mo-run', {
-                prefix: 'run-',
-                end: 5
+            key: 'idle',
+            frames: this.scene.anims.generateFrameNames('enemy', {
+                prefix: 'idle-',
+                end: 3
             }),
             frameRate: 18
         })
@@ -27,10 +27,7 @@ export class Enemy1 extends Actor {
         } else if (this.body.velocity.x < 0) {
             this.body.velocity.x += 5
         }
-        this.anims.play('mo-run', true)
-        if (this.scene.player !== undefined) {
-
-
-        }
+        this.anims.play('idle', true)
+        
     }
 }

@@ -60,7 +60,10 @@ export class Level1 extends Scene {
 
     colliderSetup() {
         this.physics.world.addCollider(this.player, this.enemy1)
-        this.physics.world.addCollider(this.player, this.platforms)
+        this.physics.world.addCollider(this.player, this.platforms, () => {
+            this.player.canJump = true
+            this.player.jumpCount = 2
+        })
         this.physics.world.addCollider(this.player, this.enemy3, () => {
             this.enemy3.destroy()
         })
@@ -75,7 +78,7 @@ export class Level1 extends Scene {
     }
 
     enemySetup() {
-        this.enemy1 = new Enemy1(this, 1000, 400)
+        this.enemy1 = new Enemy1(this, 500, 400)
         this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
         this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
         this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
