@@ -33,7 +33,11 @@ export class LoadingScene extends Scene {
         this.load.image('foreground', 'level1-bg/country-platform-forest.png')
 // level 3
         this.load.image('level2-tiles', 'level3-ahmad-tiles/Wasteland-Files.png')
-        this.load.tilemapTiledJSON('level3-map', 'level3-ahmad-tiles/ahmad.json')
+        this.load.tilemapTiledJSON('level3-map', 'level3-ahmad-tiles/Ahmad2.json')
+// level 3 parallax images
+        this.load.image('level3Bg', 'level3-ahmad-tiles/Wasteland_Sky.png')
+        this.load.image('level3Mountain1', 'level3-ahmad-tiles/Wasteland_Mountains_1.png')
+        this.load.image('level3Mountain2', 'level3-ahmad-tiles/Wasteland_Mountains_2.png')
 
 // player sprite
         this.load.image('adventurer', 'adventurer-idle-00.png')
