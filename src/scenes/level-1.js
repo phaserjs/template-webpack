@@ -130,10 +130,10 @@ export class Level1 extends Scene {
 
     debugSetup() {
         const debugGraphics = this.add.graphics().setAlpha(0.7)
-        this.platforms.renderDebug(debugGraphics, {
-            tileColor: null,
-            collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
-        })
+        // this.platforms.renderDebug(debugGraphics, {
+        //     tileColor: null,
+        //     collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
+        // })
         this.mouseCoords = this.add.text(50, 25)
         this.godMode = this.add.text(50, 45)
 

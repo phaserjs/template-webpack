@@ -57,6 +57,15 @@ export class Player extends Actor {
             }),
             frameRate: 12
         })
+
+        this.scene.anims.create({
+          key: 'attack',
+          frames: this.scene.anims.generateFrameNames('player', {
+            prefix: 'atk-',
+            end: 7
+          }),
+          frameRate: 12
+        })
     }
 
     hitGround() {
@@ -69,7 +78,7 @@ export class Player extends Actor {
             this.destroy()
         }
 
-        
+
 
         if (this.active) {
 
@@ -78,6 +87,7 @@ export class Player extends Actor {
             this.body.setOffset(82, 55)
 
             if (this.keyShoot.isDown && this.canShoot) {
+                this.anims.play('attack', true)
                 this.canShoot = false
                 this.fire()
             }
@@ -107,7 +117,7 @@ export class Player extends Actor {
 
 
                 }
-            
+
             } else {
                 if (this.keyW.isDown && this.canJump) {
 
