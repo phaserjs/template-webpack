@@ -7,9 +7,6 @@ export class Level3 extends Scene {
         super('level-3-scene')
     }
     create() {
-        this.input.on('pointerdown', () => 
-        this.scene.start('level-3-scene'), console.log('loading scene 2'))
-
         this.initMap()
         this.initPlayer()
         this.pathSetup()
