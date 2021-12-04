@@ -12,18 +12,27 @@ export class Player extends Actor {
 
         this.setScale(0.5)
 
-        this.body.setSize(85, 100)
-        this.body.setOffset(73, 45)
+        this.body.setSize(55, 85)
+        this.body.setOffset(82,55)
 
-
-
-
+        console.log(this)
         this.initAnimations()
     }
 
     fire() {
-        console.log('Yah yeert');
-        console.log(this.body.touching.down);
+        // console.log('Yah yeert');
+        // console.log(this.body.touching.down);
+        this.scene.bulletGroup.fireBullet(this.x + 10, this.y)
+
+    }
+    addEvents() {
+        this.scene.input.on('pointerdown', (pointer) => {
+            this.fire()
+            console.log(this)
+        })
+        // this.scene.input.on('pointermove', (pointer) => {
+        //     this.updatePosition()
+        // })
     }
 
 
@@ -48,43 +57,50 @@ export class Player extends Actor {
         })
     }
 
+    hitGround() {
+        console.log(this.canJump);
+        return !this.canJump
+    }
+
     update() {
 
-        //   console.log(Math.Angle.Between(this.body.x, this.body.y, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y));
-        // this.rotation = Math.Angle.Between(this.body.x, this.body.y, this.scene.input.mousePointer.x, this.scene.input.mousePointer.y)
-        // this.body.setVelocityX(0)
 
-        if (this.body.velocity.x > 0) {
 
-            this.body.velocity.x -= 10
-        } else if (this.body.velocity.x < 0) {
-            this.body.velocity.x += 10
-        }
 
-        if (this.scene.input.mousePointer.isDown) {
-            this.fire()
-        }
+
+        // if (this.body.velocity.x > 0) {
+
+        //     this.body.velocity.x -= 28
+        // } else if (this.body.velocity.x < 0) {
+        //     this.body.velocity.x += 28
+        // }
+
+        this.setVelocityX(0)
+        this.body.setOffset(82,55)
 
         if (this.keyW.isDown) {
-            this.body.velocity.y = -300;
+            this.body.velocity.y = -150;
         }
 
         if (this.keyA.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = -330;
+            this.body.velocity.x = -500;
             this.checkFlip();
+            this.body.setOffset(95,55)
 
         }
         else if (this.keyD.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = 330
+            this.body.velocity.x = 500
             this.checkFlip();
 
 
         }
         else {
             this.anims.play('idle', true)
-
+            if (this.flipX) {
+              this.body.setOffset(95,55)
+            }
         }
     }
 }
