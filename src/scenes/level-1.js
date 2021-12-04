@@ -37,7 +37,7 @@ export class Level1 extends Scene {
         })
         this.cameras.main.setViewport(0, 0, 960, 540)
         this.physics.world.setBounds(0, 0, 3840, 540)
-        this.cameras.main.startFollow(this.player, true, 0.5, 0.5, -400, 185)
+        this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 185)
         this.cameras.main.setBounds(0, 0, 3840, 540)
 
         const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
