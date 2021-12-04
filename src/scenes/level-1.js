@@ -121,13 +121,10 @@ export class Level1 extends Scene {
         this.player.update()
         this.enemy1.update()
 
-<<<<<<< HEAD
         this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
         this.mouseCoords.x = this.player.x
 
-=======
->>>>>>> dev
-        this.physics.accelerateToObject(this.enemy1, this.player, 30, 140, 140)
+      
 
     }
 }
