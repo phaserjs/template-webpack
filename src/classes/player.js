@@ -26,7 +26,13 @@ export class Player extends Actor {
     }
 
     fire() {
-        this.scene.bulletGroup.fireBullet(this.x + 10, this.y)
+        if (this.flipX) {
+            this.scene.bulletGroup.fireBullet(this.x - 20, this.y, this.flipX)
+
+        } else {
+
+            this.scene.bulletGroup.fireBullet(this.x + 20, this.y, this.flipX)
+        }
 
     }
     addEvents() {
