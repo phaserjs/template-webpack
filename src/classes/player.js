@@ -1,5 +1,4 @@
 import { Actor } from "./actor";
-import { Math } from "phaser";
 
 export class Player extends Actor {
     constructor(scene, x, y) {
@@ -9,28 +8,34 @@ export class Player extends Actor {
         this.keyA = this.scene.input.keyboard.addKey('A')
         this.keyS = this.scene.input.keyboard.addKey('S')
         this.keyD = this.scene.input.keyboard.addKey('D')
-        this.keyF = this.scene.input.keyboard.addKey('F')
+        this.keyShoot = this.scene.input.keyboard.addKey('SPACE')
 
         this.setScale(0.5)
+
+        this.godMode = false
+
+        this.canShoot = true
+        this.canJump = true
+
+        this.jumpCount = 2
 
         this.body.setSize(55, 85)
         this.body.setOffset(82, 55)
 
-        this.addEvents()
         this.initAnimations()
     }
 
     fire() {
-        this.scene.bulletGroup.fireBullet(this.x + 10, this.y)
+        if (this.flipX) {
+            this.scene.bulletGroup.fireBullet(this.x - 20, this.y, this.flipX)
+
+        } else {
+
+            this.scene.bulletGroup.fireBullet(this.x + 20, this.y, this.flipX)
+        }
 
     }
-    addEvents() {
-        this.scene.input.on('pointerdown', (pointer) => {
-            this.fire()
 
-        })
-
-    }
 
 
 
@@ -60,34 +65,78 @@ export class Player extends Actor {
     }
 
     update() {
-
-        this.setVelocityX(0)
-        this.body.setOffset(82, 55)
-
-
-
-        if (this.keyW.isDown) {
-            this.body.velocity.y = -250;
+        if (this.hp === 0) {
+            this.destroy()
         }
 
-        if (this.keyA.isDown) {
-            this.anims.play('run', true)
-            this.body.velocity.x = -260;
-            this.checkFlip();
-            this.body.setOffset(95, 55)
+        
 
-        }
-        else if (this.keyD.isDown) {
-            this.anims.play('run', true)
-            this.body.velocity.x = 260
-            this.checkFlip();
+        if (this.active) {
 
 
-        }
-        else {
-            this.anims.play('idle', true)
-            if (this.flipX) {
-                this.body.setOffset(95, 55)
+            this.setVelocityX(0)
+            this.body.setOffset(82, 55)
+
+            if (this.keyShoot.isDown && this.canShoot) {
+                this.canShoot = false
+                this.fire()
+            }
+
+            if (this.keyShoot.isUp) {
+                this.canShoot = true
+            }
+
+            if (this.godMode) {
+
+                if (this.keyW.isDown) {
+                    console.log(this);
+                    this.canJump = false
+                    this.body.velocity.y = -440;
+                }
+                if (this.keyA.isDown) {
+                    this.anims.play('run', true)
+                    this.body.velocity.x = -440;
+                    this.checkFlip();
+                    this.body.setOffset(95, 55)
+
+                }
+                else if (this.keyD.isDown) {
+                    this.anims.play('run', true)
+                    this.body.velocity.x = 440
+                    this.checkFlip();
+
+
+                }
+            
+            } else {
+                if (this.keyW.isDown && this.canJump) {
+                    console.log(this);
+                    this.canJump = false
+                    this.body.velocity.y = -220;
+                }
+
+
+
+                if (this.keyA.isDown) {
+                    this.anims.play('run', true)
+                    this.body.velocity.x = -220;
+                    this.checkFlip();
+                    this.body.setOffset(95, 55)
+
+                }
+                else if (this.keyD.isDown) {
+                    this.anims.play('run', true)
+                    this.body.velocity.x = 220
+                    this.checkFlip();
+
+
+                }
+                else {
+                    this.anims.play('idle', true)
+                    if (this.flipX) {
+                        this.body.setOffset(95, 55)
+                    }
+                }
             }
         }
     }

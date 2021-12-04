@@ -16,10 +16,10 @@ export class BulletGroup extends Physics.Arcade.Group {
         })
     }
 
-    fireBullet(x, y) {
+    fireBullet(x, y, facingLeft) {
         const bullet = this.getFirstDead(false)
         if (bullet) {
-            bullet.fire(x, y)
+            bullet.fire(x, y, facingLeft)
         }
     }
 }
