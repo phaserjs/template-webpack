@@ -22,6 +22,7 @@ export class LoadingScene extends Scene {
         this.load.tilemapTiledJSON('map', 'country-level/countryLevel.json')
 // parallax images
         this.load.image('background', 'level1-bg/country-platform-back.png')
+        this.load.image('foreground', 'level1-bg/country-platform-forest.png')
 
         this.load.image('adventurer', 'adventurer-idle-00.png')
         

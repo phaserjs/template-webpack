@@ -3,7 +3,7 @@ import { Enemy1 } from '../classes/enemy-1'
 import { Player } from '../classes/player'
 
 
-
+var foreground
 
 
 export class Level1 extends Scene {
@@ -15,22 +15,20 @@ export class Level1 extends Scene {
         //creating bg
         const width = this.scale.width
         const height = this.scale.height
-        let bg = this.add.image(400, 300,'background').setScale(3)
-    
         // Align.scaleToGameW(bg, 2)
+        let bg = this.add.image(400, 300,'background').setScale(3)
 		.setScrollFactor(0)
-    
+        foreground = this.add.tileSprite(200, 450, width, 350, 'foreground')
+        .setScrollFactor(0.5)
 
         // creating tilemap
         const map = this.make.tilemap({ key: 'map' })
         //linking pngs to tileset names in the map
         const tilesetCloud = map.addTilesetImage('clouds', 'clouds')
-        // const tilesetSky = map.addTilesetImage('Sky', 'sky')
         const tilesetGround = map.addTilesetImage('tilesetOpenGame', 'ground')
         const tilesetWater = map.addTilesetImage('WaterTextures', 'water')
         const tilesetFoliage = map.addTilesetImage('grass-trees', 'foliage')
         //creating layers to reflect tilemap layers - order matters for rendering
-        // const sky = map.createLayer('Sky', tilesetSky, 0, -16)
         const clouds = map.createLayer('Clouds', tilesetCloud)
         const water = map.createLayer('Water', tilesetWater)
         const foliage = map.createLayer('Foliage', tilesetFoliage)
@@ -75,6 +73,9 @@ export class Level1 extends Scene {
     update() {
         this.player.update()
         this.enemy1.update()
+        // foreground.tilePositionX += 0.5
+        // foreground.tilePosition += 0.5
+        // foreground.tilePosition += 0.5
 
         if (Math.Distance.Between(this.player.body.x, this.player.body.y, this.enemy1.body.x, this.enemy1.body.y) < 50) {
 
