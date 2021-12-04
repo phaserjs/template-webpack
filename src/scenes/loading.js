@@ -12,15 +12,22 @@ export class LoadingScene extends Scene {
 
         this.load.baseURL = 'assets/'
 
-        this.load.image('clouds', 'tilemaps/country-level/clouds.png')
-        this.load.image('sky', 'tilemaps/country-level/sky.png')
-        this.load.image('ground', 'tilemaps/country-level/tilesetOpenGame.png')
-        this.load.image('water', 'tilemaps/country-level/WaterTextures.png')
-        this.load.image('foliage', 'tilemaps/country-level/grass-trees.png')
-        this.load.tilemapTiledJSON('map', 'tilemaps/country-level/countryLevel.json')
-        // parallax images
-        this.load.image('background', 'tilemaps/country-level/level1-bg/country-platform-back.png')
+        // level 1
+        this.load.image('clouds', 'tilemaps/level-1/clouds.png')
+        this.load.image('sky', 'tilemaps/level-1/sky.png')
+        this.load.image('ground', 'tilemaps/level-1/tilesetOpenGame.png')
+        this.load.image('water', 'tilemaps/level-1/WaterTextures.png')
+        this.load.image('foliage', 'tilemaps/level-1/grass-trees.png')
+        this.load.tilemapTiledJSON('map', 'tilemaps/level-1/countryLevel.json')
 
+        // parallax images
+        this.load.image('background', 'tilemaps/country-level/country-platform-back.png')
+
+        // level 3
+        this.load.image('level3-tiles', 'tilemaps/level-3/Wasteland-Files.png')
+        this.load.tilemapTiledJSON('level3-map', 'tilemaps/level-3/ahmad.json')
+
+        // player sprite
         this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
 
 

@@ -20,19 +20,16 @@ export class Player extends Actor {
     }
 
     fire() {
-         console.log('Yah yeert');
-        // console.log(this.body.touching.down);
+        console.log('Yah yeert');
         this.scene.bulletGroup.fireBullet(this.x + 10, this.y)
 
     }
     addEvents() {
         this.scene.input.on('pointerdown', (pointer) => {
             this.fire()
-            
+
         })
-        // this.scene.input.on('pointermove', (pointer) => {
-        //     this.updatePosition()
-        // })
+
     }
 
 
@@ -65,6 +62,7 @@ export class Player extends Actor {
     update() {
 
         this.setVelocityX(0)
+        this.body.setOffset(82, 55)
 
         if (this.keyW.isDown) {
             this.body.velocity.y = -250;
@@ -74,6 +72,7 @@ export class Player extends Actor {
             this.anims.play('run', true)
             this.body.velocity.x = -260;
             this.checkFlip();
+            this.body.setOffset(95, 55)
 
         }
         else if (this.keyD.isDown) {
@@ -85,7 +84,9 @@ export class Player extends Actor {
         }
         else {
             this.anims.play('idle', true)
-
+            if (this.flipX) {
+                this.body.setOffset(95, 55)
+            }
         }
     }
 }

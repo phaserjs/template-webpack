@@ -6,7 +6,7 @@ import { Patroller } from '../classes/enemies/patroller'
 
 
 
-
+var foreground
 
 
 export class Level1 extends Scene {
@@ -36,7 +36,6 @@ export class Level1 extends Scene {
         const tilesetWater = map.addTilesetImage('WaterTextures', 'water')
         const tilesetFoliage = map.addTilesetImage('grass-trees', 'foliage')
         //creating layers to reflect tilemap layers - order matters for rendering
-        // const sky = map.createLayer('Sky', tilesetSky, 0, -16)
         const clouds = map.createLayer('Clouds', tilesetCloud)
         const water = map.createLayer('Water', tilesetWater)
         const foliage = map.createLayer('Foliage', tilesetFoliage)
@@ -122,9 +121,12 @@ export class Level1 extends Scene {
         this.player.update()
         this.enemy1.update()
 
+<<<<<<< HEAD
         this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
         this.mouseCoords.x = this.player.x
 
+=======
+>>>>>>> dev
         this.physics.accelerateToObject(this.enemy1, this.player, 30, 140, 140)
 
     }
