@@ -3,6 +3,8 @@ import { BulletGroup } from '../classes/groups/bullet-group'
 import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
+import { MobSpawner } from '../classes/groups/mob-spawner'
+import { Boss1 } from '../classes/enemies/boss'
 
 
 
@@ -24,6 +26,10 @@ export class Level1 extends Scene {
         this.colliderSetup()
         this.cameraSetup()
         this.debugSetup()
+
+        this.input.on('pointerdown', () => {
+            this.player.godMode = !this.player.godMode
+        })
     }
 
 
@@ -54,6 +60,7 @@ export class Level1 extends Scene {
     initPlayer() {
         this.player = new Player(this, 100, 300)
         this.bulletGroup = new BulletGroup(this)
+
     }
 
     cameraSetup() {
@@ -64,9 +71,15 @@ export class Level1 extends Scene {
     }
 
     colliderSetup() {
-        this.physics.world.addCollider(this.player, this.enemy1)
-        this.physics.world.addCollider(this.player, this.platforms)
+
+        this.physics.world.addCollider(this.player, this.platforms, () => {
+            this.player.canJump = true
+            this.player.jumpCount = 2
+        })
+
+    
         this.physics.world.addCollider(this.player, this.enemy3, () => {
+            this.player.getDamage()
             this.enemy3.destroy()
         })
     }
@@ -80,10 +93,13 @@ export class Level1 extends Scene {
     }
 
     enemySetup() {
-        this.enemy1 = new Enemy1(this, 1000, 400)
+
+        this.enemy1 = new Enemy1(this, 500, 400)
         this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
         this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
         this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
+
+        this.boss = new Boss1(this, 3300, 220)
 
         this.enemy.startFollow({
             duration: 700,
@@ -111,6 +127,7 @@ export class Level1 extends Scene {
             collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
         })
         this.mouseCoords = this.add.text(50, 25)
+        this.godMode = this.add.text(50, 45)
 
         const graphics = this.add.graphics()
 
@@ -123,13 +140,17 @@ export class Level1 extends Scene {
     }
 
     update() {
-        this.player.update()
+
         this.enemy1.update()
+        this.player.update()
+        this.boss.update()
 
         this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
         this.mouseCoords.x = this.player.x
+        this.godMode.setText('God mode: ' + this.player.godMode)
+        this.godMode.x = this.player.x
 
-      
+
 
     }
 }
