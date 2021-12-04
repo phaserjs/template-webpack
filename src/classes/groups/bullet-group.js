@@ -14,6 +14,14 @@ export class BulletGroup extends Physics.Arcade.Group {
             visible: false,
             key: 'adventurer'
         })
+
+        this.setColliders(scene)
+    }
+
+    setColliders(scene) {
+        scene.physics.world.addCollider(this, this.scene.platforms, (bullet) => {
+            bullet.destroy()
+        })
     }
 
     fireBullet(x, y, facingLeft) {

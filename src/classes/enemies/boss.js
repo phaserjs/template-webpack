@@ -13,14 +13,7 @@ export class Boss1 extends Actor {
         this.spawner = new MobSpawner(this.scene, 30, 30)
         this.scene.add.existing(this.spawner)
 
-        scene.physics.world.addCollider(this.scene.player, this)
-        scene.physics.world.addCollider(this, this.scene.platforms)
-        scene.physics.world.addCollider(this.spawner, this.spawner)
-        scene.physics.world.addCollider(this, this.scene.bulletGroup, (boss, bullet) => {
-            this.spawner.spawnMob(this.x, this.y)
-            this.getDamage(10)
-            bullet.destroy()
-        })
+        this.setColliders(scene)
     }
 
     setAnims() {
@@ -31,6 +24,17 @@ export class Boss1 extends Actor {
                 end: 4
             }),
             frameRate: 12
+        })
+    }
+
+    setColliders(scene) {
+        scene.physics.world.addCollider(this.scene.player, this)
+        scene.physics.world.addCollider(this, this.scene.platforms)
+        scene.physics.world.addCollider(this.spawner, this.spawner)
+        scene.physics.world.addCollider(this, this.scene.bulletGroup, (boss, bullet) => {
+            this.spawner.spawnMob(this.x, this.y)
+            this.getDamage(10)
+            bullet.destroy()
         })
     }
 

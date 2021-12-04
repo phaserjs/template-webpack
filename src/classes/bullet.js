@@ -3,6 +3,8 @@ import { Physics } from "phaser";
 export class Bullet extends Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, 'adventurer')
+
+        
     }
 
 
