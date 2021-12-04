@@ -17,13 +17,13 @@ export class MobSpawner extends Physics.Arcade.Group {
             key: 'enemy',
             setXY: {x, y, stepX: 50}
         })
-        console.log(this);
+
     }
 
     spawnMob(x, y) {
         const mob = this.getFirstDead(false)
         if (mob) {
-            console.log(mob);
+
             mob.spawn(x, y)
         }
     }

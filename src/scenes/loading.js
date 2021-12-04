@@ -48,15 +48,14 @@ export class LoadingScene extends Scene {
 
         // load sprite atlases
         this.load.atlas('mo-idle', 'sprites/anims/small_moidle.png', 'sprites/atlas/mo-idle-atlas.json')
-        this.load.atlas('enemy', 'sprites/anims/enemy-1-idle.png', 'sprites/atlas/enemy-1-atlas.json')
+        this.load.atlas('enemy', 'sprites/anims/testBoss.png', 'sprites/atlas/enemy-1-atlas.json')
         this.load.atlas('player', 'sprites/anims/wizard-sheet.png', 'sprites/atlas/wizard.json')
 
         
     }
     
     create() {
-        console.log('Loading scene created')
-        console.log(this)
+
 
         this.scene.start('title-scene')
        

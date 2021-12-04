@@ -5,7 +5,7 @@ export class BulletGroup extends Physics.Arcade.Group {
     constructor(scene) {
         super(scene.physics.world, scene)
 
-        console.log(this)
+
         this.defaults.setAllowGravity = false
         this.createMultiple({
             classType: Bullet,
@@ -13,6 +13,14 @@ export class BulletGroup extends Physics.Arcade.Group {
             active: false,
             visible: false,
             key: 'adventurer'
+        })
+
+        this.setColliders(scene)
+    }
+
+    setColliders(scene) {
+        scene.physics.world.addCollider(this, this.scene.platforms, (bullet) => {
+            bullet.destroy()
         })
     }
 
