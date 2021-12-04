@@ -9,6 +9,7 @@ export class Player extends Actor {
         this.keyA = this.scene.input.keyboard.addKey('A')
         this.keyS = this.scene.input.keyboard.addKey('S')
         this.keyD = this.scene.input.keyboard.addKey('D')
+        this.keyF = this.scene.input.keyboard.addKey('F')
 
         this.setScale(0.5)
 
@@ -20,7 +21,6 @@ export class Player extends Actor {
     }
 
     fire() {
-        console.log('Yah yeert');
         this.scene.bulletGroup.fireBullet(this.x + 10, this.y)
 
     }
@@ -63,6 +63,8 @@ export class Player extends Actor {
 
         this.setVelocityX(0)
         this.body.setOffset(82, 55)
+
+
 
         if (this.keyW.isDown) {
             this.body.velocity.y = -250;
