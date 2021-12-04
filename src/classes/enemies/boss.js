@@ -1,26 +1,26 @@
-import { Actor } from "../actor"
+import { Actor } from "../actor";
+import { MobSpawner } from "../groups/mob-spawner";
 
-export class Enemy1 extends Actor {
+export class Boss1 extends Actor {
     constructor(scene, x, y) {
         super(scene, x, y, 'enemy')
 
-        scene.physics.add.existing(this)
-
-        this.setAnims()
-        this.setScale(2)
+        this.setScale(10)
         this.setSize(30, 30)
-        this.setOffset(50, 8)
+        this.setOffset(50, 3)
+        this.setAnims()
 
-        scene.physics.world.addCollider(this.scene.player, this, () => {
-            this.scene.player.getDamage(20)
-            this.destroy()
-        })
+        this.spawner = new MobSpawner(this.scene, 30, 30)
+        this.scene.add.existing(this.spawner)
+
+        scene.physics.world.addCollider(this.scene.player, this)
         scene.physics.world.addCollider(this, this.scene.platforms)
+        scene.physics.world.addCollider(this.spawner, this.spawner)
         scene.physics.world.addCollider(this, this.scene.bulletGroup, (boss, bullet) => {
-            this.destroy()
+            this.spawner.spawnMob(this.x, this.y)
+            this.getDamage(10)
             bullet.destroy()
         })
-
     }
 
     setAnims() {
@@ -34,21 +34,17 @@ export class Enemy1 extends Actor {
         })
     }
 
-    spawn(x, y) {
-        this.x = x
-        this.y = y
-        console.log(this);
-        this.setActive(true)
-        this.setVisible(true)
-        this.body.allowGravity = true
-
-    }
-
     update() {
+        // this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
+        if (this.hp === 0) {
+            this.destroy()
+        }
+
         if (this.active) {
 
-            this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
             this.anims.play('idle-enemy', true)
         }
+
+
     }
 }
