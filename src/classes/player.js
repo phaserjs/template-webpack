@@ -13,14 +13,14 @@ export class Player extends Actor {
         this.setScale(0.5)
 
         this.body.setSize(55, 85)
-        this.body.setOffset(82,55)
+        this.body.setOffset(82, 55)
 
-        console.log(this)
+        this.addEvents()
         this.initAnimations()
     }
 
     fire() {
-        // console.log('Yah yeert');
+         console.log('Yah yeert');
         // console.log(this.body.touching.down);
         this.scene.bulletGroup.fireBullet(this.x + 10, this.y)
 
@@ -28,7 +28,7 @@ export class Player extends Actor {
     addEvents() {
         this.scene.input.on('pointerdown', (pointer) => {
             this.fire()
-            console.log(this)
+            
         })
         // this.scene.input.on('pointermove', (pointer) => {
         //     this.updatePosition()
@@ -64,32 +64,21 @@ export class Player extends Actor {
 
     update() {
 
-
-
-
-
-        if (this.body.velocity.x > 0) {
-
-            this.body.velocity.x -= 28
-        } else if (this.body.velocity.x < 0) {
-            this.body.velocity.x += 28
-        }
-
-
+        this.setVelocityX(0)
 
         if (this.keyW.isDown) {
-            this.body.velocity.y = -150;
+            this.body.velocity.y = -250;
         }
 
         if (this.keyA.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = -500;
+            this.body.velocity.x = -260;
             this.checkFlip();
 
         }
         else if (this.keyD.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = 500
+            this.body.velocity.x = 260
             this.checkFlip();
 
 
