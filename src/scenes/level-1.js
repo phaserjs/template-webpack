@@ -16,6 +16,9 @@ export class Level1 extends Scene {
         super('level-1-scene')
     }
     create() {
+        this.input.on('pointerdown', () => 
+        this.scene.start('level-3-scene'), console.log('loading scene 2'))
+
         this.initMap()
         this.initPlayer()
         this.pathSetup()
@@ -33,6 +36,8 @@ export class Level1 extends Scene {
     initMap() {
         //creating bg
         this.bg = this.add.image(400, 300, 'background').setScale(3).setScrollFactor(0)
+        this.add.tileSprite(200, 450, 4500, 350, 'foreground')
+        .setScrollFactor(0.5)
         // creating tilemap
         const map = this.make.tilemap({ key: 'map' })
         //linking pngs to tileset names in the map
