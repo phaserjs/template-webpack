@@ -34,6 +34,7 @@ export class Level3 extends Scene {
         //linking pngs to tileset names in the map
         //creating layers to reflect tilemap layers - order matters for rendering
         this.platforms = level3map.createLayer('Platform', tileSetLevel2, 0, 0)
+        level3map.createLayer('Water', tileSetLevel2, 0, 0)
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
     }
@@ -50,8 +51,10 @@ export class Level3 extends Scene {
     }
 
     colliderSetup() {
-        this.physics.world.addCollider(this.player, this.platforms)
-
+        this.physics.world.addCollider(this.player, this.platforms, () => {
+            this.player.canJump = true
+            this.player.jumpCount = 2
+        })
     }
 
     pathSetup() {
@@ -64,10 +67,10 @@ export class Level3 extends Scene {
 
     debugSetup() {
         const debugGraphics = this.add.graphics().setAlpha(0.7)
-        this.platforms.renderDebug(debugGraphics, {
-            tileColor: null,
-            collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
-        })
+        // this.platforms.renderDebug(debugGraphics, {
+        //     tileColor: null,
+        //     collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
+        // })
         this.mouseCoords = this.add.text(50, 25)
 
         const graphics = this.add.graphics()
