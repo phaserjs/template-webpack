@@ -9,30 +9,27 @@ export class Player extends Actor {
         this.keyA = this.scene.input.keyboard.addKey('A')
         this.keyS = this.scene.input.keyboard.addKey('S')
         this.keyD = this.scene.input.keyboard.addKey('D')
+        this.keyF = this.scene.input.keyboard.addKey('F')
 
         this.setScale(0.5)
 
         this.body.setSize(55, 85)
-        this.body.setOffset(82,55)
+        this.body.setOffset(82, 55)
 
-        console.log(this)
+        this.addEvents()
         this.initAnimations()
     }
 
     fire() {
-        // console.log('Yah yeert');
-        // console.log(this.body.touching.down);
         this.scene.bulletGroup.fireBullet(this.x + 10, this.y)
 
     }
     addEvents() {
         this.scene.input.on('pointerdown', (pointer) => {
             this.fire()
-            console.log(this)
+
         })
-        // this.scene.input.on('pointermove', (pointer) => {
-        //     this.updatePosition()
-        // })
+
     }
 
 
@@ -64,34 +61,25 @@ export class Player extends Actor {
 
     update() {
 
-
-
-
-
-        // if (this.body.velocity.x > 0) {
-
-        //     this.body.velocity.x -= 28
-        // } else if (this.body.velocity.x < 0) {
-        //     this.body.velocity.x += 28
-        // }
-
         this.setVelocityX(0)
-        this.body.setOffset(82,55)
+        this.body.setOffset(82, 55)
+
+
 
         if (this.keyW.isDown) {
-            this.body.velocity.y = -150;
+            this.body.velocity.y = -250;
         }
 
         if (this.keyA.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = -500;
+            this.body.velocity.x = -260;
             this.checkFlip();
-            this.body.setOffset(95,55)
+            this.body.setOffset(95, 55)
 
         }
         else if (this.keyD.isDown) {
             this.anims.play('run', true)
-            this.body.velocity.x = 500
+            this.body.velocity.x = 260
             this.checkFlip();
 
 
@@ -99,7 +87,7 @@ export class Player extends Actor {
         else {
             this.anims.play('idle', true)
             if (this.flipX) {
-              this.body.setOffset(95,55)
+                this.body.setOffset(95, 55)
             }
         }
     }

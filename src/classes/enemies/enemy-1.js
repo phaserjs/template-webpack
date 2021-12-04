@@ -1,4 +1,4 @@
-import { Actor } from "./actor"
+import { Actor } from "../actor"
 
 export class Enemy1 extends Actor {
     constructor(scene, x, y) {
@@ -30,7 +30,7 @@ export class Enemy1 extends Actor {
         this.anims.play('mo-run', true)
         if (this.scene.player !== undefined) {
 
-            // this.physics.accelerateToObject(this, this.scene.player)
+
         }
     }
 }
