@@ -1,7 +1,6 @@
 import { Scene, Math } from 'phaser'
 import { Player } from '../classes/player'
 
-
 export class Level3 extends Scene {
     constructor() {
         super('level-3-scene')
