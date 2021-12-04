@@ -30,7 +30,7 @@ export class Level1 extends Scene {
     initMap() {
         //creating bg
         this.bg = this.add.image(400, 300, 'background').setScale(3).setScrollFactor(0)
-        foreground = this.add.tileSprite(200, 450, 4500, 350, 'foreground')
+        this.add.tileSprite(200, 450, 4500, 350, 'foreground')
         .setScrollFactor(0.5)
         // creating tilemap
         const map = this.make.tilemap({ key: 'map' })
