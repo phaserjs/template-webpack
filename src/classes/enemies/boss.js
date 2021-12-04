@@ -15,6 +15,7 @@ export class Boss1 extends Actor {
 
         scene.physics.world.addCollider(this.scene.player, this)
         scene.physics.world.addCollider(this, this.scene.platforms)
+        scene.physics.world.addCollider(this.spawner, this.spawner)
         scene.physics.world.addCollider(this, this.scene.bulletGroup, (boss, bullet) => {
             this.spawner.spawnMob(this.x, this.y)
             this.getDamage(10)

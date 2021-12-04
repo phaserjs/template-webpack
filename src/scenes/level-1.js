@@ -72,9 +72,7 @@ export class Level1 extends Scene {
             this.player.jumpCount = 2
         })
 
-        //  this.physics.world.addCollider(this.spawner, this.spawner)
-
-
+    
         this.physics.world.addCollider(this.player, this.enemy3, () => {
             this.player.getDamage()
             this.enemy3.destroy()
