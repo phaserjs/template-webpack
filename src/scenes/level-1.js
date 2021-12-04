@@ -6,7 +6,7 @@ import { Patroller } from '../classes/enemies/patroller'
 
 
 
-var foreground
+
 
 
 export class Level1 extends Scene {
