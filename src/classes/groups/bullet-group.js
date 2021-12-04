@@ -2,7 +2,7 @@ import { Physics } from 'phaser'
 import { Bullet } from '../bullet'
 
 export class BulletGroup extends Physics.Arcade.Group {
-  constructor (scene) {
+  constructor (scene, x, y) {
     super(scene.physics.world, scene)
 
     this.defaults.setAllowGravity = false
