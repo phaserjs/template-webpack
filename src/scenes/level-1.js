@@ -16,7 +16,7 @@ export class Level1 extends Scene {
         super('level-1-scene')
     }
     create() {
-        // this.input.on('pointerdown', () => 
+        // this.input.on('pointerdown', () =>
         // this.scene.start('level-3-scene'), console.log('loading scene 2'))
 
         this.initMap()
@@ -46,11 +46,17 @@ export class Level1 extends Scene {
         const tilesetGround = map.addTilesetImage('tilesetOpenGame2', 'ground')
         const tilesetWater = map.addTilesetImage('WaterTextures', 'water')
         const tilesetFoliage = map.addTilesetImage('grass-trees', 'foliage')
+        const tilesetHouse = map.addTilesetImage('house','house')
+        const tilesetRoof = map.addTilesetImage('WOODTILE','roof')
+        const tilesetBricks = map.addTilesetImage('SLIMBRICKS','bricks')
         //creating layers to reflect tilemap layers - order matters for rendering
         const clouds = map.createLayer('Clouds', tilesetCloud)
         const water = map.createLayer('Water', tilesetWater)
         const foliage = map.createLayer('Foliage', tilesetFoliage)
         this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
+        const roof = map.createLayer('Roof', tilesetRoof)
+        const door = map.createLayer('Door', tilesetHouse)
+        const bricks = map.createLayer('Bricks', tilesetBricks)
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
 
@@ -77,7 +83,7 @@ export class Level1 extends Scene {
             this.player.jumpCount = 2
         })
 
-    
+
         this.physics.world.addCollider(this.player, this.enemy3, () => {
             this.player.getDamage()
             this.enemy3.destroy()
