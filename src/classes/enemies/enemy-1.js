@@ -37,7 +37,6 @@ export class Enemy1 extends Actor {
     spawn(x, y) {
         this.x = x
         this.y = y
-        console.log(this);
         this.setActive(true)
         this.setVisible(true)
         this.body.allowGravity = true

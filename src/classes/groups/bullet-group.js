@@ -5,7 +5,7 @@ export class BulletGroup extends Physics.Arcade.Group {
     constructor(scene) {
         super(scene.physics.world, scene)
 
-        console.log(this)
+
         this.defaults.setAllowGravity = false
         this.createMultiple({
             classType: Bullet,

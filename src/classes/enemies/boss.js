@@ -25,6 +25,15 @@ export class Boss1 extends Actor {
             }),
             frameRate: 12
         })
+        this.scene.anims.create({
+            key: 'death-boss',
+            frames: this.scene.anims.generateFrameNames('enemy', {
+                prefix: 'death-',
+                end: 4
+            }),
+            frameRate: 12,
+            repeat: 0
+        })
     }
 
     setColliders(scene) {
@@ -41,11 +50,21 @@ export class Boss1 extends Actor {
     update() {
         // this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
         if (this.hp === 0) {
-            this.destroy()
+            this.anims.play('death-boss', true)
+            this.once('animationcomplete', () => {
+                console.log('animationcomplete')
+                this.destroy()
+            })
         }
+        
 
         if (this.active) {
 
+            if (this.body.velocity.x > 0) {
+                this.body.velocity.x -= 10
+            } else if (this.body.velocity.x < 0) {
+                this.body.velocity.x += 10
+            }
             this.anims.play('idle-enemy', true)
         }
 

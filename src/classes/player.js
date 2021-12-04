@@ -60,12 +60,12 @@ export class Player extends Actor {
     }
 
     hitGround() {
-        console.log(this.canJump);
+
         return !this.canJump
     }
 
     update() {
-        if (this.hp === 0) {
+        if (this.hp === 0 && !this.godMode) {
             this.destroy()
         }
 
@@ -89,9 +89,9 @@ export class Player extends Actor {
             if (this.godMode) {
 
                 if (this.keyW.isDown) {
-                    console.log(this);
+
                     this.canJump = false
-                    this.body.velocity.y = -440;
+                    this.body.velocity.y = -300;
                 }
                 if (this.keyA.isDown) {
                     this.anims.play('run', true)
@@ -110,7 +110,7 @@ export class Player extends Actor {
             
             } else {
                 if (this.keyW.isDown && this.canJump) {
-                    console.log(this);
+
                     this.canJump = false
                     this.body.velocity.y = -220;
                 }

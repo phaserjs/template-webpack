@@ -11,7 +11,7 @@ export class Bullet extends Physics.Arcade.Sprite {
     fire(x, y, facingLeft) {
         this.body.reset(x, y)
         this.scene.add.existing(this)
-        console.log(this.scene);
+
 
         this.setActive(true)
         this.setVisible(true)
