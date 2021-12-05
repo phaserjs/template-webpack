@@ -1,7 +1,7 @@
 import { Physics } from 'phaser'
 import { Bullet } from '../bullet'
 
-export class BulletGroup extends Physics.Arcade.Group {
+export class Gun extends Physics.Arcade.Group {
   constructor (scene, x, y, enemyGun, ammo) {
     super(scene.physics.world, scene)
 

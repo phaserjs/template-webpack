@@ -1,5 +1,5 @@
 import { GameObjects, Math } from 'phaser'
-import { BulletGroup } from '../groups/bullet-group'
+import { Gun } from '../groups/gun'
 
 export class Patroller extends GameObjects.PathFollower {
   constructor (scene, path, x, y, texture) {
@@ -8,9 +8,9 @@ export class Patroller extends GameObjects.PathFollower {
     scene.physics.add.existing(this)
     this.body.allowGravity = false
 
-    this.gun = new BulletGroup(this.scene, x, y - 400, true, 1000)
+    this.gun = new Gun(this.scene, x, y - 400, true, 1000)
 
-    this.setColliders()
+    this.setColliders(scene)
 
     this.scene.time.addEvent({
       callback: this.fireGun,
@@ -20,15 +20,20 @@ export class Patroller extends GameObjects.PathFollower {
     })
   }
 
-  setColliders () {
-    this.scene.physics.world.addCollider(this.scene.player, this, (player) => {
+  setColliders (scene) {
+    scene.physics.world.addOverlap(scene.player, this, (player) => {
       player.getDamage(20)
       this.destroy()
     })
 
-    this.scene.physics.world.addCollider(this.scene.player, this.gun, (player, bullet) => {
+    scene.physics.world.addOverlap(scene.player, this.gun, (player, bullet) => {
       player.getDamage(10)
       bullet.destroy()
+    })
+
+    scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
+      bullet.destroy()
+      this.destroy()
     })
   }
 

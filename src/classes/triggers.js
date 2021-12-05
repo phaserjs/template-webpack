@@ -7,9 +7,7 @@ export class Trigger extends Physics.Arcade.Sprite {
     this.body.allowGravity = false
     this.body.setImmovable(true)
 
-    const triggerZone = scene.physics.world.addCollider(this, this.scene.player, () => {
-      console.log('this.scene', this.scene)
-
+    const triggerZone = scene.physics.world.addOverlap(this, this.scene.player, () => {
       this.scene.time.addEvent({
         delay: 2500,
         callback: () => this.scene.changeScene()
