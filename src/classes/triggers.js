@@ -18,6 +18,6 @@ export class Trigger extends Physics.Arcade.Sprite {
       this.scene.physics.world.removeCollider(triggerZone)
     })
 
-    this.setSize(48, 65)
+    this.setSize(28, 65)
   }
 }

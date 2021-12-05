@@ -22,7 +22,7 @@ export class Level1 extends Scene {
     this.enemySetup()
     this.cameraSetup()
     this.debugSetup()
-    this.trigger = new Trigger(this, 3785, 448)
+    this.trigger = new Trigger(this, 3745, 448)
 
     this.input.on('pointerdown', () => {
       this.player.godMode = !this.player.godMode
@@ -42,21 +42,19 @@ export class Level1 extends Scene {
     const map = this.make.tilemap({ key: 'map' })
     // linking pngs to tileset names in the map
     const tilesetCloud = map.addTilesetImage('clouds', 'clouds')
-    // const tilesetSky = map.addTilesetImage('Sky', 'sky')
     const tilesetGround = map.addTilesetImage('tilesetOpenGame2', 'ground')
     const tilesetWater = map.addTilesetImage('WaterTextures', 'water')
     const tilesetFoliage = map.addTilesetImage('grass-trees', 'foliage')
-    const tilesetHouse = map.addTilesetImage('house', 'house')
-    const tilesetRoof = map.addTilesetImage('WOODTILE', 'roof')
-    const tilesetBricks = map.addTilesetImage('SLIMBRICKS', 'bricks')
+    const tilesetHouse = map.addTilesetImage('Village-Endesga-Buildings', 'house')
+
     // creating layers to reflect tilemap layers - order matters for rendering
     const clouds = map.createLayer('Clouds', tilesetCloud)
-    this.water = map.createLayer('Water', tilesetWater)
     const foliage = map.createLayer('Foliage', tilesetFoliage)
+    this.water = map.createLayer('Water', tilesetWater)
     this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
-    const roof = map.createLayer('Roof', tilesetRoof)
-    const door = map.createLayer('Door', tilesetHouse)
-    const bricks = map.createLayer('Bricks', tilesetBricks)
+    const bricks = map.createLayer('Bricks', tilesetHouse)
+    const door = map.createLayer('Door', tilesetGround)
+    const roof = map.createLayer('Roof', tilesetHouse)
     // setting collision property to ground
     this.platforms.setCollisionByExclusion(-1, true)
     this.water.setCollisionByExclusion(-1, true)
