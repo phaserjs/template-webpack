@@ -1,4 +1,4 @@
-import { Scene, Math } from 'phaser'
+import { Scene, Math, Curves } from 'phaser'
 import { BulletGroup } from '../classes/groups/bullet-group'
 import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
@@ -91,8 +91,8 @@ export class Level1 extends Scene {
     const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
     const points1 = [50, 400, 135, 400]
     const flyingPoints = [50, 400, 125, 320, 200, 400]
-    this.curve = new Phaser.Curves.Spline(points1)
-    this.flying = new Phaser.Curves.Spline(flyingPoints)
+    this.curve = new Curves.Spline(points1)
+    this.flying = new Curves.Spline(flyingPoints)
   }
 
   enemySetup () {
