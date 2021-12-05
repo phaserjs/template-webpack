@@ -47,7 +47,7 @@ export class Level2 extends Scene {
     this.water = level2map.createLayer('Water', tilesetWater)
     level2map.createLayer('Etc2', tilesetSecond)
     level2map.createLayer('Etc', tilesetMain)
-    this.floor = level2map.createLayer('Floor', tilesetSecond,0, 0)
+    this.floor = level2map.createLayer('Floor', tilesetSecond, 0, 0)
     this.platforms = level2map.createLayer('Platforms', tilesetMain, 0, 0)
     // setting collision property to ground
     this.platforms.setCollisionByExclusion(-1, true)
@@ -74,9 +74,9 @@ export class Level2 extends Scene {
     })
 
     this.physics.world.addCollider(this.player, this.floor, () => {
-        this.player.canJump = true
-        this.player.jumpCount = 2
-      })
+      this.player.canJump = true
+      this.player.jumpCount = 2
+    })
 
     this.physics.world.addCollider(this.player, this.enemy3, () => {
       this.player.getDamage()
@@ -93,7 +93,7 @@ export class Level2 extends Scene {
   }
 
   enemySetup () {
-    this.enemy1 = new Enemy1(this, 500, 400)
+    this.enemy1 = new Enemy1(this, 500, 400, 'viking')
     this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')

@@ -1,15 +1,30 @@
 import { Actor } from '../actor'
 
 export class Enemy1 extends Actor {
-  constructor (scene, x, y, texture) {
+  constructor(scene, x, y, texture, config) {
     super(scene, x, y, texture)
 
     scene.physics.add.existing(this)
     this.name = texture
+    if (config === null || config === undefined) {
+      
+      this.config =  {
+        w: 30,
+        h: 30,
+        xOff: 50,
+        yOff: 8,
+        scale: 2,
+        frameEnds: {
+          idle: 4
+        }
+      }
+    } else {
+      this.config = config
+    }
     this.setAnims()
-    this.setScale(2)
-    this.setSize(30, 30)
-    this.setOffset(50, 8)
+    this.setScale(this.config.scale)
+    this.setSize(this.config.w, this.config.h)
+    this.setOffset(this.config.xOff, this.config.yOff)
 
     scene.physics.world.addCollider(this.scene.player, this, () => {
       this.scene.player.getDamage(20)
@@ -20,21 +35,21 @@ export class Enemy1 extends Actor {
       this.destroy()
       bullet.destroy()
     })
-    console.log(texture)
+
   }
 
-  setAnims () {
+  setAnims() {
     this.scene.anims.create({
       key: this.name + '-idle',
       frames: this.scene.anims.generateFrameNames(this.name, {
         prefix: 'idle-',
-        end: 6
+        end: this.config.frameEnds.idle
       }),
       frameRate: 12
     })
   }
 
-  spawn (x, y) {
+  spawn(x, y) {
     this.x = x
     this.y = y
     this.setActive(true)
@@ -42,10 +57,10 @@ export class Enemy1 extends Actor {
     this.body.allowGravity = true
   }
 
-  update () {
+  update() {
     if (this.active) {
       this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-      this.anims.play('idle-enemy', true)
+      this.anims.play(this.name + '-idle', true)
     }
   }
 }
