@@ -23,7 +23,7 @@ export class Level1 extends Scene {
     this.colliderSetup()
     this.cameraSetup()
     this.debugSetup()
-    this.trigger = new Trigger(this, 3785, 448)
+    this.trigger = new Trigger(this, 3745, 448)
 
     this.input.on('pointerdown', () => {
       this.player.godMode = !this.player.godMode
@@ -43,21 +43,19 @@ export class Level1 extends Scene {
     const map = this.make.tilemap({ key: 'map' })
     // linking pngs to tileset names in the map
     const tilesetCloud = map.addTilesetImage('clouds', 'clouds')
-    // const tilesetSky = map.addTilesetImage('Sky', 'sky')
     const tilesetGround = map.addTilesetImage('tilesetOpenGame2', 'ground')
     const tilesetWater = map.addTilesetImage('WaterTextures', 'water')
     const tilesetFoliage = map.addTilesetImage('grass-trees', 'foliage')
-    const tilesetHouse = map.addTilesetImage('house', 'house')
-    const tilesetRoof = map.addTilesetImage('WOODTILE', 'roof')
-    const tilesetBricks = map.addTilesetImage('SLIMBRICKS', 'bricks')
+    const tilesetHouse = map.addTilesetImage('Village-Endesga-Buildings', 'house')
+
     // creating layers to reflect tilemap layers - order matters for rendering
     const clouds = map.createLayer('Clouds', tilesetCloud)
-    this.water = map.createLayer('Water', tilesetWater)
     const foliage = map.createLayer('Foliage', tilesetFoliage)
+    this.water = map.createLayer('Water', tilesetWater)
     this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
-    const roof = map.createLayer('Roof', tilesetRoof)
-    const door = map.createLayer('Door', tilesetHouse)
-    const bricks = map.createLayer('Bricks', tilesetBricks)
+    const bricks = map.createLayer('Bricks', tilesetHouse)
+    const door = map.createLayer('Door', tilesetGround)
+    const roof = map.createLayer('Roof', tilesetHouse)
     // setting collision property to ground
     this.platforms.setCollisionByExclusion(-1, true)
     this.water.setCollisionByExclusion(-1, true)
@@ -80,11 +78,6 @@ export class Level1 extends Scene {
       this.player.canJump = true
       this.player.jumpCount = 2
     })
-
-    this.physics.world.addCollider(this.player, this.enemy3, () => {
-      this.player.getDamage()
-      this.enemy3.destroy()
-    })
   }
 
   pathSetup () {
@@ -96,29 +89,55 @@ export class Level1 extends Scene {
   }
 
   enemySetup () {
-    this.enemy1 = new Enemy1(this, 500, 400, 'viking')
-    this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
+    const mobConfig = {
+      w: 30,
+      h: 30,
+      xOff: 50,
+      yOff: 8,
+      scale: 2,
+      frameEnds: {
+        idle: 4
+      }
+    }
+
+    const vikingConfig = {
+      w: 24,
+      h: 24,
+      xOff: 5,
+      yOff: 8,
+      scale: 1,
+      frameEnds: {
+        idle: 6
+      }
+    }
+
+    this.enemy = new Enemy1(this, 500, 400, 'viking', vikingConfig)
+    this.enemy4 = new Enemy1(this, 500, 200, 'enemy', mobConfig)
+    this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
 
     this.boss = new Boss1(this, 3300, 220)
 
-    this.enemy.startFollow({
+    this.enemy1.startFollow({
       duration: 700,
       yoyo: true,
-      repeat: -1
+      repeat: -1,
+      rotateToPath: true
     })
 
     this.enemy2.startFollow({
       duration: 700,
       yoyo: true,
-      repeat: -1
+      repeat: -1,
+      rotateToPath: true
     })
 
     this.enemy3.startFollow({
       duration: 1300,
       yoyo: true,
-      repeat: -1
+      repeat: -1,
+      rotateToPath: true
     })
   }
 
@@ -142,7 +161,12 @@ export class Level1 extends Scene {
   }
 
   update () {
+    this.player.update()
+    this.enemy.update()
+
+    this.enemy3.update()
     this.enemy1.update()
+    this.enemy2.update()
 
     if (this.boss.hp > 0) {
       this.boss.update()

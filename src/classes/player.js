@@ -26,14 +26,12 @@ export class Player extends Actor {
     this.body.setOffset(82, 55)
 
     this.initAnimations()
+
   }
 
-  fire () {
-    if (this.flipX) {
-      this.scene.bulletGroup.fireBullet(this.x - 20, this.y, this.flipX)
-    } else {
-      this.scene.bulletGroup.fireBullet(this.x + 20, this.y, this.flipX)
-    }
+  fire() {
+
+    this.scene.bulletGroup.fireBullet(this.x, this.y, this.flipX, false)
   }
 
   initAnimations () {

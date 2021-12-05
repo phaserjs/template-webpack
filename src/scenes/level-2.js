@@ -93,7 +93,7 @@ export class Level2 extends Scene {
   }
 
   enemySetup () {
-    this.enemy1 = new Enemy1(this, 500, 400)
+    this.enemy1 = new Enemy1(this, 500, 400, 'viking')
     this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')

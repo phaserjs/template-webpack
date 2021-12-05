@@ -11,7 +11,8 @@ export class BulletGroup extends Physics.Arcade.Group {
       frameQuantity: 300,
       active: false,
       visible: false,
-      key: 'adventurer'
+      key: 'adventurer',
+      setXY: { x, y }
     })
 
     this.setColliders(scene)
@@ -23,10 +24,10 @@ export class BulletGroup extends Physics.Arcade.Group {
     })
   }
 
-  fireBullet (x, y, facingLeft) {
+  fireBullet (x, y, facingLeft, enemyBullet) {
     const bullet = this.getFirstDead(false)
     if (bullet) {
-      bullet.fire(x, y, facingLeft)
+      bullet.fire(x, y, facingLeft, enemyBullet)
     }
   }
 }

@@ -18,13 +18,10 @@ export class LoadingScene extends Scene {
 
     // level 1
     this.load.image('clouds', 'tilemaps/level-1/clouds.png')
-    this.load.image('sky', 'tilemaps/level-1/sky.png')
     this.load.image('ground', 'tilemaps/level-1/tilesetOpenGame.png')
     this.load.image('water', 'tilemaps/level-1/WaterTextures.png')
     this.load.image('foliage', 'tilemaps/level-1/grass-trees.png')
-    this.load.image('house', 'tilemaps/level-1/house.png')
-    this.load.image('roof', 'tilemaps/level-1/WOODTILE.png')
-    this.load.image('bricks', 'tilemaps/level-1/SLIMBRICKS.png')
+    this.load.image('house', 'tilemaps/level-1/Village-Endesga-Buildings.png' )
     this.load.tilemapTiledJSON('map', 'tilemaps/level-1/countryLevel.json')
     // level 1 parallax images
     this.load.image('background', 'tilemaps/level-1/country-platform-back.png')
