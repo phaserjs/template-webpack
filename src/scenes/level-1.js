@@ -30,6 +30,10 @@ export class Level1 extends Scene {
     })
   }
 
+  changeScene () {
+    this.scene.start('level-3-scene')
+  }
+
   initMap () {
     // creating bg
     this.bg = this.add.image(400, 300, 'background').setScale(3).setScrollFactor(0)
@@ -61,7 +65,7 @@ export class Level1 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
-    this.bulletGroup = new BulletGroup(this)
+    this.bulletGroup = new BulletGroup(this, 30, 50)
   }
 
   cameraSetup () {
@@ -120,10 +124,10 @@ export class Level1 extends Scene {
 
   debugSetup () {
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    // this.platforms.renderDebug(debugGraphics, {
-    //     tileColor: null,
-    //     collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
-    // })
+    this.platforms.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255)
+    })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
 
@@ -139,12 +143,18 @@ export class Level1 extends Scene {
 
   update () {
     this.enemy1.update()
+
+    if (this.boss.hp > 0) {
+      this.boss.update()
+    } else if (this.boss.active) {
+      this.boss.die()
+    }
+
     if (this.player.hp > 0) {
       this.player.update()
     } else if (this.player.active) {
-      this.player.d
+      this.player.die()
     }
-    this.boss.update()
 
     this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
     this.mouseCoords.x = this.player.x

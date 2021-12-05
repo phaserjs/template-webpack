@@ -7,21 +7,17 @@ export class Trigger extends Physics.Arcade.Sprite {
     this.body.allowGravity = false
     this.body.setImmovable(true)
 
-    scene.physics.world.addCollider(this, this.scene.player, () => {
+    const triggerZone = scene.physics.world.addCollider(this, this.scene.player, () => {
       console.log('this.scene', this.scene)
 
       this.scene.time.addEvent({
         delay: 2500,
-        callback: this.changeScene()
+        callback: () => this.scene.changeScene()
       })
 
-      this.destroy()
+      this.scene.physics.world.removeCollider(triggerZone)
     })
 
     this.setSize(48, 65)
-  }
-
-  changeScene () {
-    this.scene.scene.start('level-3-scene')
   }
 }

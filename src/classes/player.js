@@ -14,14 +14,17 @@ export class Player extends Actor {
 
     this.godMode = false
 
+    this.name = 'player'
+
+    this.speed = 220
+    this.jump = 220
+
     this.canShoot = true
     this.canJump = true
 
-    this.jumpCount = 2
-
     this.body.setSize(55, 85)
     this.body.setOffset(82, 55)
-    this.name = 'player'
+
     this.initAnimations()
   }
 
@@ -75,56 +78,51 @@ export class Player extends Actor {
     return !this.canJump
   }
 
+  checkGodMode () {
+    if (this.godMode) {
+      this.speed = 440
+      this.jump = 300
+    } else {
+      this.speed = 220
+      this.jump = 220
+    }
+  }
+
   update () {
+    this.checkGodMode()
+
     if (this.active) {
       this.setVelocityX(0)
       this.body.setOffset(82, 55)
 
+      if (this.keyShoot.isDown && this.canShoot) {
+        this.canShoot = false
+        this.fire()
+      }
+
       if (this.keyShoot.isUp) {
         this.canShoot = true
       }
-
-      if (this.godMode) {
-        if (this.keyW.isDown) {
-          this.anims.play('attack', true)
+      if (this.keyW.isDown && this.canJump) {
+        if (!this.godMode) {
           this.canJump = false
-          this.body.velocity.y = -300
-        } else if (this.keyA.isDown) {
-          this.anims.play('run', true)
-          this.body.velocity.x = -440
-          this.checkFlip()
-          this.body.setOffset(95, 55)
-        } else if (this.keyD.isDown) {
-          this.anims.play('run', true)
-          this.body.velocity.x = 440
-          this.checkFlip()
         }
+        this.body.velocity.y = -this.jump
+      }
+
+      if (this.keyA.isDown) {
+        this.anims.play('run', true)
+        this.body.velocity.x = -this.speed
+        this.checkFlip()
+        this.body.setOffset(95, 55)
+      } else if (this.keyD.isDown) {
+        this.anims.play('run', true)
+        this.body.velocity.x = this.speed
+        this.checkFlip()
       } else {
-        if (this.keyShoot.isDown) {
-          this.anims.play('attack', true)
-          if (this.canShoot) {
-            this.fire()
-            this.canShoot = false
-          }
-        } else {
-          if (this.keyW.isDown && this.canJump) {
-            this.canJump = false
-            this.body.velocity.y = -220
-          } else if (this.keyA.isDown) {
-            this.anims.play('run', true)
-            this.body.velocity.x = -220
-            this.checkFlip()
-            this.body.setOffset(95, 55)
-          } else if (this.keyD.isDown) {
-            this.anims.play('run', true)
-            this.body.velocity.x = 220
-            this.checkFlip()
-          } else {
-            this.anims.play('idle', true)
-            if (this.flipX) {
-              this.body.setOffset(95, 55)
-            }
-          }
+        this.anims.play('idle', true)
+        if (this.flipX) {
+          this.body.setOffset(95, 55)
         }
       }
     }
