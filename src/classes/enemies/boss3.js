@@ -8,8 +8,8 @@ export class Boss3 extends Actor {
     super(scene, x, y, 'prue-boss')
 
     this.setScale(5)
-    this.setSize(45, 52)
-    this.setOffset(92, 59)
+    this.setSize(34, 41)
+    this.setOffset(96, 70)
     this.setAnims()
 
     this.name = 'boss3'
@@ -48,7 +48,7 @@ export class Boss3 extends Actor {
     this.scene.anims.create({
       key: 'surf-prue-boss',
       frames: this.scene.anims.generateFrameNames('prue-boss', {
-        prefix: 'atk-',
+        prefix: 'surf-',
         end: 7
       }),
       frameRate: 12,
@@ -62,8 +62,7 @@ export class Boss3 extends Actor {
         prefix: 'death-',
         end: 15
       }),
-      frameRate: 12,
-      repeat: 0
+      frameRate: 12
     })
 
     // falling
@@ -114,7 +113,7 @@ export class Boss3 extends Actor {
         this.anims.play('run-prue-boss', true)
       } else {
         this.setVelocityX(0)
-        this.anims.play('attack-prue-boss', true)
+        this.anims.play('idle-prue-boss', true)
       }
     }
   }

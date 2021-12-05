@@ -1,7 +1,8 @@
 import { Scene, Math, Curves, Display } from 'phaser'
 import { Boss3 } from '../classes/enemies/boss3'
 import { Boss4 } from '../classes/enemies/boss4'
-import { Enemy1 } from '../classes/enemies/enemy-1'
+// import { Enemy1 } from '../classes/enemies/enemy-1'
+import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 // import { Boss3 } from '../classes/enemies/boss3'
 
@@ -69,7 +70,7 @@ export class Level3 extends Scene {
 
   enemySetup () {
     this.boss = new Boss3(this, 300, 200)
-    this.bossTest = new Boss4(this, 600, 200)
+    this.bossTest = new Boss4(this, 800, 200)
     console.log(this.boss)
     console.log(this.bossTest)
   }

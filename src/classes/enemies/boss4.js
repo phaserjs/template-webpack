@@ -7,9 +7,9 @@ export class Boss4 extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'prue-boss')
 
-    this.setScale(5)
-    this.setSize(45, 52)
-    this.setOffset(92, 59)
+    this.setScale(3)
+    this.setSize(61, 83)
+    this.setOffset(119, 76)
     this.setAnims()
 
     this.name = 'boss4'
@@ -36,31 +36,20 @@ export class Boss4 extends Actor {
     // run/ walk
     this.scene.anims.create({
       key: 'run-ahmad-boss',
-      frames: this.scene.anims.generateFrameNames('prue-boss', {
+      frames: this.scene.anims.generateFrameNames('ahmad-boss', {
         prefix: 'run-',
-        end: 9
+        end: 11
       }),
-      frameRate: 12,
-      repeat: -1
-    })
-
-    // surf
-    this.scene.anims.create({
-      key: 'surf-prue-boss',
-      frames: this.scene.anims.generateFrameNames('prue-boss', {
-        prefix: 'atk-',
-        end: 7
-      }),
-      frameRate: 12,
+      frameRate: 50,
       repeat: -1
     })
 
     // death
     this.scene.anims.create({
-      key: 'boss3-death',
-      frames: this.scene.anims.generateFrameNames('prue-boss', {
+      key: 'boss4-death',
+      frames: this.scene.anims.generateFrameNames('ahmad-boss', {
         prefix: 'death-',
-        end: 15
+        end: 21
       }),
       frameRate: 12,
       repeat: 0
@@ -68,12 +57,12 @@ export class Boss4 extends Actor {
 
     // attack
     this.scene.anims.create({
-      key: 'attack-prue-boss',
-      frames: this.scene.anims.generateFrameNames('prue-boss', {
+      key: 'attack-ahmad-boss',
+      frames: this.scene.anims.generateFrameNames('ahmad-boss', {
         prefix: 'atk-',
-        end: 32
+        end: 14
       }),
-      frameRate: 24
+      frameRate: 12
     })
   }
 
