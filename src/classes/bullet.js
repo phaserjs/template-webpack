@@ -1,12 +1,11 @@
-import { Math, Physics } from 'phaser'
+import { Physics } from 'phaser'
 
 export class Bullet extends Physics.Arcade.Sprite {
   constructor (scene, x, y) {
     super(scene, x, y, 'adventurer')
   }
 
-  fire (x, y, facingLeft, enemyBullet) {
-    
+  fire (x, y, facingLeft, enemyGun) {
     this.scene.add.existing(this)
 
     this.setActive(true)
@@ -19,8 +18,7 @@ export class Bullet extends Physics.Arcade.Sprite {
       this.setVelocityX(350)
     }
 
-    if (enemyBullet) {
-
+    if (enemyGun) {
       this.setVelocity(this.scene.player.x - this.x, this.scene.player.y - this.y)
     }
   }
