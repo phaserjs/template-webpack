@@ -1,7 +1,7 @@
 import { Actor } from './actor'
 
 export class Player extends Actor {
-  constructor(scene, x, y) {
+  constructor (scene, x, y) {
     super(scene, x, y, 'adventurer')
 
     this.keyW = this.scene.input.keyboard.addKey('W')
@@ -28,7 +28,7 @@ export class Player extends Actor {
     this.initAnimations()
   }
 
-  fire() {
+  fire () {
     if (this.flipX) {
       this.scene.bulletGroup.fireBullet(this.x - 20, this.y, this.flipX)
     } else {
@@ -36,7 +36,7 @@ export class Player extends Actor {
     }
   }
 
-  initAnimations() {
+  initAnimations () {
     this.scene.anims.create({
       key: 'idle',
       frames: this.scene.anims.generateFrameNames('player', {
@@ -56,11 +56,11 @@ export class Player extends Actor {
     })
   }
 
-  hitGround() {
+  hitGround () {
     return !this.canJump
   }
 
-  checkGodMode() {
+  checkGodMode () {
     if (this.godMode) {
       this.speed = 440
       this.jump = 300
@@ -70,7 +70,7 @@ export class Player extends Actor {
     }
   }
 
-  update() {
+  update () {
     if (this.hp === 0 && !this.godMode) {
       this.destroy()
     }
@@ -114,4 +114,3 @@ export class Player extends Actor {
     }
   }
 }
-
