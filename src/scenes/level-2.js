@@ -95,7 +95,7 @@ export class Level2 extends Scene {
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
 
-    this.boss = new Boss2(this, 400, 220)
+    this.boss = new Boss2(this, 5500, 220)
     console.log(this.boss)
     console.log(this.boss.setSize)
 

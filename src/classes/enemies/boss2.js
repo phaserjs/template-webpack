@@ -1,5 +1,5 @@
 // testing atlas purposes only
-
+import { Math } from 'phaser'
 import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
 
@@ -16,6 +16,7 @@ export class Boss2 extends Actor {
 
     this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
+    console.log(this.scene.player)
 
     this.setColliders(scene)
   }
@@ -75,12 +76,21 @@ export class Boss2 extends Actor {
 
   update () {
     if (this.active && this.hp > 0) {
-      if (this.body.velocity.x > 0) {
-        this.body.velocity.x -= 10
-      } else if (this.body.velocity.x < 0) {
-        this.body.velocity.x += 10
+      // if (this.body.velocity.x > 0) {
+      //   this.body.velocity.x -= 10
+      // } else if (this.body.velocity.x < 0) {
+      //   this.body.velocity.x += 10
+      // }
+      const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
+      if (dist < 10000) {
+        this.anims.play('atk-test-boss', true)
+      } else if (dist > 10000 && dist < 60000) {
+        this.scene.physics.accelerateToObject(this, this.scene.player)
+        this.anims.play('run-test-boss', true)
+      } else {
+        this.setVelocityX(0)
+        this.anims.play('idle-test-boss', true)
       }
-      this.anims.play('atk-test-boss', true)
     }
   }
 }
