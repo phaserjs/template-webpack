@@ -21,7 +21,7 @@ export class Player extends Actor {
 
     this.body.setSize(55, 85)
     this.body.setOffset(82, 55)
-
+    this.name = 'player'
     this.initAnimations()
   }
 
@@ -56,9 +56,18 @@ export class Player extends Actor {
       key: 'attack',
       frames: this.scene.anims.generateFrameNames('player', {
         prefix: 'atk-',
-        end: 7
+        end: 3
       }),
       frameRate: 12
+    })
+
+    this.scene.anims.create({
+      key: 'player-death',
+      frames: this.scene.anims.generateFrameNames('player', {
+        prefix: 'death-',
+        end: 0
+      }),
+      framerate: 12
     })
   }
 
@@ -67,10 +76,6 @@ export class Player extends Actor {
   }
 
   update () {
-    if (this.hp === 0 && !this.godMode) {
-      this.destroy()
-    }
-
     if (this.active) {
       this.setVelocityX(0)
       this.body.setOffset(82, 55)

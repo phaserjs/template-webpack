@@ -31,6 +31,13 @@ export class Actor extends Physics.Arcade.Sprite {
     return this.hp
   }
 
+  die () {
+    this.anims.play(this.name + '-death', true)
+    this.once('animationcomplete', () => {
+      this.destroy()
+    })
+  }
+
   checkFlip () {
     if (this.body.velocity.x < 0) {
       this.flipX = true
