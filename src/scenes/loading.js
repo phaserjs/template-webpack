@@ -41,6 +41,22 @@ export class LoadingScene extends Scene {
     this.load.image('level3Mountain1', 'tilemaps/level-3/Wasteland_Mountains_1.png')
     this.load.image('level3Mountain2', 'tilemaps/level-3/Wasteland_Mountains_2.png')
 
+    // level 4
+    this.load.image('level4Clouds', 'tilemaps/level-4/cloud_tileset.png')
+    this.load.image('level4Ground', 'tilemaps/level-4/Terrain.png')
+    this.load.tilemapTiledJSON('level4-map', 'tilemaps/level-4/caro.json')
+    // level 4 parallax images
+    this.load.image('level4Bg1', 'tilemaps/level-4/layer06_sky.png')
+    this.load.image('level4Bg2', 'tilemaps/level-4/layer05_rocks.png')
+    this.load.image('level4Bg4', 'tilemaps/level-4/layer03_trees.png')
+    this.load.image('level4Bg5', 'tilemaps/level-4/layer02_cake.png')
+    this.load.image('level4Bg6', 'tilemaps/level-4/layer01_ground.png')
+
+    // level 4.5
+    this.load.image('level45', 'tilemaps/level-4.5/Retro-Lines-Tiles-transparent.png')
+    this.load.tilemapTiledJSON('level45-map', 'tilemaps/level-4.5/caro2.json')
+    this.load.image('level45Bg', 'tilemaps/level-4.5/textured-black-background.jpg')
+
     // player sprite
     this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
 

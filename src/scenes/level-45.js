@@ -1,10 +1,10 @@
 import { Scene, Math, Curves, Display } from 'phaser'
-import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
+import { Trigger } from '../classes/triggers'
 
-export class Level3 extends Scene {
+export class Level45 extends Scene {
   constructor () {
-    super('level-3-scene')
+    super('level-45-scene')
   }
 
   create () {
@@ -17,35 +17,28 @@ export class Level3 extends Scene {
   }
 
   initMap () {
-    // creating bg
-    const level3Bg = this.add.image(400, 300, 'level3Bg').setScale(3)
-      .setScrollFactor(0)
-    this.add.tileSprite(200, 4000, 4500, 350, 'level3Mountain1')
-      .setScrollFactor(0.7, 0.7)
-    this.add.tileSprite(200, 3800, 4500, 350, 'level3Mountain2')
-      .setScrollFactor(0.4, 0.4)
 
     // creating tilemap
-    const level3map = this.make.tilemap({ key: 'level3-map' })
-    const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files', 'level3-tiles')
-    // linking pngs to tileset names in the map
+    const level45map = this.make.tilemap({ key: 'level45-map' })
+    const tileSetLevel45 = level45map.addTilesetImage('Retro-Lines-Tiles-transparent', 'level45')
+    level45map.addTilesetImage('Background', tileSetLevel45)
+    level45map.createLayer('Etc', tileSetLevel45)
     // creating layers to reflect tilemap layers - order matters for rendering
-    this.platforms = level3map.createLayer('Platform', tileSetLevel2, 0, 0)
-    level3map.createLayer('Water', tileSetLevel2, 0, 0)
-    level3map.createLayer('Etc', tileSetLevel2, 0, 0)
+    this.platforms = level45map.createLayer('Platform', tileSetLevel45, 0, 0)
+    this.water = level45map.createLayer('Waterfall', tileSetLevel45)
     // setting collision property to ground
     this.platforms.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {
-    this.player = new Player(this, 100, 300)
+    this.player = new Player(this, 4320, 944)
   }
 
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
-    this.physics.world.setBounds(0, 0, 1920, 5760)
+    this.physics.world.setBounds(0, 0, 4800, 1088)
     this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
-    this.cameras.main.setBounds(0, 0, 1920, 5760)
+    this.cameras.main.setBounds(0, 0, 4800, 1088)
   }
 
   colliderSetup () {
