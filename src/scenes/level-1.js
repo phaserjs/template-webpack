@@ -169,16 +169,11 @@ export class Level1 extends Scene {
     this.player.update()
     this.enemy.update()
 
-    if (this.player.active) {
-      this.enemy3.update()
-      this.enemy1.update()
-      this.enemy2.update()
-    } else {
-      window.clearInterval(this.enemy1.intervalId)
-      window.clearInterval(this.enemy2.intervalId)
-      window.clearInterval(this.enemy3.intervalId)
 
-    }
+    this.enemy3.update()
+    this.enemy1.update()
+    this.enemy2.update()
+
 
 
     if (this.boss.hp > 0) {

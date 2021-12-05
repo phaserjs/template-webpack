@@ -22,12 +22,6 @@ export class Patroller extends GameObjects.PathFollower {
       loop: true
     })
 
-    // this.intervalId = setInterval(() => {
-    //   // if (this.scene.player.active) {
-
-    //   this.fireGun()
-    //   // }
-    // }, 500)
 
   }
 
@@ -35,7 +29,7 @@ export class Patroller extends GameObjects.PathFollower {
 
 
     if (this.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
-      this.gun.fireBullet(this.x, this.y, this.flipX)
+      this.gun.fireBullet(this.x, this.y, this.flipX, true)
     }
 
   }
@@ -43,7 +37,7 @@ export class Patroller extends GameObjects.PathFollower {
 
   update() {
 
-    // if(!this.player.active) clearInterval(this.intervalId)
+    
 
 
   }
