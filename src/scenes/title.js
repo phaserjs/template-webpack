@@ -32,8 +32,4 @@ export class Title extends Scene {
     farMount.on('pointerover', () =>
       start.clearTint())
   }
-
-  update () {
-
-  }
 }
