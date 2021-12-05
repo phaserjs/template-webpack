@@ -53,7 +53,7 @@ export class Level1 extends Scene {
         const tilesetBricks = map.addTilesetImage('SLIMBRICKS','bricks')
         //creating layers to reflect tilemap layers - order matters for rendering
         const clouds = map.createLayer('Clouds', tilesetCloud)
-        const water = map.createLayer('Water', tilesetWater)
+        this.water = map.createLayer('Water', tilesetWater)
         const foliage = map.createLayer('Foliage', tilesetFoliage)
         this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
         const roof = map.createLayer('Roof', tilesetRoof)
@@ -61,8 +61,7 @@ export class Level1 extends Scene {
         const bricks = map.createLayer('Bricks', tilesetBricks)
         // setting collision property to ground
         this.platforms.setCollisionByExclusion(-1, true)
-
-
+        this.water.setCollisionByExclusion(-1, true)
     }
 
     initPlayer() {

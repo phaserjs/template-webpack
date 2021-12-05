@@ -1,17 +1,17 @@
-import { Physics } from "phaser";
+import { Physics } from 'phaser'
 
 export class Trigger extends Physics.Arcade.Sprite {
-  constructor(scene, x, y) {
+  constructor (scene, x, y) {
     super(scene, x, y, 'adventurer')
     scene.physics.add.existing(this)
     this.body.allowGravity = false
     this.body.setImmovable(true)
 
     scene.physics.world.addCollider(this, this.scene.player, () => {
-      console.log('this.scene', this.scene);
+      console.log('this.scene', this.scene)
 
       this.scene.time.addEvent({
-        delay:2500,
+        delay: 2500,
         callback: this.changeScene()
       })
 
@@ -21,7 +21,7 @@ export class Trigger extends Physics.Arcade.Sprite {
     this.setSize(48, 65)
   }
 
-  changeScene() {
+  changeScene () {
     this.scene.scene.start('level-3-scene')
   }
 }

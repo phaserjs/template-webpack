@@ -1,25 +1,20 @@
-import { Physics } from "phaser";
+import { Physics } from 'phaser'
 
 export class Bullet extends Physics.Arcade.Sprite {
-    constructor(scene, x, y) {
-        super(scene, x, y, 'adventurer')
+  constructor (scene, x, y) {
+    super(scene, x, y, 'adventurer')
+  }
 
-        
+  fire (x, y, facingLeft) {
+    this.body.reset(x, y)
+    this.scene.add.existing(this)
+
+    this.setActive(true)
+    this.setVisible(true)
+    if (facingLeft) {
+      this.setVelocityX(-350)
+    } else {
+      this.setVelocityX(350)
     }
-
-
-    fire(x, y, facingLeft) {
-        this.body.reset(x, y)
-        this.scene.add.existing(this)
-
-
-        this.setActive(true)
-        this.setVisible(true)
-        if (facingLeft) {
-            this.setVelocityX(-350)
-        } else {
-
-            this.setVelocityX(350)
-        }
-    }
+  }
 }
