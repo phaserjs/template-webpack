@@ -8,11 +8,11 @@ import { Boss1 } from '../classes/enemies/boss'
 import { Trigger } from '../classes/triggers'
 
 export class Level1 extends Scene {
-  constructor () {
+  constructor() {
     super('level-1-scene')
   }
 
-  create () {
+  create() {
     // this.input.on('pointerdown', () =>
     // this.scene.start('level-3-scene'), console.log('loading scene 2'))
 
@@ -34,7 +34,7 @@ export class Level1 extends Scene {
     this.scene.start('level-3-scene')
   }
 
-  initMap () {
+  initMap() {
     // creating bg
     this.bg = this.add.image(400, 300, 'background').setScale(3).setScrollFactor(0)
     this.add.tileSprite(200, 450, 4500, 350, 'foreground')
@@ -62,31 +62,28 @@ export class Level1 extends Scene {
     this.platforms.setCollisionByExclusion(-1, true)
   }
 
-  initPlayer () {
+  initPlayer() {
     this.player = new Player(this, 100, 300)
     this.bulletGroup = new BulletGroup(this, 30, 50)
   }
 
-  cameraSetup () {
+  cameraSetup() {
     this.cameras.main.setViewport(0, 0, 960, 540)
     this.physics.world.setBounds(0, 0, 3840, 540)
     this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 185)
     this.cameras.main.setBounds(0, 0, 3840, 540)
   }
 
-  colliderSetup () {
+  colliderSetup() {
     this.physics.world.addCollider(this.player, this.platforms, () => {
       this.player.canJump = true
       this.player.jumpCount = 2
     })
 
-    this.physics.world.addCollider(this.player, this.enemy3, () => {
-      this.player.getDamage()
-      this.enemy3.destroy()
-    })
+    
   }
 
-  pathSetup () {
+  pathSetup() {
     const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
     const points1 = [50, 400, 135, 400]
     const flyingPoints = [50, 400, 125, 320, 200, 400]
@@ -94,7 +91,7 @@ export class Level1 extends Scene {
     this.flying = new Phaser.Curves.Spline(flyingPoints)
   }
 
-  enemySetup () {
+  enemySetup() {
     this.enemy1 = new Enemy1(this, 500, 400)
     this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
@@ -105,23 +102,26 @@ export class Level1 extends Scene {
     this.enemy.startFollow({
       duration: 700,
       yoyo: true,
-      repeat: -1
+      repeat: -1,
+      rotateToPath: true
     })
 
     this.enemy2.startFollow({
       duration: 700,
       yoyo: true,
-      repeat: -1
+      repeat: -1,
+      rotateToPath: true
     })
 
     this.enemy3.startFollow({
       duration: 1300,
       yoyo: true,
-      repeat: -1
+      repeat: -1,
+      rotateToPath: true
     })
   }
 
-  debugSetup () {
+  debugSetup() {
     const debugGraphics = this.add.graphics().setAlpha(0.7)
     this.platforms.renderDebug(debugGraphics, {
       tileColor: null,
@@ -140,14 +140,17 @@ export class Level1 extends Scene {
     graphics.fillStyle(0x00ff00, 1)
   }
 
-  update () {
+  update() {
     this.enemy1.update()
     this.player.update()
+    this.enemy3.update()
+    this.enemy.update()
+    this.enemy2.update()
 
 
     if (this.boss.hp > 0) {
       this.boss.update()
-    } else if (this.boss.active){
+    } else if (this.boss.active) {
       this.boss.die()
     }
 

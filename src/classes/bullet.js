@@ -6,14 +6,16 @@ export class Bullet extends Physics.Arcade.Sprite {
   }
 
   fire (x, y, facingLeft) {
-    this.body.reset(x, y)
+    
     this.scene.add.existing(this)
 
     this.setActive(true)
     this.setVisible(true)
     if (facingLeft) {
+      this.body.reset(x - 20, y)
       this.setVelocityX(-350)
     } else {
+      this.body.reset(x + 20, y)
       this.setVelocityX(350)
     }
   }
