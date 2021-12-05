@@ -1,5 +1,5 @@
 import { Physics } from 'phaser'
-import { Enemy1 } from '../enemies/enemy-1'
+import { Mob } from '../enemies/mob'
 
 export class MobSpawner extends Physics.Arcade.Group {
   constructor (scene, x, y) {
@@ -11,13 +11,19 @@ export class MobSpawner extends Physics.Arcade.Group {
     this.runChildUpdate = true
 
     this.createMultiple({
-      classType: Enemy1,
+      classType: Mob,
       frameQuantity: 30,
       active: false,
       visible: false,
       key: 'enemy',
       setXY: { x, y, stepX: 50 }
     })
+
+    this.setColliders(scene)
+  }
+
+  setColliders (scene) {
+    scene.physics.world.addCollider(this, this)
   }
 
   spawnMob (x, y) {
