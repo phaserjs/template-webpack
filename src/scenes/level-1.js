@@ -1,5 +1,4 @@
 import { Scene, Math, Curves, Display } from 'phaser'
-import { BulletGroup } from '../classes/groups/bullet-group'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
@@ -62,7 +61,6 @@ export class Level1 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
-    this.bulletGroup = new BulletGroup(this, 30, 50)
   }
 
   cameraSetup () {
@@ -109,30 +107,24 @@ export class Level1 extends Scene {
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
 
-    this.spawner = new MobSpawner(this, 50, 100)
-    this.spawner.create(750, 300, 'enemy', null, true, true)
-
     this.boss = new Boss1(this, 3300, 220)
 
     this.enemy1.startFollow({
       duration: 700,
       yoyo: true,
-      repeat: -1,
-      rotateToPath: true
+      repeat: -1
     })
 
     this.enemy2.startFollow({
       duration: 700,
       yoyo: true,
-      repeat: -1,
-      rotateToPath: true
+      repeat: -1
     })
 
     this.enemy3.startFollow({
       duration: 1300,
       yoyo: true,
-      repeat: -1,
-      rotateToPath: true
+      repeat: -1
     })
   }
 
@@ -144,7 +136,8 @@ export class Level1 extends Scene {
     })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
-    this.playerAmmo = this.add.text(50, 65)
+    this.playerHealth = this.add.text(50, 65)
+    this.playerAmmo = this.add.text(50, 80)
 
     this.getPlayer = this.input.keyboard.addKey('P')
 
@@ -160,7 +153,9 @@ export class Level1 extends Scene {
 
   update () {
     this.player.update()
+
     this.enemy.update()
+    this.enemy4.update()
 
     this.enemy3.update()
     this.enemy1.update()
@@ -174,7 +169,7 @@ export class Level1 extends Scene {
 
     if (this.player.hp > 0) {
       this.player.update()
-    } else if (this.player.active) {
+    } else {
       this.player.die()
     }
 
@@ -182,7 +177,9 @@ export class Level1 extends Scene {
     this.mouseCoords.x = this.player.x
     this.godMode.setText('God mode: ' + this.player.godMode)
     this.godMode.x = this.player.x
-    this.playerAmmo.setText('Ammo: ', this.player.gun.frameQuantity)
+    this.playerHealth.setText('Health: ' + this.player.hp)
+    this.playerHealth.x = this.player.x
+    this.playerAmmo.setText('Ammo: ' + this.player.gun.children.entries.length)
     this.playerAmmo.x = this.player.x
 
     if (this.getPlayer.isDown) {
