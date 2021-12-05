@@ -1,4 +1,4 @@
-import { Scene, Math, Curves, Display } from 'phaser'
+import { Scene, Math, Curves } from 'phaser'
 import { BulletGroup } from '../classes/groups/bullet-group'
 import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
@@ -7,9 +7,9 @@ import { MobSpawner } from '../classes/groups/mob-spawner'
 import { Boss1 } from '../classes/enemies/boss'
 import { Trigger } from '../classes/triggers'
 
-export class Level1 extends Scene {
+export class Level2 extends Scene {
   constructor () {
-    super('level-1-scene')
+    super('level-2-scene')
   }
 
   create () {
@@ -23,7 +23,7 @@ export class Level1 extends Scene {
     this.colliderSetup()
     this.cameraSetup()
     this.debugSetup()
-    this.trigger = new Trigger(this, 3785, 448)
+    this.trigger = new Trigger(this, 5760, 448)
 
     this.input.on('pointerdown', () => {
       this.player.godMode = !this.player.godMode
@@ -31,35 +31,27 @@ export class Level1 extends Scene {
   }
 
   changeScene () {
-    this.scene.start('level-2-scene')
+    this.scene.start('level-3-scene')
   }
 
   initMap () {
-    // creating bg
-    this.bg = this.add.image(400, 300, 'background').setScale(3).setScrollFactor(0)
-    this.add.tileSprite(200, 450, 4500, 350, 'foreground')
-      .setScrollFactor(0.5)
     // creating tilemap
-    const map = this.make.tilemap({ key: 'map' })
+    const level2map = this.make.tilemap({ key: 'level2-map' })
     // linking pngs to tileset names in the map
-    const tilesetCloud = map.addTilesetImage('clouds', 'clouds')
-    // const tilesetSky = map.addTilesetImage('Sky', 'sky')
-    const tilesetGround = map.addTilesetImage('tilesetOpenGame2', 'ground')
-    const tilesetWater = map.addTilesetImage('WaterTextures', 'water')
-    const tilesetFoliage = map.addTilesetImage('grass-trees', 'foliage')
-    const tilesetHouse = map.addTilesetImage('house', 'house')
-    const tilesetRoof = map.addTilesetImage('WOODTILE', 'roof')
-    const tilesetBricks = map.addTilesetImage('SLIMBRICKS', 'bricks')
+    const tilesetMain = level2map.addTilesetImage('kitchen-shee-flattenedt', 'level2-tiles')
+    const tilesetSecond = level2map.addTilesetImage('tileset', 'level2Bg')
+    const tilesetWater = level2map.addTilesetImage('Water', 'level2Water')
+
     // creating layers to reflect tilemap layers - order matters for rendering
-    const clouds = map.createLayer('Clouds', tilesetCloud)
-    this.water = map.createLayer('Water', tilesetWater)
-    const foliage = map.createLayer('Foliage', tilesetFoliage)
-    this.platforms = map.createLayer('Ground', tilesetGround, 0, 0)
-    const roof = map.createLayer('Roof', tilesetRoof)
-    const door = map.createLayer('Door', tilesetHouse)
-    const bricks = map.createLayer('Bricks', tilesetBricks)
+    const background = level2map.createLayer('Backdrop', tilesetSecond)
+    this.water = level2map.createLayer('Water', tilesetWater)
+    level2map.createLayer('Etc2', tilesetSecond)
+    level2map.createLayer('Etc', tilesetMain)
+    this.floor = level2map.createLayer('Floor', tilesetSecond,0, 0)
+    this.platforms = level2map.createLayer('Platforms', tilesetMain, 0, 0)
     // setting collision property to ground
     this.platforms.setCollisionByExclusion(-1, true)
+    this.floor.setCollisionByExclusion(-1, true)
     this.water.setCollisionByExclusion(-1, true)
   }
 
@@ -70,9 +62,9 @@ export class Level1 extends Scene {
 
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
-    this.physics.world.setBounds(0, 0, 3840, 540)
+    this.physics.world.setBounds(0, 0, 5760, 540)
     this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 185)
-    this.cameras.main.setBounds(0, 0, 3840, 540)
+    this.cameras.main.setBounds(0, 0, 5760, 540)
   }
 
   colliderSetup () {
@@ -80,6 +72,11 @@ export class Level1 extends Scene {
       this.player.canJump = true
       this.player.jumpCount = 2
     })
+
+    this.physics.world.addCollider(this.player, this.floor, () => {
+        this.player.canJump = true
+        this.player.jumpCount = 2
+      })
 
     this.physics.world.addCollider(this.player, this.enemy3, () => {
       this.player.getDamage()
@@ -96,12 +93,12 @@ export class Level1 extends Scene {
   }
 
   enemySetup () {
-    this.enemy1 = new Enemy1(this, 500, 400, 'viking')
+    this.enemy1 = new Enemy1(this, 500, 400)
     this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
 
-    this.boss = new Boss1(this, 3300, 220)
+    this.boss = new Boss1(this, 5500, 220)
 
     this.enemy.startFollow({
       duration: 700,
@@ -124,10 +121,10 @@ export class Level1 extends Scene {
 
   debugSetup () {
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.platforms.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 234, 48, 255)
-    })
+    // this.platforms.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255)
+    // })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
 

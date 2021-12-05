@@ -30,8 +30,14 @@ export class LoadingScene extends Scene {
     this.load.image('background', 'tilemaps/level-1/country-platform-back.png')
     this.load.image('foreground', 'tilemaps/level-1/country-platform-forest.png')
 
+    // level 2
+    this.load.image('level2-tiles', 'tilemaps/level-2/kitchen-shee-flattenedt.png')
+    this.load.image('level2Bg', 'tilemaps/level-2/tileset.png')
+    this.load.image('level2Water', 'tilemaps/level-2/Water.png')
+    this.load.tilemapTiledJSON('level2-map', 'tilemaps/level-2/eleanor.json')
+
     // level 3
-    this.load.image('level2-tiles', 'tilemaps/level-3/Wasteland-Files.png')
+    this.load.image('level3-tiles', 'tilemaps/level-3/Wasteland-Files.png')
     this.load.tilemapTiledJSON('level3-map', 'tilemaps/level-3/Ahmad2.json')
     // level 3 parallax images
     this.load.image('level3Bg', 'tilemaps/level-3/Wasteland_Sky.png')
