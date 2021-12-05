@@ -19,9 +19,9 @@ export class Level3 extends Scene {
         //creating bg
         let level3Bg = this.add.image(400, 300,'level3Bg').setScale(3)
 		.setScrollFactor(0)
-        this.add.tileSprite(200, 450, 4500, 350,'level3Mountain1')
+        this.add.tileSprite(200, 4000, 4500, 350,'level3Mountain1')
         .setScrollFactor(0.7, 0.7)
-        this.add.tileSprite(200, 450, 4500, 350,'level3Mountain2')
+        this.add.tileSprite(200, 3800, 4500, 350,'level3Mountain2')
         .setScrollFactor(0.4, 0.4)
 
         // creating tilemap
@@ -43,7 +43,7 @@ export class Level3 extends Scene {
     cameraSetup() {
         this.cameras.main.setViewport(0, 0, 960, 540)
         this.physics.world.setBounds(0, 0, 1920, 5760)
-        this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 185)
+        this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
         this.cameras.main.setBounds(0, 0, 1920, 5760)
     }
 
@@ -64,10 +64,10 @@ export class Level3 extends Scene {
 
     debugSetup() {
         const debugGraphics = this.add.graphics().setAlpha(0.7)
-        this.platforms.renderDebug(debugGraphics, {
-            tileColor: null,
-            collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
-        })
+        // this.platforms.renderDebug(debugGraphics, {
+        //     tileColor: null,
+        //     collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
+        // })
         this.mouseCoords = this.add.text(50, 25)
 
         const graphics = this.add.graphics()
