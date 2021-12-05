@@ -1,7 +1,7 @@
 import { Math } from 'phaser'
 import { Actor } from '../actor'
 
-export class Enemy1 extends Actor {
+export class Mob extends Actor {
   constructor (scene, x, y, texture, config) {
     super(scene, x, y, texture)
 

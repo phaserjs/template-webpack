@@ -1,10 +1,10 @@
 import { Scene, Math, Curves, Display } from 'phaser'
 import { BulletGroup } from '../classes/groups/bullet-group'
-import { Enemy1 } from '../classes/enemies/enemy-1'
+import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { MobSpawner } from '../classes/groups/mob-spawner'
-import { Boss1 } from '../classes/enemies/boss'
+import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
 
 export class Level1 extends Scene {
@@ -20,7 +20,6 @@ export class Level1 extends Scene {
     this.initPlayer()
     this.pathSetup()
     this.enemySetup()
-    this.colliderSetup()
     this.cameraSetup()
     this.debugSetup()
     this.trigger = new Trigger(this, 3785, 448)
@@ -75,13 +74,6 @@ export class Level1 extends Scene {
     this.cameras.main.setBounds(0, 0, 3840, 540)
   }
 
-  colliderSetup () {
-    this.physics.world.addCollider(this.player, this.platforms, () => {
-      this.player.canJump = true
-      this.player.jumpCount = 2
-    })
-  }
-
   pathSetup () {
     const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
     const points1 = [50, 400, 135, 400]
@@ -113,11 +105,14 @@ export class Level1 extends Scene {
       }
     }
 
-    this.enemy = new Enemy1(this, 500, 400, 'viking', vikingConfig)
-    this.enemy4 = new Enemy1(this, 500, 200, 'enemy', mobConfig)
+    this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
+    this.enemy4 = new Mob(this, 500, 200, 'enemy', mobConfig)
     this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
+
+    this.spawner = new MobSpawner(this, 50, 100)
+    this.spawner.create(750, 300, 'enemy', null, true, true)
 
     this.boss = new Boss1(this, 3300, 220)
 
@@ -151,6 +146,9 @@ export class Level1 extends Scene {
     })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
+    this.playerAmmo = this.add.text(50, 65)
+
+    this.getPlayer = this.input.keyboard.addKey('P')
 
     const graphics = this.add.graphics()
 
@@ -186,5 +184,11 @@ export class Level1 extends Scene {
     this.mouseCoords.x = this.player.x
     this.godMode.setText('God mode: ' + this.player.godMode)
     this.godMode.x = this.player.x
+    this.playerAmmo.setText('Ammo: ', this.player.gun.frameQuantity)
+    this.playerAmmo.x = this.player.x
+
+    if (this.getPlayer.isDown) {
+      console.log(this.player)
+    }
   }
 }
