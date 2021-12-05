@@ -3,16 +3,16 @@ import { Math } from 'phaser'
 import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
 
-export class Boss4 extends Actor {
+export class Boss3 extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'prue-boss')
 
     this.setScale(5)
-    this.setSize(45, 52)
-    this.setOffset(92, 59)
+    this.setSize(34, 41)
+    this.setOffset(96, 70)
     this.setAnims()
 
-    this.name = 'boss4'
+    this.name = 'boss3'
 
     this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
@@ -24,10 +24,10 @@ export class Boss4 extends Actor {
   setAnims () {
     // idle
     this.scene.anims.create({
-      key: 'idle-ahmad-boss',
-      frames: this.scene.anims.generateFrameNames('ahmad-boss', {
+      key: 'idle-prue-boss',
+      frames: this.scene.anims.generateFrameNames('prue-boss', {
         prefix: 'idle-',
-        end: 5
+        end: 7
       }),
       frameRate: 12,
       repeat: -1
@@ -35,7 +35,7 @@ export class Boss4 extends Actor {
 
     // run/ walk
     this.scene.anims.create({
-      key: 'run-ahmad-boss',
+      key: 'run-prue-boss',
       frames: this.scene.anims.generateFrameNames('prue-boss', {
         prefix: 'run-',
         end: 9
@@ -48,7 +48,7 @@ export class Boss4 extends Actor {
     this.scene.anims.create({
       key: 'surf-prue-boss',
       frames: this.scene.anims.generateFrameNames('prue-boss', {
-        prefix: 'atk-',
+        prefix: 'surf-',
         end: 7
       }),
       frameRate: 12,
@@ -62,8 +62,18 @@ export class Boss4 extends Actor {
         prefix: 'death-',
         end: 15
       }),
+      frameRate: 12
+    })
+
+    // falling
+    this.scene.anims.create({
+      key: 'falling-prue-boss',
+      frames: this.scene.anims.generateFrameNames('prue-boss', {
+        prefix: 'tumble-',
+        end: 5
+      }),
       frameRate: 12,
-      repeat: 0
+      repeat: -1
     })
 
     // attack
@@ -103,7 +113,7 @@ export class Boss4 extends Actor {
         this.anims.play('run-prue-boss', true)
       } else {
         this.setVelocityX(0)
-        this.anims.play('idle-ahmad-boss', true)
+        this.anims.play('idle-prue-boss', true)
       }
     }
   }

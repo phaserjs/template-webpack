@@ -1,7 +1,8 @@
 import { Scene, Math, Curves, Display } from 'phaser'
-import { Boss3 } from '../classes/enemies/boss3'
-import { Boss4 } from '../classes/enemies/boss4'
-import { Enemy1 } from '../classes/enemies/enemy-1'
+import { Boss3 } from '../classes/bosses/boss3'
+import { Boss4 } from '../classes/bosses/boss4'
+// import { Enemy1 } from '../classes/enemies/enemy-1'
+import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 // import { Boss3 } from '../classes/enemies/boss3'
 
@@ -68,8 +69,19 @@ export class Level3 extends Scene {
   }
 
   enemySetup () {
+    const mobConfig = {
+      w: 30,
+      h: 30,
+      xOff: 50,
+      yOff: 8,
+      scale: 2,
+      frameEnds: {
+        idle: 4
+      }
+    }
     this.boss = new Boss3(this, 300, 200)
-    this.bossTest = new Boss4(this, 600, 200)
+    this.bossTest = new Boss4(this, 800, 200)
+    this.enemyMob1 = new Mob(this, 200, 100, 'gen-mob-1', mobConfig)
     console.log(this.boss)
     console.log(this.bossTest)
   }
@@ -94,6 +106,7 @@ export class Level3 extends Scene {
 
   update () {
     this.player.update()
+    this.enemyMob1.update()
 
     if (this.boss.hp > 0) {
       this.boss.update()
