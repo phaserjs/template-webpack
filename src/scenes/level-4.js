@@ -1,5 +1,4 @@
 import { Scene, Math, Curves, Display } from 'phaser'
-import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers'
 
@@ -31,7 +30,6 @@ export class Level4 extends Scene {
       .setScrollFactor(0)
     this.add.image(400,500, 'level4Bg2')
     .setScrollFactor(0.1)
-    // this.add.image(400,1000, 'level4Bg3')
     this.add.image(400, 220, 'level4Bg4')
     .setScrollFactor(0.3)
     this.add.image(400,600, 'level4Bg5')

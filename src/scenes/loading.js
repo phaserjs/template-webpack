@@ -48,7 +48,6 @@ export class LoadingScene extends Scene {
     // level 4 parallax images
     this.load.image('level4Bg1', 'tilemaps/level-4/layer06_sky.png')
     this.load.image('level4Bg2', 'tilemaps/level-4/layer05_rocks.png')
-    this.load.image('level4Bg3', 'tilemaps/level-4/layer04_clouds.png')
     this.load.image('level4Bg4', 'tilemaps/level-4/layer03_trees.png')
     this.load.image('level4Bg5', 'tilemaps/level-4/layer02_cake.png')
     this.load.image('level4Bg6', 'tilemaps/level-4/layer01_ground.png')

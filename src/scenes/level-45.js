@@ -1,5 +1,4 @@
 import { Scene, Math, Curves, Display } from 'phaser'
-import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers'
 
