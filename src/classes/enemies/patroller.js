@@ -9,39 +9,37 @@ export class Patroller extends GameObjects.PathFollower {
     this.body.allowGravity = false
 
     this.gun = new BulletGroup(this.scene, x, y)
-    console.log(this)
-
+   
     this.scene.physics.world.addCollider(this.scene.player, this, () => {
       this.scene.player.getDamage()
       this.destroy()
     })
 
-    setInterval(() => this.fireGun(), 500)
+    console.log(this.scene);
+
+    this.intervalId = setInterval(() => {
+      // if (this.scene.player.active) {
+        
+        this.fireGun()
+      // }
+    }, 500)
+    
   }
 
   fireGun() {
-    if (this.scene.player.active) {
+    
       
-      console.log(this.flipX)
       if (Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
         this.gun.fireBullet(this.x, this.y, this.flipX)
       }
-    }
+    
   }
 
-  checkFlip() {
-    if (this.body.velocity.x < 0) {
-      this.flipX = true
-    } else if (this.body.velocity.x > 0) {
-      this.flipX = false
-    }
-  }
 
   update() {
-    if (this.active) {
-      
-      this.checkFlip()
-    }
+
+    // if(!this.player.active) clearInterval(this.intervalId)
+    
     
   }
 }

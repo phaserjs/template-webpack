@@ -92,8 +92,32 @@ export class Level1 extends Scene {
     this.flying = new Curves.Spline(flyingPoints)
   }
 
-  enemySetup () {
-    this.enemy1 = new Enemy1(this, 500, 400, 'viking')
+  enemySetup() {
+    
+    const mobConfig = {
+      w: 30,
+      h: 30,
+      xOff: 50,
+      yOff: 8,
+      scale: 2,
+      frameEnds: {
+        idle: 4
+      }
+    }
+
+    const vikingConfig = {
+      w: 24,
+      h: 24,
+      xOff: 5,
+      yOff: 8,
+      scale: 1,
+      frameEnds: {
+        idle: 6
+      }
+    }
+
+    this.enemy1 = new Enemy1(this, 500, 400, 'viking', vikingConfig)
+    this.enemy4 = new Enemy1(this, 500, 200, 'enemy', mobConfig)
     this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
@@ -142,8 +166,8 @@ export class Level1 extends Scene {
   }
 
   update() {
-    this.enemy1.update()
     this.player.update()
+    this.enemy1.update()
     this.enemy3.update()
     this.enemy.update()
     this.enemy2.update()

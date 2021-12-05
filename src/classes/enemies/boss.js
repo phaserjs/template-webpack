@@ -39,7 +39,8 @@ export class Boss1 extends Actor {
     })
   }
 
-  setColliders (scene) {
+  setColliders(scene) {
+    
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.platforms)
     scene.physics.world.addCollider(this.spawner, this.spawner)
