@@ -55,7 +55,6 @@ export class LoadingScene extends Scene {
     // level 4.5
     this.load.image('level45', 'tilemaps/level-4.5/Retro-Lines-Tiles-transparent.png')
     this.load.tilemapTiledJSON('level45-map', 'tilemaps/level-4.5/caro2.json')
-    this.load.image('level45Bg', 'tilemaps/level-4.5/textured-black-background.jpg')
 
     // player sprite
     this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
