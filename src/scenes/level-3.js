@@ -1,5 +1,5 @@
 import { Scene, Math, Curves, Display } from 'phaser'
-import { Enemy1 } from '../classes/enemies/enemy-1'
+import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 
 export class Level3 extends Scene {

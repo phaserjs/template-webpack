@@ -1,10 +1,10 @@
 import { Scene, Math, Curves } from 'phaser'
 import { BulletGroup } from '../classes/groups/bullet-group'
-import { Enemy1 } from '../classes/enemies/enemy-1'
+import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { MobSpawner } from '../classes/groups/mob-spawner'
-import { Boss1 } from '../classes/enemies/boss'
+import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
 
 export class Level2 extends Scene {
@@ -93,7 +93,7 @@ export class Level2 extends Scene {
   }
 
   enemySetup () {
-    this.enemy1 = new Enemy1(this, 500, 400, 'viking')
+    this.enemy1 = new Mob(this, 500, 400, 'viking')
     this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
