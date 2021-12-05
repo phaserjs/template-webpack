@@ -1,11 +1,11 @@
 import { Actor } from '../actor'
 
 export class Enemy1 extends Actor {
-  constructor (scene, x, y) {
-    super(scene, x, y, 'enemy')
+  constructor (scene, x, y, texture) {
+    super(scene, x, y, texture)
 
     scene.physics.add.existing(this)
-
+    this.name = texture
     this.setAnims()
     this.setScale(2)
     this.setSize(30, 30)
@@ -20,14 +20,15 @@ export class Enemy1 extends Actor {
       this.destroy()
       bullet.destroy()
     })
+    console.log(texture)
   }
 
   setAnims () {
     this.scene.anims.create({
-      key: 'idle-enemy',
-      frames: this.scene.anims.generateFrameNames('enemy', {
+      key: this.name + '-idle',
+      frames: this.scene.anims.generateFrameNames(this.name, {
         prefix: 'idle-',
-        end: 4
+        end: 6
       }),
       frameRate: 12
     })

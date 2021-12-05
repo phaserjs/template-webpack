@@ -96,11 +96,6 @@ export class Player extends Actor {
       this.setVelocityX(0)
       this.body.setOffset(82, 55)
 
-      if (this.keyShoot.isDown && this.canShoot) {
-        this.canShoot = false
-        this.fire()
-      }
-
       if (this.keyShoot.isUp) {
         this.canShoot = true
       }
@@ -110,8 +105,13 @@ export class Player extends Actor {
         }
         this.body.velocity.y = -this.jump
       }
-
-      if (this.keyA.isDown) {
+      if (this.keyShoot.isDown) {
+        this.anims.play('attack', true)
+        if (this.canShoot) {
+          this.fire()
+          this.canShoot = false
+        }
+      } else if (this.keyA.isDown) {
         this.anims.play('run', true)
         this.body.velocity.x = -this.speed
         this.checkFlip()
