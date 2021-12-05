@@ -9,6 +9,8 @@ export class Boss1 extends Actor {
     this.setSize(30, 30)
     this.setOffset(50, 3)
     this.setAnims()
+
+    this.name = 'boss'
     
     this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
@@ -28,7 +30,7 @@ export class Boss1 extends Actor {
       repeat: -1
     })
     this.scene.anims.create({
-      key: 'death-boss',
+      key: 'boss-death',
       frames: this.scene.anims.generateFrameNames('enemy', {
         prefix: 'death-',
         end: 4
@@ -49,15 +51,7 @@ export class Boss1 extends Actor {
     })
   }
 
-  die() {
-    this.anims.play('death-boss', true)
-    this.once('animationcomplete', () => {
-
-      console.log('animationcomplete')
-      this.destroy()
-    })
-
-  }
+  
 
   update () {
     
