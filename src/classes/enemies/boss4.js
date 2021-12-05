@@ -3,7 +3,7 @@ import { Math } from 'phaser'
 import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
 
-export class Boss3 extends Actor {
+export class Boss4 extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'prue-boss')
 
@@ -12,7 +12,7 @@ export class Boss3 extends Actor {
     this.setOffset(92, 59)
     this.setAnims()
 
-    this.name = 'boss3'
+    this.name = 'boss4'
 
     this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
@@ -24,10 +24,10 @@ export class Boss3 extends Actor {
   setAnims () {
     // idle
     this.scene.anims.create({
-      key: 'idle-prue-boss',
-      frames: this.scene.anims.generateFrameNames('prue-boss', {
+      key: 'idle-ahmad-boss',
+      frames: this.scene.anims.generateFrameNames('ahmad-boss', {
         prefix: 'idle-',
-        end: 7
+        end: 5
       }),
       frameRate: 12,
       repeat: -1
@@ -35,7 +35,7 @@ export class Boss3 extends Actor {
 
     // run/ walk
     this.scene.anims.create({
-      key: 'run-prue-boss',
+      key: 'run-ahmad-boss',
       frames: this.scene.anims.generateFrameNames('prue-boss', {
         prefix: 'run-',
         end: 9
@@ -64,17 +64,6 @@ export class Boss3 extends Actor {
       }),
       frameRate: 12,
       repeat: 0
-    })
-
-    // falling
-    this.scene.anims.create({
-      key: 'falling-prue-boss',
-      frames: this.scene.anims.generateFrameNames('prue-boss', {
-        prefix: 'tumble-',
-        end: 5
-      }),
-      frameRate: 12,
-      repeat: -1
     })
 
     // attack
@@ -114,7 +103,7 @@ export class Boss3 extends Actor {
         this.anims.play('run-prue-boss', true)
       } else {
         this.setVelocityX(0)
-        this.anims.play('attack-prue-boss', true)
+        this.anims.play('idle-ahmad-boss', true)
       }
     }
   }
