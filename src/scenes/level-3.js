@@ -1,5 +1,6 @@
 import { Scene, Math, Curves, Display } from 'phaser'
 import { Boss3 } from '../classes/enemies/boss3'
+import { Boss4 } from '../classes/enemies/boss4'
 import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
 // import { Boss3 } from '../classes/enemies/boss3'
@@ -68,7 +69,9 @@ export class Level3 extends Scene {
 
   enemySetup () {
     this.boss = new Boss3(this, 300, 200)
+    this.bossTest = new Boss4(this, 600, 200)
     console.log(this.boss)
+    console.log(this.bossTest)
   }
 
   debugSetup () {
@@ -96,6 +99,11 @@ export class Level3 extends Scene {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
+    }
+    if (this.bossTest.hp > 0) {
+      this.bossTest.update()
+    } else if (this.bossTest.active) {
+      this.bossTest.die()
     }
 
     this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
