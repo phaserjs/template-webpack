@@ -1,6 +1,8 @@
 import { Scene, Math, Curves, Display } from 'phaser'
+import { Boss3 } from '../classes/enemies/boss3'
 import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
+// import { Boss3 } from '../classes/enemies/boss3'
 
 export class Level3 extends Scene {
   constructor () {
@@ -14,6 +16,7 @@ export class Level3 extends Scene {
     this.colliderSetup()
     this.cameraSetup()
     this.debugSetup()
+    this.enemySetup()
   }
 
   initMap () {
@@ -63,6 +66,11 @@ export class Level3 extends Scene {
     this.flying = new Curves.Spline(flyingPoints)
   }
 
+  enemySetup () {
+    this.boss = new Boss3(this, 300, 200)
+    console.log(this.boss)
+  }
+
   debugSetup () {
     const debugGraphics = this.add.graphics().setAlpha(0.7)
     this.platforms.renderDebug(debugGraphics, {
@@ -83,6 +91,12 @@ export class Level3 extends Scene {
 
   update () {
     this.player.update()
+
+    if (this.boss.hp > 0) {
+      this.boss.update()
+    } else if (this.boss.active) {
+      this.boss.die()
+    }
 
     this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
     this.mouseCoords.x = this.player.x
