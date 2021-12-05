@@ -26,7 +26,7 @@ export class Level3 extends Scene {
 
         // creating tilemap
         const level3map = this.make.tilemap({ key: 'level3-map' })
-        const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files','level2-tiles')
+        const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files','level3-tiles')
         //linking pngs to tileset names in the map
         //creating layers to reflect tilemap layers - order matters for rendering
         this.platforms = level3map.createLayer('Platform', tileSetLevel2, 0, 0)
