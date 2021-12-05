@@ -68,9 +68,10 @@ export class Player extends Actor {
       key: 'player-death',
       frames: this.scene.anims.generateFrameNames('player', {
         prefix: 'death-',
-        end: 0
+        end: 6
       }),
-      framerate: 12
+      framerate: 12,
+      repeat: 0
     })
   }
 
