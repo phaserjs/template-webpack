@@ -18,7 +18,7 @@ export class Title extends Scene {
       start.setTint(0xff0000a160))
 
     start.on('pointerdown', () =>
-      this.scene.start('level-1-scene'), console.log('loading scene 1'))
+      this.scene.start('level-3-scene'), console.log('loading scene 1'))
 
     fore.on('pointerover', () =>
       start.clearTint())
