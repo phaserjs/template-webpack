@@ -9,7 +9,7 @@ export class Boss2 extends Actor {
 
     this.setScale(5)
     this.setSize(45, 55)
-    this.setOffset(80, 32)
+    this.setOffset(80, 36)
     this.setAnims()
 
     this.name = 'boss2'
