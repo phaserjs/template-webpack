@@ -20,6 +20,4 @@ export class Trigger extends Physics.Arcade.Sprite {
 
     this.setSize(48, 65)
   }
-
-  
 }

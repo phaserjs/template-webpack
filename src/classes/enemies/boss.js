@@ -4,19 +4,18 @@ import { MobSpawner } from '../groups/mob-spawner'
 export class Boss1 extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'enemy')
-    
+
     this.setScale(10)
     this.setSize(30, 30)
     this.setOffset(50, 3)
     this.setAnims()
 
     this.name = 'boss'
-    
+
     this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
-    
+
     this.setColliders(scene)
-   
   }
 
   setAnims () {
@@ -51,11 +50,8 @@ export class Boss1 extends Actor {
     })
   }
 
-  
-
   update () {
-    
-     if (this.active && this.hp > 0) {
+    if (this.active && this.hp > 0) {
       if (this.body.velocity.x > 0) {
         this.body.velocity.x -= 10
       } else if (this.body.velocity.x < 0) {
