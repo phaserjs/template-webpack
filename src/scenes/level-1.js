@@ -30,7 +30,7 @@ export class Level1 extends Scene {
     })
   }
 
-  changeScene () {
+  changeScene() {
     this.scene.start('level-3-scene')
   }
 
@@ -81,7 +81,7 @@ export class Level1 extends Scene {
       this.player.jumpCount = 2
     })
 
-    
+
   }
 
   pathSetup() {
@@ -93,7 +93,7 @@ export class Level1 extends Scene {
   }
 
   enemySetup() {
-    
+
     const mobConfig = {
       w: 30,
       h: 30,
@@ -116,15 +116,15 @@ export class Level1 extends Scene {
       }
     }
 
-    this.enemy1 = new Enemy1(this, 500, 400, 'viking', vikingConfig)
+    this.enemy = new Enemy1(this, 500, 400, 'viking', vikingConfig)
     this.enemy4 = new Enemy1(this, 500, 200, 'enemy', mobConfig)
-    this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
+    this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
 
     this.boss = new Boss1(this, 3300, 220)
 
-    this.enemy.startFollow({
+    this.enemy1.startFollow({
       duration: 700,
       yoyo: true,
       repeat: -1,
@@ -167,10 +167,18 @@ export class Level1 extends Scene {
 
   update() {
     this.player.update()
-    this.enemy1.update()
-    this.enemy3.update()
     this.enemy.update()
-    this.enemy2.update()
+
+    if (this.player.active) {
+      this.enemy3.update()
+      this.enemy1.update()
+      this.enemy2.update()
+    } else {
+      window.clearInterval(this.enemy1.intervalId)
+      window.clearInterval(this.enemy2.intervalId)
+      window.clearInterval(this.enemy3.intervalId)
+
+    }
 
 
     if (this.boss.hp > 0) {
