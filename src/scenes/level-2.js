@@ -1,9 +1,7 @@
 import { Scene, Math, Curves } from 'phaser'
-import { BulletGroup } from '../classes/groups/bullet-group'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
-import { MobSpawner } from '../classes/groups/mob-spawner'
 import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
 
@@ -57,7 +55,6 @@ export class Level2 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
-    this.bulletGroup = new BulletGroup(this, 30, 50)
   }
 
   cameraSetup () {

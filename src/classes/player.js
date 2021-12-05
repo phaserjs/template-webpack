@@ -1,5 +1,5 @@
 import { Actor } from './actor'
-import { BulletGroup } from './groups/bullet-group'
+import { Gun } from './groups/gun'
 
 export class Player extends Actor {
   constructor (scene, x, y) {
@@ -11,13 +11,13 @@ export class Player extends Actor {
     this.keyD = this.scene.input.keyboard.addKey('D')
     this.keyShoot = this.scene.input.keyboard.addKey('SPACE')
 
-    this.gun = new BulletGroup(this.scene, 30, 50, false, 50)
+    this.gun = new Gun(this.scene, 30, 50, false, 50)
 
     this.setScale(0.5)
 
     this.godMode = false
 
-    this.name = 'player'
+    this.name = 'player1'
 
     this.speed = 220
     this.jump = 220
@@ -65,13 +65,12 @@ export class Player extends Actor {
     })
 
     this.scene.anims.create({
-      key: 'player-death',
+      key: 'player1-death',
       frames: this.scene.anims.generateFrameNames('player', {
         prefix: 'death-',
         end: 6
       }),
-      framerate: 12,
-      repeat: 0
+      framerate: 12
     })
   }
 
@@ -80,7 +79,9 @@ export class Player extends Actor {
       this.canJump = true
     })
 
-    this.scene.physics.world.addCollider(this.gun, this.scene.platforms)
+    this.scene.physics.world.addCollider(this.gun, this.scene.platforms, (bullet) => {
+      bullet.destroy()
+    })
   }
 
   hitGround () {
