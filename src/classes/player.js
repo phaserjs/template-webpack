@@ -54,6 +54,25 @@ export class Player extends Actor {
       }),
       frameRate: 12
     })
+
+    this.scene.anims.create({
+      key: 'attack',
+      frames: this.scene.anims.generateFrameNames('player', {
+        prefix: 'atk-',
+        end: 3
+      }),
+      frameRate: 12
+    })
+
+    this.scene.anims.create({
+      key: 'player-death',
+      frames: this.scene.anims.generateFrameNames('player', {
+        prefix: 'death-',
+        end: 6
+      }),
+      framerate: 12,
+      repeat: 0
+    })
   }
 
   hitGround () {
@@ -71,10 +90,6 @@ export class Player extends Actor {
   }
 
   update () {
-    if (this.hp === 0 && !this.godMode) {
-      this.destroy()
-    }
-
     this.checkGodMode()
 
     if (this.active) {
