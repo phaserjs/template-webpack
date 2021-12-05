@@ -30,6 +30,10 @@ export class Level1 extends Scene {
     })
   }
 
+  changeScene() {
+    this.scene.start('level-3-scene')
+  }
+
   initMap () {
     // creating bg
     this.bg = this.add.image(400, 300, 'background').setScale(3).setScrollFactor(0)
@@ -60,7 +64,7 @@ export class Level1 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
-    this.bulletGroup = new BulletGroup(this)
+    this.bulletGroup = new BulletGroup(this, 30, 50)
   }
 
   cameraSetup () {
@@ -139,7 +143,13 @@ export class Level1 extends Scene {
   update () {
     this.enemy1.update()
     this.player.update()
-    this.boss.update()
+
+
+    if (this.boss.hp > 0) {
+      this.boss.update()
+    } else if (this.boss.active){
+      this.boss.die()
+    }
 
     this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
     this.mouseCoords.x = this.player.x

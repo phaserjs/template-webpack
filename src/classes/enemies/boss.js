@@ -4,16 +4,19 @@ import { MobSpawner } from '../groups/mob-spawner'
 export class Boss1 extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'enemy')
-
+    
     this.setScale(10)
     this.setSize(30, 30)
     this.setOffset(50, 3)
     this.setAnims()
 
-    this.spawner = new MobSpawner(this.scene, 30, 30)
+    this.name = 'boss'
+    
+    this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
-
+    
     this.setColliders(scene)
+   
   }
 
   setAnims () {
@@ -23,10 +26,11 @@ export class Boss1 extends Actor {
         prefix: 'idle-',
         end: 4
       }),
-      frameRate: 12
+      frameRate: 12,
+      repeat: -1
     })
     this.scene.anims.create({
-      key: 'death-boss',
+      key: 'boss-death',
       frames: this.scene.anims.generateFrameNames('enemy', {
         prefix: 'death-',
         end: 4
@@ -47,17 +51,11 @@ export class Boss1 extends Actor {
     })
   }
 
-  update () {
-    // this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-    if (this.hp === 0) {
-      this.anims.play('death-boss', true)
-      this.once('animationcomplete', () => {
-        console.log('animationcomplete')
-        this.destroy()
-      })
-    }
+  
 
-    if (this.active) {
+  update () {
+    
+     if (this.active && this.hp > 0) {
       if (this.body.velocity.x > 0) {
         this.body.velocity.x -= 10
       } else if (this.body.velocity.x < 0) {
