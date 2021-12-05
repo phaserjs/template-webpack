@@ -2,9 +2,9 @@ import { Scene, Math, Curves, Display } from 'phaser'
 // import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
 
-export class Level4 extends Scene {
+export class Level5 extends Scene {
   constructor () {
-    super('level-4-scene')
+    super('level-5-scene')
   }
 
   create () {
@@ -34,7 +34,7 @@ export class Level4 extends Scene {
   }
 
   initPlayer () {
-    this.player = new Player(this, 0, 0)
+    this.player = new Player(this, 0, 1600)
   }
 
   cameraSetup () {

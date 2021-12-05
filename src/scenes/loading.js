@@ -41,9 +41,9 @@ export class LoadingScene extends Scene {
     this.load.image('level3Mountain1', 'tilemaps/level-3/Wasteland_Mountains_1.png')
     this.load.image('level3Mountain2', 'tilemaps/level-3/Wasteland_Mountains_2.png')
 
-    // level 4
-    this.load.image('level4-bg', 'tilemaps/level-4/background.png')
-    this.load.image('level4-ground', 'tilemaps/level-4/tiles.png')
+    // level 5
+    this.load.image('level5-bg', 'tilemaps/level-4/background.png')
+    this.load.image('level5-ground', 'tilemaps/level-4/tiles.png')
     this.load.tilemapTiledJSON('level4-map', 'tilemaps/level-4/underwater-level.json')
 
     // player sprite
