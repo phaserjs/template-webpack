@@ -30,6 +30,27 @@ export class Boss2 extends Actor {
       frameRate: 12,
       repeat: -1
     })
+
+    this.scene.anims.create({
+      key: 'run-test-boss',
+      frames: this.scene.anims.generateFrameNames('sushi-hands', {
+        prefix: 'run-',
+        end: 7
+      }),
+      frameRate: 12,
+      repeat: -1
+    })
+
+    this.scene.anims.create({
+      key: 'atk-test-boss',
+      frames: this.scene.anims.generateFrameNames('sushi-hands', {
+        prefix: 'atk-',
+        end: 7
+      }),
+      frameRate: 12,
+      repeat: -1
+    })
+
     this.scene.anims.create({
       key: 'boss2-death',
       frames: this.scene.anims.generateFrameNames('sushi-hands', {
@@ -59,7 +80,7 @@ export class Boss2 extends Actor {
       } else if (this.body.velocity.x < 0) {
         this.body.velocity.x += 10
       }
-      this.anims.play('idle-test-boss', true)
+      this.anims.play('atk-test-boss', true)
     }
   }
 }
