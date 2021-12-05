@@ -11,7 +11,8 @@ export class BulletGroup extends Physics.Arcade.Group {
       frameQuantity: 300,
       active: false,
       visible: false,
-      key: 'adventurer'
+      key: 'adventurer',
+      setXY: {x, y}
     })
 
     this.setColliders(scene)
