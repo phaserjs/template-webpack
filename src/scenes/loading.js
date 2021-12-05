@@ -48,9 +48,9 @@ export class LoadingScene extends Scene {
     this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
 
     // load sprite atlases
-    this.load.atlas('mo-idle', 'sprites/anims/small_moidle.png', 'sprites/atlas/mo-idle-atlas.json')
     this.load.atlas('enemy', 'sprites/anims/testBoss.png', 'sprites/atlas/enemy-1-atlas.json')
     this.load.atlas('player', 'sprites/anims/wizard-sheet.png', 'sprites/atlas/wizard.json')
+    this.load.atlas('viking', 'sprites/anims/viking2.png', 'sprites/atlas/viking-atlas.json')
   }
 
   create () {
