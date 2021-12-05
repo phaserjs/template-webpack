@@ -11,37 +11,30 @@ export class Level4 extends Scene {
     this.initMap()
     this.initPlayer()
     // this.pathSetup()
-    // this.colliderSetup()
-    // this.cameraSetup()
+    this.colliderSetup()
+    this.cameraSetup()
     // this.debugSetup()
   }
 
   initMap () {
-    // creating bg
-    const level3Bg = this.add.image(400, 300, 'level3Bg').setScale(3)
-      .setScrollFactor(0)
-    this.add.tileSprite(200, 4000, 4500, 350, 'level3Mountain1')
-      .setScrollFactor(0.7, 0.7)
-    this.add.tileSprite(200, 3800, 4500, 350, 'level3Mountain2')
-      .setScrollFactor(0.4, 0.4)
-
     // creating tilemap
-    const level3map = this.make.tilemap({ key: 'level4-map' })
-    const tileSetLevel2 = level3map.addTilesetImage('SAND', 'sand')
-    const tileSetProps = level3map.addTilesetImage('props', 'props')
-    const tileSetBG = level3map.addTilesetImage('background', 'background')
+    const map = this.make.tilemap({ key: 'level4-map' })
+    const tilesetBackground = map.addTilesetImage('background', 'level4-bg')
+    const tilesetGround = map.addTilesetImage('tiles', 'level4-ground')
+
     // linking pngs to tileset names in the map
     // creating layers to reflect tilemap layers - order matters for rendering
-    level3map.createLayer('Background', tileSetBG, 0, 0)
-    this.platforms = level3map.createLayer('Copy of Tile Line (props)', tileSetProps, 0, 0)
-    // level3map.createLayer('Sand', tileSetLevel2, 0, 0)
+    map.createLayer('Background', tilesetBackground)
+    this.platforms = map.createLayer('Collision', tilesetGround, 0, 0)
+    map.createLayer('Ground Cover', tilesetGround)
+    map.createLayer('Rock 1', tilesetGround)
+    map.createLayer('Rock 2', tilesetGround)
     // setting collision property to ground
     this.platforms.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {
-    this.player = new Player(this, 0, 5000)
-    this.player.setScale(5)
+    this.player = new Player(this, 0, 0)
   }
 
   cameraSetup () {
@@ -84,10 +77,10 @@ export class Level4 extends Scene {
     graphics.fillStyle(0x00ff00, 1)
   }
 
-  // update () {
-  //   this.player.update()
+  update () {
+    this.player.update()
 
-  //   this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
-  //   this.mouseCoords.x = this.player.x
-  // }
+    // this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
+    // this.mouseCoords.x = this.player.x
+  }
 }

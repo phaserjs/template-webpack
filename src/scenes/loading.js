@@ -21,7 +21,7 @@ export class LoadingScene extends Scene {
     this.load.image('ground', 'tilemaps/level-1/tilesetOpenGame.png')
     this.load.image('water', 'tilemaps/level-1/WaterTextures.png')
     this.load.image('foliage', 'tilemaps/level-1/grass-trees.png')
-    this.load.image('house', 'tilemaps/level-1/Village-Endesga-Buildings.png' )
+    this.load.image('house', 'tilemaps/level-1/Village-Endesga-Buildings.png')
     this.load.tilemapTiledJSON('map', 'tilemaps/level-1/countryLevel.json')
     // level 1 parallax images
     this.load.image('background', 'tilemaps/level-1/country-platform-back.png')
@@ -40,6 +40,11 @@ export class LoadingScene extends Scene {
     this.load.image('level3Bg', 'tilemaps/level-3/Wasteland_Sky.png')
     this.load.image('level3Mountain1', 'tilemaps/level-3/Wasteland_Mountains_1.png')
     this.load.image('level3Mountain2', 'tilemaps/level-3/Wasteland_Mountains_2.png')
+
+    // level 4
+    this.load.image('level4-bg', 'tilemaps/level-4/background.png')
+    this.load.image('level4-ground', 'tilemaps/level-4/tiles.png')
+    this.load.tilemapTiledJSON('level4-map', 'tilemaps/level-4/underwater-level.json')
 
     // player sprite
     this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
