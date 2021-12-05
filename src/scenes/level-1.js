@@ -8,11 +8,11 @@ import { Boss1 } from '../classes/enemies/boss'
 import { Trigger } from '../classes/triggers'
 
 export class Level1 extends Scene {
-  constructor() {
+  constructor () {
     super('level-1-scene')
   }
 
-  create() {
+  create () {
     // this.input.on('pointerdown', () =>
     // this.scene.start('level-3-scene'), console.log('loading scene 2'))
 
@@ -34,7 +34,7 @@ export class Level1 extends Scene {
     this.scene.start('level-2-scene')
   }
 
-  initMap() {
+  initMap () {
     // creating bg
     this.bg = this.add.image(400, 300, 'background').setScale(3).setScrollFactor(0)
     this.add.tileSprite(200, 450, 4500, 350, 'foreground')
@@ -63,28 +63,26 @@ export class Level1 extends Scene {
     this.water.setCollisionByExclusion(-1, true)
   }
 
-  initPlayer() {
+  initPlayer () {
     this.player = new Player(this, 100, 300)
     this.bulletGroup = new BulletGroup(this, 30, 50)
   }
 
-  cameraSetup() {
+  cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
     this.physics.world.setBounds(0, 0, 3840, 540)
     this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 185)
     this.cameras.main.setBounds(0, 0, 3840, 540)
   }
 
-  colliderSetup() {
+  colliderSetup () {
     this.physics.world.addCollider(this.player, this.platforms, () => {
       this.player.canJump = true
       this.player.jumpCount = 2
     })
-
-
   }
 
-  pathSetup() {
+  pathSetup () {
     const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
     const points1 = [50, 400, 135, 400]
     const flyingPoints = [50, 400, 125, 320, 200, 400]
@@ -92,8 +90,7 @@ export class Level1 extends Scene {
     this.flying = new Curves.Spline(flyingPoints)
   }
 
-  enemySetup() {
-
+  enemySetup () {
     const mobConfig = {
       w: 30,
       h: 30,
@@ -146,7 +143,7 @@ export class Level1 extends Scene {
     })
   }
 
-  debugSetup() {
+  debugSetup () {
     const debugGraphics = this.add.graphics().setAlpha(0.7)
     this.platforms.renderDebug(debugGraphics, {
       tileColor: null,
@@ -165,16 +162,13 @@ export class Level1 extends Scene {
     graphics.fillStyle(0x00ff00, 1)
   }
 
-  update() {
+  update () {
     this.player.update()
     this.enemy.update()
-
 
     this.enemy3.update()
     this.enemy1.update()
     this.enemy2.update()
-
-
 
     if (this.boss.hp > 0) {
       this.boss.update()

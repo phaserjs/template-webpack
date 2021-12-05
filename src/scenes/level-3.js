@@ -1,4 +1,4 @@
-import { Scene, Math } from 'phaser'
+import { Scene, Math, Curves, Display } from 'phaser'
 import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
 
@@ -27,7 +27,7 @@ export class Level3 extends Scene {
 
     // creating tilemap
     const level3map = this.make.tilemap({ key: 'level3-map' })
-    const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files', 'level2-tiles')
+    const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files', 'level3-tiles')
     // linking pngs to tileset names in the map
     // creating layers to reflect tilemap layers - order matters for rendering
     this.platforms = level3map.createLayer('Platform', tileSetLevel2, 0, 0)
@@ -59,16 +59,16 @@ export class Level3 extends Scene {
     const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
     const points1 = [50, 400, 135, 400]
     const flyingPoints = [50, 400, 125, 320, 200, 400]
-    this.curve = new Phaser.Curves.Spline(points1)
-    this.flying = new Phaser.Curves.Spline(flyingPoints)
+    this.curve = new Curves.Spline(points1)
+    this.flying = new Curves.Spline(flyingPoints)
   }
 
   debugSetup () {
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    // this.platforms.renderDebug(debugGraphics, {
-    //     tileColor: null,
-    //     collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
-    // })
+    this.platforms.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 234, 48, 255)
+    })
     this.mouseCoords = this.add.text(50, 25)
 
     const graphics = this.add.graphics()

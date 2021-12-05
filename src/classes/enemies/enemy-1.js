@@ -6,9 +6,8 @@ export class Enemy1 extends Actor {
 
     scene.physics.add.existing(this)
     this.name = texture
-    if (config !== null) {
-      this.config = config
-    } else {
+    if (config === null || config === undefined) {
+      
       this.config =  {
         w: 30,
         h: 30,
@@ -19,6 +18,8 @@ export class Enemy1 extends Actor {
           idle: 4
         }
       }
+    } else {
+      this.config = config
     }
     this.setAnims()
     this.setScale(this.config.scale)
