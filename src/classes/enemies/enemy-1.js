@@ -45,7 +45,7 @@ export class Enemy1 extends Actor {
   update () {
     if (this.active) {
       this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-      this.anims.play('idle-enemy', true)
+      this.anims.play(this.name + '-idle', true)
     }
   }
 }
