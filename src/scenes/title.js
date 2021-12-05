@@ -24,7 +24,7 @@ export class Title extends Scene {
 
     // Detect when pointer is hovering over button, and change scene on click
     start.on('pointerdown', () =>
-      this.scene.start('level-4-scene'))
+      this.scene.start('level-1-scene'))
 
     start.on('pointerover', () =>
       start.setTint(0xff0000a160))

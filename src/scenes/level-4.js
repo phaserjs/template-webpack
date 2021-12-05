@@ -1,5 +1,5 @@
 import { Scene, Math, Curves, Display } from 'phaser'
-import { Enemy1 } from '../classes/enemies/enemy-1'
+// import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Player } from '../classes/player'
 
 export class Level4 extends Scene {
@@ -13,7 +13,7 @@ export class Level4 extends Scene {
     // this.pathSetup()
     this.colliderSetup()
     this.cameraSetup()
-    // this.debugSetup()
+    this.debugSetup()
   }
 
   initMap () {
@@ -71,8 +71,8 @@ export class Level4 extends Scene {
 
     graphics.lineStyle(1, 0xffffff, 1)
 
-    this.curve.draw(graphics, 64)
-    this.flying.draw(graphics, 64)
+    // this.curve.draw(graphics, 64)
+    // this.flying.draw(graphics, 64)
 
     graphics.fillStyle(0x00ff00, 1)
   }
