@@ -2,7 +2,7 @@ import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
 
 export class Boss1 extends Actor {
-  constructor (scene, x, y) {
+  constructor(scene, x, y) {
     super(scene, x, y, 'enemy')
 
     this.setScale(10)
@@ -18,7 +18,7 @@ export class Boss1 extends Actor {
     this.setColliders(scene)
   }
 
-  setAnims () {
+  setAnims() {
     this.scene.anims.create({
       key: 'idle-enemy',
       frames: this.scene.anims.generateFrameNames('enemy', {
@@ -39,7 +39,8 @@ export class Boss1 extends Actor {
     })
   }
 
-  setColliders (scene) {
+  setColliders(scene) {
+
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.platforms)
     scene.physics.world.addCollider(this.spawner, this.spawner)
@@ -50,7 +51,7 @@ export class Boss1 extends Actor {
     })
   }
 
-  update () {
+  update() {
     if (this.active && this.hp > 0) {
       if (this.body.velocity.x > 0) {
         this.body.velocity.x -= 10

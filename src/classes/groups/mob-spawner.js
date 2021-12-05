@@ -9,6 +9,7 @@ export class MobSpawner extends Physics.Arcade.Group {
     this.defaults.setAllowGravity = false
 
     this.runChildUpdate = true
+
     this.createMultiple({
       classType: Enemy1,
       frameQuantity: 30,

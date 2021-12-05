@@ -14,7 +14,6 @@ export class Level3 extends Scene {
     this.colliderSetup()
     this.cameraSetup()
     this.debugSetup()
-    this.enemy = new Enemy1(this, 400, 400, 'viking')
   }
 
   initMap () {
