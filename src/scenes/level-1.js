@@ -107,30 +107,24 @@ export class Level1 extends Scene {
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
 
-    this.spawner = new MobSpawner(this, 50, 100)
-    this.spawner.create(750, 300, 'enemy', null, true, true)
-
     this.boss = new Boss1(this, 3300, 220)
 
     this.enemy1.startFollow({
       duration: 700,
       yoyo: true,
-      repeat: -1,
-      rotateToPath: true
+      repeat: -1
     })
 
     this.enemy2.startFollow({
       duration: 700,
       yoyo: true,
-      repeat: -1,
-      rotateToPath: true
+      repeat: -1
     })
 
     this.enemy3.startFollow({
       duration: 1300,
       yoyo: true,
-      repeat: -1,
-      rotateToPath: true
+      repeat: -1
     })
   }
 
@@ -159,7 +153,9 @@ export class Level1 extends Scene {
 
   update () {
     this.player.update()
+
     this.enemy.update()
+    this.enemy4.update()
 
     this.enemy3.update()
     this.enemy1.update()
