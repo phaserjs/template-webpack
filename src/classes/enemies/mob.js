@@ -25,16 +25,7 @@ export class Mob extends Actor {
     this.setScale(this.config.scale)
     this.setSize(this.config.w, this.config.h)
     this.setOffset(this.config.xOff, this.config.yOff)
-
-    scene.physics.world.addCollider(this.scene.player, this, () => {
-      this.scene.player.getDamage(20)
-      this.destroy()
-    })
-    scene.physics.world.addCollider(this, this.scene.platforms)
-    scene.physics.world.addCollider(this, this.scene.bulletGroup, (boss, bullet) => {
-      this.destroy()
-      bullet.destroy()
-    })
+    this.setColliders(scene)
   }
 
   setAnims () {
@@ -45,6 +36,19 @@ export class Mob extends Actor {
         end: this.config.frameEnds.idle
       }),
       frameRate: 12
+    })
+  }
+
+  setColliders (scene) {
+    scene.physics.world.addOverlap(scene.player, this, () => {
+      this.scene.player.getDamage(20)
+      this.destroy()
+    })
+    scene.physics.world.addCollider(this, scene.floor)
+    scene.physics.world.addCollider(this, scene.platforms)
+    scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
+      bullet.destroy()
+      this.destroy()
     })
   }
 
