@@ -20,6 +20,19 @@ export class Gun extends Physics.Arcade.Group {
     this.setAnims()
   }
 
+  setColliders (scene) {
+    scene.physics.world.addCollider(this, scene.platforms, (bullet) => {
+      bullet.destroy()
+    })
+  }
+
+  fireBullet (x, y, facingLeft, enemyGun) {
+    const bullet = this.getFirstDead(false)
+    if (bullet) {
+      bullet.fire(x, y, facingLeft, enemyGun)
+    }
+  }
+
   setAnims () {
     this.scene.anims.create({
       key: 'iceBulletStart',
@@ -56,18 +69,25 @@ export class Gun extends Physics.Arcade.Group {
       }),
       frameRate: 16
     })
-  }
 
-  setColliders (scene) {
-    scene.physics.world.addCollider(this, scene.platforms, (bullet) => {
-      bullet.destroy()
+    this.scene.anims.create({
+      key: 'waterBullet',
+      frames: this.scene.anims.generateFrameNames('water-bullet', {
+        prefix: 'flight-',
+        start: 0,
+        end: 20
+      }),
+      frameRate: 16
     })
-  }
 
-  fireBullet (x, y, facingLeft, enemyGun) {
-    const bullet = this.getFirstDead(false)
-    if (bullet) {
-      bullet.fire(x, y, facingLeft, enemyGun)
-    }
+    this.scene.anims.create({
+      key: 'waterBulletImpact',
+      frames: this.scene.anims.generateFrameNames('water-bullet-impact', {
+        prefix: 'impact-',
+        start: 0,
+        end: 15
+      }),
+      frameRate: 16
+    })
   }
 }
