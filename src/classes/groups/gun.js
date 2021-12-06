@@ -16,6 +16,19 @@ export class Gun extends Physics.Arcade.Group {
     })
     this.enemyGun = enemyGun
     this.setColliders(scene)
+
+    this.setAnims()
+  }
+
+  setAnims () {
+    this.scene.anims.create({
+      key: 'fireBullet',
+      frames: this.scene.anims.generateFrameNames('mon-bullet', {
+        prefix: 'bullet-',
+        end: 5
+      }),
+      frameRate: 8
+    })
   }
 
   setColliders (scene) {

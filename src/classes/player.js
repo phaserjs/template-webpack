@@ -11,7 +11,7 @@ export class Player extends Actor {
     this.keyD = this.scene.input.keyboard.addKey('D')
     this.keyShoot = this.scene.input.keyboard.addKey('SPACE')
 
-    this.gun = new Gun(this.scene, 30, 50, false, 50)
+    this.gun = new Gun(this.scene, 3000, 50, false, 50)
 
     this.setScale(0.5)
 
@@ -59,9 +59,9 @@ export class Player extends Actor {
       key: 'attack',
       frames: this.scene.anims.generateFrameNames('player', {
         prefix: 'atk-',
-        end: 3
+        end: 7
       }),
-      frameRate: 12
+      frameRate: 24
     })
 
     this.scene.anims.create({
@@ -127,8 +127,9 @@ export class Player extends Actor {
         this.body.velocity.y = -this.jump
       }
       if (this.keyShoot.isDown) {
-        this.anims.play('attack', true)
         if (this.canShoot) {
+          console.log(this)
+          this.anims.play('attack', true)
           this.fire()
           this.canShoot = false
         }

@@ -1,6 +1,14 @@
 import { Scene, Curves, Display } from 'phaser'
+import { Boss3 } from '../classes/bosses/boss3'
+import { Boss4 } from '../classes/bosses/boss4'
+import { TempBoss } from '../classes/bosses/tempBoss'
+import { TempBoss2 } from '../classes/bosses/tempBoss2'
+import { TempBoss3 } from '../classes/bosses/tempBoss3'
+import { TempBoss4 } from '../classes/bosses/tempBoss4'
+// import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
+// import { Boss3 } from '../classes/enemies/boss3'
 
 export class Level3 extends Scene {
   constructor () {
@@ -48,15 +56,37 @@ export class Level3 extends Scene {
     this.cameras.main.setBounds(0, 0, 1920, 5760)
   }
 
-  enemySetup () {
-
-  }
-
   pathSetup () {
     const points1 = [50, 400, 135, 400]
     const flyingPoints = [50, 400, 125, 320, 200, 400]
     this.curve = new Curves.Spline(points1)
     this.flying = new Curves.Spline(flyingPoints)
+  }
+
+  enemySetup () {
+    const mobConfig = {
+      w: 30,
+      h: 30,
+      xOff: 50,
+      yOff: 8,
+      scale: 2,
+      frameEnds: {
+        idle: 4
+      }
+    }
+    this.boss = new Boss3(this, 300, 200)
+    this.bossTest = new Boss4(this, 800, 200)
+    this.enemyMob1 = new Mob(this, 200, 100, 'gen-mob-1', mobConfig)
+    this.bossTemp1 = new TempBoss(this, 500, 200)
+    this.bossTemp2 = new TempBoss2(this, 600, 400)
+    this.bossTemp3 = new TempBoss3(this, 550, 200)
+    this.bossTemp4 = new TempBoss4(this, 600, 500)
+
+    console.log(this.boss)
+    console.log(this.bossTest)
+    console.log(this.bossTemp1)
+    console.log(this.bossTemp2)
+    console.log(this.bossTemp4)
   }
 
   debugSetup () {
@@ -130,5 +160,19 @@ export class Level3 extends Scene {
     this.debugUpdate()
 
     this.player.update()
+
+    this.enemyMob1.update()
+
+    this.boss.update()
+
+    this.bossTest.update()
+
+    this.bossTemp1.update()
+
+    this.bossTemp2.update()
+
+    this.bossTemp3.update()
+
+    this.bossTemp4.update()
   }
 }

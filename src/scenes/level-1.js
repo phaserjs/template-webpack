@@ -1,9 +1,10 @@
-import { Scene, Curves, Display } from 'phaser'
+import { Scene, Math, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
+import { Facilitator } from '../classes/npc'
 export class Level1 extends Scene {
   constructor () {
     super('level-1-scene')
@@ -68,6 +69,7 @@ export class Level1 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
+    this.jared = new Facilitator(this, 3000, 200, 'jared')
   }
 
   cameraSetup () {
@@ -107,8 +109,20 @@ export class Level1 extends Scene {
       }
     }
 
+    // tempConfig for gen-mob-2
+    const tempConfig = {
+      w: 24,
+      h: 24,
+      xOff: 5,
+      yOff: 8,
+      scale: 1,
+      frameEnds: {
+        idle: 6
+      }
+    }
+
     this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
-    this.enemy4 = new Mob(this, 500, 200, 'enemy', mobConfig)
+    this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
     this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
@@ -207,6 +221,8 @@ export class Level1 extends Scene {
 
   update () {
     this.debugUpdate()
+
+    this.jared.update()
 
     this.enemy.update()
     this.enemy4.update()
