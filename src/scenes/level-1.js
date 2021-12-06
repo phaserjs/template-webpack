@@ -4,6 +4,7 @@ import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
+import { Facilitator } from '../classes/npc'
 export class Level1 extends Scene {
   constructor () {
     super('level-1-scene')
@@ -68,6 +69,7 @@ export class Level1 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
+    this.jared = new Facilitator(this, 3000, 200, 'jared')
   }
 
   cameraSetup () {
@@ -207,6 +209,8 @@ export class Level1 extends Scene {
 
   update () {
     this.debugUpdate()
+
+    this.jared.update()
 
     this.enemy.update()
     this.enemy4.update()
