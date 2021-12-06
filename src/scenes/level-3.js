@@ -56,10 +56,11 @@ export class Level3 extends Scene {
     this.jumpLayer = level3map.createLayer('jumpLayer', tileSetLevel2, 0, 0)
     // creating layers to reflect tilemap layers - order matters for rendering
     this.platforms = level3map.createLayer('Platform', tileSetLevel2, 0, 0)
-    level3map.createLayer('Water', tileSetLevel2, 0, 0)
+    this.water = level3map.createLayer('Water', tileSetLevel2, 0, 0)
     level3map.createLayer('Etc', tileSetLevel2, 0, 0)
     // setting collision property to ground
     this.platforms.setCollisionByExclusion(-1, true)
+    // this.water.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {
