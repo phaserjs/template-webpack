@@ -4,7 +4,6 @@ import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
-
 export class Level1 extends Scene {
   constructor () {
     super('level-1-scene')
@@ -18,6 +17,17 @@ export class Level1 extends Scene {
     this.triggerSetup()
     this.cameraSetup()
     this.debugSetup()
+
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.healthBar = this.add.image(150, 50, 'red-bar')
+    this.healthBar.setScrollFactor(0)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
   }
 
   changeScene () {

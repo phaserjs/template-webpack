@@ -4,7 +4,7 @@ import { Gun } from './groups/gun'
 export class Player extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'adventurer')
-
+    this.maxHealth = 100
     this.keyW = this.scene.input.keyboard.addKey('W')
     this.keyA = this.scene.input.keyboard.addKey('A')
     this.keyS = this.scene.input.keyboard.addKey('S')
@@ -109,6 +109,21 @@ export class Player extends Actor {
       this.jump = 220
     }
   }
+
+  // create () {
+  //   var healthBar
+  //   Player.health = 100
+  //   // change position if needed (but use same position for both images)
+  //   var backgroundBar = this.add.image(300, 20, 'green-bar')
+  //   backgroundBar.setScrollFactor(0)
+
+  //   healthBar = this.add.image(300, 20, 'red-bar')
+  //   healthBar.setScrollFactor(0)
+
+  //   // add text label to left of bar
+  //   var healthLabel = this.add.text(210, 20, 'Health', { fontSize: '20px', fill: '#ffffff' })
+  //   healthLabel.setScrollFactor(0)
+  // }
 
   update () {
     this.checkGodMode()

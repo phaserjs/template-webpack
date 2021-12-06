@@ -17,13 +17,16 @@ export class LoadingScene extends Scene {
     this.load.image('game-logo', 'title/game-logo.png')
 
     // enemy health
-    this.load.image('left-cap', 'ui/health/barHorizontal_green_left.png')
-    this.load.image('mid-cap', 'ui/health/barHorizontal_green_mid.png')
-    this.load.image('right-cap', 'ui/health/barHorizontal_green_right.png')
+    // this.load.image('left-cap', 'ui/health/barHorizontal_red_left.png')
+    // this.load.image('mid-cap', 'ui/health/barHorizontal_red_mid.png')
+    // this.load.image('right-cap', 'ui/health/barHorizontal_red_right.png')
 
-    this.load.image('left-cap-shadow', 'ui/health/barHorizontal_shadow_left.png')
-    this.load.image('mid-cap-shadow', 'ui/health/barHorizontal_shadow_mid.png')
-    this.load.image('right-cap-shadow', 'ui/health/barHorizontal_shadow_right.png')
+    // this.load.image('left-cap-shadow', 'ui/health/barHorizontal_shadow_left.png')
+    // this.load.image('mid-cap-shadow', 'ui/health/barHorizontal_shadow_mid.png')
+    // this.load.image('right-cap-shadow', 'ui/health/barHorizontal_shadow_right.png')
+
+    this.load.image('green-bar', 'ui/health/health_bar_decoration.png')
+    this.load.image('red-bar', 'ui/health/health_bar.png')
 
     // level 1
     this.load.image('clouds', 'tilemaps/level-1/clouds.png')
