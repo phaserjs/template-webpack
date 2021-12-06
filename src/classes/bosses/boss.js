@@ -3,13 +3,14 @@ import { MobSpawner } from '../groups/mob-spawner'
 
 export class Boss1 extends Actor {
   constructor (scene, x, y) {
-    super(scene, x, y, 'enemy')
+    super(scene, x, y, 'gen-mob-1')
 
     this.setScale(10)
     this.setSize(30, 30)
     this.setOffset(50, 3)
     this.setAnims()
-
+    this.hp = 100
+    this.maxHealth = 100
     this.name = 'boss'
 
     this.spawner = new MobSpawner(this.scene, 50, -30)
@@ -21,7 +22,7 @@ export class Boss1 extends Actor {
   setAnims () {
     this.scene.anims.create({
       key: 'idle-enemy',
-      frames: this.scene.anims.generateFrameNames('enemy', {
+      frames: this.scene.anims.generateFrameNames('gen-mob-1', {
         prefix: 'idle-',
         end: 4
       }),
@@ -30,7 +31,7 @@ export class Boss1 extends Actor {
     })
     this.scene.anims.create({
       key: 'boss-death',
-      frames: this.scene.anims.generateFrameNames('enemy', {
+      frames: this.scene.anims.generateFrameNames('gen-mob-1', {
         prefix: 'death-',
         end: 4
       }),
@@ -40,7 +41,7 @@ export class Boss1 extends Actor {
   }
 
   setColliders (scene) {
-    scene.physics.world.addCollider(scene.player, this)
+    scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.platforms)
     scene.physics.world.addCollider(this.spawner, this.spawner)
     scene.physics.world.addOverlap(scene.player.gun, this, (boss, bullet) => {
@@ -48,6 +49,9 @@ export class Boss1 extends Actor {
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
       this.getDamage(10)
+      this.scene.sound.play('enemyDamage', { loop: false })
+      scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
+      scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
       bullet.destroy()
     })
   }
