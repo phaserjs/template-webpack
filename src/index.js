@@ -12,8 +12,11 @@ const config = {
   type: Phaser.AUTO,
   title: 'SideScroller',
   parent: 'phaser-example',
-  width: 1920,
-  height: 1080,
+  scale: {
+    mode: Phaser.Scale.ScaleModes.NONE,
+    width: window.innerWidth,
+    height: window.innerHeight
+  },
   scene: [LoadingScene, Title, Level1, Level2, Level3, Level4, Level45, Level5],
   physics: {
     default: 'arcade',
