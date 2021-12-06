@@ -20,6 +20,22 @@ export class Level2 extends Scene {
     this.triggerSetup()
     this.cameraSetup()
 
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+    console.log(this.playerHealthBar)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
+
+    this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
+    this.add.image(3450, 22, 'enemy-red-bar')
+    this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
+
     this.input.on('pointerdown', () => {
       this.player.godMode = !this.player.godMode
     })
