@@ -12,7 +12,7 @@ export class Bullet extends Physics.Arcade.Sprite {
     this.setVisible(true)
     // console.log(this.body)
     this.scene.time.addEvent({
-      delay: 4000,
+      delay: 2300,
       callback: () => this.destroy()
     })
 
