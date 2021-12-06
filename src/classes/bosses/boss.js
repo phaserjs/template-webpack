@@ -40,10 +40,10 @@ export class Boss1 extends Actor {
   }
 
   setColliders (scene) {
-    scene.physics.world.addCollider(this.scene.player, this)
+    scene.physics.world.addCollider(scene.player, this)
     scene.physics.world.addCollider(this, this.scene.platforms)
     scene.physics.world.addCollider(this.spawner, this.spawner)
-    scene.physics.world.addCollider(this, this.scene.bulletGroup, (boss, bullet) => {
+    scene.physics.world.addOverlap(scene.player.gun, this, (boss, bullet) => {
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
