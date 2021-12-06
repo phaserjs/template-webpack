@@ -22,19 +22,23 @@ export class Level5 extends Scene {
     const map = this.make.tilemap({ key: 'level5-map' })
     const tilesetBackground = map.addTilesetImage('background', 'level5-bg')
     const tilesetGround = map.addTilesetImage('tiles', 'level5-ground')
+    const tilesetProps = map.addTilesetImage('props', 'props')
     const tilesetPlatforms = map.addTilesetImage('platform', 'platforms')
 
     // linking pngs to tileset names in the map
     // creating layers to reflect tilemap layers - order matters for rendering
-    this.jumpLayer = map.createLayer('Collision Horizontal', tilesetGround, 0, 0)
+    this.collider = map.createLayer('Collision Layer', tilesetGround, 0, 0)
+    this.jumpLayer = map.createLayer('Jump Layer', tilesetGround, 0, 0)
     map.createLayer('Background', tilesetBackground)
+    // this.add.tileSprite(200, 450, 8000, 1000, 'level5-Bg1').setScrollFactor(0.5)
     this.platforms = map.createLayer('Platforms', tilesetPlatforms)
     map.createLayer('Ground Cover', tilesetGround)
     map.createLayer('Rock1', tilesetGround)
     map.createLayer('Rock2', tilesetGround)
+    map.createLayer('Props', tilesetProps)
     // setting collision property to ground
     this.jumpLayer.setCollisionByExclusion(-1, true)
-    this.platforms.setCollisionByExclusion(-1, true)
+    this.collider.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {
@@ -53,7 +57,7 @@ export class Level5 extends Scene {
   }
 
   triggerSetup () {
-    this.endLevel = new Trigger(this, 3745, 448)
+    this.endLevel = new Trigger(this, 3050, 1750)
   }
 
   pathSetup () {
