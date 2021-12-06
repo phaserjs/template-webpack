@@ -56,13 +56,14 @@ export class Level4 extends Scene {
     const breakTiles = level4map.addTilesetImage('Retro-Lines-Tiles-transparent', 'level45')
     // creating layers to reflect tilemap layers - order matters for rendering
     this.jumpLayer = level4map.createLayer('Collision', tileSetLevel4)
-    level4map.createLayer('Water', cloudTileSetLevel4, 0, 0)
+    this.water = level4map.createLayer('Water', cloudTileSetLevel4, 0, 0)
     level4map.createLayer('Etc', cloudTileSetLevel4, 0, 0)
     this.platforms = level4map.createLayer('Platforms', cloudTileSetLevel4, 0, 0)
     this.ground = level4map.createLayer('Land', tileSetLevel4, 0, 0)
     level4map.createLayer('Break', breakTiles)
     // setting collision property to ground
     this.ground.setCollisionByExclusion(-1, true)
+    this.water.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {

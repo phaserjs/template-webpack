@@ -52,9 +52,9 @@ export class Patroller extends GameObjects.PathFollower {
 
     scene.physics.world.addOverlap(scene.player, this.gun, (player, bullet) => {
       player.getDamage(10)
-      this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
-      this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
-      this.scene.sound.play('playerDamageAudio', { loop: false })
+      scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
+      scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
+      scene.sound.play('playerDamageAudio', { loop: false })
       bullet.destroy()
     })
 
@@ -65,7 +65,7 @@ export class Patroller extends GameObjects.PathFollower {
   }
 
   fireGun () {
-    if (this.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
+    if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
       this.gun.fireBullet(this.x, this.y, this.flipX, true)
     }
   }
