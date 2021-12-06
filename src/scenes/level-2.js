@@ -39,6 +39,7 @@ export class Level2 extends Scene {
     const tilesetWater = level2map.addTilesetImage('Water', 'level2Water')
 
     // creating layers to reflect tilemap layers - order matters for rendering
+    this.jumpLayer = level2map.createLayer('Collision', tilesetMain)
     level2map.createLayer('Backdrop', tilesetSecond)
     this.water = level2map.createLayer('Water', tilesetWater)
     level2map.createLayer('Etc2', tilesetSecond)
