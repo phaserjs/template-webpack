@@ -2,7 +2,9 @@ import { Scene, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
-import { Boss1 } from '../classes/bosses/boss'
+import { MobSpawner } from '../classes/groups/mob-spawner'
+import { Boss2 } from '../classes/bosses/boss2'
+// import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
 
 export class Level2 extends Scene {
@@ -88,7 +90,9 @@ export class Level2 extends Scene {
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
 
-    this.boss = new Boss1(this, 5500, 220)
+    this.boss = new Boss2(this, 5500, 220)
+    console.log(this.boss)
+    console.log(this.boss.setSize)
 
     this.enemy.startFollow({
       duration: 700,

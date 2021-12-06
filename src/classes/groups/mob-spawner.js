@@ -15,7 +15,7 @@ export class MobSpawner extends Physics.Arcade.Group {
       frameQuantity: 30,
       active: false,
       visible: false,
-      key: 'enemy',
+      key: 'gen-mob-1',
       setXY: { x, y, stepX: 50 }
     })
 
