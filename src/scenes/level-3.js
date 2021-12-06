@@ -22,9 +22,29 @@ export class Level3 extends Scene {
     this.enemySetup()
     this.cameraSetup()
     this.debugSetup()
+
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+    console.log(this.playerHealthBar)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
+
+    this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
+    this.add.image(3450, 22, 'enemy-red-bar')
+    this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
   initMap () {
+    // creating tilemap
+    const level3map = this.make.tilemap({ key: 'level3-map' })
+    const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files', 'level3-tiles')
+
     // creating bg
     this.add.image(400, 300, 'level3Bg').setScale(3)
       .setScrollFactor(0)
@@ -33,10 +53,7 @@ export class Level3 extends Scene {
     this.add.tileSprite(200, 3800, 4500, 350, 'level3Mountain2')
       .setScrollFactor(0.4, 0.4)
 
-    // creating tilemap
-    const level3map = this.make.tilemap({ key: 'level3-map' })
-    const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files', 'level3-tiles')
-    // linking pngs to tileset names in the map
+    this.jumpLayer = level3map.createLayer('jumpLayer', tileSetLevel2, 0, 0)
     // creating layers to reflect tilemap layers - order matters for rendering
     this.platforms = level3map.createLayer('Platform', tileSetLevel2, 0, 0)
     level3map.createLayer('Water', tileSetLevel2, 0, 0)

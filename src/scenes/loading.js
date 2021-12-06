@@ -7,6 +7,54 @@ export class LoadingScene extends Scene {
 
   preload () {
     this.load.baseURL = 'assets/'
+    // loading screen setup
+    var progressBar = this.add.graphics()
+    var progressBox = this.add.graphics()
+    progressBox.fillStyle(0x222222, 0.8)
+    progressBox.fillRect(240, 270, 320, 50)
+    var width = this.cameras.main.width
+    var height = this.cameras.main.height
+    var loadingText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 50,
+      text: 'Loading...',
+      style: {
+        font: '20px monospace',
+        fill: '#ffffff'
+      }
+    })
+    loadingText.setOrigin(0.5, 0.5)
+    var percentText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 5,
+      text: '0%',
+      style: {
+        font: '18px monospace',
+        fill: '#ffffff'
+      }
+    })
+    percentText.setOrigin(0.5, 0.5)
+
+    this.load.on('progress', function (value) {
+      console.log(value)
+      percentText.setText(parseInt(value * 100) + '%')
+      progressBar.clear()
+      progressBar.fillStyle(0xffffff, 1)
+      progressBar.fillRect(250, 280, 300 * value, 30)
+    })
+
+    this.load.on('fileprogress', function (file) {
+      console.log(file.src)
+    })
+
+    this.load.on('complete', function () {
+      console.log('complete')
+      progressBar.destroy()
+      progressBox.destroy()
+      loadingText.destroy()
+      percentText.destroy()
+    })
+
     // title scene
     this.load.image('titleBg', 'title/parallax-mountain-bg.png')
     this.load.image('titleFarMount', 'title/parallax-mountain-montain-far.png')
@@ -90,6 +138,7 @@ export class LoadingScene extends Scene {
     this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')
     this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
     this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
+    this.load.atlas('portal', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
 
     // bullets
     this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
