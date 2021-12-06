@@ -16,15 +16,12 @@ export class LoadingScene extends Scene {
     this.load.image('start-game', 'title/start-game.png')
     this.load.image('game-logo', 'title/game-logo.png')
 
+    // load audio
+    this.load.audio('level1BgAudio', ['ui/audio/Idea.wav'])
     // enemy health
-    // this.load.image('left-cap', 'ui/health/barHorizontal_red_left.png')
-    // this.load.image('mid-cap', 'ui/health/barHorizontal_red_mid.png')
-    // this.load.image('right-cap', 'ui/health/barHorizontal_red_right.png')
-
-    // this.load.image('left-cap-shadow', 'ui/health/barHorizontal_shadow_left.png')
-    // this.load.image('mid-cap-shadow', 'ui/health/barHorizontal_shadow_mid.png')
-    // this.load.image('right-cap-shadow', 'ui/health/barHorizontal_shadow_right.png')
-
+    this.load.image('enemy-red-bar', 'ui/health/Pixel1_Healthbar_border.png')
+    this.load.image('enemy-shadow-bar', 'ui/health/Pixel1_Healthbar.png')
+    // player health
     this.load.image('green-bar', 'ui/health/health_bar_decoration.png')
     this.load.image('red-bar', 'ui/health/health_bar.png')
 

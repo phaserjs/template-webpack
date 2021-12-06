@@ -18,8 +18,8 @@ export class Actor extends Physics.Arcade.Sprite {
       alpha: 0.5,
       onStart: () => {
         if (value && !this.godMode) {
-          this.scene.healthBar.scaleX = (this.hp / this.maxHealth)
-          this.scene.healthBar.x -= (this.hp / this.maxHealth) - 1
+          this.scene.playerHealthBar.scaleX = (this.hp / this.maxHealth)
+          this.scene.playerHealthBar.x -= (this.hp / this.maxHealth) - 1
           this.hp -= value
         }
       },
