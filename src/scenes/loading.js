@@ -16,6 +16,15 @@ export class LoadingScene extends Scene {
     this.load.image('start-game', 'title/start-game.png')
     this.load.image('game-logo', 'title/game-logo.png')
 
+    // enemy health
+    this.load.image('left-cap', 'ui/health/barHorizontal_green_left.png')
+    this.load.image('mid-cap', 'ui/health/barHorizontal_green_mid.png')
+    this.load.image('right-cap', 'ui/health/barHorizontal_green_right.png')
+
+    this.load.image('left-cap-shadow', 'ui/health/barHorizontal_shadow_left.png')
+    this.load.image('mid-cap-shadow', 'ui/health/barHorizontal_shadow_mid.png')
+    this.load.image('right-cap-shadow', 'ui/health/barHorizontal_shadow_right.png')
+
     // level 1
     this.load.image('clouds', 'tilemaps/level-1/clouds.png')
     this.load.image('ground', 'tilemaps/level-1/tilesetOpenGame.png')
