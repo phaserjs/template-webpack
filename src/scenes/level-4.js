@@ -28,14 +28,14 @@ export class Level4 extends Scene {
     // creating bg
     const level4Bg = this.add.image(400, 300, 'level4Bg1').setScale(3)
       .setScrollFactor(0)
-    this.add.image(400,500, 'level4Bg2')
-    .setScrollFactor(0.1)
+    this.add.image(400, 500, 'level4Bg2')
+      .setScrollFactor(0.1)
     this.add.image(400, 220, 'level4Bg4')
-    .setScrollFactor(0.3)
-    this.add.image(400,600, 'level4Bg5')
-    .setScrollFactor(0.5)
-    this.add.tileSprite(400,450, 8000, 1000, 'level4Bg6')
-    .setScrollFactor(0.8)
+      .setScrollFactor(0.3)
+    this.add.image(400, 600, 'level4Bg5')
+      .setScrollFactor(0.5)
+    this.add.tileSprite(400, 450, 8000, 1000, 'level4Bg6')
+      .setScrollFactor(0.8)
     // creating tilemap
     const level4map = this.make.tilemap({ key: 'level4-map' })
     const cloudTileSetLevel4 = level4map.addTilesetImage('cloud_tileset', 'level4Clouds')
@@ -65,10 +65,10 @@ export class Level4 extends Scene {
 
   colliderSetup () {
     this.physics.world.addCollider(this.player, this.collider, () => {
-        this.player.canJump = true
-        this.player.jumpCount = 2
-      })
-      this.physics.world.addCollider(this.player, this.ground)
+      this.player.canJump = true
+      this.player.jumpCount = 2
+    })
+    this.physics.world.addCollider(this.player, this.ground)
   }
 
   pathSetup () {
