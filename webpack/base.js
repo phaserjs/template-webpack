@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -46,9 +46,9 @@ module.exports = {
     new webpack.DefinePlugin({
       CANVAS_RENDERER: JSON.stringify(true),
       WEBGL_RENDERER: JSON.stringify(true)
-    }),
-    new HtmlWebpackPlugin({
-      template: './dist/index.html'
     })
+    // new HtmlWebpackPlugin({
+    //   template: './dist/index.html'
+    // })
   ]
 }
