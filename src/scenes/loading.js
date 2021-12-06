@@ -92,11 +92,16 @@ export class LoadingScene extends Scene {
     this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
     this.load.atlas('ice-bullet', 'sprites/anims/ice-bullet.png', 'sprites/atlas/ice-bullet-atlas.json')
 
+    this.load.atlas('water-bullet', 'sprites/anims/water-bullet.png', 'sprites/atlas/water-bullet-atlas.json')
+    this.load.atlas('water-bullet-impact', 'sprites/anims/water-bullet-impact.png', 'sprites/atlas/water-bullet-impact-atlas.json')
+
     // golem
     this.load.atlas('golem-dead', 'sprites/anims/golempack/GolemDead.png', 'sprites/atlas/golemAtlas/dead-atlas.json')
     this.load.atlas('golem-punch', 'sprites/anims/golempack/GolemDoublePunch.png', 'sprites/atlas/golemAtlas/punch-atlas.json')
     this.load.atlas('golem-idle', 'sprites/anims/golempack/GolemIdle.png', 'sprites/atlas/golemAtlas/idle-atlas.json')
     this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
+
+    // them peeps
     this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/facilitator-atlas.json')
   }
 
