@@ -15,7 +15,7 @@ export class Boss1 extends Actor {
 
     this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
-
+    console.log(this)
     this.setColliders(scene)
   }
 
@@ -57,7 +57,13 @@ export class Boss1 extends Actor {
   }
 
   update () {
-    if (this.active && this.hp > 0) {
+    if (this.active && this.hp < 40 && this.hp > 0) {
+      this.anims.play('jared-walk', true)
+      this.body.setSize(55, 80)
+      this.body.setOffset(5, 0)
+      this.setScale(5)
+      this.flipX = true
+    } else if (this.active && this.hp > 0) {
       if (this.body.velocity.x > 0) {
         this.body.velocity.x -= 10
       } else if (this.body.velocity.x < 0) {
