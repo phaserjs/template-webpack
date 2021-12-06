@@ -110,21 +110,6 @@ export class Player extends Actor {
     }
   }
 
-  // create () {
-  //   var healthBar
-  //   Player.health = 100
-  //   // change position if needed (but use same position for both images)
-  //   var backgroundBar = this.add.image(300, 20, 'green-bar')
-  //   backgroundBar.setScrollFactor(0)
-
-  //   healthBar = this.add.image(300, 20, 'red-bar')
-  //   healthBar.setScrollFactor(0)
-
-  //   // add text label to left of bar
-  //   var healthLabel = this.add.text(210, 20, 'Health', { fontSize: '20px', fill: '#ffffff' })
-  //   healthLabel.setScrollFactor(0)
-  // }
-
   update () {
     this.checkGodMode()
 

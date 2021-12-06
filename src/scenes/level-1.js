@@ -19,7 +19,7 @@ export class Level1 extends Scene {
     this.debugSetup()
 
     // change position if needed (but use same position for both images)
-    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    var backgroundBar = this.add.image(150, 50,git 'green-bar')
     backgroundBar.setScrollFactor(0)
 
     this.healthBar = this.add.image(150, 50, 'red-bar')
