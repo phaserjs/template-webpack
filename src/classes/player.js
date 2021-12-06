@@ -87,7 +87,6 @@ export class Player extends Actor {
     this.scene.physics.world.addCollider(this, this.scene.collider, () => {
       this.canJump = true
     })
-
     this.scene.physics.world.addCollider(this, this.scene.jumpLayer, () => {
       this.canJump = true
     })
@@ -128,7 +127,6 @@ export class Player extends Actor {
       }
       if (this.keyShoot.isDown) {
         if (this.canShoot) {
-          console.log(this)
           this.anims.play('attack', true)
           this.fire()
           this.canShoot = false

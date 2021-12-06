@@ -120,8 +120,11 @@ export class LoadingScene extends Scene {
     this.load.image('level5-bg', 'tilemaps/level-5/background.png')
     this.load.image('level5-ground', 'tilemaps/level-5/tiles.png')
     this.load.image('platforms', 'tilemaps/level-5/platform.png')
+    this.load.image('props', 'tilemaps/level-5/props.png')
     this.load.tilemapTiledJSON('level5-map', 'tilemaps/level-5/underwater-level.json')
 
+    // level 5 parallax images
+    // this.load.image('level5-Bg1', 'tilemaps/level-5/foreground-merged.png')
     // player sprite
     this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
 
@@ -141,11 +144,16 @@ export class LoadingScene extends Scene {
     this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
     this.load.atlas('ice-bullet', 'sprites/anims/ice-bullet.png', 'sprites/atlas/ice-bullet-atlas.json')
 
+    this.load.atlas('water-bullet', 'sprites/anims/water-bullet.png', 'sprites/atlas/water-bullet-atlas.json')
+    this.load.atlas('water-bullet-impact', 'sprites/anims/water-bullet-impact.png', 'sprites/atlas/water-bullet-impact-atlas.json')
+
     // golem
     this.load.atlas('golem-dead', 'sprites/anims/golempack/GolemDead.png', 'sprites/atlas/golemAtlas/dead-atlas.json')
     this.load.atlas('golem-punch', 'sprites/anims/golempack/GolemDoublePunch.png', 'sprites/atlas/golemAtlas/punch-atlas.json')
     this.load.atlas('golem-idle', 'sprites/anims/golempack/GolemIdle.png', 'sprites/atlas/golemAtlas/idle-atlas.json')
     this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
+
+    // them peeps
     this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/facilitator-atlas.json')
   }
 
