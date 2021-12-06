@@ -1,16 +1,16 @@
 import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
 
-export class TempBoss extends Actor {
+export class TempBoss3 extends Actor {
   constructor (scene, x, y) {
-    super(scene, x, y, 'gen-mob-2')
+    super(scene, x, y, 'gen-mob-3')
 
     this.setScale(5)
-    this.setSize(15, 16)
-    this.setOffset(9, 3)
+    this.setSize(12, 16)
+    this.setOffset(14, 5)
     this.setAnims()
 
-    this.name = 'tempBoss'
+    this.name = 'tempBoss3'
 
     this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
@@ -21,8 +21,8 @@ export class TempBoss extends Actor {
   setAnims () {
     // idle
     this.scene.anims.create({
-      key: 'temp-idle',
-      frames: this.scene.anims.generateFrameNames('gen-mob-2', {
+      key: 'temp3-idle',
+      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
         prefix: 'idle-',
         end: 4
       }),
@@ -32,10 +32,10 @@ export class TempBoss extends Actor {
 
     // atk
     this.scene.anims.create({
-      key: 'temp-atk',
-      frames: this.scene.anims.generateFrameNames('gen-mob-2', {
+      key: 'temp3-atk',
+      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
         prefix: 'atk-',
-        end: 10
+        end: 6
       }),
       frameRate: 12,
       repeat: -1
@@ -43,10 +43,10 @@ export class TempBoss extends Actor {
 
     // run
     this.scene.anims.create({
-      key: 'temp-run',
-      frames: this.scene.anims.generateFrameNames('gen-mob-2', {
+      key: 'temp3-run',
+      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
         prefix: 'run-',
-        end: 7
+        end: 6
       }),
       frameRate: 12,
       repeat: -1
@@ -54,10 +54,10 @@ export class TempBoss extends Actor {
 
     // death
     this.scene.anims.create({
-      key: 'tempBoss-death',
-      frames: this.scene.anims.generateFrameNames('gen-mob-2', {
+      key: 'tempBoss3-death',
+      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
         prefix: 'death-',
-        end: 4
+        end: 8
       }),
       frameRate: 12
     })
@@ -83,8 +83,8 @@ export class TempBoss extends Actor {
       // }
       // this.anims.play('tempBoss-death', true)
       // this.anims.play('temp-run', true)
-      this.anims.play('temp-idle', true)
-      // this.anims.play('temp-atk', true)
+      // this.anims.play('temp-idle', true)
+      this.anims.play('temp3-atk', true)
     }
   }
 }

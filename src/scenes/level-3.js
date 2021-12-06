@@ -3,6 +3,7 @@ import { Boss3 } from '../classes/bosses/boss3'
 import { Boss4 } from '../classes/bosses/boss4'
 import { TempBoss } from '../classes/bosses/tempBoss'
 import { TempBoss2 } from '../classes/bosses/tempBoss2'
+import { TempBoss3 } from '../classes/bosses/tempBoss3'
 // import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
@@ -85,6 +86,7 @@ export class Level3 extends Scene {
     this.bossTest = new Boss4(this, 800, 200)
     this.enemyMob1 = new Mob(this, 200, 100, 'gen-mob-1', mobConfig)
     this.bossTemp1 = new TempBoss(this, 500, 200)
+    this.bossTemp3 = new TempBoss3(this, 550, 200)
     this.bossTemp2 = new TempBoss2(this, 600, 400)
     console.log(this.boss)
     console.log(this.bossTest)
@@ -114,26 +116,15 @@ export class Level3 extends Scene {
     this.player.update()
     this.enemyMob1.update()
 
-    if (this.boss.hp > 0) {
-      this.boss.update()
-    } else if (this.boss.active) {
-      this.boss.die()
-    }
-    if (this.bossTest.hp > 0) {
-      this.bossTest.update()
-    } else if (this.bossTest.active) {
-      this.bossTest.die()
-    }
-    if (this.bossTemp1.hp > 0) {
-      this.bossTemp1.update()
-    } else if (this.bossTemp1.active) {
-      this.bossTemp1.die()
-    }
-    if (this.bossTemp2.hp > 0) {
-      this.bossTemp2.update()
-    } else if (this.bossTemp2.active) {
-      this.bossTemp2.die()
-    }
+    this.boss.update()
+
+    this.bossTest.update()
+
+    this.bossTemp1.update()
+
+    this.bossTemp2.update()
+
+    this.bossTemp3.update()
 
     this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
     this.mouseCoords.x = this.player.x

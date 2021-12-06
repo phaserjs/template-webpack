@@ -68,6 +68,7 @@ export class LoadingScene extends Scene {
     // load sprite atlases
     this.load.atlas('gen-mob-1', 'sprites/anims/gen-mob-1.png', 'sprites/atlas/gen-mob-1-atlas.json')
     this.load.atlas('gen-mob-2', 'sprites/anims/gen-mob-2.png', 'sprites/atlas/gen-mob-2-atlas.json')
+    this.load.atlas('gen-mob-3', 'sprites/anims/gen-mob-3.png', 'sprites/atlas/gen-mob-3-atlas.json')
     this.load.atlas('player', 'sprites/anims/wizard-sheet.png', 'sprites/atlas/wizard.json')
     this.load.atlas('viking', 'sprites/anims/viking2.png', 'sprites/atlas/viking-atlas.json')
     this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')

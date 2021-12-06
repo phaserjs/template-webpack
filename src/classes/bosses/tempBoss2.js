@@ -83,8 +83,8 @@ export class TempBoss2 extends Actor {
       // }
       // this.anims.play('tempBoss2-death', true)
       // this.anims.play('golem-run', true)
-      // this.anims.play('golem-idle', true)
-      this.anims.play('golem-atk', true)
+      this.anims.play('golem-idle', true)
+      // this.anims.play('golem-atk', true)
     }
   }
 }
