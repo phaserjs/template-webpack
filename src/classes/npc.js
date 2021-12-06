@@ -6,17 +6,17 @@ export class Facilitator extends Actor {
 
     this.body.setSize(55, 85)
     this.body.setOffset(82, 55)
-    this.name = 'facilitator'
+    this.name = texture
     this.speed = 220
 
     this.initAnimations()
-    this.setColliders()
+    this.setColliders(scene)
   }
 
   initAnimations () {
     this.scene.anims.create({
       key: 'walk',
-      frames: this.scene.anims.generateFrameNames('player', {
+      frames: this.scene.anims.generateFrameNames(this.name, {
         prefix: 'walk-',
         end: 7
       }),
@@ -24,26 +24,12 @@ export class Facilitator extends Actor {
     })
   }
 
-  setColliders () {
-    this.scene.physics.world.addCollider(this, this.scene.platforms, () => {
-      this.canJump = true
-    })
-    this.scene.physics.world.addCollider(this, this.scene.ground, () => {
-      this.canJump = true
-    })
-    this.scene.physics.world.addCollider(this, this.scene.floor, () => {
-      this.canJump = true
-    })
-    this.scene.physics.world.addCollider(this, this.scene.collider, () => {
-      this.canJump = true
-    })
-
-    this.scene.physics.world.addCollider(this, this.scene.jumpLayer, () => {
-      this.canJump = true
-    })
+  setColliders (scene) {
+    scene.physics.world.addCollider(this, scene.floor)
+    scene.physics.world.addCollider(this, scene.platforms)
   }
 
   update () {
-
+    this.anims.play('walk', true)
   }
 }
