@@ -16,8 +16,7 @@ export class Level1 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-    this.debu
-      .gSetup()
+    this.debugSetup()
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
