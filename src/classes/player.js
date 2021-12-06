@@ -125,7 +125,6 @@ export class Player extends Actor {
       }
       if (this.keyShoot.isDown) {
         if (this.canShoot) {
-          console.log(this)
           this.anims.play('attack', true)
           this.fire()
           this.canShoot = false
