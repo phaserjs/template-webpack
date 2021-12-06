@@ -4,14 +4,14 @@ import { Gun } from './groups/gun'
 export class Player extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'adventurer')
-
+    this.maxHealth = 100
     this.keyW = this.scene.input.keyboard.addKey('W')
     this.keyA = this.scene.input.keyboard.addKey('A')
     this.keyS = this.scene.input.keyboard.addKey('S')
     this.keyD = this.scene.input.keyboard.addKey('D')
     this.keyShoot = this.scene.input.keyboard.addKey('SPACE')
 
-    this.gun = new Gun(this.scene, 30, 50, false, 50)
+    this.gun = new Gun(this.scene, 3000, 50, false, 50)
 
     this.setScale(0.5)
 
@@ -59,9 +59,9 @@ export class Player extends Actor {
       key: 'attack',
       frames: this.scene.anims.generateFrameNames('player', {
         prefix: 'atk-',
-        end: 3
+        end: 7
       }),
-      frameRate: 12
+      frameRate: 24
     })
 
     this.scene.anims.create({
@@ -78,7 +78,18 @@ export class Player extends Actor {
     this.scene.physics.world.addCollider(this, this.scene.platforms, () => {
       this.canJump = true
     })
-
+    this.scene.physics.world.addCollider(this, this.scene.ground, () => {
+      this.canJump = true
+    })
+    this.scene.physics.world.addCollider(this, this.scene.floor, () => {
+      this.canJump = true
+    })
+    this.scene.physics.world.addCollider(this, this.scene.collider, () => {
+      this.canJump = true
+    })
+    this.scene.physics.world.addCollider(this, this.scene.jumpLayer, () => {
+      this.canJump = true
+    })
     this.scene.physics.world.addCollider(this.gun, this.scene.platforms, (bullet) => {
       bullet.destroy()
     })
@@ -115,8 +126,8 @@ export class Player extends Actor {
         this.body.velocity.y = -this.jump
       }
       if (this.keyShoot.isDown) {
-        this.anims.play('attack', true)
         if (this.canShoot) {
+          this.anims.play('attack', true)
           this.fire()
           this.canShoot = false
         }

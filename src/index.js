@@ -5,6 +5,7 @@ import { Level2 } from './scenes/level-2'
 import { Level3 } from './scenes/level-3'
 import { Level4 } from './scenes/level-4'
 import { Level45 } from './scenes/level-45'
+import { Level5 } from './scenes/level-5'
 import { Title } from './scenes/title'
 
 const config = {
@@ -13,12 +14,13 @@ const config = {
   parent: 'phaser-example',
   width: 960,
   height: 540,
-  scene: [LoadingScene, Title, Level1, Level2, Level3, Level4, Level45],
+  scene: [LoadingScene, Title, Level1, Level2, Level3, Level4, Level45, Level5],
   physics: {
     default: 'arcade',
     arcade: {
       debug: true,
-      gravity: { y: 280 }
+      gravity: { y: 280 },
+      fixedStep: false
     }
   }
 }

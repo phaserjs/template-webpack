@@ -1,0 +1,108 @@
+{
+  "frames": [
+    {
+      "filename": "bullet-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bullet-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bullet-2",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 96,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bullet-3",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 144,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bullet-4",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 192,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bullet-5",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 240,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bullet-6",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 288,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bullet-7",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 336,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    }
+  ]
+}
