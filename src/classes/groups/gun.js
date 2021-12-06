@@ -40,7 +40,6 @@ export class Gun extends Physics.Arcade.Group {
     const bullet = this.getFirstDead(false)
     if (bullet) {
       bullet.fire(x, y, facingLeft, enemyGun)
-      // this.scene.anims.play('fireBullet', true)
     }
   }
 }

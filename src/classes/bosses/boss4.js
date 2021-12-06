@@ -86,10 +86,10 @@ export class Boss4 extends Actor {
       // }
       const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
       if (dist < 10000) {
-        this.anims.play('surf-prue-boss', true)
+        this.anims.play('run-ahmad-boss', true)
       } else if (dist > 10000 && dist < 60000) {
         this.scene.physics.accelerateToObject(this, this.scene.player)
-        this.anims.play('run-prue-boss', true)
+        this.anims.play('attack-ahmad-boss', true)
       } else {
         this.setVelocityX(0)
         this.anims.play('idle-ahmad-boss', true)
