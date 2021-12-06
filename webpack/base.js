@@ -7,13 +7,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   mode: 'development',
   devtool: 'eval-source-map',
-  // devServer: {
-  //   contentBase: path.join(__dirname, '..', 'src')
-  // },
-  // entry: path.join(__dirname, '../src/index.js'),
-  // output: {
-  //   filename: 'bundle.js'
-  // },
+  devServer: {
+    contentBase: path.join(__dirname, '..', 'src')
+  },
+  entry: path.join(__dirname, '../src/index.js'),
+  output: {
+    filename: 'bundle.js'
+  },
   module: {
     rules: [
       {
