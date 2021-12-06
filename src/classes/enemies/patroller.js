@@ -64,7 +64,7 @@ export class Patroller extends GameObjects.PathFollower {
   }
 
   fireGun () {
-    if (this.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
+    if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
       this.gun.fireBullet(this.x, this.y, this.flipX, true)
     }
   }
