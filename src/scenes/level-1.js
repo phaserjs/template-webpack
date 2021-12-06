@@ -230,6 +230,8 @@ export class Level1 extends Scene {
     this.enemy1.update()
     this.enemy2.update()
 
+    this.endLevel.update()
+
     if (this.boss.hp > 0) {
       this.boss.update()
     } else if (this.boss.active) {
