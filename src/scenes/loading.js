@@ -6,7 +6,7 @@ export class LoadingScene extends Scene {
   }
 
   preload () {
-    this.load.baseURL = './assets/'
+    this.load.baseURL = 'assets/'
     // title scene
     this.load.image('titleBg', 'title/parallax-mountain-bg.png')
     this.load.image('titleFarMount', 'title/parallax-mountain-montain-far.png')

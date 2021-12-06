@@ -43,7 +43,7 @@ module.exports = {
     new CopyWebpackPlugin(
       [
         {
-          from: 'src',
+          from: 'assets',
           to: 'dist'
         }
       ]
