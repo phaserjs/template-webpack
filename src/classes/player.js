@@ -88,6 +88,9 @@ export class Player extends Actor {
       this.canJump = true
     })
 
+    this.scene.physics.world.addCollider(this, this.scene.jumpLayer, () => {
+      this.canJump = true
+    })
     this.scene.physics.world.addCollider(this.gun, this.scene.platforms, (bullet) => {
       bullet.destroy()
     })
