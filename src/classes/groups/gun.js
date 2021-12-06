@@ -11,11 +11,23 @@ export class Gun extends Physics.Arcade.Group {
       quantity: ammo,
       active: false,
       visible: false,
-      key: 'adventurer',
+      key: 'mon-bullet',
       setXY: { x, y }
     })
     this.enemyGun = enemyGun
     this.setColliders(scene)
+    this.setAnims()
+  }
+
+  setAnims () {
+    this.scene.anims.create({
+      key: 'fireBullet',
+      frames: this.scene.anims.generateFrameNames('mon-bullet', {
+        prefix: 'bullet-',
+        end: 5
+      }),
+      frameRate: 8
+    })
   }
 
   setColliders (scene) {
@@ -28,6 +40,7 @@ export class Gun extends Physics.Arcade.Group {
     const bullet = this.getFirstDead(false)
     if (bullet) {
       bullet.fire(x, y, facingLeft, enemyGun)
+      // this.scene.anims.play('fireBullet', true)
     }
   }
 }

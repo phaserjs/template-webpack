@@ -4,6 +4,7 @@ import { Boss4 } from '../classes/bosses/boss4'
 import { TempBoss } from '../classes/bosses/tempBoss'
 import { TempBoss2 } from '../classes/bosses/tempBoss2'
 import { TempBoss3 } from '../classes/bosses/tempBoss3'
+import { TempBoss4 } from '../classes/bosses/tempBoss4'
 // import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
@@ -86,12 +87,15 @@ export class Level3 extends Scene {
     this.bossTest = new Boss4(this, 800, 200)
     this.enemyMob1 = new Mob(this, 200, 100, 'gen-mob-1', mobConfig)
     this.bossTemp1 = new TempBoss(this, 500, 200)
-    this.bossTemp3 = new TempBoss3(this, 550, 200)
     this.bossTemp2 = new TempBoss2(this, 600, 400)
+    this.bossTemp3 = new TempBoss3(this, 550, 200)
+    this.bossTemp4 = new TempBoss4(this, 600, 500)
+
     console.log(this.boss)
     console.log(this.bossTest)
     console.log(this.bossTemp1)
     console.log(this.bossTemp2)
+    console.log(this.bossTemp4)
   }
 
   debugSetup () {
@@ -125,6 +129,8 @@ export class Level3 extends Scene {
     this.bossTemp2.update()
 
     this.bossTemp3.update()
+
+    this.bossTemp4.update()
 
     this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
     this.mouseCoords.x = this.player.x
