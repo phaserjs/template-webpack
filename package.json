@@ -45,7 +45,8 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "webpack-dev-server": "^3.9.0",
-    "phaser": "^3.55.2"
+    "express": "^4.17.1",
+    "phaser": "^3.55.2",
+    "webpack-dev-server": "^3.9.0"
   }
 }
