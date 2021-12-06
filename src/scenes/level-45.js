@@ -25,7 +25,7 @@ export class Level45 extends Scene {
     // creating tilemap
     const level45map = this.make.tilemap({ key: 'level45-map' })
     const tileSetLevel45 = level45map.addTilesetImage('Retro-Lines-Tiles-transparent', 'level45')
-    this.collider = level45map.createLayer('Collision', tileSetLevel45)
+    this.jumpLayer = level45map.createLayer('Collision', tileSetLevel45)
     level45map.addTilesetImage('Background', tileSetLevel45)
     level45map.createLayer('Etc', tileSetLevel45)
     // creating layers to reflect tilemap layers - order matters for rendering
