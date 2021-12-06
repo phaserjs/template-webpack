@@ -17,7 +17,6 @@ export class Level2 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-    this.debugSetup()
 
     this.input.on('pointerdown', () => {
       this.player.godMode = !this.player.godMode
@@ -173,8 +172,6 @@ export class Level2 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     this.enemy1.update()
 
     if (this.boss.hp > 0) {

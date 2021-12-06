@@ -13,7 +13,6 @@ export class Level3 extends Scene {
     this.pathSetup()
     this.enemySetup()
     this.cameraSetup()
-    this.debugSetup()
   }
 
   initMap () {
@@ -127,8 +126,6 @@ export class Level3 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     this.player.update()
   }
 }

@@ -17,7 +17,7 @@ export class Level1 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-    this.debugSetup()
+
     this.sound.play('level1BgAudio', { loop: true })
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -208,8 +208,6 @@ export class Level1 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     this.jared.update()
 
     this.enemy.update()

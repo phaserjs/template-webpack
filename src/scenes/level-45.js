@@ -14,7 +14,6 @@ export class Level45 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-    this.debugSetup()
   }
 
   changeScene () {
@@ -129,8 +128,6 @@ export class Level45 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     if (this.player.hp > 0) {
       this.player.update()
     } else {

@@ -14,7 +14,6 @@ export class Level5 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-    this.debugSetup()
   }
 
   initMap () {
@@ -131,8 +130,6 @@ export class Level5 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     this.player.update()
   }
 }
