@@ -65,10 +65,10 @@ export class Level3 extends Scene {
 
   debugSetup () {
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.platforms.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 234, 48, 255)
-    })
+    // this.platforms.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(243, 234, 48, 255)
+    // })
     this.mouseCoords = this.add.text(50, 25)
 
     const graphics = this.add.graphics()
