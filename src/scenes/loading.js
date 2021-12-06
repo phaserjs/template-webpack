@@ -72,6 +72,11 @@ export class LoadingScene extends Scene {
     this.load.image('play-again', 'death/play-again.png')
     this.load.image('deathBg', 'death/background_0.png')
 
+    // win scene
+    this.load.image('win-text', 'win/win.png')
+    this.load.image('winBg', 'win/winbg.png')
+    this.load.image('banana', 'win/banana.png')
+
     // load audio
     this.load.audio('level1BgAudio', ['ui/audio/Idea.mp3'])
     this.load.audio('playerDamageAudio', ['ui/audio/TakeDamage.mp3'])
