@@ -49,6 +49,7 @@ export class Level45 extends Scene {
     this.water = level45map.createLayer('Waterfall', tileSetLevel45)
     // setting collision property to ground
     this.platforms.setCollisionByExclusion(-1, true)
+    this.water.setCollisionByExclusion(-1, 0)
   }
 
   initPlayer () {
