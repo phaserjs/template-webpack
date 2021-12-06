@@ -58,6 +58,7 @@ export class Boss1 extends Actor {
 
   update () {
     if (this.active && this.hp < 40 && this.hp > 0) {
+      // for the lols
       this.anims.play('jared-walk', true)
       this.body.setSize(55, 80)
       this.body.setOffset(5, 0)
