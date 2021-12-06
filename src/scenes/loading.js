@@ -17,7 +17,7 @@ export class LoadingScene extends Scene {
     this.load.image('game-logo', 'title/game-logo.png')
 
     // load audio
-    this.load.audio('level1BgAudio', ['ui/audio/Idea.wav'])
+    this.load.audio('level1BgAudio', ['ui/audio/Idea.mp3'])
     // enemy health
     this.load.image('enemy-red-bar', 'ui/health/Pixel1_Healthbar_border.png')
     this.load.image('enemy-shadow-bar', 'ui/health/Pixel1_Healthbar.png')
