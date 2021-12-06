@@ -1,7 +1,7 @@
 {
   "frames": [
       {
-          "filename": "walk-right-0",
+          "filename": "walk-0",
           "frame": {
               "w": 64,
               "h": 80,
@@ -14,7 +14,7 @@
           }
       },
       {
-          "filename": "walk-right-1",
+          "filename": "walk-1",
           "frame": {
               "w": 64,
               "h": 80,
@@ -27,7 +27,7 @@
           }
       },
       {
-          "filename": "walk-right-2",
+          "filename": "walk-2",
           "frame": {
               "w": 64,
               "h": 80,
@@ -40,7 +40,7 @@
           }
       },
       {
-          "filename": "walk-right-3",
+          "filename": "walk-3",
           "frame": {
               "w": 64,
               "h": 80,
@@ -53,7 +53,7 @@
           }
       },
       {
-          "filename": "walk-right-4",
+          "filename": "walk-4",
           "frame": {
               "w": 64,
               "h": 80,
@@ -66,7 +66,7 @@
           }
       },
       {
-          "filename": "walk-right-5",
+          "filename": "walk-5",
           "frame": {
               "w": 64,
               "h": 80,
@@ -79,7 +79,7 @@
           }
       },
       {
-          "filename": "walk-right-6",
+          "filename": "walk-6",
           "frame": {
               "w": 64,
               "h": 80,
@@ -92,7 +92,7 @@
           }
       },
       {
-          "filename": "walk-right-7",
+          "filename": "walk-7",
           "frame": {
               "w": 64,
               "h": 80,
