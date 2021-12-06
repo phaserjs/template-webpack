@@ -41,6 +41,10 @@ export class Level3 extends Scene {
   }
 
   initMap () {
+    // creating tilemap
+    const level3map = this.make.tilemap({ key: 'level3-map' })
+    const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files', 'level3-tiles')
+
     // creating bg
     this.add.image(400, 300, 'level3Bg').setScale(3)
       .setScrollFactor(0)
@@ -49,10 +53,7 @@ export class Level3 extends Scene {
     this.add.tileSprite(200, 3800, 4500, 350, 'level3Mountain2')
       .setScrollFactor(0.4, 0.4)
 
-    // creating tilemap
-    const level3map = this.make.tilemap({ key: 'level3-map' })
-    const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files', 'level3-tiles')
-    // linking pngs to tileset names in the map
+    this.jumpLayer = level3map.createLayer('jumpLayer', tileSetLevel2, 0, 0)
     // creating layers to reflect tilemap layers - order matters for rendering
     this.platforms = level3map.createLayer('Platform', tileSetLevel2, 0, 0)
     level3map.createLayer('Water', tileSetLevel2, 0, 0)
