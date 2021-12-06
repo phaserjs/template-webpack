@@ -59,9 +59,9 @@ export class Player extends Actor {
       key: 'attack',
       frames: this.scene.anims.generateFrameNames('player', {
         prefix: 'atk-',
-        end: 5
+        end: 7
       }),
-      frameRate: 12
+      frameRate: 24
     })
 
     this.scene.anims.create({
@@ -127,9 +127,9 @@ export class Player extends Actor {
         this.body.velocity.y = -this.jump
       }
       if (this.keyShoot.isDown) {
-        this.anims.play('attack', true)
         if (this.canShoot) {
           console.log(this)
+          this.anims.play('attack', true)
           this.fire()
           this.canShoot = false
         }
