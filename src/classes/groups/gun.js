@@ -22,12 +22,39 @@ export class Gun extends Physics.Arcade.Group {
 
   setAnims () {
     this.scene.anims.create({
+      key: 'iceBulletStart',
+      frames: this.scene.anims.generateFrameNames('ice-bullet', {
+        prefix: 'start-',
+        end: 2
+      }),
+      frameRate: 16
+    })
+
+    this.scene.anims.create({
+      key: 'iceBulletMid',
+      frames: this.scene.anims.generateFrameNames('ice-bullet', {
+        prefix: 'flight-',
+        end: 9
+      }),
+      frameRate: 16
+    })
+
+    this.scene.anims.create({
+      key: 'iceBulletHit',
+      frames: this.scene.anims.generateFrameNames('ice-bullet', {
+        prefix: 'hit-',
+        end: 6
+      }),
+      frameRate: 16
+    })
+
+    this.scene.anims.create({
       key: 'fireBullet',
       frames: this.scene.anims.generateFrameNames('mon-bullet', {
         prefix: 'bullet-',
-        end: 5
+        frames: [0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 3, 4, 5, 6, 7]
       }),
-      frameRate: 8
+      frameRate: 16
     })
   }
 
