@@ -75,11 +75,16 @@ export class Player extends Actor {
   }
 
   setColliders () {
-    this.scene.physics.world.addCollider(this, this.scene.platforms)
-    this.scene.physics.world.addCollider(this, this.scene.ground)
-    this.scene.physics.world.addCollider(this, this.scene.floor)
+    this.scene.physics.world.addCollider(this, this.scene.platforms, () => {
+      this.canJump = true
+    })
+    this.scene.physics.world.addCollider(this, this.scene.ground, () => {
+      this.canJump = true
+    })
+    this.scene.physics.world.addCollider(this, this.scene.floor, () => {
+      this.canJump = true
+    })
     this.scene.physics.world.addCollider(this, this.scene.collider)
-
     this.scene.physics.world.addCollider(this, this.scene.jumpLayer, () => {
       this.canJump = true
     })

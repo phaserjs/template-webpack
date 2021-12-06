@@ -75,6 +75,8 @@ export class LoadingScene extends Scene {
     this.load.image('props', 'tilemaps/level-5/props.png')
     this.load.tilemapTiledJSON('level5-map', 'tilemaps/level-5/underwater-level.json')
 
+    // level 5 parallax images
+    // this.load.image('level5-Bg1', 'tilemaps/level-5/foreground-merged.png')
     // player sprite
     this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
 
