@@ -9,7 +9,8 @@ export class Boss1 extends Actor {
     this.setSize(30, 30)
     this.setOffset(50, 3)
     this.setAnims()
-
+    this.hp = 100
+    this.maxHealth = 100
     this.name = 'boss'
 
     this.spawner = new MobSpawner(this.scene, 50, -30)
@@ -48,6 +49,9 @@ export class Boss1 extends Actor {
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
       this.getDamage(10)
+      this.scene.sound.play('enemyDamage', { loop: false })
+      scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
+      scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
       bullet.destroy()
     })
   }
