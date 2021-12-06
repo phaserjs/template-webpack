@@ -16,6 +16,15 @@ export class LoadingScene extends Scene {
     this.load.image('start-game', 'title/start-game.png')
     this.load.image('game-logo', 'title/game-logo.png')
 
+    // load audio
+    this.load.audio('level1BgAudio', ['ui/audio/Idea.mp3'])
+    // enemy health
+    this.load.image('enemy-red-bar', 'ui/health/Pixel1_Healthbar_border.png')
+    this.load.image('enemy-shadow-bar', 'ui/health/Pixel1_Healthbar.png')
+    // player health
+    this.load.image('green-bar', 'ui/health/health_bar_decoration.png')
+    this.load.image('red-bar', 'ui/health/health_bar.png')
+
     // level 1
     this.load.image('clouds', 'tilemaps/level-1/clouds.png')
     this.load.image('ground', 'tilemaps/level-1/tilesetOpenGame.png')
@@ -69,6 +78,7 @@ export class LoadingScene extends Scene {
     this.load.atlas('enemy', 'sprites/anims/testBoss.png', 'sprites/atlas/enemy-1-atlas.json')
     this.load.atlas('player', 'sprites/anims/wizard-sheet.png', 'sprites/atlas/wizard.json')
     this.load.atlas('viking', 'sprites/anims/viking2.png', 'sprites/atlas/viking-atlas.json')
+    this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/jared-atlas.json')
   }
 
   create () {

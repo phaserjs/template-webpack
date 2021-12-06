@@ -4,7 +4,7 @@ import { Gun } from './groups/gun'
 export class Player extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'adventurer')
-
+    this.maxHealth = 100
     this.keyW = this.scene.input.keyboard.addKey('W')
     this.keyA = this.scene.input.keyboard.addKey('A')
     this.keyS = this.scene.input.keyboard.addKey('S')

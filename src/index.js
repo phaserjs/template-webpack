@@ -19,7 +19,8 @@ const config = {
     default: 'arcade',
     arcade: {
       debug: true,
-      gravity: { y: 280 }
+      gravity: { y: 280 },
+      fixedStep: false
     }
   }
 }
