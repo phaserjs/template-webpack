@@ -73,6 +73,12 @@ export class LoadingScene extends Scene {
     this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')
     this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
     this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
+
+    // golem
+    this.load.atlas('golem-dead', 'sprites/anims/golempack/GolemDead.png', 'sprites/atlas/golemAtlas/dead-atlas.json')
+    this.load.atlas('golem-punch', 'sprites/anims/golempack/GolemDoublePunch.png', 'sprites/atlas/golemAtlas/punch-atlas.json')
+    this.load.atlas('golem-idle', 'sprites/anims/golempack/GolemIdle.png', 'sprites/atlas/golemAtlas/idle-atlas.json')
+    this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
   }
 
   create () {

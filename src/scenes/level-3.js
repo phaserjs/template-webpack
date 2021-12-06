@@ -2,6 +2,7 @@ import { Scene, Math, Curves, Display } from 'phaser'
 import { Boss3 } from '../classes/bosses/boss3'
 import { Boss4 } from '../classes/bosses/boss4'
 import { TempBoss } from '../classes/bosses/tempBoss'
+import { TempBoss2 } from '../classes/bosses/tempBoss2'
 // import { Enemy1 } from '../classes/enemies/enemy-1'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
@@ -84,9 +85,11 @@ export class Level3 extends Scene {
     this.bossTest = new Boss4(this, 800, 200)
     this.enemyMob1 = new Mob(this, 200, 100, 'gen-mob-1', mobConfig)
     this.bossTemp1 = new TempBoss(this, 500, 200)
+    this.bossTemp2 = new TempBoss2(this, 600, 400)
     console.log(this.boss)
     console.log(this.bossTest)
     console.log(this.bossTemp1)
+    console.log(this.bossTemp2)
   }
 
   debugSetup () {
@@ -125,6 +128,11 @@ export class Level3 extends Scene {
       this.bossTemp1.update()
     } else if (this.bossTemp1.active) {
       this.bossTemp1.die()
+    }
+    if (this.bossTemp2.hp > 0) {
+      this.bossTemp2.update()
+    } else if (this.bossTemp2.active) {
+      this.bossTemp2.die()
     }
 
     this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
