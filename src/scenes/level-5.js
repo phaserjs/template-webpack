@@ -39,7 +39,6 @@ export class Level5 extends Scene {
     // setting collision property to ground
     this.jumpLayer.setCollisionByExclusion(-1, true)
     this.collider.setCollisionByExclusion(-1, true)
-    this.platforms.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {
