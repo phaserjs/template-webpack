@@ -8,7 +8,7 @@ import { Level45 } from './scenes/level-45'
 import { Level5 } from './scenes/level-5'
 import { Title } from './scenes/title'
 
-export const config = {
+const config = {
   type: Phaser.AUTO,
   title: 'SideScroller',
   parent: 'phaser-example',
