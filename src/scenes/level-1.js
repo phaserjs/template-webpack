@@ -101,6 +101,18 @@ export class Level1 extends Scene {
       }
     }
 
+    // tempConfig for gen-mob-2
+    const tempConfig = {
+      w: 24,
+      h: 24,
+      xOff: 5,
+      yOff: 8,
+      scale: 1,
+      frameEnds: {
+        idle: 6
+      }
+    }
+
     this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
     this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
     this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
@@ -152,8 +164,6 @@ export class Level1 extends Scene {
   }
 
   update () {
-    this.player.update()
-
     this.enemy.update()
     this.enemy4.update()
 
@@ -169,7 +179,7 @@ export class Level1 extends Scene {
 
     if (this.player.hp > 0) {
       this.player.update()
-    } else {
+    } else if (this.player.active) {
       this.player.die()
     }
 
