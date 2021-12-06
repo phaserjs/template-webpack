@@ -13,9 +13,11 @@ export class Bullet extends Physics.Arcade.Sprite {
     if (facingLeft) {
       this.body.reset(x - 20, y)
       this.setVelocityX(-350)
+      this.anims.play('fireBullet', true)
     } else {
       this.body.reset(x + 20, y)
       this.setVelocityX(350)
+      this.anims.play('fireBullet', true)
     }
 
     if (enemyGun) {

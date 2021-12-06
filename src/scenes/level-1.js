@@ -1,9 +1,10 @@
-import { Scene, Curves, Display } from 'phaser'
+import { Scene, Math, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
+import { MobSpawner } from '../classes/groups/mob-spawner'
 export class Level1 extends Scene {
   constructor () {
     super('level-1-scene')

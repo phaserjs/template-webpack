@@ -11,11 +11,12 @@ export class Gun extends Physics.Arcade.Group {
       quantity: ammo,
       active: false,
       visible: false,
-      key: 'mon-bullet',
+      key: 'adventurer',
       setXY: { x, y }
     })
     this.enemyGun = enemyGun
     this.setColliders(scene)
+
     this.setAnims()
   }
 
