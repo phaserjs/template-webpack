@@ -1,4 +1,4 @@
-import { Scene, Math, Curves } from 'phaser'
+import { Scene, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
@@ -11,17 +11,13 @@ export class Level2 extends Scene {
   }
 
   create () {
-    // this.input.on('pointerdown', () =>
-    // this.scene.start('level-3-scene'), console.log('loading scene 2'))
-
     this.initMap()
     this.initPlayer()
     this.pathSetup()
     this.enemySetup()
-    this.colliderSetup()
+    this.triggerSetup()
     this.cameraSetup()
     this.debugSetup()
-    this.trigger = new Trigger(this, 5760, 448)
 
     this.input.on('pointerdown', () => {
       this.player.godMode = !this.player.godMode
@@ -41,7 +37,7 @@ export class Level2 extends Scene {
     const tilesetWater = level2map.addTilesetImage('Water', 'level2Water')
 
     // creating layers to reflect tilemap layers - order matters for rendering
-    const background = level2map.createLayer('Backdrop', tilesetSecond)
+    level2map.createLayer('Backdrop', tilesetSecond)
     this.water = level2map.createLayer('Water', tilesetWater)
     level2map.createLayer('Etc2', tilesetSecond)
     level2map.createLayer('Etc', tilesetMain)
@@ -64,33 +60,29 @@ export class Level2 extends Scene {
     this.cameras.main.setBounds(0, 0, 5760, 540)
   }
 
-  colliderSetup () {
-    this.physics.world.addCollider(this.player, this.platforms, () => {
-      this.player.canJump = true
-      this.player.jumpCount = 2
-    })
-
-    this.physics.world.addCollider(this.player, this.floor, () => {
-      this.player.canJump = true
-      this.player.jumpCount = 2
-    })
-
-    this.physics.world.addCollider(this.player, this.enemy3, () => {
-      this.player.getDamage()
-      this.enemy3.destroy()
-    })
-  }
-
   pathSetup () {
-    const points = [50, 400, 200, 200, 350, 300, 500, 500, 700, 400]
     const points1 = [50, 400, 135, 400]
     const flyingPoints = [50, 400, 125, 320, 200, 400]
     this.curve = new Curves.Spline(points1)
     this.flying = new Curves.Spline(flyingPoints)
   }
 
+  triggerSetup () {
+    this.endLevel = new Trigger(this, 5760, 390)
+  }
+
   enemySetup () {
-    this.enemy1 = new Mob(this, 500, 400, 'viking')
+    const vikingConfig = {
+      w: 24,
+      h: 24,
+      xOff: 5,
+      yOff: 8,
+      scale: 1,
+      frameEnds: {
+        idle: 6
+      }
+    }
+    this.enemy1 = new Mob(this, 500, 400, 'viking', vikingConfig)
     this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
@@ -118,12 +110,16 @@ export class Level2 extends Scene {
 
   debugSetup () {
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    // this.platforms.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255)
-    // })
+    this.platforms.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 234, 48, 255)
+    })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
+    this.playerHealth = this.add.text(50, 65)
+    this.playerAmmo = this.add.text(50, 80)
+
+    this.getPlayer = this.input.keyboard.addKey('P')
 
     const graphics = this.add.graphics()
 
@@ -133,9 +129,51 @@ export class Level2 extends Scene {
     this.flying.draw(graphics, 64)
 
     graphics.fillStyle(0x00ff00, 1)
+
+    this.scene1 = this.input.keyboard.addKey('ONE')
+    this.scene2 = this.input.keyboard.addKey('TWO')
+    this.scene3 = this.input.keyboard.addKey('THREE')
+    this.scene4 = this.input.keyboard.addKey('FOUR')
+    this.scene5 = this.input.keyboard.addKey('FIVE')
+  }
+
+  debugUpdate () {
+    this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
+    this.mouseCoords.x = this.player.x
+    this.mouseCoords.y = this.player.y - 80
+    this.godMode.setText('God mode: ' + this.player.godMode)
+    this.godMode.x = this.player.x
+    this.godMode.y = this.player.y - 100
+    this.playerHealth.setText('Health: ' + this.player.hp)
+    this.playerHealth.x = this.player.x
+    this.playerHealth.y = this.player.y - 120
+    this.playerAmmo.setText('Ammo: ' + this.player.gun.children.entries.length)
+    this.playerAmmo.x = this.player.x
+    this.playerAmmo.y = this.player.y - 140
+
+    if (this.getPlayer.isDown) {
+      console.log(this.player)
+    }
+    if (this.scene1.isDown) {
+      this.scene.start('level-1-scene')
+    }
+    if (this.scene2.isDown) {
+      this.scene.start('level-2-scene')
+    }
+    if (this.scene3.isDown) {
+      this.scene.start('level-3-scene')
+    }
+    if (this.scene4.isDown) {
+      this.scene.start('level-4-scene')
+    }
+    if (this.scene5.isDown) {
+      this.scene.start('level-5-scene')
+    }
   }
 
   update () {
+    this.debugUpdate()
+
     this.enemy1.update()
 
     if (this.boss.hp > 0) {
@@ -149,10 +187,5 @@ export class Level2 extends Scene {
     } else if (this.player.active) {
       this.player.die()
     }
-
-    this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
-    this.mouseCoords.x = this.player.x
-    this.godMode.setText('God mode: ' + this.player.godMode)
-    this.godMode.x = this.player.x
   }
 }

@@ -18,11 +18,6 @@ export class Level1 extends Scene {
     this.triggerSetup()
     this.cameraSetup()
     this.debugSetup()
-    this.endLevel = new Trigger(this, 3745, 448)
-
-    this.input.on('pointerdown', () => {
-      this.player.godMode = !this.player.godMode
-    })
   }
 
   changeScene () {
@@ -129,6 +124,10 @@ export class Level1 extends Scene {
   }
 
   debugSetup () {
+    this.input.on('pointerdown', () => {
+      this.player.godMode = !this.player.godMode
+    })
+
     const debugGraphics = this.add.graphics().setAlpha(0.7)
     this.platforms.renderDebug(debugGraphics, {
       tileColor: null,
@@ -137,7 +136,7 @@ export class Level1 extends Scene {
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
     this.playerHealth = this.add.text(50, 65)
-    this.playerAmmo = this.add.text(50, 80)
+    this.playerAmmo = this.add.text(50, 85)
 
     this.getPlayer = this.input.keyboard.addKey('P')
 
@@ -160,12 +159,16 @@ export class Level1 extends Scene {
   debugUpdate () {
     this.mouseCoords.setText('X: ' + this.input.activePointer.worldX + ' Y: ' + this.input.activePointer.worldY)
     this.mouseCoords.x = this.player.x
+    this.mouseCoords.y = this.player.y - 80
     this.godMode.setText('God mode: ' + this.player.godMode)
     this.godMode.x = this.player.x
+    this.godMode.y = this.player.y - 100
     this.playerHealth.setText('Health: ' + this.player.hp)
     this.playerHealth.x = this.player.x
+    this.playerHealth.y = this.player.y - 120
     this.playerAmmo.setText('Ammo: ' + this.player.gun.children.entries.length)
     this.playerAmmo.x = this.player.x
+    this.playerAmmo.y = this.player.y - 140
 
     if (this.getPlayer.isDown) {
       console.log(this.player)
