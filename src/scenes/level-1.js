@@ -22,8 +22,9 @@ export class Level1 extends Scene {
     var backgroundBar = this.add.image(150, 50,git 'green-bar')
     backgroundBar.setScrollFactor(0)
 
-    this.healthBar = this.add.image(150, 50, 'red-bar')
+    this.healthBar = this.add.image(155, 50, 'red-bar')
     this.healthBar.setScrollFactor(0)
+    console.log(this.healthBar)
 
     // add text label to left of bar
     this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
@@ -218,7 +219,7 @@ export class Level1 extends Scene {
 
     if (this.player.hp > 0) {
       this.player.update()
-    } else {
+    } else if (this.player.active) {
       this.player.die()
     }
   }
