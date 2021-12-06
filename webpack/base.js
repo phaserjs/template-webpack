@@ -38,7 +38,10 @@ module.exports = {
     new CopyWebpackPlugin(
       [
         { from: 'assets', to: 'assets' },
-        { from: 'assets', to: 'dist' }
+        {
+          from: path.resolve(__dirname, 'assets', '**', '*'),
+          to: path.resolve(__dirname, 'dist')
+        }
       ]
     ),
     new CleanWebpackPlugin({
