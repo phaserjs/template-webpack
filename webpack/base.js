@@ -37,15 +37,8 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin(
       [
-        { from: 'assets', to: 'assets' }
-      ]
-    ),
-    new CopyWebpackPlugin(
-      [
-        {
-          from: 'assets',
-          to: 'dist'
-        }
+        { from: 'assets', to: 'assets' },
+        { from: 'assets', to: 'dist' }
       ]
     ),
     new CleanWebpackPlugin({
