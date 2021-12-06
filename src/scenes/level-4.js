@@ -15,6 +15,22 @@ export class Level4 extends Scene {
     this.triggerSetup()
     this.cameraSetup()
     this.debugSetup()
+
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+    console.log(this.playerHealthBar)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
+
+    this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
+    this.add.image(3450, 22, 'enemy-red-bar')
+    this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
   changeScene () {
@@ -40,13 +56,14 @@ export class Level4 extends Scene {
     const breakTiles = level4map.addTilesetImage('Retro-Lines-Tiles-transparent', 'level45')
     // creating layers to reflect tilemap layers - order matters for rendering
     this.jumpLayer = level4map.createLayer('Collision', tileSetLevel4)
-    level4map.createLayer('Water', cloudTileSetLevel4, 0, 0)
+    this.water = level4map.createLayer('Water', cloudTileSetLevel4, 0, 0)
     level4map.createLayer('Etc', cloudTileSetLevel4, 0, 0)
     this.platforms = level4map.createLayer('Platforms', cloudTileSetLevel4, 0, 0)
     this.ground = level4map.createLayer('Land', tileSetLevel4, 0, 0)
     level4map.createLayer('Break', breakTiles)
     // setting collision property to ground
     this.ground.setCollisionByExclusion(-1, true)
+    this.water.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {

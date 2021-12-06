@@ -18,7 +18,6 @@ export class Level1 extends Scene {
     this.triggerSetup()
     this.cameraSetup()
     this.debugSetup()
-    this.sound.play('level1BgAudio', { loop: true, volume: 0.3 })
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
     backgroundBar.setScrollFactor(0)
@@ -231,6 +230,8 @@ export class Level1 extends Scene {
     this.enemy1.update()
     this.enemy2.update()
 
+    this.endLevel.update()
+
     if (this.boss.hp > 0) {
       this.boss.update()
     } else if (this.boss.active) {
@@ -241,6 +242,7 @@ export class Level1 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
+      this.scene.start('death-scene')
     }
   }
 }

@@ -7,6 +7,54 @@ export class LoadingScene extends Scene {
 
   preload () {
     this.load.baseURL = 'assets/'
+    // loading screen setup
+    var progressBar = this.add.graphics()
+    var progressBox = this.add.graphics()
+    progressBox.fillStyle(0x222222, 0.8)
+    progressBox.fillRect(240, 270, 320, 50)
+    var width = this.cameras.main.width
+    var height = this.cameras.main.height
+    var loadingText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 50,
+      text: 'Loading...',
+      style: {
+        font: '20px monospace',
+        fill: '#ffffff'
+      }
+    })
+    loadingText.setOrigin(0.5, 0.5)
+    var percentText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 5,
+      text: '0%',
+      style: {
+        font: '18px monospace',
+        fill: '#ffffff'
+      }
+    })
+    percentText.setOrigin(0.5, 0.5)
+
+    this.load.on('progress', function (value) {
+      console.log(value)
+      percentText.setText(parseInt(value * 100) + '%')
+      progressBar.clear()
+      progressBar.fillStyle(0xffffff, 1)
+      progressBar.fillRect(250, 280, 300 * value, 30)
+    })
+
+    this.load.on('fileprogress', function (file) {
+      console.log(file.src)
+    })
+
+    this.load.on('complete', function () {
+      console.log('complete')
+      progressBar.destroy()
+      progressBox.destroy()
+      loadingText.destroy()
+      percentText.destroy()
+    })
+
     // title scene
     this.load.image('titleBg', 'title/parallax-mountain-bg.png')
     this.load.image('titleFarMount', 'title/parallax-mountain-montain-far.png')
@@ -15,6 +63,14 @@ export class LoadingScene extends Scene {
     this.load.image('titleForeground', 'title/parallax-mountain-foreground-trees.png')
     this.load.image('start-game', 'title/start-game.png')
     this.load.image('game-logo', 'title/game-logo.png')
+
+    this.load.image('controlsIntro', 'title/intro.png')
+    this.load.image('arrow', 'title/arrow.png')
+
+    // death scene
+    this.load.image('death-text', 'death/death-text.png')
+    this.load.image('play-again', 'death/play-again.png')
+    this.load.image('deathBg', 'death/background_0.png')
 
     // load audio
     this.load.audio('level1BgAudio', ['ui/audio/Idea.mp3'])
@@ -72,8 +128,11 @@ export class LoadingScene extends Scene {
     this.load.image('level5-bg', 'tilemaps/level-5/background.png')
     this.load.image('level5-ground', 'tilemaps/level-5/tiles.png')
     this.load.image('platforms', 'tilemaps/level-5/platform.png')
+    this.load.image('props', 'tilemaps/level-5/props.png')
     this.load.tilemapTiledJSON('level5-map', 'tilemaps/level-5/underwater-level.json')
 
+    // level 5 parallax images
+    // this.load.image('level5-Bg1', 'tilemaps/level-5/foreground-merged.png')
     // player sprite
     this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
 
@@ -87,6 +146,7 @@ export class LoadingScene extends Scene {
     this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')
     this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
     this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
+    this.load.atlas('portal', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
 
     // bullets
     this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
