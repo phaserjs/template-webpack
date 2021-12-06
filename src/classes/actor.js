@@ -17,7 +17,7 @@ export class Actor extends Physics.Arcade.Sprite {
       yoyo: true,
       alpha: 0.5,
       onStart: () => {
-        if (value) {
+        if (value && !this.godMode) {
           this.hp -= value
         }
       },
