@@ -18,7 +18,7 @@ export class Level1 extends Scene {
     this.triggerSetup()
     this.cameraSetup()
     this.debugSetup()
-    this.sound.play('level1BgAudio', { loop: true })
+    this.sound.play('level1BgAudio', { loop: true, volume: 0.3 })
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
     backgroundBar.setScrollFactor(0)
@@ -31,8 +31,8 @@ export class Level1 extends Scene {
     this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
     this.healthLabel.setScrollFactor(0)
 
-    this.add.image(3450, 34, 'enemy-shadow-bar')
-    this.enemyHealthBar = this.add.image(3450, 22, 'enemy-red-bar')
+    this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
+    this.add.image(3450, 22, 'enemy-red-bar')
     this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 

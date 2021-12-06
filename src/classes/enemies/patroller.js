@@ -9,8 +9,9 @@ export class Patroller extends GameObjects.PathFollower {
     this.body.allowGravity = false
 
     this.gun = new Gun(this.scene, x, y - 400, true, 1000)
-
+    this.name = texture
     this.setColliders(scene)
+    this.setAnims()
 
     this.scene.time.addEvent({
       callback: this.fireGun,
@@ -20,14 +21,40 @@ export class Patroller extends GameObjects.PathFollower {
     })
   }
 
+  die () {
+    this.anims.play(this.name + '-death', true)
+    this.once('animationcomplete', () => {
+      console.log('animationcomplete')
+      this.destroy()
+    })
+  }
+
+  setAnims () {
+    this.scene.anims.create({
+      key: 'adventurer-death',
+      frames: this.scene.anims.generateFrameNames('player', {
+        prefix: 'death-',
+        end: 6
+      }),
+      framerate: 12
+    })
+  }
+
   setColliders (scene) {
     scene.physics.world.addOverlap(scene.player, this, (player) => {
       player.getDamage(20)
-      this.destroy()
+      console.log(this.scene.playerHealthBar)
+      this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
+      this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
+      scene.sound.play('playerDamageAudio', { loop: false })
+      this.die()
     })
 
     scene.physics.world.addOverlap(scene.player, this.gun, (player, bullet) => {
       player.getDamage(10)
+      this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
+      this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
+      this.scene.sound.play('playerDamageAudio', { loop: false })
       bullet.destroy()
     })
 
