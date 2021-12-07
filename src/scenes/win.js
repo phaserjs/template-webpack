@@ -6,6 +6,9 @@ export class Win extends Scene {
   }
 
   create () {
+    this.sound.stopAll()
+    this.sound.add('titleAudio', { loop: true })
+    this.sound.play('titleAudio')
     // Load image assets for title screen
     this.add.image(480, 260, 'winBg').setScale(2)
     const farMount = this.add.image(490, 260, 'titleFarMount').setScale(3.6).setInteractive()
