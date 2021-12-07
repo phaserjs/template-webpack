@@ -20,6 +20,7 @@ export class Level2 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
+    this.debugSetup()
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -61,8 +62,8 @@ export class Level2 extends Scene {
     this.water = level2map.createLayer('Water', tilesetWater)
     level2map.createLayer('Etc2', tilesetSecond)
     level2map.createLayer('Etc', tilesetMain)
-    this.floor = level2map.createLayer('Floor', tilesetSecond, 0, 0)
-    this.platforms = level2map.createLayer('Platforms', tilesetMain, 0, 0)
+    level2map.createLayer('Floor', tilesetSecond, 0, 0)
+    level2map.createLayer('Platforms', tilesetMain, 0, 0)
     // setting collision property to ground
     this.jumpLayer.setCollisionByExclusion(-1, true)
     this.walls.setCollisionByExclusion(-1, true)
@@ -203,6 +204,7 @@ export class Level2 extends Scene {
   }
 
   update () {
+    this.debugUpdate()
     this.enemy1.update()
 
     if (this.boss.hp > 0) {
@@ -215,6 +217,7 @@ export class Level2 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
+      this.scene.start('death-scene', { checkpoint: 2 })
     }
   }
 }

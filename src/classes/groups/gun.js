@@ -21,7 +21,13 @@ export class Gun extends Physics.Arcade.Group {
   }
 
   setColliders (scene) {
-    scene.physics.world.addCollider(this, scene.platforms, (bullet) => {
+    scene.physics.world.addCollider(this, scene.jumpLayer, (bullet) => {
+      bullet.destroy()
+    })
+    scene.physics.world.addCollider(this, scene.walls, (bullet) => {
+      bullet.destroy()
+    })
+    scene.physics.world.addCollider(this, scene.water, (bullet) => {
       bullet.destroy()
     })
   }

@@ -6,6 +6,7 @@ export class Trigger extends Physics.Arcade.Sprite {
     scene.physics.add.existing(this)
     this.body.allowGravity = false
     this.body.setImmovable(true)
+
     this.scene.anims.create({
       key: 'portal',
       frames: this.scene.anims.generateFrameNames('portal', {
