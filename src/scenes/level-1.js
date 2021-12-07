@@ -159,19 +159,19 @@ export class Level1 extends Scene {
       this.player.godMode = !this.player.godMode
     })
 
-    // const debugGraphics = this.add.graphics().setAlpha(0.7)
-    // this.jumpLayer.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Display.Color(243, 234, 48, 255)
-    // })
-    // this.walls.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Display.Color(243, 20, 48, 255)
-    // })
-    // this.water.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Display.Color(20, 234, 48, 255)
-    // })
+    const debugGraphics = this.add.graphics().setAlpha(0.7)
+    this.jumpLayer.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 234, 48, 255)
+    })
+    this.wall.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 20, 48, 255)
+    })
+    this.water.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(20, 234, 48, 255)
+    })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
     this.playerHealth = this.add.text(50, 65)
@@ -230,6 +230,8 @@ export class Level1 extends Scene {
   }
 
   update () {
+    this.debugUpdate()
+
     this.jared.update()
 
     this.enemy.update()
@@ -251,7 +253,7 @@ export class Level1 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
-      this.scene.start('death-scene')
+      this.scene.start('death-scene', { checkpoint: 1 })
     }
   }
 }
