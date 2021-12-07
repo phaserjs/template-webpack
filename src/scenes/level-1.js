@@ -20,8 +20,8 @@ export class Level1 extends Scene {
     this.cameraSetup()
     this.debugSetup()
 
-    this.sound.add('level1BgAudio', { loop: true })
-    this.sound.play('level1BgAudio')
+    this.sound.add('level1BgAudio')
+    this.sound.play('level1BgAudio', { loop: true })
     this.sound.stopByKey('titleAudio')
 
     // change position if needed (but use same position for both images)

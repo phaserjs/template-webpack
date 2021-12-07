@@ -16,6 +16,10 @@ export class Level4 extends Scene {
     this.cameraSetup()
     this.debugSetup()
 
+    this.sound.add('level4BgAudio')
+    this.sound.play('level4BgAudio', { volume: 0.05, loop: true })
+    this.sound.stopByKey('level3BgAudio')
+
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
     backgroundBar.setScrollFactor(0)

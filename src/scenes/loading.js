@@ -79,10 +79,11 @@ export class LoadingScene extends Scene {
 
     // load audio
     this.load.audio('titleAudio', ['ui/audio/kieran-title-credits.mp3'])
-    this.load.audio('level1BgAudio', ['ui/audio/level1-audio.mp3'])
+    this.load.audio('level1BgAudio', ['ui/audio/level-1-music.mp3'])
     this.load.audio('level2BgAudio', ['ui/audio/level-2-music.mp3'])
     this.load.audio('level3BgAudio', ['ui/audio/level-3-music.mp3'])
     this.load.audio('level4BgAudio', ['ui/audio/level-4-music.mp3'])
+    this.load.audio('level45BgAudio', ['ui/audio/level-45-music.mp3'])
     this.load.audio('level5BgAudio', ['ui/audio/level-5-music.mp3'])
     this.load.audio('playerDamageAudio', ['ui/audio/TakeDamage.mp3'])
     this.load.audio('playerFireAudio', ['ui/audio/pewpew.mp3'])
