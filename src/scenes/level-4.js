@@ -66,7 +66,6 @@ export class Level4 extends Scene {
   }
 
   enemySetup () {
-
   }
 
   triggerSetup () {

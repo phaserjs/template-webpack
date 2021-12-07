@@ -2,20 +2,21 @@ import { Physics } from 'phaser'
 import { Mob } from '../enemies/mob'
 
 export class MobSpawner extends Physics.Arcade.Group {
-  constructor (scene, x, y) {
+  constructor (scene, x, y, texture, config) {
     super(scene.physics.world, scene)
 
     this.defaults.setCollideWorldBounds = true
     this.defaults.setAllowGravity = false
 
     this.runChildUpdate = true
+    this.config = config
 
     this.createMultiple({
       classType: Mob,
       frameQuantity: 30,
       active: false,
       visible: false,
-      key: 'gen-mob-1',
+      key: texture,
       setXY: { x, y, stepX: 50 }
     })
 
@@ -31,7 +32,7 @@ export class MobSpawner extends Physics.Arcade.Group {
   spawnMob (x, y) {
     const mob = this.getFirstDead(false)
     if (mob) {
-      mob.spawn(x, y)
+      mob.spawn(x, y, this.config)
     }
   }
 }
