@@ -27,6 +27,12 @@ export class Level3 extends Scene {
     this.uISetup()
     this.cameraSetup()
     this.debugSetup()
+
+    this.sound.stopAll()
+    this.sound.add('stepsAudio')
+    this.sound.add('playerFireAudio')
+    this.sound.add('level3BgAudio')
+    this.sound.play('level3BgAudio', { volume: 0.8, loop: true })
   }
 
   initMap () {

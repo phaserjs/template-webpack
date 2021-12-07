@@ -45,18 +45,23 @@ export class Title extends Scene {
   update () {
     if (this.scene1.isDown) {
       this.scene.start('level-1-scene')
+      this.sound.stopByKey('titleAudio')
     }
     if (this.scene2.isDown) {
       this.scene.start('level-2-scene')
+      this.sound.stopByKey('titleAudio')
     }
     if (this.scene3.isDown) {
       this.scene.start('level-3-scene')
+      this.sound.stopByKey('titleAudio')
     }
     if (this.scene4.isDown) {
       this.scene.start('level-4-scene')
+      this.sound.stopByKey('titleAudio')
     }
     if (this.scene5.isDown) {
       this.scene.start('level-5-scene')
+      this.sound.stopByKey('titleAudio')
     }
   }
 }

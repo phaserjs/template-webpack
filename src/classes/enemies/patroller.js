@@ -66,6 +66,34 @@ export class Patroller extends GameObjects.PathFollower {
       }),
       framerate: 12
     })
+
+    // flyin mon
+    this.scene.anims.create({
+      key: 'gen-mob-4-fly',
+      frames: this.scene.anims.generateFrameNames('gen-mob-4', {
+        prefix: 'fly-',
+        end: 7
+      }),
+      framerate: 12
+    })
+
+    this.scene.anims.create({
+      key: 'gen-mob-4-death',
+      frames: this.scene.anims.generateFrameNames('gen-mob-4', {
+        prefix: 'death-',
+        end: 3
+      }),
+      framerate: 12
+    })
+
+    this.scene.anims.create({
+      key: 'gen-mob-4-atk',
+      frames: this.scene.anims.generateFrameNames('gen-mob-4', {
+        prefix: 'atk-',
+        end: 5
+      }),
+      framerate: 12
+    })
   }
 
   setColliders (scene) {
@@ -73,7 +101,7 @@ export class Patroller extends GameObjects.PathFollower {
       player.getDamage(20)
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
-      scene.sound.play('playerDamageAudio', { loop: false })
+      scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
       this.die()
     })
 

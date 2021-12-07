@@ -37,7 +37,7 @@ export class Mob extends Actor {
       this.scene.player.getDamage(20)
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
-      this.scene.sound.play('playerDamageAudio', { loop: false })
+      this.scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
       this.destroy()
     })
     scene.physics.world.addCollider(this, scene.water)

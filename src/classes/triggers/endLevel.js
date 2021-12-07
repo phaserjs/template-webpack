@@ -2,7 +2,7 @@ import { Physics } from 'phaser'
 
 export class Trigger extends Physics.Arcade.Sprite {
   constructor (scene, x, y) {
-    super(scene, x, y, 'portal')
+    super(scene, x, y)
     scene.physics.add.existing(this)
     this.body.allowGravity = false
     this.body.setImmovable(true)

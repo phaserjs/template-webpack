@@ -17,6 +17,12 @@ export class Level45 extends Scene {
     this.uISetup()
     this.cameraSetup()
     this.debugSetup()
+
+    this.sound.stopAll()
+    this.sound.add('stepsAudio')
+    this.sound.add('playerFireAudio')
+    this.sound.add('level45BgAudio')
+    this.sound.play('level45BgAudio', { volume: 0.1, loop: true })
   }
 
   changeScene () {
