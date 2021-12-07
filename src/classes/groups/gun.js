@@ -8,7 +8,7 @@ export class Gun extends Physics.Arcade.Group {
     this.defaults.setAllowGravity = false
     this.createMultiple({
       classType: Bullet,
-      quantity: ammo,
+      frameQuantity: 60,
       active: false,
       visible: false,
       key: 'adventurer',
