@@ -1,7 +1,7 @@
 import { Scene, Curves, Display } from 'phaser'
 import { Boss4 } from '../classes/bosses/boss4'
 import { Player } from '../classes/player'
-import { Trigger } from '../classes/triggers'
+import { Trigger } from '../classes/triggers/endLevel'
 
 export class Level45 extends Scene {
   constructor () {
@@ -14,24 +14,9 @@ export class Level45 extends Scene {
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
+    this.uISetup()
     this.cameraSetup()
     this.debugSetup()
-
-    // change position if needed (but use same position for both images)
-    var backgroundBar = this.add.image(150, 50, 'green-bar')
-    backgroundBar.setScrollFactor(0)
-
-    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
-    this.playerHealthBar.setScrollFactor(0)
-    console.log(this.playerHealthBar)
-
-    // add text label to left of bar
-    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
-    this.healthLabel.setScrollFactor(0)
-
-    this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
-    this.add.image(3450, 22, 'enemy-red-bar')
-    this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
   changeScene () {
@@ -122,6 +107,19 @@ export class Level45 extends Scene {
     this.scene3 = this.input.keyboard.addKey('THREE')
     this.scene4 = this.input.keyboard.addKey('FOUR')
     this.scene5 = this.input.keyboard.addKey('FIVE')
+  }
+
+  uISetup () {
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
   }
 
   debugUpdate () {
