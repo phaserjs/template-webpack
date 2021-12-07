@@ -245,6 +245,7 @@ export class Level1 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
+      this.scene.start('death-scene')
     }
   }
 }

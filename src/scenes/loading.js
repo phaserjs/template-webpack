@@ -64,6 +64,14 @@ export class LoadingScene extends Scene {
     this.load.image('start-game', 'title/start-game.png')
     this.load.image('game-logo', 'title/game-logo.png')
 
+    this.load.image('controlsIntro', 'title/intro.png')
+    this.load.image('arrow', 'title/arrow.png')
+
+    // death scene
+    this.load.image('death-text', 'death/death-text.png')
+    this.load.image('play-again', 'death/play-again.png')
+    this.load.image('deathBg', 'death/background_0.png')
+
     // load audio
     this.load.audio('level1BgAudio', ['ui/audio/Idea.mp3'])
     this.load.audio('playerDamageAudio', ['ui/audio/TakeDamage.mp3'])
