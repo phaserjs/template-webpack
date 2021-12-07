@@ -17,6 +17,9 @@ export class Boss1 extends Actor {
     this.maxHealth = 100
     this.name = 'boss1'
     const bearConfig = {
+      name: 'bear-boss',
+      key: '-run',
+      prefix: 'run-',
       w: 128,
       h: 128,
       xOff: 0,

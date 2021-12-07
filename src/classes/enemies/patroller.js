@@ -124,4 +124,8 @@ export class Patroller extends GameObjects.PathFollower {
       this.gun.fireBullet(this.x, this.y, this.flipX, true)
     }
   }
+
+  // update () {
+  //   this.fireGun()
+  // }
 }

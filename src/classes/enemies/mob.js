@@ -3,7 +3,7 @@ import { Actor } from '../actor'
 
 export class Mob extends Actor {
   constructor (scene, x, y, texture, config) {
-    super(scene, x, y, texture)
+    super(scene, x, y, texture, config)
 
     scene.physics.add.existing(this)
     this.name = texture

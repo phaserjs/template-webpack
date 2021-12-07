@@ -113,6 +113,13 @@ export class Level2 extends Scene {
     this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
+    this.enemy4 = new Patroller(this, this.flying, 960, 100, 'adventurer')
+    this.enemy5 = new Patroller(this, this.flying, 420, 120, 'adventurer')
+    this.enemy6 = new Patroller(this, this.flying, 1660, 110, 'adventurer')
+    this.enemy7 = new Patroller(this, this.flying, 2000, 400, 'gen-mob-4')
+    this.enemy8 = new Patroller(this, this.flying, 2327, 390, 'gen-mob-4')
+    this.enemy9 = new Patroller(this, this.flying, 2500, 96, 'gen-mob-4')
+    this.enemy10 = new Patroller(this, this.flying, 2350, 200, 'gen-mob-4')
 
     this.boss = new Boss2(this, 5500, 220)
 
@@ -226,6 +233,14 @@ export class Level2 extends Scene {
     this.debugUpdate()
     this.enemy1.update()
     this.enemy2.update()
+    this.enemy3.update()
+    this.enemy4.update()
+    this.enemy5.update()
+    this.enemy6.update()
+    this.enemy7.update()
+    this.enemy8.update()
+    this.enemy9.update()
+    this.enemy10.update()
 
     if (this.boss.hp > 0) {
       this.boss.update()
