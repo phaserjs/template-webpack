@@ -35,6 +35,10 @@ export class Level3 extends Scene {
     this.sound.play('level3BgAudio', { volume: 0.9, loop: true })
   }
 
+  changeScene () {
+    this.scene.start('level-4-scene')
+  }
+
   initMap () {
     // creating tilemap
     const level3map = this.make.tilemap({ key: 'level3-map' })
