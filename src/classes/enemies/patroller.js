@@ -41,7 +41,7 @@ export class Patroller extends GameObjects.PathFollower {
 
     // gen mob 3
     this.scene.anims.create({
-      key: 'gen-mob-3-',
+      key: 'gen-mob-3-idle',
       frames: this.scene.anims.generateFrameNames('gen-mob-3', {
         prefix: 'idle-',
         end: 4
@@ -94,6 +94,33 @@ export class Patroller extends GameObjects.PathFollower {
       }),
       framerate: 12
     })
+
+    this.scene.anims.create({
+      key: 'dishes-poo-idle',
+      frames: this.scene.anims.generateFrameNames('dishes-poo', {
+        prefix: 'fly-',
+        end: 2
+      }),
+      framerate: 12,
+      repeat: -1
+    })
+    this.scene.anims.create({
+      key: 'dishes-poo-plate',
+      frames: this.scene.anims.generateFrameNames('dishes-poo', {
+        prefix: 'plate-',
+        end: 1
+      }),
+      framerate: 12,
+      repeat: -1
+    })
+    this.scene.anims.create({
+      key: 'dishes-poo-poo',
+      frames: this.scene.anims.generateFrameNames('dishes-poo', {
+        prefix: 'poo-',
+        end: 0
+      }),
+      framerate: 12
+    })
   }
 
   setColliders (scene) {
@@ -125,7 +152,9 @@ export class Patroller extends GameObjects.PathFollower {
     }
   }
 
-  // update () {
-  //   this.fireGun()
-  // }
+  update () {
+    if (this.active) {
+      this.anims.play(this.name + '-idle', true)
+    }
+  }
 }
