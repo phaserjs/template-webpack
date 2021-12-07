@@ -30,7 +30,7 @@ export class Bullet extends Physics.Arcade.Sprite {
         this.flipX = false
       }
     }
-    if (bossGun === true) {
+    if (bossGun) {
       if (facingLeft) {
         this.body.reset(x - 20, y)
         this.setVelocity(this.scene.player.x - this.x, this.scene.player.y - this.y)
