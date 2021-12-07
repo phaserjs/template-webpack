@@ -38,6 +38,13 @@ export class Level4 extends Scene {
   }
 
   initMap () {
+    const level4map = this.make.tilemap({ key: 'level4-map' })
+    const cloudTileSetLevel4 = level4map.addTilesetImage('cloud_tileset', 'level4Clouds')
+    const tileSetLevel4 = level4map.addTilesetImage('Terrain', 'level4Ground')
+    const breakTiles = level4map.addTilesetImage('Retro-Lines-Tiles-transparent', 'level45')
+
+    this.walls = level4map.createLayer('walls', tileSetLevel4)
+    this.jumpLayer = level4map.createLayer('jumpLayer', tileSetLevel4)
     // creating bg
     this.add.image(400, 300, 'level4Bg1').setScale(3)
       .setScrollFactor(0)
@@ -50,19 +57,15 @@ export class Level4 extends Scene {
     this.add.tileSprite(400, 450, 8000, 1000, 'level4Bg6')
       .setScrollFactor(0.8)
     // creating tilemap
-    const level4map = this.make.tilemap({ key: 'level4-map' })
-    const cloudTileSetLevel4 = level4map.addTilesetImage('cloud_tileset', 'level4Clouds')
-    const tileSetLevel4 = level4map.addTilesetImage('Terrain', 'level4Ground')
-    const breakTiles = level4map.addTilesetImage('Retro-Lines-Tiles-transparent', 'level45')
     // creating layers to reflect tilemap layers - order matters for rendering
-    this.jumpLayer = level4map.createLayer('Collision', tileSetLevel4)
     this.water = level4map.createLayer('Water', cloudTileSetLevel4, 0, 0)
     level4map.createLayer('Etc', cloudTileSetLevel4, 0, 0)
     this.platforms = level4map.createLayer('Platforms', cloudTileSetLevel4, 0, 0)
     this.ground = level4map.createLayer('Land', tileSetLevel4, 0, 0)
     level4map.createLayer('Break', breakTiles)
     // setting collision property to ground
-    this.ground.setCollisionByExclusion(-1, true)
+    this.jumpLayer.setCollisionByExclusion(-1, true)
+    this.walls.setCollisionByExclusion(-1, true)
     this.water.setCollisionByExclusion(-1, true)
   }
 
@@ -98,9 +101,17 @@ export class Level4 extends Scene {
     })
 
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.platforms.renderDebug(debugGraphics, {
+    this.jumpLayer.renderDebug(debugGraphics, {
       tileColor: null,
       collidingTileColor: new Display.Color(243, 234, 48, 255)
+    })
+    this.walls.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 20, 48, 255)
+    })
+    this.water.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(20, 234, 48, 255)
     })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
