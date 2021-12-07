@@ -14,7 +14,7 @@ export class Level45 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-    this.debugSetup()
+
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -41,14 +41,17 @@ export class Level45 extends Scene {
     // creating tilemap
     const level45map = this.make.tilemap({ key: 'level45-map' })
     const tileSetLevel45 = level45map.addTilesetImage('Retro-Lines-Tiles-transparent', 'level45')
-    this.jumpLayer = level45map.createLayer('Collision', tileSetLevel45)
+    const tileSetLevel4 = level45map.addTilesetImage('Terrain', 'level4Ground')
+    this.walls = level45map.createLayer('walls', tileSetLevel4)
+    this.jumpLayer = level45map.createLayer('jumpLayer', tileSetLevel45)
     level45map.addTilesetImage('Background', tileSetLevel45)
     level45map.createLayer('Etc', tileSetLevel45)
     // creating layers to reflect tilemap layers - order matters for rendering
     this.platforms = level45map.createLayer('Platform', tileSetLevel45, 0, 0)
     this.water = level45map.createLayer('Waterfall', tileSetLevel45)
     // setting collision property to ground
-    this.platforms.setCollisionByExclusion(-1, true)
+    this.jumpLayer.setCollisionByExclusion(-1, true)
+    this.walls.setCollisionByExclusion(-1, true)
     this.water.setCollisionByExclusion(-1, 0)
   }
 
@@ -84,9 +87,17 @@ export class Level45 extends Scene {
     })
 
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.platforms.renderDebug(debugGraphics, {
+    this.jumpLayer.renderDebug(debugGraphics, {
       tileColor: null,
       collidingTileColor: new Display.Color(243, 234, 48, 255)
+    })
+    this.walls.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 20, 48, 255)
+    })
+    this.water.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(20, 234, 48, 255)
     })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
@@ -146,8 +157,6 @@ export class Level45 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     if (this.player.hp > 0) {
       this.player.update()
     } else {

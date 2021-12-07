@@ -21,7 +21,7 @@ export class Level3 extends Scene {
     this.pathSetup()
     this.enemySetup()
     this.cameraSetup()
-    this.debugSetup()
+
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -45,6 +45,7 @@ export class Level3 extends Scene {
     const level3map = this.make.tilemap({ key: 'level3-map' })
     const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files', 'level3-tiles')
 
+    this.walls = level3map.createLayer('Wall', tileSetLevel2)
     // creating bg
     this.add.image(400, 300, 'level3Bg').setScale(3)
       .setScrollFactor(0)
@@ -59,12 +60,13 @@ export class Level3 extends Scene {
     this.water = level3map.createLayer('Water', tileSetLevel2, 0, 0)
     level3map.createLayer('Etc', tileSetLevel2, 0, 0)
     // setting collision property to ground
-    this.platforms.setCollisionByExclusion(-1, true)
-    // this.water.setCollisionByExclusion(-1, true)
+    this.jumpLayer.setCollisionByExclusion(-1, true)
+    this.walls.setCollisionByExclusion(-1, true)
+    this.water.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {
-    this.player = new Player(this, 100, 300)
+    this.player = new Player(this, 100, 600)
   }
 
   cameraSetup () {
@@ -113,9 +115,17 @@ export class Level3 extends Scene {
     })
 
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.platforms.renderDebug(debugGraphics, {
+    this.jumpLayer.renderDebug(debugGraphics, {
       tileColor: null,
       collidingTileColor: new Display.Color(243, 234, 48, 255)
+    })
+    this.walls.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 20, 48, 255)
+    })
+    this.water.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(20, 234, 48, 255)
     })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
@@ -175,8 +185,6 @@ export class Level3 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     this.player.update()
 
     this.enemyMob1.update()
