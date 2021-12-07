@@ -13,6 +13,8 @@ export class Boss2 extends Actor {
     this.setAnims()
 
     this.name = 'boss2'
+    this.hp = 100
+    this.maxHealth = 100
 
     this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
@@ -65,26 +67,18 @@ export class Boss2 extends Actor {
 
   setColliders (scene) {
     scene.physics.world.addCollider(this.scene.player, this)
-    scene.physics.world.addCollider(this, this.scene.platforms)
+    scene.physics.world.addCollider(this, this.scene.jumpLayer)
+    scene.physics.world.addCollider(this, this.scene.wall)
     scene.physics.world.addCollider(this.spawner, this.spawner)
-    scene.physics.world.addCollider(this, this.scene.bulletGroup, (boss, bullet) => {
-      this.spawner.spawnMob(this.x, this.y)
-      this.getDamage(10)
-      bullet.destroy()
-    })
   }
 
   update () {
     if (this.active && this.hp > 0) {
-      // if (this.body.velocity.x > 0) {
-      //   this.body.velocity.x -= 10
-      // } else if (this.body.velocity.x < 0) {
-      //   this.body.velocity.x += 10
-      // }
+      this.boss2Flip()
       const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
-      if (dist < 10000) {
+      if (dist < 20000) {
         this.anims.play('atk-test-boss', true)
-      } else if (dist > 10000 && dist < 60000) {
+      } else if (dist > 20000 && dist < 60000) {
         this.scene.physics.accelerateToObject(this, this.scene.player)
         this.anims.play('run-test-boss', true)
       } else {

@@ -1,5 +1,4 @@
-import { Scene, Curves, Display } from 'phaser'
-import { Mob } from '../classes/enemies/mob'
+import { Scene, Curves } from 'phaser'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss1'

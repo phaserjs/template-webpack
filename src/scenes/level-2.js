@@ -2,9 +2,8 @@ import { Scene, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
-import { MobSpawner } from '../classes/groups/mob-spawner'
+
 import { Boss2 } from '../classes/bosses/boss2'
-// import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
 
 export class Level2 extends Scene {
