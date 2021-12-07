@@ -1,4 +1,4 @@
-import { Scene, Math, Curves, Display } from 'phaser'
+import { Scene, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
@@ -17,6 +17,7 @@ export class Level1 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
+    this.debugSetup()
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -160,14 +161,14 @@ export class Level1 extends Scene {
     })
 
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    // this.jumpLayer.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Display.Color(243, 234, 48, 255)
-    // })
-    // this.walls.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Display.Color(243, 20, 48, 255)
-    // })
+    this.jumpLayer.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 234, 48, 255)
+    })
+    this.walls.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 20, 48, 255)
+    })
     this.water.renderDebug(debugGraphics, {
       tileColor: null,
       collidingTileColor: new Display.Color(20, 234, 48, 255)
