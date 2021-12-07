@@ -20,6 +20,12 @@ export class Level1 extends Scene {
     this.uISetup()
     this.cameraSetup()
     this.debugSetup()
+
+    this.sound.stopAll()
+    this.sound.add('stepsAudio')
+    this.sound.add('playerFireAudio')
+    this.sound.add('level1BgAudio')
+    this.sound.play('level1BgAudio', { volume: 0.08, loop: true })
   }
 
   changeScene () {
@@ -142,7 +148,7 @@ export class Level1 extends Scene {
   }
 
   triggerSetup () {
-    this.endLevel = new Trigger(this, 3745, 448)
+    this.endLevel = new Trigger(this, 3740, 490)
     this.bossHealth = new BossHpTrigger(this, 2520, 460, { healthBarX: 3450, healthBarY: 34 })
   }
 

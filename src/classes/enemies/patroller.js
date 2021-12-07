@@ -8,7 +8,7 @@ export class Patroller extends GameObjects.PathFollower {
     scene.physics.add.existing(this)
     this.body.allowGravity = false
 
-    this.gun = new Gun(this.scene, x, y - 400, true, false, 1000)
+    this.gun = new Gun(this.scene, x, y - 400, true, false, 20)
     this.name = texture
     this.setColliders(scene)
     this.setAnims()
@@ -45,7 +45,7 @@ export class Patroller extends GameObjects.PathFollower {
       player.getDamage(20)
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
-      scene.sound.play('playerDamageAudio', { loop: false })
+      scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
       this.die()
     })
 
