@@ -12,7 +12,7 @@ export class Controls extends Scene {
     const mount = this.add.image(490, 400, 'titleMount').setScale(3.6).setInteractive()
     const tree = this.add.image(490, 310, 'titleTrees').setScale(3.6).setInteractive()
     const fore = this.add.image(400, 310, 'titleForeground').setScale(3.6).setInteractive()
-    this.add.image(500, 260, 'controlsIntro')
+    this.add.image(475, 260, 'controlsIntro')
     const arrow = this.add.sprite(900, 480, 'arrow').setScale(0.1).setInteractive()
 
     // Detect when pointer is hovering over button, and change scene on click
