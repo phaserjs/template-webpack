@@ -1,3 +1,4 @@
+import { GameObjects, Math } from 'phaser'
 import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
 import { Gun } from '../groups/gun'
@@ -25,11 +26,24 @@ export class Boss1 extends Actor {
         run: 3
       }
     }
+
+    // bleed bears
     this.spawner = new MobSpawner(this.scene, 50, -30, 'bear-boss', tempConfig)
-    this.gun = new Gun(this.scene, x, y - 400, true, 1000)
+
+    // boss gun is broken
+    this.bossGun = new Gun(this.scene, x, y - 400, false, true, 1000)
+
     this.scene.add.existing(this.spawner)
-    console.log(this)
+
     this.setColliders(scene)
+    console.log(this.flipX)
+
+    this.scene.time.addEvent({
+      callback: this.fireGun,
+      callbackScope: this,
+      delay: 500,
+      loop: true
+    })
   }
 
   setAnims () {
@@ -64,11 +78,28 @@ export class Boss1 extends Actor {
     })
   }
 
+  fireGun () {
+    if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
+      this.bossGun.fireBullet(this.x, this.y, this.flipX, true)
+    }
+  }
+
   setColliders (scene) {
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
     scene.physics.world.addCollider(this, this.scene.wall)
     scene.physics.world.addCollider(this.spawner, this.spawner)
+
+    // hit by mon gun
+    scene.physics.world.addOverlap(scene.player, this.gun, (player, bullet) => {
+      player.getDamage(10)
+      scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
+      scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
+      scene.sound.play('playerDamageAudio', { loop: false })
+      bullet.destroy()
+    })
+
+    // hit by player gun
     scene.physics.world.addOverlap(scene.player.gun, this, (boss, bullet) => {
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)

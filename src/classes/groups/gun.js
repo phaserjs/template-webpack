@@ -2,7 +2,7 @@ import { Physics } from 'phaser'
 import { Bullet } from '../bullet'
 
 export class Gun extends Physics.Arcade.Group {
-  constructor (scene, x, y, enemyGun, ammo) {
+  constructor (scene, x, y, enemyGun, bossGun, ammo) {
     super(scene.physics.world, scene)
     this.ammo = ammo
     this.defaults.setAllowGravity = false
@@ -15,21 +15,18 @@ export class Gun extends Physics.Arcade.Group {
       setXY: { x, y }
     })
     this.enemyGun = enemyGun
-    this.setColliders(scene)
+    this.bossGun = bossGun
+
+    console.log('this.enemyGun', this.enemyGun)
+    console.log('this.bossGun', this.bossGun)
 
     this.setAnims()
   }
 
-  setColliders (scene) {
-    // scene.physics.world.addCollider(this, scene.platforms, (bullet) => {
-    //   bullet.destroy()
-    // })
-  }
-
-  fireBullet (x, y, facingLeft, enemyGun) {
+  fireBullet (x, y, facingLeft, enemyGun, bossGun) {
     const bullet = this.getFirstDead(false)
     if (bullet) {
-      bullet.fire(x, y, facingLeft, enemyGun)
+      bullet.fire(x, y, facingLeft, enemyGun, bossGun)
     }
   }
 

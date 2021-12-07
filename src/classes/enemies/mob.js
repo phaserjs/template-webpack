@@ -7,22 +7,10 @@ export class Mob extends Actor {
 
     scene.physics.add.existing(this)
     this.name = texture
-    // if (config === null || config === undefined) {
-    //   this.config = {
-    //     w: 30,
-    //     h: 30,
-    //     xOff: 50,
-    //     yOff: 8,
-    //     scale: 2,
-    //     frameEnds: {
-    //       run: 3
-    //     }
-    //   }
-    // } else {
-    // this.config = config
-    // }
-
+    this.config = config
+    // this.setAnims(config)
     this.setColliders(scene)
+    console.log('mob', config)
   }
 
   setAnims (config) {
@@ -67,7 +55,6 @@ export class Mob extends Actor {
     this.setSize(config.w, config.h)
     this.setOffset(config.xOff, config.yOff)
     this.setAnims(config)
-    this.flipX = true
     this.x = x
     this.y = y
     this.setActive(true)

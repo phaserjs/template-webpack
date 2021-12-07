@@ -89,42 +89,42 @@ export class Level1 extends Scene {
   }
 
   enemySetup () {
-    const mobConfig = {
-      w: 30,
-      h: 30,
-      xOff: 50,
-      yOff: 8,
-      scale: 2,
-      frameEnds: {
-        idle: 4
-      }
-    }
+    // const mobConfig = {
+    //   w: 30,
+    //   h: 30,
+    //   xOff: 50,
+    //   yOff: 8,
+    //   scale: 2,
+    //   frameEnds: {
+    //     idle: 4
+    //   }
+    // }
 
-    const vikingConfig = {
-      w: 24,
-      h: 24,
-      xOff: 5,
-      yOff: 8,
-      scale: 1,
-      frameEnds: {
-        idle: 6
-      }
-    }
+    // const vikingConfig = {
+    //   w: 24,
+    //   h: 24,
+    //   xOff: 5,
+    //   yOff: 8,
+    //   scale: 1,
+    //   frameEnds: {
+    //     idle: 6
+    //   }
+    // }
 
-    // tempConfig for bear-boss
-    const tempConfig = {
-      w: 128,
-      h: 128,
-      xOff: 0,
-      yOff: 0,
-      scale: 1,
-      frameEnds: {
-        run: 3
-      }
-    }
+    // // tempConfig for bear-boss
+    // const tempConfig = {
+    //   w: 128,
+    //   h: 128,
+    //   xOff: 0,
+    //   yOff: 0,
+    //   scale: 1,
+    //   frameEnds: {
+    //     run: 3
+    //   }
+    // }
 
     // this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
-    this.bossChild = new Mob(this, 500, 300, 'bear-boss', tempConfig)
+    // this.bossChild = new Mob(this, 500, 300, 'bear-boss', tempConfig)
     // this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
     this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
@@ -233,9 +233,7 @@ export class Level1 extends Scene {
   update () {
     this.jared.update()
     this.debugUpdate()
-    // this.enemy.update()
-    // this.enemy4.update()
-    this.bossChild.update()
+
     this.enemy3.update()
     this.enemy1.update()
     this.enemy2.update()
