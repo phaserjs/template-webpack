@@ -20,24 +20,9 @@ export class Level3 extends Scene {
     this.initPlayer()
     this.pathSetup()
     this.enemySetup()
+    this.uISetup()
     this.cameraSetup()
     this.debugSetup()
-
-    // change position if needed (but use same position for both images)
-    var backgroundBar = this.add.image(150, 50, 'green-bar')
-    backgroundBar.setScrollFactor(0)
-
-    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
-    this.playerHealthBar.setScrollFactor(0)
-    console.log(this.playerHealthBar)
-
-    // add text label to left of bar
-    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
-    this.healthLabel.setScrollFactor(0)
-
-    this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
-    this.add.image(3450, 22, 'enemy-red-bar')
-    this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
   initMap () {
@@ -107,6 +92,19 @@ export class Level3 extends Scene {
     console.log(this.bossTemp1)
     console.log(this.bossTemp2)
     console.log(this.bossTemp4)
+  }
+
+  uISetup () {
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
   }
 
   debugSetup () {
