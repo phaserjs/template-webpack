@@ -129,6 +129,8 @@ export class LoadingScene extends Scene {
     this.load.image('level4Bg5', 'tilemaps/level-4/layer02_cake.png')
     this.load.image('level4Bg6', 'tilemaps/level-4/layer01_ground.png')
 
+    this.load.atlas('caro-boss', 'sprites/anims/caro-boss.png', 'sprites/atlas/caro-boss-atlas.json')
+
     // level 4.5
     this.load.image('level45', 'tilemaps/level-4.5/Retro-Lines-Tiles-transparent.png')
     this.load.tilemapTiledJSON('level45-map', 'tilemaps/level-4.5/caro2.json')

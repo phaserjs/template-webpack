@@ -10,7 +10,6 @@ export class Mob extends Actor {
     this.config = config
     // this.setAnims(config)
     this.setColliders(scene)
-    console.log('mob', config)
   }
 
   setAnims (config) {

@@ -1,13 +1,14 @@
 import { Scene, Curves, Display } from 'phaser'
-import { Boss3 } from '../classes/bosses/boss3'
-import { Boss4 } from '../classes/bosses/boss4'
-import { TempBoss } from '../classes/bosses/tempBoss'
-import { TempBoss2 } from '../classes/bosses/tempBoss2'
-import { TempBoss3 } from '../classes/bosses/tempBoss3'
-import { TempBoss4 } from '../classes/bosses/tempBoss4'
-// import { Enemy1 } from '../classes/enemies/enemy-1'
-import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
+import { Boss3 } from '../classes/bosses/boss3'
+import { Facilitator } from '../classes/npc'
+
+// import { Boss4 } from '../classes/bosses/boss4'
+// import { TempBoss } from '../classes/bosses/tempBoss'
+// import { TempBoss2 } from '../classes/bosses/tempBoss2'
+// import { TempBoss3 } from '../classes/bosses/tempBoss3'
+// import { TempBoss4 } from '../classes/bosses/tempBoss4'
+// import { Enemy1 } from '../classes/enemies/enemy-1'
 // import { Boss3 } from '../classes/enemies/boss3'
 
 export class Level3 extends Scene {
@@ -18,10 +19,12 @@ export class Level3 extends Scene {
   create () {
     this.initMap()
     this.initPlayer()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.cameraSetup()
     this.debugSetup()
+    // this.triggerSetup()
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -35,9 +38,9 @@ export class Level3 extends Scene {
     this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
     this.healthLabel.setScrollFactor(0)
 
-    this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
-    this.add.image(3450, 22, 'enemy-red-bar')
-    this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
+    // this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
+    // this.add.image(3450, 22, 'enemy-red-bar')
+    // this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
   initMap () {
@@ -69,6 +72,10 @@ export class Level3 extends Scene {
     this.player = new Player(this, 100, 600)
   }
 
+  initNpc () {
+    this.jared = new Facilitator(this, 3000, 200, 'jared')
+  }
+
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
     this.physics.world.setBounds(0, 0, 1920, 5760)
@@ -84,29 +91,8 @@ export class Level3 extends Scene {
   }
 
   enemySetup () {
-    const mobConfig = {
-      w: 30,
-      h: 30,
-      xOff: 50,
-      yOff: 8,
-      scale: 2,
-      frameEnds: {
-        idle: 4
-      }
-    }
-    this.boss = new Boss3(this, 300, 200)
-    this.bossTest = new Boss4(this, 800, 200)
-    this.enemyMob1 = new Mob(this, 200, 100, 'gen-mob-1', mobConfig)
-    this.bossTemp1 = new TempBoss(this, 500, 200)
-    this.bossTemp2 = new TempBoss2(this, 600, 400)
-    this.bossTemp3 = new TempBoss3(this, 550, 200)
-    this.bossTemp4 = new TempBoss4(this, 600, 500)
-
-    console.log(this.boss)
-    console.log(this.bossTest)
-    console.log(this.bossTemp1)
-    console.log(this.bossTemp2)
-    console.log(this.bossTemp4)
+    // set 1200, 5200
+    this.boss = new Boss3(this, 1200, 5200)
   }
 
   debugSetup () {
@@ -194,18 +180,15 @@ export class Level3 extends Scene {
       this.scene.start('death-scene', { checkpoint: 3 })
     }
 
-    this.enemyMob1.update()
-
-    this.boss.update()
-
-    this.bossTest.update()
-
-    this.bossTemp1.update()
-
-    this.bossTemp2.update()
-
-    this.bossTemp3.update()
-
-    this.bossTemp4.update()
+    if (this.boss.hp > 0) {
+      this.boss.update()
+    } else if (this.boss.active) {
+      this.boss.die()
+      // this.jared.setVisible(true)
+      // this.jared.setActive(true)
+      // if (this.jared.active) {
+      //   this.jared.update()
+      // }
+    }
   }
 }

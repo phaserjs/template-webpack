@@ -17,8 +17,8 @@ export class Gun extends Physics.Arcade.Group {
     this.enemyGun = enemyGun
     this.bossGun = bossGun
 
-    console.log('this.enemyGun', this.enemyGun)
-    console.log('this.bossGun', this.bossGun)
+    // console.log('this.enemyGun', this.enemyGun)
+    // console.log('this.bossGun', this.bossGun)
     this.setAnims()
     this.setColliders(scene)
   }
