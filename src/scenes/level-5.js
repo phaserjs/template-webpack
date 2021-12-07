@@ -14,7 +14,7 @@ export class Level5 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-    this.debugSetup()
+
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -160,8 +160,6 @@ export class Level5 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     this.player.update()
   }
 }
