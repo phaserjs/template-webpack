@@ -30,6 +30,8 @@ export class Player extends Actor {
 
     this.initAnimations()
     this.setColliders()
+    this.scene.sound.add('stepsAudio')
+    this.scene.sound.add('playerFireAudio')
   }
 
   fire () {
@@ -131,6 +133,8 @@ export class Player extends Actor {
           this.anims.play('attack', true)
           this.fire()
           this.canShoot = false
+          this.scene.sound.stopByKey('playerFireAudio')
+          this.scene.sound.play('playerFireAudio', { volume: 0.3, loop: false })
         }
       } else if (this.keyA.isDown) {
         this.anims.play('run', true)
@@ -143,6 +147,8 @@ export class Player extends Actor {
         this.checkFlip()
       } else {
         this.anims.play('idle', true)
+        this.scene.sound.stopByKey('playerFireAudio')
+        this.scene.sound.stopByKey('stepsAudio')
         if (this.flipX) {
           this.body.setOffset(95, 55)
         }

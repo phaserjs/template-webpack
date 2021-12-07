@@ -17,9 +17,11 @@ export class Level4 extends Scene {
     this.cameraSetup()
     this.debugSetup()
 
+    this.sound.stopAll()
+    this.sound.add('stepsAudio')
+    this.sound.add('playerFireAudio')
     this.sound.add('level4BgAudio')
     this.sound.play('level4BgAudio', { volume: 0.05, loop: true })
-    this.sound.stopByKey('level3BgAudio')
   }
 
   changeScene () {

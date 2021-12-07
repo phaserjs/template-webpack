@@ -188,6 +188,8 @@ export class LoadingScene extends Scene {
   }
 
   create () {
+    this.sound.add('titleAudio', { loop: true })
+    this.sound.play('titleAudio')
     this.scene.start('title-scene')
   }
 }
