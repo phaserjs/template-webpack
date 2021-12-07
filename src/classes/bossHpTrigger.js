@@ -8,9 +8,9 @@ export class BossHpTrigger extends Physics.Arcade.Sprite {
     this.body.setImmovable(true)
 
     const triggerZone = scene.physics.world.addOverlap(this, this.scene.player, () => {
-      this.scene.enemyHealthBar = this.scene.add.image(config.healthBarX, config.healthBarY + 12, 'enemy-shadow-bar')
-      this.scene.add.image(config.healthBarX, config.healthBarY, 'enemy-red-bar')
-      this.scene.add.text(config.healthBarX - 200, config.healthBarY + 18, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
+      this.scene.enemyHealthBar = this.scene.add.image(875, 32, 'enemy-shadow-bar').setScrollFactor(0)
+      this.scene.add.image(875, 20, 'enemy-red-bar').setScrollFactor(0)
+      this.scene.add.text(675, 38, 'Boss Health', { fontSize: '20px', fill: '#ffffff' }).setScrollFactor(0)
       this.scene.physics.world.removeCollider(triggerZone)
     })
 
