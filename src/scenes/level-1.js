@@ -3,8 +3,8 @@ import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss'
-import { Trigger } from '../classes/triggers'
-import { BossHpTrigger } from '../classes/bossHpTrigger'
+import { Trigger } from '../classes/triggers/endLevel'
+import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Facilitator } from '../classes/npc'
 export class Level1 extends Scene {
   constructor () {
@@ -17,27 +17,13 @@ export class Level1 extends Scene {
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
+    this.uISetup()
     this.cameraSetup()
     this.debugSetup()
 
     this.sound.add('level1BgAudio')
     this.sound.play('level1BgAudio', { loop: true })
     this.sound.stopByKey('titleAudio')
-
-    // change position if needed (but use same position for both images)
-    var backgroundBar = this.add.image(150, 50, 'green-bar')
-    backgroundBar.setScrollFactor(0)
-
-    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
-    this.playerHealthBar.setScrollFactor(0)
-
-    // add text label to left of bar
-    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
-    this.healthLabel.setScrollFactor(0)
-
-    // this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
-    // this.add.image(3450, 22, 'enemy-red-bar')
-    // this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
   changeScene () {
@@ -158,6 +144,19 @@ export class Level1 extends Scene {
   triggerSetup () {
     this.endLevel = new Trigger(this, 3740, 490)
     this.bossHealth = new BossHpTrigger(this, 2520, 460, { healthBarX: 3450, healthBarY: 34 })
+  }
+
+  uISetup () {
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
   }
 
   debugSetup () {

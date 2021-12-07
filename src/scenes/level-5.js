@@ -1,6 +1,6 @@
 import { Scene, Curves, Display } from 'phaser'
 import { Player } from '../classes/player'
-import { Trigger } from '../classes/triggers'
+import { Trigger } from '../classes/triggers/endLevel'
 
 export class Level5 extends Scene {
   constructor () {
@@ -13,27 +13,13 @@ export class Level5 extends Scene {
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
+    this.uISetup()
     this.cameraSetup()
     this.debugSetup()
 
     this.sound.stopAll()
     this.sound.add('level5BgAudio')
     this.sound.play('level5BgAudio', { loop: true })
-    // change position if needed (but use same position for both images)
-    var backgroundBar = this.add.image(150, 50, 'green-bar')
-    backgroundBar.setScrollFactor(0)
-
-    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
-    this.playerHealthBar.setScrollFactor(0)
-    console.log(this.playerHealthBar)
-
-    // add text label to left of bar
-    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
-    this.healthLabel.setScrollFactor(0)
-
-    this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
-    this.add.image(3450, 22, 'enemy-red-bar')
-    this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
   changeScene () {
@@ -53,7 +39,10 @@ export class Level5 extends Scene {
     this.walls = map.createLayer('Collision Layer', tilesetGround, 0, 0)
     this.jumpLayer = map.createLayer('Jump Layer', tilesetGround, 0, 0)
     map.createLayer('Background', tilesetBackground)
-    // this.add.tileSprite(200, 450, 8000, 1000, 'level5-Bg1').setScrollFactor(0.5)
+    this.add.tileSprite(200, 1000, 8000, 2000, 'level5-Bg2')
+      .setScrollFactor(0.6)
+    this.add.tileSprite(200, 1450, 8000, 220, 'level5-Bg3')
+      .setScrollFactor(0.8)
     map.createLayer('Platforms', tilesetPlatforms)
     this.water = map.createLayer('Ground Cover', tilesetGround)
     map.createLayer('Rock1', tilesetGround)
@@ -126,6 +115,19 @@ export class Level5 extends Scene {
     this.scene3 = this.input.keyboard.addKey('THREE')
     this.scene4 = this.input.keyboard.addKey('FOUR')
     this.scene5 = this.input.keyboard.addKey('FIVE')
+  }
+
+  uISetup () {
+    // change position if needed (but use same position for both images)
+    var backgroundBar = this.add.image(150, 50, 'green-bar')
+    backgroundBar.setScrollFactor(0)
+
+    this.playerHealthBar = this.add.image(155, 50, 'red-bar')
+    this.playerHealthBar.setScrollFactor(0)
+
+    // add text label to left of bar
+    this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
+    this.healthLabel.setScrollFactor(0)
   }
 
   debugUpdate () {
