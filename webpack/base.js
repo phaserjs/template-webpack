@@ -36,9 +36,14 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin(
-      [
-        { from: 'assets', to: 'assets' }
-      ]
+      {
+        patterns:
+          [
+            { from: './src/assets', to: 'assets' },
+            { from: './src/main.css', to: 'main.css' }
+
+          ]
+      }
     ),
     new CleanWebpackPlugin({
       root: path.resolve(__dirname, '../')
