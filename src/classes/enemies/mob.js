@@ -47,8 +47,8 @@ export class Mob extends Actor {
       this.scene.sound.play('playerDamageAudio', { loop: false })
       this.destroy()
     })
-    scene.physics.world.addCollider(this, scene.floor)
-    scene.physics.world.addCollider(this, scene.platforms)
+    scene.physics.world.addCollider(this, scene.walls)
+    scene.physics.world.addCollider(this, scene.jumpLayer)
     scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
       bullet.destroy()
       this.destroy()

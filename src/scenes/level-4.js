@@ -14,7 +14,7 @@ export class Level4 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-
+    this.debugSetup()
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -60,8 +60,8 @@ export class Level4 extends Scene {
     // creating layers to reflect tilemap layers - order matters for rendering
     this.water = level4map.createLayer('Water', cloudTileSetLevel4, 0, 0)
     level4map.createLayer('Etc', cloudTileSetLevel4, 0, 0)
-    this.platforms = level4map.createLayer('Platforms', cloudTileSetLevel4, 0, 0)
-    this.ground = level4map.createLayer('Land', tileSetLevel4, 0, 0)
+    level4map.createLayer('Platforms', cloudTileSetLevel4, 0, 0)
+    level4map.createLayer('Land', tileSetLevel4, 0, 0)
     level4map.createLayer('Break', breakTiles)
     // setting collision property to ground
     this.jumpLayer.setCollisionByExclusion(-1, true)
@@ -171,10 +171,13 @@ export class Level4 extends Scene {
   }
 
   update () {
+    this.debugUpdate()
+
     if (this.player.hp > 0) {
       this.player.update()
-    } else {
+    } else if (this.player.active) {
       this.player.die()
+      this.scene.start('death-scene', { checkpoint: 4 })
     }
   }
 }
