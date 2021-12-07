@@ -35,7 +35,6 @@ export class Mob extends Actor {
   setColliders (scene) {
     scene.physics.world.addOverlap(scene.player, this, () => {
       this.scene.player.getDamage(20)
-      console.log('Sup g');
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
       this.scene.sound.play('playerDamageAudio', { loop: false })

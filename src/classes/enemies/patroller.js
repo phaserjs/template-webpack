@@ -8,7 +8,7 @@ export class Patroller extends GameObjects.PathFollower {
     scene.physics.add.existing(this)
     this.body.allowGravity = false
 
-    this.gun = new Gun(this.scene, x, y - 400, true, false, 1000)
+    this.gun = new Gun(this.scene, x, y - 400, true, false, false, 50)
     this.name = texture
     this.setColliders(scene)
     this.setAnims()
@@ -34,6 +34,34 @@ export class Patroller extends GameObjects.PathFollower {
       key: 'adventurer-death',
       frames: this.scene.anims.generateFrameNames('player', {
         prefix: 'death-',
+        end: 6
+      }),
+      framerate: 12
+    })
+
+    // gen mob 3
+    this.scene.anims.create({
+      key: 'gen-mob-3-idle',
+      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
+        prefix: 'idle-',
+        end: 4
+      }),
+      framerate: 12
+    })
+
+    this.scene.anims.create({
+      key: 'gen-mob-3-death',
+      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
+        prefix: 'death-',
+        end: 7
+      }),
+      framerate: 12
+    })
+
+    this.scene.anims.create({
+      key: 'gen-mob-3-atk',
+      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
+        prefix: 'atk-',
         end: 6
       }),
       framerate: 12
