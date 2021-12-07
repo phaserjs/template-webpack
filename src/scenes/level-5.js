@@ -14,7 +14,7 @@ export class Level5 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-    this.debugSetup()
+
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -31,6 +31,10 @@ export class Level5 extends Scene {
     this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
     this.add.image(3450, 22, 'enemy-red-bar')
     this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
+  }
+
+  changeScene () {
+    this.scene.start('win-scene')
   }
 
   initMap () {
@@ -89,10 +93,15 @@ export class Level5 extends Scene {
     })
 
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.platforms.renderDebug(debugGraphics, {
+    this.jumpLayer.renderDebug(debugGraphics, {
       tileColor: null,
       collidingTileColor: new Display.Color(243, 234, 48, 255)
     })
+    // this.walls.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(243, 20, 48, 255)
+    // })
+
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
     this.playerHealth = this.add.text(50, 65)
@@ -151,8 +160,6 @@ export class Level5 extends Scene {
   }
 
   update () {
-    this.debugUpdate()
-
     this.player.update()
   }
 }

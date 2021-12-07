@@ -78,6 +78,7 @@ export class Player extends Actor {
     this.scene.physics.world.addCollider(this, this.scene.platforms, () => {
       this.canJump = true
     })
+    this.scene.physics.world.addCollider(this, this.scene.walls)
     this.scene.physics.world.addCollider(this, this.scene.ground, () => {
       this.canJump = true
     })
@@ -108,8 +109,8 @@ export class Player extends Actor {
 
   checkGodMode () {
     if (this.godMode) {
-      this.speed = 440
-      this.jump = 300
+      this.speed = 660
+      this.jump = 400
     } else {
       this.speed = 220
       this.jump = 220
@@ -132,6 +133,10 @@ export class Player extends Actor {
         }
         this.body.velocity.y = -this.jump
       }
+      if (this.keyS.isDown && this.godMode) {
+        this.body.velocity.y = this.jump
+      }
+
       if (this.keyShoot.isDown) {
         if (this.canShoot) {
           this.anims.play('attack', true)
