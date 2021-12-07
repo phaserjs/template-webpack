@@ -17,7 +17,7 @@ export class Controls extends Scene {
 
     // Detect when pointer is hovering over button, and change scene on click
     arrow.on('pointerdown', () =>
-      this.scene.start('level-5-scene'), console.log('loading scene 1'))
+      this.scene.start('level-1-scene'), console.log('loading scene 1'))
 
     arrow.on('pointerover', () =>
       arrow.setTint(0xff0000a160))
