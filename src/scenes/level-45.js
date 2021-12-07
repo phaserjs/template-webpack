@@ -54,7 +54,7 @@ export class Level45 extends Scene {
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
     this.physics.world.setBounds(0, 0, 4800, 1088)
-    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
+    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, 0, 20)
     this.cameras.main.setBounds(0, 0, 4800, 1088)
   }
 

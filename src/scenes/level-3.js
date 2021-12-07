@@ -75,9 +75,15 @@ export class Level3 extends Scene {
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
     this.physics.world.setBounds(0, 0, 1920, 5760)
-    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
+    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, 0, 20)
     this.cameras.main.setBounds(0, 0, 1920, 5760)
   }
+
+  // cameraUpdate () {
+  //   if(this.player.velocity.x < 0) {
+  //     this.cameras.
+  //   }
+  // }
 
   pathSetup () {
     const points1 = [50, 400, 135, 400]
