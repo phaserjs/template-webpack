@@ -8,7 +8,7 @@ export class Patroller extends GameObjects.PathFollower {
     scene.physics.add.existing(this)
     this.body.allowGravity = false
 
-    this.gun = new Gun(this.scene, x, y - 400, true, false, false, 50)
+    this.gun = new Gun(this.scene, x, y - 400, true, true, true, 500)
     this.name = texture
     this.setColliders(scene)
     this.setAnims()
