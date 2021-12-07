@@ -177,7 +177,7 @@ export class LoadingScene extends Scene {
 
     this.load.atlas('portal', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
 
-    this.load.atlas('dishes-poo', 'sprites/img/dishes-poo-fly.png', 'sprites/atlas/dishes-poo-fly.json')
+    this.load.atlas('dishes-poo', 'sprites/img/dishes-poo-fly.png', 'sprites/atlas/dishes-poo-fly-atlas.json')
 
     // bullets
     this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')

@@ -30,6 +30,7 @@ export class MobSpawner extends Physics.Arcade.Group {
   }
 
   spawnMob (x, y) {
+    console.log(';;;;', this)
     const mob = this.getFirstDead(false)
     if (mob) {
       mob.spawn(x, y, this.config)

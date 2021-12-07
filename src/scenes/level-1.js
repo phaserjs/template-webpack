@@ -122,9 +122,9 @@ export class Level1 extends Scene {
     // this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
     // this.bossChild = new Mob(this, 500, 300, 'bear-boss', tempConfig)
     // this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
-    this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
-    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
-    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
+    this.enemy1 = new Patroller(this, this.curve, 818, 413, 'gen-mob-4')
+    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-4')
+    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-4')
 
     this.boss = new Boss1(this, 3300, 220)
 

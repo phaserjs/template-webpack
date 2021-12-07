@@ -11,12 +11,14 @@ export class Mob extends Actor {
     // this.setAnims(config)
     this.setColliders(scene)
     // this.setAnims(config)
+    console.log(this.key)
+    console.log(this.config)
   }
 
   setAnims (config) {
     this.scene.anims.create({
       // e.g 'gen-mob-4' + '-idle'
-      key: config.name + config.key,
+      key: this.name + config.key,
       frames: this.anims.generateFrameNames(config.name, {
         prefix: config.prefix,
         end: config.frameEnds
@@ -57,7 +59,7 @@ export class Mob extends Actor {
     this.setScale(config.scale)
     this.setSize(config.w, config.h)
     this.setOffset(config.xOff, config.yOff)
-    this.setAnims(config)
+
     this.x = x
     this.y = y
     this.setActive(true)
@@ -66,10 +68,11 @@ export class Mob extends Actor {
     this.setVelocity(Math.Between(-300, -100), Math.Between(-200, -50))
   }
 
-  update () {
+  update (time, delta, config) {
     if (this.active) {
       this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-      this.anims.play(this.name + this.config.key, true)
+      console.log('update:', config)
+      this.anims.play(this.name + config.key, true)
       this.checkFlip()
     }
   }
