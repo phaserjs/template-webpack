@@ -5,6 +5,7 @@ import { Patroller } from '../classes/enemies/patroller'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Boss2 } from '../classes/bosses/boss2'
 import { Trigger } from '../classes/triggers/endLevel'
+import { Mob2 } from '../classes/enemies/mob2'
 
 export class Level2 extends Scene {
   constructor () {
@@ -80,23 +81,40 @@ export class Level2 extends Scene {
 
   enemySetup () {
     const vikingConfig = {
+      name: 'viking',
+      key: '-idle',
+      prefix: 'idle-',
       w: 24,
       h: 24,
       xOff: 5,
       yOff: 8,
       scale: 1,
-      frameEnds: {
-        idle: 6
-      }
+      frameEnds: 6
+    }
+
+    const flymonConfig = {
+      name: 'gen-mob-4',
+      key: '-idle',
+      prefix: 'idle-',
+      w: 16,
+      h: 16,
+      xOff: 73,
+      yOff: 69,
+      scale: 5,
+      frameEnds: 7
     }
     this.enemy1 = new Mob(this, 500, 400, 'viking', vikingConfig)
+    this.enemy2 = new Mob2(this, 680, 210, 'gen-mob-4', flymonConfig)
+    this.enemy1.spawn(500, 400, vikingConfig)
+    this.enemy2.spawn(680, 210, flymonConfig)
+    console.log(this.enemy2)
+    console.log(this.enemy1)
+
     this.enemy = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
 
     this.boss = new Boss2(this, 5500, 220)
-    console.log(this.boss)
-    console.log(this.boss.setSize)
 
     this.enemy.startFollow({
       duration: 700,
@@ -207,6 +225,7 @@ export class Level2 extends Scene {
   update () {
     this.debugUpdate()
     this.enemy1.update()
+    this.enemy2.update()
 
     if (this.boss.hp > 0) {
       this.boss.update()

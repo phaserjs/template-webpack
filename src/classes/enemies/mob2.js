@@ -1,12 +1,11 @@
 import { Math } from 'phaser'
 import { Actor } from '../actor'
 
-export class Mob extends Actor {
-  constructor (scene, x, y, texture, config) {
-    super(scene, x, y, texture)
+export class Mob2 extends Actor {
+  constructor (scene, x, y, config) {
+    super(scene, x, y, config)
 
     scene.physics.add.existing(this)
-    this.name = texture
     this.config = config
     // this.setAnims(config)
     this.setColliders(scene)
@@ -23,8 +22,8 @@ export class Mob extends Actor {
       }),
       frameRate: 12
     })
-    console.log('prefix', config.prefix)
-    console.log('key', config.key)
+    console.log('prefix:', config.prefix)
+    console.log('key:', config.key)
 
     // this.scene.anims.create({
     //   key: this.name + '-idle',
@@ -69,7 +68,7 @@ export class Mob extends Actor {
   update () {
     if (this.active) {
       this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-      this.anims.play(this.name + this.config.key, true)
+      this.anims.play(this.config.name + this.config.key, true)
       this.checkFlip()
     }
   }

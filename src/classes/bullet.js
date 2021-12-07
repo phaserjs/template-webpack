@@ -10,8 +10,6 @@ export class Bullet extends Physics.Arcade.Sprite {
     // console.log(this.flipX)
     this.setActive(true)
     this.setVisible(true)
-    console.log('boosgun', bossGun)
-    console.log('enem gun', enemyGun)
 
     if (this.scene.player.anims.getName() === 'attack') {
       this.scene.time.addEvent({

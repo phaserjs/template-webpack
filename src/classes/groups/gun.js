@@ -16,7 +16,6 @@ export class Gun extends Physics.Arcade.Group {
     })
     this.enemyGun = enemyGun
     this.bossGun = bossGun
-    console.log(this);
 
     // console.log('this.enemyGun', this.enemyGun)
     // console.log('this.bossGun', this.bossGun)
@@ -26,15 +25,12 @@ export class Gun extends Physics.Arcade.Group {
 
   setColliders (scene) {
     scene.physics.world.addCollider(this, scene.jumpLayer, (bullet) => {
-      console.log('Sup g');
       bullet.destroy()
     })
     scene.physics.world.addCollider(this, scene.walls, (bullet) => {
-      console.log('Sup g');
       bullet.destroy()
     })
     scene.physics.world.addCollider(this, scene.water, (bullet) => {
-      console.log('Sup g');
       bullet.destroy()
     })
   }

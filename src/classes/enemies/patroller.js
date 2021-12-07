@@ -41,7 +41,7 @@ export class Patroller extends GameObjects.PathFollower {
 
     // gen mob 3
     this.scene.anims.create({
-      key: 'gen-mob-3-idle',
+      key: 'gen-mob-3-',
       frames: this.scene.anims.generateFrameNames('gen-mob-3', {
         prefix: 'idle-',
         end: 4
@@ -69,9 +69,9 @@ export class Patroller extends GameObjects.PathFollower {
 
     // flyin mon
     this.scene.anims.create({
-      key: 'gen-mob-4-fly',
+      key: 'gen-mob-4-idle',
       frames: this.scene.anims.generateFrameNames('gen-mob-4', {
-        prefix: 'fly-',
+        prefix: 'idle-',
         end: 7
       }),
       framerate: 12
