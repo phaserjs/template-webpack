@@ -63,7 +63,12 @@ export class LoadingScene extends Scene {
     this.load.image('titleForeground', 'title/parallax-mountain-foreground-trees.png')
     this.load.image('start-game', 'title/start-game.png')
     this.load.image('game-logo', 'title/game-logo.png')
+    // credits
+    this.load.image('credits-button', 'title/credits-button.png')
+    this.load.image('credits-text', 'title/credits-text.png')
+    this.load.image('home-button', 'title/home-button.png')
 
+    // controls
     this.load.image('controlsIntro', 'title/intro.png')
     this.load.image('arrow', 'title/arrow.png')
 
