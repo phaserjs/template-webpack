@@ -16,10 +16,13 @@ export class Boss1 extends Actor {
     this.hp = 100
     this.maxHealth = 100
     this.name = 'boss1'
+
     const bearConfig = {
-      name: 'bear-boss',
-      key: '-run',
-      prefix: 'run-',
+      key: {
+        run: '-run',
+        atk: '-atk',
+        idle: '-idle'
+      },
       w: 128,
       h: 128,
       xOff: 0,
@@ -33,7 +36,6 @@ export class Boss1 extends Actor {
     // bleed bears
     this.spawner = new MobSpawner(this.scene, 50, -30, 'bear-boss', bearConfig)
 
-    // boss gun is broken
     this.bossGun = new Gun(this.scene, x, y - 400, false, true, 1000)
 
     this.scene.add.existing(this.spawner)
@@ -88,7 +90,7 @@ export class Boss1 extends Actor {
 
   setColliders (scene) {
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
-    scene.physics.world.addCollider(this, this.scene.wall)
+    scene.physics.world.addCollider(this, this.scene.walls)
     scene.physics.world.addCollider(this.spawner, this.spawner)
 
     // boss and player collision
@@ -98,10 +100,12 @@ export class Boss1 extends Actor {
         // scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
         // scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
         scene.sound.play('playerDamageAudio', { loop: false })
+        console.log(scene.player)
+        console.log(this.bossGun)
       })
 
     // hit by mon gun
-    scene.physics.world.addOverlap(scene.player, this.gun, (player, bullet) => {
+    scene.physics.world.addCollider(this.scene.player, this.bossGun, (player, bullet) => {
       player.getDamage(10)
       // scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
       // scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1

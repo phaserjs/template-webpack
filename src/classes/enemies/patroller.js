@@ -2,11 +2,12 @@ import { GameObjects, Math } from 'phaser'
 import { Gun } from '../groups/gun'
 
 export class Patroller extends GameObjects.PathFollower {
-  constructor (scene, path, x, y, texture) {
+  constructor (scene, path, x, y, texture, config) {
     super(scene, path, x, y, texture)
     scene.add.existing(this)
     scene.physics.add.existing(this)
     this.body.allowGravity = false
+    this.config = config
 
     this.gun = new Gun(this.scene, x, y - 400, true, true, true, 500)
     this.name = texture

@@ -17,13 +17,20 @@ export class Boss3 extends Actor {
     this.name = 'boss3'
 
     const ahmadMob = {
+      key: {
+        atk: '-atk',
+        run: '-run',
+        idle: 'idle'
+      },
       w: 30,
       h: 30,
       xOff: 50,
-      yOff: 8,
+      yOff: 3,
       scale: 2,
       frameEnds: {
-        idle: 4
+        idle: 4,
+        run: 7,
+        atk: 7
       }
     }
     this.spawner = new MobSpawner(this.scene, 50, -30, 'gen-mob-1', ahmadMob)
@@ -84,9 +91,9 @@ export class Boss3 extends Actor {
     // scene.physics.world.addCollider(this.spawner, this.spawner)
 
     scene.physics.world.addCollider(scene.player.gun, this, (boss, bullet) => {
-      // this.spawner.spawnMob(this.x, this.y)
-      // this.spawner.spawnMob(this.x, this.y)
-      // this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
       this.scene.sound.play('enemyDamage', { loop: false })
       this.getDamage(10)
       bullet.destroy()

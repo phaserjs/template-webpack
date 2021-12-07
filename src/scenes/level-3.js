@@ -3,7 +3,7 @@ import { Player } from '../classes/player'
 import { Boss3 } from '../classes/bosses/boss3'
 import { Facilitator } from '../classes/npc'
 import { Trigger } from '../classes/triggers/endLevel'
-import { Mob2 } from '../classes/enemies/mob2'
+
 import { TempBoss2 } from '../classes/bosses/tempBoss2'
 
 // import { Boss4 } from '../classes/bosses/boss4'
