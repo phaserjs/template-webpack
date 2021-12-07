@@ -1,5 +1,4 @@
 import { Scene, Curves, Display } from 'phaser'
-import { Boss4 } from '../classes/bosses/boss4'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
 

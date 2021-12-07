@@ -43,10 +43,10 @@ export class Mob extends Actor {
     scene.physics.world.addCollider(this, scene.water)
     scene.physics.world.addCollider(this, scene.wall)
     scene.physics.world.addCollider(this, scene.jumpLayer)
-    scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
-      bullet.destroy()
-      this.destroy()
-    })
+    // scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
+    //   bullet.destroy()
+    //   this.destroy()
+    // })
   }
 
   spawn (x, y, config) {

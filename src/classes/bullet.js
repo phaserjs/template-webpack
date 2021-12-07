@@ -37,7 +37,7 @@ export class Bullet extends Physics.Arcade.Sprite {
         this.body.reset(x - 20, y)
         this.setVelocity(this.scene.player.x - this.x, this.scene.player.y - this.y)
         this.anims.play('iceBulletStart', true)
-        // this.anims.chain(['iceBulletMid', 'iceBulletHit'], true)
+        this.anims.chain(['iceBulletMid', 'iceBulletHit'], true)
         this.flipX = true
       } else {
         this.body.reset(x + 20, y)
@@ -55,7 +55,7 @@ export class Bullet extends Physics.Arcade.Sprite {
 
       this.scene.time.addEvent({
         delay: 1000,
-        callback: () => this.destroy()
+        callback: () => this.setActive(false)
       })
     }
   }
