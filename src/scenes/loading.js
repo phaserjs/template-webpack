@@ -78,9 +78,22 @@ export class LoadingScene extends Scene {
     this.load.image('banana', 'win/banana.png')
 
     // load audio
+    this.load.audio('titleAudio', ['ui/audio/kieran-title-credits.mp3'])
     this.load.audio('level1BgAudio', ['ui/audio/level1-audio.mp3'])
+    this.load.audio('level2BgAudio', ['ui/audio/level-2-audio.mp3'])
+    this.load.audio('level3BgAudio', ['ui/audio/level-3-audio.mp3'])
+    this.load.audio('level4BgAudio', ['ui/audio/level-4-audio.mp3'])
+    this.load.audio('level5BgAudio', ['ui/audio/level1-5-audio.mp3'])
     this.load.audio('playerDamageAudio', ['ui/audio/TakeDamage.mp3'])
+    this.load.audio('playerFireAudio', ['ui/audio/pewpew.mp3'])
+    this.load.audio('portalAudio', ['ui/audio/portal.mp3'])
+    this.load.audio('stepsAudio', ['ui/audio/steps.mp3'])
     this.load.audio('enemyDamage', ['ui/audio/enemy-hurt.mp3'])
+    this.load.audio('prueAudio', ['ui/audio/prue.mp3'])
+    this.load.audio('ahmadAudio', ['ui/audio/ahmad.mp3'])
+    this.load.audio('jaredAudio', ['ui/audio/jared.mp3'])
+    this.load.audio('caroAudio', ['ui/audio/caro.mp3'])
+    this.load.audio('eleanorAudio', ['ui/audio/eleanor.mp3'])
 
     // enemy health
     this.load.image('enemy-red-bar', 'ui/health/Pixel1_Healthbar_border.png')
