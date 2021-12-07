@@ -78,7 +78,7 @@ export class LoadingScene extends Scene {
     this.load.image('banana', 'win/banana.png')
 
     // load audio
-    this.load.audio('level1BgAudio', ['ui/audio/Idea.mp3'])
+    this.load.audio('level1BgAudio', ['ui/audio/level1-audio.mp3'])
     this.load.audio('playerDamageAudio', ['ui/audio/TakeDamage.mp3'])
     this.load.audio('enemyDamage', ['ui/audio/enemy-hurt.mp3'])
 
