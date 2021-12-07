@@ -17,11 +17,10 @@ export class Win extends Scene {
     const arrow = this.add.sprite(900, 480, 'arrow').setScale(0.1).setInteractive()
 
     // Detect when pointer is hovering over button, and change scene on click
-    banana.on('pointerdown', () =>
-      this.add.text(100, 450, 'You disrespectful fool! You murdered our banana!', { fontsize: '40px' }))
-
-    banana.on('pointerdown', () =>
-      banana.destroy())
+    banana.on('pointerdown', () => {
+      banana.destroy()
+      this.add.text(100, 450, 'You disrespectful fool! You murdered our banana!', { fontFamily: 'Press Start 2P', fontsize: '40px' })
+    })
 
     arrow.on('pointerdown', () =>
       this.scene.start('title-scene'), console.log('title'))

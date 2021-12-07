@@ -19,8 +19,20 @@ export class Gun extends Physics.Arcade.Group {
 
     console.log('this.enemyGun', this.enemyGun)
     console.log('this.bossGun', this.bossGun)
-
     this.setAnims()
+    this.setColliders(scene)
+  }
+
+  setColliders (scene) {
+    scene.physics.world.addCollider(this, scene.jumpLayer, (bullet) => {
+      bullet.destroy()
+    })
+    scene.physics.world.addCollider(this, scene.walls, (bullet) => {
+      bullet.destroy()
+    })
+    scene.physics.world.addCollider(this, scene.water, (bullet) => {
+      bullet.destroy()
+    })
   }
 
   fireBullet (x, y, facingLeft, enemyGun, bossGun) {

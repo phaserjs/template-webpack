@@ -24,6 +24,8 @@ export class MobSpawner extends Physics.Arcade.Group {
   }
 
   setColliders (scene) {
+    scene.physics.world.addCollider(this, scene.walls)
+    scene.physics.world.addCollider(this, scene.jumpLayer)
     scene.physics.world.addCollider(this, this)
   }
 

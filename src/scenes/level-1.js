@@ -1,4 +1,4 @@
-import { Scene, Curves } from 'phaser'
+import { Scene, Curves, Display } from 'phaser'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss1'
@@ -55,7 +55,7 @@ export class Level1 extends Scene {
     const tilesetHouse = map.addTilesetImage('Village-Endesga-Buildings', 'house')
 
     // creating layers to reflect tilemap layers - order matters for rendering
-    this.wall = map.createLayer('Collision Layer', tilesetGround)
+    this.walls = map.createLayer('Collision Layer', tilesetGround)
     this.jumpLayer = map.createLayer('Jump Layer', tilesetGround)
     map.createLayer('Clouds', tilesetCloud)
     map.createLayer('Foliage', tilesetFoliage)
@@ -65,7 +65,7 @@ export class Level1 extends Scene {
     map.createLayer('Door', tilesetGround)
     map.createLayer('Roof', tilesetHouse)
     // setting collision property to ground
-    this.wall.setCollisionByExclusion(-1, true)
+    this.walls.setCollisionByExclusion(-1, true)
     this.jumpLayer.setCollisionByExclusion(-1, true)
     this.water.setCollisionByExclusion(-1, true)
   }
@@ -165,19 +165,19 @@ export class Level1 extends Scene {
       this.player.godMode = !this.player.godMode
     })
 
-    // const debugGraphics = this.add.graphics().setAlpha(0.7)
-    // this.jumpLayer.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Display.Color(243, 234, 48, 255)
-    // })
-    // this.walls.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Display.Color(243, 20, 48, 255)
-    // })
-    // this.water.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Display.Color(20, 234, 48, 255)
-    // })
+    const debugGraphics = this.add.graphics().setAlpha(0.7)
+    this.jumpLayer.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 234, 48, 255)
+    })
+    this.walls.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 20, 48, 255)
+    })
+    this.water.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(20, 234, 48, 255)
+    })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
     this.playerHealth = this.add.text(50, 65)
@@ -260,7 +260,7 @@ export class Level1 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
-      this.scene.start('death-scene')
+      this.scene.start('death-scene', { checkpoint: 1 })
     }
   }
 }

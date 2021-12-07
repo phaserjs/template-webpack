@@ -14,7 +14,7 @@ export class Level45 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
-
+    this.debugSetup()
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -47,7 +47,7 @@ export class Level45 extends Scene {
     level45map.addTilesetImage('Background', tileSetLevel45)
     level45map.createLayer('Etc', tileSetLevel45)
     // creating layers to reflect tilemap layers - order matters for rendering
-    this.platforms = level45map.createLayer('Platform', tileSetLevel45, 0, 0)
+    level45map.createLayer('Platform', tileSetLevel45, 0, 0)
     this.water = level45map.createLayer('Waterfall', tileSetLevel45)
     // setting collision property to ground
     this.jumpLayer.setCollisionByExclusion(-1, true)
@@ -157,10 +157,13 @@ export class Level45 extends Scene {
   }
 
   update () {
+    this.debugUpdate()
+
     if (this.player.hp > 0) {
       this.player.update()
-    } else {
+    } else if (this.player.active) {
       this.player.die()
+      this.scene.start('death-scene', { checkpoint: 4 })
     }
   }
 }

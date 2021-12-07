@@ -70,17 +70,31 @@ export class Boss2 extends Actor {
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
     scene.physics.world.addCollider(this, this.scene.wall)
     scene.physics.world.addCollider(this.spawner, this.spawner)
+
+    scene.physics.world.addOverlap(scene.player.gun, this, (boss, bullet) => {
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.getDamage(10)
+      this.scene.sound.play('enemyDamage', { loop: false })
+      // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
+      // scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
+      bullet.destroy()
+    })
   }
 
   update () {
     if (this.active && this.hp > 0) {
-      this.boss2Flip()
+      // flip broken
+      // this.boss2Flip()
+
       const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
-      if (dist < 20000) {
-        this.anims.play('atk-test-boss', true)
-      } else if (dist > 20000 && dist < 60000) {
-        this.scene.physics.accelerateToObject(this, this.scene.player)
+
+      if (dist > 20000 && dist < 80000) {
+        this.scene.physics.accelerateToObject(this, this.scene.player, 100, 180)
         this.anims.play('run-test-boss', true)
+      } else if (dist <= 20000) {
+        this.anims.play('atk-test-boss', true)
       } else {
         this.setVelocityX(0)
         this.anims.play('idle-test-boss', true)
