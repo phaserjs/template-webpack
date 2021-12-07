@@ -4,6 +4,7 @@ import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss'
 import { Trigger } from '../classes/triggers'
+import { BossHpTrigger } from '../classes/bossHpTrigger'
 import { Facilitator } from '../classes/npc'
 export class Level1 extends Scene {
   constructor () {
@@ -30,9 +31,9 @@ export class Level1 extends Scene {
     this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
     this.healthLabel.setScrollFactor(0)
 
-    this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
-    this.add.image(3450, 22, 'enemy-red-bar')
-    this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
+    // this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
+    // this.add.image(3450, 22, 'enemy-red-bar')
+    // this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
   changeScene () {
@@ -152,6 +153,7 @@ export class Level1 extends Scene {
 
   triggerSetup () {
     this.endLevel = new Trigger(this, 3745, 448)
+    this.bossHealth = new BossHpTrigger(this, 2520, 460, { healthBarX: 3450, healthBarY: 34 })
   }
 
   debugSetup () {
@@ -239,6 +241,7 @@ export class Level1 extends Scene {
     this.enemy1.update()
     this.enemy2.update()
 
+    this.bossHealth.update()
     this.endLevel.update()
 
     if (this.boss.hp > 0) {
