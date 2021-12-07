@@ -95,7 +95,10 @@ export class Player extends Actor {
       this.getDamage(100)
       this.scene.physics.world.removeCollider(waterCollider)
     })
-    this.scene.physics.world.addCollider(this.gun, this.scene.platforms, (bullet) => {
+    this.scene.physics.world.addCollider(this.gun, this.scene.wall, (bullet) => {
+      bullet.destroy()
+    })
+    this.scene.physics.world.addCollider(this.gun, this.scene.jumpLayer, (bullet) => {
       bullet.destroy()
     })
   }

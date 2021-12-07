@@ -1,4 +1,4 @@
-import { Scene, Math, Curves, Display } from 'phaser'
+import { Scene, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
@@ -25,7 +25,6 @@ export class Level1 extends Scene {
 
     this.playerHealthBar = this.add.image(155, 50, 'red-bar')
     this.playerHealthBar.setScrollFactor(0)
-    console.log(this.playerHealthBar)
 
     // add text label to left of bar
     this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
