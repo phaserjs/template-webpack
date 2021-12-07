@@ -137,7 +137,7 @@ export class Player extends Actor {
           this.fire()
           this.canShoot = false
           this.scene.sound.stopByKey('playerFireAudio')
-          this.scene.sound.play('playerFireAudio', { volume: 0.3, loop: false })
+          this.scene.sound.play('playerFireAudio', { volume: 0.8, loop: false })
         }
       } else if (this.keyA.isDown) {
         this.anims.play('run', true)

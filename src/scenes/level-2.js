@@ -25,7 +25,7 @@ export class Level2 extends Scene {
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level2BgAudio')
-    this.sound.play('level2BgAudio', { volume: 0.2, loop: true })
+    this.sound.play('level2BgAudio', { volume: 0.6, loop: true })
   }
 
   changeScene () {
