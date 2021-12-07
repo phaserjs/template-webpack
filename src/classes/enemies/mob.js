@@ -35,6 +35,7 @@ export class Mob extends Actor {
   setColliders (scene) {
     scene.physics.world.addOverlap(scene.player, this, () => {
       this.scene.player.getDamage(20)
+      console.log('Sup g');
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
       this.scene.sound.play('playerDamageAudio', { loop: false })
@@ -43,10 +44,10 @@ export class Mob extends Actor {
     scene.physics.world.addCollider(this, scene.water)
     scene.physics.world.addCollider(this, scene.wall)
     scene.physics.world.addCollider(this, scene.jumpLayer)
-    // scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
-    //   bullet.destroy()
-    //   this.destroy()
-    // })
+    scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
+      bullet.destroy()
+      this.destroy()
+    })
   }
 
   spawn (x, y, config) {

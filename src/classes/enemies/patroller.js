@@ -19,7 +19,6 @@ export class Patroller extends GameObjects.PathFollower {
       delay: 500,
       loop: true
     })
-    console.log(this);
   }
 
   die () {

@@ -2,6 +2,7 @@ import { Scene, Curves, Display } from 'phaser'
 import { Player } from '../classes/player'
 import { Boss3 } from '../classes/bosses/boss3'
 import { Facilitator } from '../classes/npc'
+import { Trigger } from '../classes/triggers/endLevel'
 
 // import { Boss4 } from '../classes/bosses/boss4'
 // import { TempBoss } from '../classes/bosses/tempBoss'
@@ -22,6 +23,7 @@ export class Level3 extends Scene {
     this.initNpc()
     this.pathSetup()
     this.enemySetup()
+    this.triggerSetup()
     this.uISetup()
     this.cameraSetup()
     this.debugSetup()
@@ -72,6 +74,10 @@ export class Level3 extends Scene {
     const flyingPoints = [50, 400, 125, 320, 200, 400]
     this.curve = new Curves.Spline(points1)
     this.flying = new Curves.Spline(flyingPoints)
+  }
+
+  triggerSetup () {
+    this.endLevel = new Trigger(this, 1800, 5540)
   }
 
   enemySetup () {

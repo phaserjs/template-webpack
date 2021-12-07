@@ -29,7 +29,7 @@ export class Boss1 extends Actor {
 
     // bleed bears
     this.spawner = new MobSpawner(this.scene, 50, -30, 'bear-boss', bearConfig)
-    console.log(this.spawner)
+
     // boss gun is broken
     this.bossGun = new Gun(this.scene, x, y - 400, false, true, 1000)
 
@@ -111,6 +111,7 @@ export class Boss1 extends Actor {
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
+      console.log('Sup g');
       this.getDamage(10)
       this.scene.sound.play('enemyDamage', { loop: false })
       // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
