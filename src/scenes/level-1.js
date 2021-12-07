@@ -17,6 +17,7 @@ export class Level1 extends Scene {
     this.enemySetup()
     this.triggerSetup()
     this.cameraSetup()
+    this.debugSetup()
 
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
@@ -160,7 +161,7 @@ export class Level1 extends Scene {
       this.player.godMode = !this.player.godMode
     })
 
-    const debugGraphics = this.add.graphics().setAlpha(0.7)
+    // const debugGraphics = this.add.graphics().setAlpha(0.7)
     // this.jumpLayer.renderDebug(debugGraphics, {
     //   tileColor: null,
     //   collidingTileColor: new Display.Color(243, 234, 48, 255)
@@ -169,10 +170,10 @@ export class Level1 extends Scene {
     //   tileColor: null,
     //   collidingTileColor: new Display.Color(243, 20, 48, 255)
     // })
-    this.water.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(20, 234, 48, 255)
-    })
+    // this.water.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(20, 234, 48, 255)
+    // })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
     this.playerHealth = this.add.text(50, 65)
