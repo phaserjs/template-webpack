@@ -1,5 +1,6 @@
 import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
+import { Gun } from '../groups/gun'
 
 export class Boss1 extends Actor {
   constructor (scene, x, y) {
@@ -25,6 +26,7 @@ export class Boss1 extends Actor {
       }
     }
     this.spawner = new MobSpawner(this.scene, 50, -30, 'bear-boss', tempConfig)
+    this.gun = new Gun(this.scene, x, y - 400, true, 1000)
     this.scene.add.existing(this.spawner)
     console.log(this)
     this.setColliders(scene)
@@ -64,7 +66,8 @@ export class Boss1 extends Actor {
 
   setColliders (scene) {
     scene.physics.world.addCollider(this.scene.player, this)
-    scene.physics.world.addCollider(this, this.scene.platforms)
+    scene.physics.world.addCollider(this, this.scene.jumpLayer)
+    scene.physics.world.addCollider(this, this.scene.wall)
     scene.physics.world.addCollider(this.spawner, this.spawner)
     scene.physics.world.addOverlap(scene.player.gun, this, (boss, bullet) => {
       this.spawner.spawnMob(this.x, this.y)

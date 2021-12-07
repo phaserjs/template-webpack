@@ -232,7 +232,7 @@ export class Level1 extends Scene {
 
   update () {
     this.jared.update()
-
+    this.debugUpdate()
     // this.enemy.update()
     // this.enemy4.update()
     this.bossChild.update()

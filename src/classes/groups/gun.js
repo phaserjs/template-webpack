@@ -34,6 +34,7 @@ export class Gun extends Physics.Arcade.Group {
   }
 
   setAnims () {
+    // ice bullet
     this.scene.anims.create({
       key: 'iceBulletStart',
       frames: this.scene.anims.generateFrameNames('ice-bullet', {
@@ -61,6 +62,7 @@ export class Gun extends Physics.Arcade.Group {
       frameRate: 16
     })
 
+    // mud bomb
     this.scene.anims.create({
       key: 'fireBullet',
       frames: this.scene.anims.generateFrameNames('mon-bullet', {
@@ -70,6 +72,7 @@ export class Gun extends Physics.Arcade.Group {
       frameRate: 16
     })
 
+    // water bullet
     this.scene.anims.create({
       key: 'waterBullet',
       frames: this.scene.anims.generateFrameNames('water-bullet', {
