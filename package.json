@@ -33,7 +33,7 @@
     "eslint-config-eda": "0.1.5",
     "eslint-plugin-import": "^2.25.3",
     "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "raw-loader": "^3.1.0",
