@@ -20,6 +20,10 @@ export class Level1 extends Scene {
     this.cameraSetup()
     this.debugSetup()
 
+    this.sound.add('level1BgAudio', { loop: true })
+    this.sound.play('level1BgAudio')
+    this.sound.stopByKey('titleAudio')
+
     // change position if needed (but use same position for both images)
     var backgroundBar = this.add.image(150, 50, 'green-bar')
     backgroundBar.setScrollFactor(0)
@@ -152,7 +156,7 @@ export class Level1 extends Scene {
   }
 
   triggerSetup () {
-    this.endLevel = new Trigger(this, 3745, 448)
+    this.endLevel = new Trigger(this, 3740, 490)
     this.bossHealth = new BossHpTrigger(this, 2520, 460, { healthBarX: 3450, healthBarY: 34 })
   }
 

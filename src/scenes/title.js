@@ -6,6 +6,8 @@ export class Title extends Scene {
   }
 
   create () {
+    this.sound.add('titleAudio', { loop: true })
+    this.sound.play('titleAudio')
     // Test tool to allow loading of any scene from title screen
     this.scene1 = this.input.keyboard.addKey('ONE')
     this.scene2 = this.input.keyboard.addKey('TWO')
