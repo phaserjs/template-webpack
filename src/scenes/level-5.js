@@ -33,6 +33,10 @@ export class Level5 extends Scene {
     this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
+  changeScene () {
+    this.scene.start('win-scene')
+  }
+
   initMap () {
     // creating tilemap
     const map = this.make.tilemap({ key: 'level5-map' })

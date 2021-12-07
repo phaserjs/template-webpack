@@ -45,6 +45,7 @@ export class Level3 extends Scene {
     const level3map = this.make.tilemap({ key: 'level3-map' })
     const tileSetLevel2 = level3map.addTilesetImage('Wasteland-Files', 'level3-tiles')
 
+    this.walls = level3map.createLayer('Wall', tileSetLevel2)
     // creating bg
     this.add.image(400, 300, 'level3Bg').setScale(3)
       .setScrollFactor(0)
@@ -59,12 +60,13 @@ export class Level3 extends Scene {
     this.water = level3map.createLayer('Water', tileSetLevel2, 0, 0)
     level3map.createLayer('Etc', tileSetLevel2, 0, 0)
     // setting collision property to ground
-    this.platforms.setCollisionByExclusion(-1, true)
-    // this.water.setCollisionByExclusion(-1, true)
+    this.jumpLayer.setCollisionByExclusion(-1, true)
+    this.walls.setCollisionByExclusion(-1, true)
+    this.water.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {
-    this.player = new Player(this, 100, 300)
+    this.player = new Player(this, 100, 600)
   }
 
   cameraSetup () {
