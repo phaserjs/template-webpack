@@ -33,6 +33,10 @@ export class Level5 extends Scene {
     this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
+  changeScene () {
+    this.scene.start('win-scene')
+  }
+
   initMap () {
     // creating tilemap
     const map = this.make.tilemap({ key: 'level5-map' })
@@ -89,10 +93,15 @@ export class Level5 extends Scene {
     })
 
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.platforms.renderDebug(debugGraphics, {
+    this.jumpLayer.renderDebug(debugGraphics, {
       tileColor: null,
       collidingTileColor: new Display.Color(243, 234, 48, 255)
     })
+    // this.walls.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(243, 20, 48, 255)
+    // })
+
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
     this.playerHealth = this.add.text(50, 65)
