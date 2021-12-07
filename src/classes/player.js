@@ -11,7 +11,7 @@ export class Player extends Actor {
     this.keyD = this.scene.input.keyboard.addKey('D')
     this.keyShoot = this.scene.input.keyboard.addKey('SPACE')
 
-    this.gun = new Gun(this.scene, 0, 200, false, 1000)
+    this.gun = new Gun(this.scene, x, y, false, false, 1000)
 
     this.setScale(0.5)
 
@@ -92,6 +92,9 @@ export class Player extends Actor {
     this.scene.physics.world.addCollider(this.gun, this.scene.jumpLayer, (bullet) => {
       bullet.destroy()
     })
+    // this.scene.physics.world.addCollider(this.gun, this.scene.boss, (bullet) => {
+    //   bullet.destroy()
+    // })
   }
 
   hitGround () {

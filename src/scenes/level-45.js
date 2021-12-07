@@ -1,4 +1,5 @@
 import { Scene, Curves, Display } from 'phaser'
+import { Boss4 } from '../classes/bosses/boss4'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
 
@@ -58,7 +59,8 @@ export class Level45 extends Scene {
   }
 
   enemySetup () {
-
+    // boss locaiton 310, 420
+    this.boss = new Boss4(this, 310, 420)
   }
 
   triggerSetup () {
@@ -168,6 +170,11 @@ export class Level45 extends Scene {
     } else if (this.player.active) {
       this.player.die()
       this.scene.start('death-scene', { checkpoint: 4 })
+    }
+    if (this.boss.hp > 0) {
+      this.boss.update()
+    } else if (this.boss.active) {
+      this.boss.die()
     }
   }
 }

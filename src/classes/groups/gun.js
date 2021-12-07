@@ -2,7 +2,7 @@ import { Physics } from 'phaser'
 import { Bullet } from '../bullet'
 
 export class Gun extends Physics.Arcade.Group {
-  constructor (scene, x, y, enemyGun, ammo) {
+  constructor (scene, x, y, enemyGun, bossGun, ammo) {
     super(scene.physics.world, scene)
     this.ammo = ammo
     this.defaults.setAllowGravity = false
@@ -15,31 +15,39 @@ export class Gun extends Physics.Arcade.Group {
       setXY: { x, y }
     })
     this.enemyGun = enemyGun
-    this.setColliders(scene)
+    this.bossGun = bossGun
+    console.log(this);
 
+    // console.log('this.enemyGun', this.enemyGun)
+    // console.log('this.bossGun', this.bossGun)
     this.setAnims()
+    this.setColliders(scene)
   }
 
   setColliders (scene) {
     scene.physics.world.addCollider(this, scene.jumpLayer, (bullet) => {
+      console.log('Sup g');
       bullet.destroy()
     })
     scene.physics.world.addCollider(this, scene.walls, (bullet) => {
+      console.log('Sup g');
       bullet.destroy()
     })
     scene.physics.world.addCollider(this, scene.water, (bullet) => {
+      console.log('Sup g');
       bullet.destroy()
     })
   }
 
-  fireBullet (x, y, facingLeft, enemyGun) {
+  fireBullet (x, y, facingLeft, enemyGun, bossGun) {
     const bullet = this.getFirstDead(false)
     if (bullet) {
-      bullet.fire(x, y, facingLeft, enemyGun)
+      bullet.fire(x, y, facingLeft, enemyGun, bossGun)
     }
   }
 
   setAnims () {
+    // ice bullet
     this.scene.anims.create({
       key: 'iceBulletStart',
       frames: this.scene.anims.generateFrameNames('ice-bullet', {
@@ -67,6 +75,7 @@ export class Gun extends Physics.Arcade.Group {
       frameRate: 16
     })
 
+    // mud bomb
     this.scene.anims.create({
       key: 'fireBullet',
       frames: this.scene.anims.generateFrameNames('mon-bullet', {
@@ -76,6 +85,7 @@ export class Gun extends Physics.Arcade.Group {
       frameRate: 16
     })
 
+    // water bullet
     this.scene.anims.create({
       key: 'waterBullet',
       frames: this.scene.anims.generateFrameNames('water-bullet', {

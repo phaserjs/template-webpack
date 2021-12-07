@@ -8,7 +8,7 @@ export class Patroller extends GameObjects.PathFollower {
     scene.physics.add.existing(this)
     this.body.allowGravity = false
 
-    this.gun = new Gun(this.scene, x, y - 400, true, 1000)
+    this.gun = new Gun(this.scene, x, y - 400, true, false, 1000)
     this.name = texture
     this.setColliders(scene)
     this.setAnims()
@@ -67,9 +67,5 @@ export class Patroller extends GameObjects.PathFollower {
     if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
       this.gun.fireBullet(this.x, this.y, this.flipX, true)
     }
-  }
-
-  update () {
-
   }
 }

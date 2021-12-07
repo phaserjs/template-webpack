@@ -7,33 +7,26 @@ export class Mob extends Actor {
 
     scene.physics.add.existing(this)
     this.name = texture
-    if (config === null || config === undefined) {
-      this.config = {
-        w: 30,
-        h: 30,
-        xOff: 50,
-        yOff: 8,
-        scale: 2,
-        frameEnds: {
-          idle: 4
-        }
-      }
-    } else {
-      this.config = config
-    }
-    this.setAnims()
-    this.setScale(this.config.scale)
-    this.setSize(this.config.w, this.config.h)
-    this.setOffset(this.config.xOff, this.config.yOff)
+    this.config = config
+    // this.setAnims(config)
     this.setColliders(scene)
   }
 
-  setAnims () {
+  setAnims (config) {
+    this.scene.anims.create({
+      key: this.name + '-run',
+      frames: this.scene.anims.generateFrameNames(this.name, {
+        prefix: 'run-',
+        end: config.frameEnds.run
+      }),
+      frameRate: 12
+    })
+
     this.scene.anims.create({
       key: this.name + '-idle',
       frames: this.scene.anims.generateFrameNames(this.name, {
         prefix: 'idle-',
-        end: this.config.frameEnds.idle
+        end: config.frameEnds.idle
       }),
       frameRate: 12
     })
@@ -42,12 +35,14 @@ export class Mob extends Actor {
   setColliders (scene) {
     scene.physics.world.addOverlap(scene.player, this, () => {
       this.scene.player.getDamage(20)
+      console.log('Sup g');
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
       this.scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
       this.destroy()
     })
-    scene.physics.world.addCollider(this, scene.walls)
+    scene.physics.world.addCollider(this, scene.water)
+    scene.physics.world.addCollider(this, scene.wall)
     scene.physics.world.addCollider(this, scene.jumpLayer)
     scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
       bullet.destroy()
@@ -55,7 +50,11 @@ export class Mob extends Actor {
     })
   }
 
-  spawn (x, y) {
+  spawn (x, y, config) {
+    this.setScale(config.scale)
+    this.setSize(config.w, config.h)
+    this.setOffset(config.xOff, config.yOff)
+    this.setAnims(config)
     this.x = x
     this.y = y
     this.setActive(true)
@@ -67,7 +66,8 @@ export class Mob extends Actor {
   update () {
     if (this.active) {
       this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-      this.anims.play(this.name + '-idle', true)
+      this.anims.play(this.name + '-run', true)
+      this.checkFlip()
     }
   }
 }

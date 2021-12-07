@@ -1,8 +1,7 @@
 import { Scene, Curves, Display } from 'phaser'
-import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
-import { Boss1 } from '../classes/bosses/boss'
+import { Boss1 } from '../classes/bosses/boss1'
 import { Trigger } from '../classes/triggers/endLevel'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Facilitator } from '../classes/npc'
@@ -14,6 +13,7 @@ export class Level1 extends Scene {
   create () {
     this.initMap()
     this.initPlayer()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
@@ -64,6 +64,9 @@ export class Level1 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
+  }
+
+  initNpc () {
     this.jared = new Facilitator(this, 3000, 200, 'jared')
   }
 
@@ -82,42 +85,43 @@ export class Level1 extends Scene {
   }
 
   enemySetup () {
-    const mobConfig = {
-      w: 30,
-      h: 30,
-      xOff: 50,
-      yOff: 8,
-      scale: 2,
-      frameEnds: {
-        idle: 4
-      }
-    }
+    // const mobConfig = {
+    //   w: 30,
+    //   h: 30,
+    //   xOff: 50,
+    //   yOff: 8,
+    //   scale: 2,
+    //   frameEnds: {
+    //     idle: 4
+    //   }
+    // }
 
-    const vikingConfig = {
-      w: 24,
-      h: 24,
-      xOff: 5,
-      yOff: 8,
-      scale: 1,
-      frameEnds: {
-        idle: 6
-      }
-    }
+    // const vikingConfig = {
+    //   w: 24,
+    //   h: 24,
+    //   xOff: 5,
+    //   yOff: 8,
+    //   scale: 1,
+    //   frameEnds: {
+    //     idle: 6
+    //   }
+    // }
 
-    // tempConfig for gen-mob-2
-    const tempConfig = {
-      w: 24,
-      h: 24,
-      xOff: 5,
-      yOff: 8,
-      scale: 1,
-      frameEnds: {
-        idle: 6
-      }
-    }
+    // // tempConfig for bear-boss
+    // const tempConfig = {
+    //   w: 128,
+    //   h: 128,
+    //   xOff: 0,
+    //   yOff: 0,
+    //   scale: 1,
+    //   frameEnds: {
+    //     run: 3
+    //   }
+    // }
 
-    this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
-    this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
+    // this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
+    // this.bossChild = new Mob(this, 500, 300, 'bear-boss', tempConfig)
+    // this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
     this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
@@ -239,11 +243,6 @@ export class Level1 extends Scene {
   update () {
     this.debugUpdate()
 
-    this.jared.update()
-
-    this.enemy.update()
-    this.enemy4.update()
-
     this.enemy3.update()
     this.enemy1.update()
     this.enemy2.update()
@@ -255,6 +254,11 @@ export class Level1 extends Scene {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
+      this.jared.setVisible(true)
+      this.jared.setActive(true)
+      if (this.jared.active) {
+        this.jared.update()
+      }
     }
 
     if (this.player.hp > 0) {

@@ -47,4 +47,12 @@ export class Actor extends Physics.Arcade.Sprite {
       this.flipX = false
     }
   }
+
+  boss2Flip () {
+    if (this.body.velocity.x < 0) {
+      this.flipX = false
+    } else {
+      this.flipX = true
+    }
+  }
 }
