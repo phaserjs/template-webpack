@@ -51,7 +51,7 @@ export class Boss3 extends Actor {
         prefix: 'run-',
         end: 11
       }),
-      frameRate: 50,
+      frameRate: 100,
       repeat: -1
     })
 
