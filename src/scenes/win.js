@@ -18,7 +18,7 @@ export class Win extends Scene {
 
     // Detect when pointer is hovering over button, and change scene on click
     banana.on('pointerdown', () =>
-      this.add.text(100, 450, 'You disrespectful fool! Your murdered our banana!', { fontFamily: 'Press Start 2P', fontsize: '40px' }))
+      this.add.text(100, 450, 'You disrespectful fool! You murdered our banana!', { fontsize: '40px' }))
 
     banana.on('pointerdown', () =>
       banana.destroy())
