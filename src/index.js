@@ -7,6 +7,8 @@ import { Level4 } from './scenes/level-4'
 import { Level45 } from './scenes/level-45'
 import { Level5 } from './scenes/level-5'
 import { Title } from './scenes/title'
+import { Controls } from './scenes/controls'
+import { Death } from './scenes/death'
 
 const config = {
   type: Phaser.AUTO,
@@ -14,7 +16,7 @@ const config = {
   parent: 'phaser-example',
   width: 960,
   height: 540,
-  scene: [LoadingScene, Title, Level1, Level2, Level3, Level4, Level45, Level5],
+  scene: [LoadingScene, Title, Death, Controls, Level1, Level2, Level3, Level4, Level45, Level5],
   physics: {
     default: 'arcade',
     arcade: {
