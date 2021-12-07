@@ -47,7 +47,7 @@ export class Level45 extends Scene {
     level45map.addTilesetImage('Background', tileSetLevel45)
     level45map.createLayer('Etc', tileSetLevel45)
     // creating layers to reflect tilemap layers - order matters for rendering
-    this.platforms = level45map.createLayer('Platform', tileSetLevel45, 0, 0)
+    level45map.createLayer('Platform', tileSetLevel45, 0, 0)
     this.water = level45map.createLayer('Waterfall', tileSetLevel45)
     // setting collision property to ground
     this.jumpLayer.setCollisionByExclusion(-1, true)

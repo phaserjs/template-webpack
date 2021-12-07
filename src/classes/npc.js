@@ -25,8 +25,8 @@ export class Facilitator extends Actor {
   }
 
   setColliders (scene) {
-    scene.physics.world.addCollider(this, scene.floor)
-    scene.physics.world.addCollider(this, scene.platforms)
+    scene.physics.world.addCollider(this, scene.walls)
+    scene.physics.world.addCollider(this, scene.jumpLayer)
   }
 
   update () {

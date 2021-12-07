@@ -47,18 +47,18 @@ export class Level5 extends Scene {
 
     // linking pngs to tileset names in the map
     // creating layers to reflect tilemap layers - order matters for rendering
-    this.collider = map.createLayer('Collision Layer', tilesetGround, 0, 0)
+    this.walls = map.createLayer('Collision Layer', tilesetGround, 0, 0)
     this.jumpLayer = map.createLayer('Jump Layer', tilesetGround, 0, 0)
     map.createLayer('Background', tilesetBackground)
     // this.add.tileSprite(200, 450, 8000, 1000, 'level5-Bg1').setScrollFactor(0.5)
-    this.platforms = map.createLayer('Platforms', tilesetPlatforms)
-    map.createLayer('Ground Cover', tilesetGround)
+    map.createLayer('Platforms', tilesetPlatforms)
+    this.water = map.createLayer('Ground Cover', tilesetGround)
     map.createLayer('Rock1', tilesetGround)
     map.createLayer('Rock2', tilesetGround)
     map.createLayer('Props', tilesetProps)
     // setting collision property to ground
     this.jumpLayer.setCollisionByExclusion(-1, true)
-    this.collider.setCollisionByExclusion(-1, true)
+    this.walls.setCollisionByExclusion(-1, true)
   }
 
   initPlayer () {
@@ -97,10 +97,10 @@ export class Level5 extends Scene {
       tileColor: null,
       collidingTileColor: new Display.Color(243, 234, 48, 255)
     })
-    // this.walls.renderDebug(debugGraphics, {
-    //   tileColor: null,
-    //   collidingTileColor: new Display.Color(243, 20, 48, 255)
-    // })
+    this.walls.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 20, 48, 255)
+    })
 
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)

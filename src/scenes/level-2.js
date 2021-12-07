@@ -61,8 +61,8 @@ export class Level2 extends Scene {
     this.water = level2map.createLayer('Water', tilesetWater)
     level2map.createLayer('Etc2', tilesetSecond)
     level2map.createLayer('Etc', tilesetMain)
-    this.floor = level2map.createLayer('Floor', tilesetSecond, 0, 0)
-    this.platforms = level2map.createLayer('Platforms', tilesetMain, 0, 0)
+    level2map.createLayer('Floor', tilesetSecond, 0, 0)
+    level2map.createLayer('Platforms', tilesetMain, 0, 0)
     // setting collision property to ground
     this.jumpLayer.setCollisionByExclusion(-1, true)
     this.walls.setCollisionByExclusion(-1, true)

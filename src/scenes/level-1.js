@@ -54,7 +54,7 @@ export class Level1 extends Scene {
     const tilesetHouse = map.addTilesetImage('Village-Endesga-Buildings', 'house')
 
     // creating layers to reflect tilemap layers - order matters for rendering
-    this.wall = map.createLayer('Collision Layer', tilesetGround)
+    this.walls = map.createLayer('Collision Layer', tilesetGround)
     this.jumpLayer = map.createLayer('Jump Layer', tilesetGround)
     map.createLayer('Clouds', tilesetCloud)
     map.createLayer('Foliage', tilesetFoliage)
@@ -64,7 +64,7 @@ export class Level1 extends Scene {
     map.createLayer('Door', tilesetGround)
     map.createLayer('Roof', tilesetHouse)
     // setting collision property to ground
-    this.wall.setCollisionByExclusion(-1, true)
+    this.walls.setCollisionByExclusion(-1, true)
     this.jumpLayer.setCollisionByExclusion(-1, true)
     this.water.setCollisionByExclusion(-1, true)
   }
@@ -164,7 +164,7 @@ export class Level1 extends Scene {
       tileColor: null,
       collidingTileColor: new Display.Color(243, 234, 48, 255)
     })
-    this.wall.renderDebug(debugGraphics, {
+    this.walls.renderDebug(debugGraphics, {
       tileColor: null,
       collidingTileColor: new Display.Color(243, 20, 48, 255)
     })

@@ -11,7 +11,7 @@ export class Player extends Actor {
     this.keyD = this.scene.input.keyboard.addKey('D')
     this.keyShoot = this.scene.input.keyboard.addKey('SPACE')
 
-    this.gun = new Gun(this.scene, 3000, 50, false, 60)
+    this.gun = new Gun(this.scene, 0, 400, false, 60)
 
     this.setScale(0.5)
 
@@ -75,18 +75,8 @@ export class Player extends Actor {
   }
 
   setColliders () {
-    this.scene.physics.world.addCollider(this, this.scene.platforms, () => {
-      this.canJump = true
-    })
-    this.scene.physics.world.addCollider(this, this.scene.ground, () => {
-      this.canJump = true
-    })
-    this.scene.physics.world.addCollider(this, this.scene.floor, () => {
-      this.canJump = true
-    })
-    this.scene.physics.world.addCollider(this, this.scene.collider, () => {
-      this.canJump = true
-    })
+    this.scene.physics.world.addCollider(this, this.scene.walls)
+
     this.scene.physics.world.addCollider(this, this.scene.jumpLayer, () => {
       this.canJump = true
     })
@@ -94,7 +84,7 @@ export class Player extends Actor {
       this.getDamage(100)
       this.scene.physics.world.removeCollider(waterCollider)
     })
-    this.scene.physics.world.addCollider(this.gun, this.scene.wall, (bullet) => {
+    this.scene.physics.world.addCollider(this.gun, this.scene.walls, (bullet) => {
       bullet.destroy()
     })
     this.scene.physics.world.addCollider(this.gun, this.scene.jumpLayer, (bullet) => {
