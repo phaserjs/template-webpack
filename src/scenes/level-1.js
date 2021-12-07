@@ -2,7 +2,7 @@ import { Scene, Math, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
-import { Boss1 } from '../classes/bosses/boss'
+import { Boss1 } from '../classes/bosses/boss1'
 import { Trigger } from '../classes/triggers'
 import { Facilitator } from '../classes/npc'
 export class Level1 extends Scene {
@@ -108,20 +108,21 @@ export class Level1 extends Scene {
       }
     }
 
-    // tempConfig for gen-mob-2
+    // tempConfig for bear-boss
     const tempConfig = {
-      w: 24,
-      h: 24,
-      xOff: 5,
-      yOff: 8,
+      w: 128,
+      h: 128,
+      xOff: 0,
+      yOff: 0,
       scale: 1,
       frameEnds: {
-        idle: 6
+        run: 3
       }
     }
 
-    this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
-    this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
+    // this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
+    this.bossChild = new Mob(this, 500, 300, 'bear-boss', tempConfig)
+    // this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
     this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
@@ -223,9 +224,9 @@ export class Level1 extends Scene {
 
     this.jared.update()
 
-    this.enemy.update()
-    this.enemy4.update()
-
+    // this.enemy.update()
+    // this.enemy4.update()
+    this.bossChild.update()
     this.enemy3.update()
     this.enemy1.update()
     this.enemy2.update()

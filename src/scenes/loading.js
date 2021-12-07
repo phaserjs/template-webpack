@@ -95,6 +95,10 @@ export class LoadingScene extends Scene {
     this.load.image('background', 'tilemaps/level-1/country-platform-back.png')
     this.load.image('foreground', 'tilemaps/level-1/country-platform-forest.png')
 
+    // level 1 boss (duck bear)
+    this.load.atlas('duck-boss', 'sprites/anims/duck.png', 'sprites/atlas/duck-atlas.json')
+    this.load.atlas('bear-boss', 'sprites/anims/bear.png', 'sprites/atlas/bear-atlas.json')
+
     // level 2
     this.load.image('level2-tiles', 'tilemaps/level-2/kitchen-shee-flattenedt.png')
     this.load.image('level2Bg', 'tilemaps/level-2/tileset.png')
