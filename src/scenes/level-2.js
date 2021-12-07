@@ -55,7 +55,8 @@ export class Level2 extends Scene {
     const tilesetWater = level2map.addTilesetImage('Water', 'level2Water')
 
     // creating layers to reflect tilemap layers - order matters for rendering
-    this.jumpLayer = level2map.createLayer('Collision', tilesetMain)
+    this.jumpLayer = level2map.createLayer('JumpLayer', tilesetMain)
+    this.walls = level2map.createLayer('Wall', tilesetMain)
     level2map.createLayer('Backdrop', tilesetSecond)
     this.water = level2map.createLayer('Water', tilesetWater)
     level2map.createLayer('Etc2', tilesetSecond)
@@ -63,8 +64,8 @@ export class Level2 extends Scene {
     this.floor = level2map.createLayer('Floor', tilesetSecond, 0, 0)
     this.platforms = level2map.createLayer('Platforms', tilesetMain, 0, 0)
     // setting collision property to ground
-    this.platforms.setCollisionByExclusion(-1, true)
-    this.floor.setCollisionByExclusion(-1, true)
+    this.jumpLayer.setCollisionByExclusion(-1, true)
+    this.walls.setCollisionByExclusion(-1, true)
     this.water.setCollisionByExclusion(-1, true)
   }
 
@@ -131,9 +132,17 @@ export class Level2 extends Scene {
 
   debugSetup () {
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.platforms.renderDebug(debugGraphics, {
+    this.jumpLayer.renderDebug(debugGraphics, {
       tileColor: null,
       collidingTileColor: new Display.Color(243, 234, 48, 255)
+    })
+    this.walls.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(243, 20, 48, 255)
+    })
+    this.water.renderDebug(debugGraphics, {
+      tileColor: null,
+      collidingTileColor: new Display.Color(20, 234, 48, 255)
     })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
