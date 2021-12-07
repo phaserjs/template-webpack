@@ -21,9 +21,9 @@ export class Gun extends Physics.Arcade.Group {
   }
 
   setColliders (scene) {
-    scene.physics.world.addCollider(this, scene.platforms, (bullet) => {
-      bullet.destroy()
-    })
+    // scene.physics.world.addCollider(this, scene.platforms, (bullet) => {
+    //   bullet.destroy()
+    // })
   }
 
   fireBullet (x, y, facingLeft, enemyGun) {
