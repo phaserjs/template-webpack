@@ -30,10 +30,6 @@ export class Level1 extends Scene {
     // add text label to left of bar
     this.healthLabel = this.add.text(40, 40, 'Health', { fontSize: '20px', fill: '#ffffff' })
     this.healthLabel.setScrollFactor(0)
-
-    // this.enemyHealthBar = this.add.image(3450, 34, 'enemy-shadow-bar')
-    // this.add.image(3450, 22, 'enemy-red-bar')
-    // this.add.text(3250, 40, 'Boss Health', { fontSize: '20px', fill: '#ffffff' })
   }
 
   changeScene () {

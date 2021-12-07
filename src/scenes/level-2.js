@@ -2,6 +2,7 @@ import { Scene, Curves, Display } from 'phaser'
 import { Mob } from '../classes/enemies/mob'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
+import { BossHpTrigger } from '../classes/bossHpTrigger'
 import { MobSpawner } from '../classes/groups/mob-spawner'
 import { Boss2 } from '../classes/bosses/boss2'
 // import { Boss1 } from '../classes/bosses/boss'
@@ -88,6 +89,7 @@ export class Level2 extends Scene {
 
   triggerSetup () {
     this.endLevel = new Trigger(this, 5760, 390)
+    this.bossHealth = new BossHpTrigger(this, 4500, 460, { healthBarX: 5400, healthBarY: 34 })
   }
 
   enemySetup () {
