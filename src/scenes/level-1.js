@@ -13,6 +13,7 @@ export class Level1 extends Scene {
   create () {
     this.initMap()
     this.initPlayer()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
@@ -71,6 +72,9 @@ export class Level1 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
+  }
+
+  initNpc () {
     this.jared = new Facilitator(this, 3000, 200, 'jared')
   }
 
@@ -231,7 +235,6 @@ export class Level1 extends Scene {
   }
 
   update () {
-    this.jared.update()
     this.debugUpdate()
 
     this.enemy3.update()
@@ -244,6 +247,11 @@ export class Level1 extends Scene {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
+      this.jared.setVisible(true)
+      this.jared.setActive(true)
+      if (this.jared.active) {
+        this.jared.update()
+      }
     }
 
     if (this.player.hp > 0) {

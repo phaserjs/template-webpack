@@ -11,6 +11,9 @@ export class Facilitator extends Actor {
     console.log('jared', this)
     this.initAnimations()
     this.setColliders(scene)
+    this.setVisible(false)
+    this.setActive(false)
+    this.flipX = true
   }
 
   initAnimations () {
@@ -20,16 +23,22 @@ export class Facilitator extends Actor {
         prefix: 'walk-',
         end: 7
       }),
-      frameRate: 12
+      frameRate: 12,
+      repeat: -1
     })
   }
 
   setColliders (scene) {
-    scene.physics.world.addCollider(this, scene.floor)
-    scene.physics.world.addCollider(this, scene.platforms)
+    scene.physics.world.addCollider(this, scene.wall)
+    scene.physics.world.addCollider(this, scene.jumpLayer)
+    scene.physics.world.addCollider(this, scene.water, () => {
+      this.destroy()
+    })
   }
 
   update () {
+    this.setVelocityY(-220)
+    this.setVelocityX(-220)
     this.anims.play('jared-walk', true)
   }
 }

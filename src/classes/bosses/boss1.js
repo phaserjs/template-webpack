@@ -1,4 +1,4 @@
-import { GameObjects, Math } from 'phaser'
+import { Math } from 'phaser'
 import { Actor } from '../actor'
 import { MobSpawner } from '../groups/mob-spawner'
 import { Gun } from '../groups/gun'
@@ -114,12 +114,8 @@ export class Boss1 extends Actor {
 
   update () {
     this.checkFlip()
-    if (this.active && this.hp < 40 && this.hp > 0) {
-      // for the lols
-      // this.anims.play('jared-walk', true)
-      // this.body.setSize(55, 80)
-      // this.body.setOffset(5, 0)
-      // this.setScale(5)
+    if (this.active && this.hp < 50 && this.hp > 0) {
+      this.scene.physics.accelerateToObject(this, this.scene.player, 100, 180)
       this.anims.play('boss1-run', true)
     } else if (this.active && this.hp > 0) {
       if (this.body.velocity.x > 0) {
