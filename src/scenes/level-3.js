@@ -42,6 +42,7 @@ export class Level3 extends Scene {
 
     this.walls = level3map.createLayer('Wall', tileSetLevel2)
     // creating bg
+    this.jumpLayer = level3map.createLayer('jumpLayer', tileSetLevel2, 0, 0)
     this.add.image(400, 300, 'level3Bg').setScale(3)
       .setScrollFactor(0)
     this.add.tileSprite(200, 4000, 4500, 350, 'level3Mountain1')
@@ -49,7 +50,6 @@ export class Level3 extends Scene {
     this.add.tileSprite(200, 3800, 4500, 350, 'level3Mountain2')
       .setScrollFactor(0.4, 0.4)
 
-    this.jumpLayer = level3map.createLayer('jumpLayer', tileSetLevel2, 0, 0)
     // creating layers to reflect tilemap layers - order matters for rendering
     level3map.createLayer('Platform', tileSetLevel2, 0, 0)
     this.water = level3map.createLayer('Water', tileSetLevel2, 0, 0)
