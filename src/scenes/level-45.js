@@ -54,7 +54,7 @@ export class Level45 extends Scene {
   }
 
   initNpc () {
-    this.caro = new Facilitator(this, 314, 458, 'caro').setScale(0.5)
+    this.caro = new Facilitator(this, 270, 458, 'caro').setScale(0.5)
   }
 
   initPlayer () {
@@ -91,18 +91,18 @@ export class Level45 extends Scene {
     })
 
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.jumpLayer.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 234, 48, 255)
-    })
-    this.walls.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 20, 48, 255)
-    })
-    this.water.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(20, 234, 48, 255)
-    })
+    // this.jumpLayer.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(243, 234, 48, 255)
+    // })
+    // this.walls.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(243, 20, 48, 255)
+    // })
+    // this.water.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(20, 234, 48, 255)
+    // })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
     this.playerHealth = this.add.text(50, 65)
