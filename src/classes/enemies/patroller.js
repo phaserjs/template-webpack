@@ -1,14 +1,20 @@
-import { GameObjects, Math } from 'phaser'
+import { GameObjects, Math, Physics } from 'phaser'
 import { Gun } from '../groups/gun'
 
 export class Patroller extends GameObjects.PathFollower {
-  constructor (scene, path, x, y, texture) {
+  constructor (scene, path, x, y, texture, config) {
     super(scene, path, x, y, texture)
+    this.body = new Physics.Arcade.Body(scene.physics.world, this)
     scene.add.existing(this)
     scene.physics.add.existing(this)
     this.body.allowGravity = false
+    this.config = config
 
-    this.gun = new Gun(this.scene, x, y - 400, true, false, 20)
+    this.dying = false
+
+    console.log(this.body)
+
+    this.gun = new Gun(this.scene, x, y - 400, 20)
     this.name = texture
     this.setColliders(scene)
     this.setAnims()
@@ -16,9 +22,20 @@ export class Patroller extends GameObjects.PathFollower {
     this.scene.time.addEvent({
       callback: this.fireGun,
       callbackScope: this,
-      delay: 500,
+      delay: 1000,
       loop: true
     })
+    this.body.setSize(this.config.w, this.config.h)
+    this.body.setOffset(this.config.xOff, this.config.yOff)
+    this.setScale(this.config.scale)
+  }
+
+  checkFlip () {
+    if (this.body.velocity.x < 0) {
+      this.flipX = true
+    } else {
+      this.flipX = false
+    }
   }
 
   die () {
@@ -31,12 +48,39 @@ export class Patroller extends GameObjects.PathFollower {
 
   setAnims () {
     this.scene.anims.create({
-      key: 'adventurer-death',
-      frames: this.scene.anims.generateFrameNames('player', {
-        prefix: 'death-',
-        end: 6
+      key: this.name + '-run',
+      frames: this.scene.anims.generateFrameNames(this.name, {
+        prefix: 'run-',
+        end: this.config.frameEnds.run
       }),
-      framerate: 12
+      frameRate: 12
+    })
+
+    this.scene.anims.create({
+      key: this.name + '-idle',
+      frames: this.scene.anims.generateFrameNames(this.name, {
+        prefix: 'idle-',
+        end: this.config.frameEnds.idle
+      }),
+      frameRate: 12
+    })
+
+    this.scene.anims.create({
+      key: this.name + '-atk',
+      frames: this.scene.anims.generateFrameNames(this.name, {
+        prefix: 'atk-',
+        end: this.config.frameEnds.atk
+      }),
+      frameRate: 12
+    })
+
+    this.scene.anims.create({
+      key: this.name + '-death',
+      frames: this.scene.anims.generateFrameNames(this.name, {
+        prefix: 'death-',
+        end: this.config.frameEnds.death
+      }),
+      frameRate: 12
     })
   }
 
@@ -46,6 +90,7 @@ export class Patroller extends GameObjects.PathFollower {
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
       scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
+      this.dying = true
       this.die()
     })
 
@@ -59,13 +104,25 @@ export class Patroller extends GameObjects.PathFollower {
 
     scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
       bullet.destroy()
-      this.destroy()
+      this.dying = true
+      this.die()
     })
   }
 
   fireGun () {
+    const config = {
+      gunAnim: 'fireBullet',
+      enemyGun: true,
+      playerGun: false
+    }
     if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
-      this.gun.fireBullet(this.x, this.y, this.flipX, true)
+      this.gun.fireBullet(this.x, this.y, this.flipX, config)
+    }
+  }
+
+  update () {
+    if (this.active) {
+      this.anims.play(this.name + this.config.key.idle, true)
     }
   }
 }

@@ -11,7 +11,7 @@ export class Player extends Actor {
     this.keyD = this.scene.input.keyboard.addKey('D')
     this.keyShoot = this.scene.input.keyboard.addKey('SPACE')
 
-    this.gun = new Gun(this.scene, x, y, false, false, 200)
+    this.gun = new Gun(this.scene, x, y, 200)
 
     this.setScale(0.5)
 
@@ -35,7 +35,10 @@ export class Player extends Actor {
   }
 
   fire () {
-    this.gun.fireBullet(this.x, this.y, this.flipX, false)
+    const config = {
+      playerGun: true
+    }
+    this.gun.fireBullet(this.x, this.y, this.flipX, config)
   }
 
   initAnimations () {

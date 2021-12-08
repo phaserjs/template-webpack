@@ -86,46 +86,28 @@ export class Level1 extends Scene {
   }
 
   enemySetup () {
-    // const mobConfig = {
-    //   w: 30,
-    //   h: 30,
-    //   xOff: 50,
-    //   yOff: 8,
-    //   scale: 2,
-    //   frameEnds: {
-    //     idle: 4
-    //   }
-    // }
+    const mob3Config = {
+      key: {
+        idle: '-idle',
+        atk: '-atk',
+        run: '-run'
+      },
+      w: 15,
+      h: 16,
+      xOff: 9,
+      yOff: 3,
+      scale: 2,
+      frameEnds: {
+        idle: 4,
+        atk: 10,
+        run: 7,
+        death: 4
+      }
+    }
 
-    // const vikingConfig = {
-    //   w: 24,
-    //   h: 24,
-    //   xOff: 5,
-    //   yOff: 8,
-    //   scale: 1,
-    //   frameEnds: {
-    //     idle: 6
-    //   }
-    // }
-
-    // // tempConfig for bear-boss
-    // const tempConfig = {
-    //   w: 128,
-    //   h: 128,
-    //   xOff: 0,
-    //   yOff: 0,
-    //   scale: 1,
-    //   frameEnds: {
-    //     run: 3
-    //   }
-    // }
-
-    // this.enemy = new Mob(this, 500, 400, 'viking', vikingConfig)
-    // this.bossChild = new Mob(this, 500, 300, 'bear-boss', tempConfig)
-    // this.enemy4 = new Mob(this, 500, 200, 'gen-mob-1', mobConfig)
-    this.enemy1 = new Patroller(this, this.curve, 818, 413, 'adventurer')
-    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'adventurer')
-    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'adventurer')
+    this.enemy1 = new Patroller(this, this.curve, 818, 413, 'gen-mob-2', mob3Config)
+    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-2', mob3Config)
+    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-2', mob3Config)
 
     this.boss = new Boss1(this, 3300, 220)
 
@@ -244,9 +226,15 @@ export class Level1 extends Scene {
   update () {
     this.debugUpdate()
 
-    this.enemy3.update()
-    this.enemy1.update()
-    this.enemy2.update()
+    if (!this.enemy1.dying) {
+      this.enemy1.update()
+    }
+    if (!this.enemy2.dying) {
+      this.enemy2.update()
+    }
+    if (!this.enemy3.dying) {
+      this.enemy3.update()
+    }
 
     this.bossHealth.update()
     this.endLevel.update()

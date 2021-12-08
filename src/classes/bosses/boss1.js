@@ -16,7 +16,13 @@ export class Boss1 extends Actor {
     this.hp = 100
     this.maxHealth = 100
     this.name = 'boss1'
+
     const bearConfig = {
+      key: {
+        run: '-run',
+        atk: '-atk',
+        idle: '-idle'
+      },
       w: 128,
       h: 128,
       xOff: 0,
@@ -30,8 +36,7 @@ export class Boss1 extends Actor {
     // bleed bears
     this.spawner = new MobSpawner(this.scene, 50, -30, 'bear-boss', bearConfig)
 
-    // boss gun is broken
-    this.bossGun = new Gun(this.scene, x, y - 400, false, true, 1000)
+    this.bossGun = new Gun(this.scene, x, y - 400, 1000)
 
     this.scene.add.existing(this.spawner)
 
@@ -78,14 +83,19 @@ export class Boss1 extends Actor {
   }
 
   fireGun () {
+    const config = {
+      gunAnim: 'fireBullet',
+      enemyGun: true,
+      playerGun: false
+    }
     if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
-      this.bossGun.fireBullet(this.x, this.y, this.flipX, true)
+      this.bossGun.fireBullet(this.x, this.y, this.flipX, config)
     }
   }
 
   setColliders (scene) {
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
-    scene.physics.world.addCollider(this, this.scene.wall)
+    scene.physics.world.addCollider(this, this.scene.walls)
     scene.physics.world.addCollider(this.spawner, this.spawner)
 
     // boss and player collision
@@ -98,7 +108,7 @@ export class Boss1 extends Actor {
       })
 
     // hit by mon gun
-    scene.physics.world.addOverlap(scene.player, this.gun, (player, bullet) => {
+    scene.physics.world.addCollider(this.scene.player, this.bossGun, (player, bullet) => {
       player.getDamage(10)
       scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
       scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
@@ -114,8 +124,8 @@ export class Boss1 extends Actor {
       this.getDamage(10)
       this.scene.sound.stopByKey('stepsAudio')
       this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
-      scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
-      scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
+      // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
+      // scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
       bullet.destroy()
     })
   }
