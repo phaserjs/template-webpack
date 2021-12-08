@@ -157,9 +157,11 @@ export class Level5 extends Scene {
     this.enemy18 = new Patroller(this, this.bob, 620, 1070, 'big-mine', lilMineConfig)
     this.enemy19 = new Patroller(this, this.march, 2700, 545, 'gen-mob-2', mob3Config)
     this.enemy20 = new Patroller(this, this.march, 2850, 545, 'gen-mob-2', mob3Config)
+    this.enemy21 = new Patroller(this, this.curve, 5600, 924, 'gen-mob-2', mob3Config)
+    this.enemy22 = new Patroller(this, this.curve, 5200, 675, 'gen-mob-2', mob3Config)
+    this.enemy23 = new Patroller(this, this.bob, 5100, 1050, 'big-mine', bigMineConfig)
 
     this.enemy1.startFollow({
-      duration: 700,
       yoyo: true,
       repeat: -1
     })
@@ -257,6 +259,21 @@ export class Level5 extends Scene {
       repeat: -1
     })
     this.enemy20.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy21.startFollow({
+      duration: 700,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy22.startFollow({
+      duration: 400,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy23.startFollow({
       duration: 1500,
       yoyo: true,
       repeat: -1
