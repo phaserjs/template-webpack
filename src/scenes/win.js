@@ -7,7 +7,7 @@ export class Win extends Scene {
 
   create () {
     this.sound.stopAll()
-    this.sound.add('titleAudio', { loop: true })
+    this.sound.add('titleAudio', { volume: 0.3, loop: true })
     this.sound.play('titleAudio')
     // Load image assets for title screen
     this.add.image(480, 260, 'winBg').setScale(2)

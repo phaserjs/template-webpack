@@ -23,7 +23,7 @@ export class Level5 extends Scene {
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level5BgAudio')
-    this.sound.play('level5BgAudio', { loop: true })
+    this.sound.play('level5BgAudio', { volume: 0.2, loop: true })
   }
 
   changeScene () {
