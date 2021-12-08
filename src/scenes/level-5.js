@@ -21,6 +21,7 @@ export class Level5 extends Scene {
     this.debugSetup()
 
     this.sound.stopAll()
+    this.sound.add('portalAudio')
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level5BgAudio')
@@ -70,7 +71,7 @@ export class Level5 extends Scene {
   }
 
   enemySetup () {
-    this.boss = new Boss5(this, 4000, 1450)
+    this.boss = new Boss5(this, 4200, 1200)
   }
 
   triggerSetup () {

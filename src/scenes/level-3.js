@@ -5,6 +5,8 @@ import { Facilitator } from '../classes/npc'
 import { Trigger } from '../classes/triggers/endLevel'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 
+import { TempBoss2 } from '../classes/bosses/tempBoss2'
+
 // import { Boss4 } from '../classes/bosses/boss4'
 // import { TempBoss } from '../classes/bosses/tempBoss'
 // import { TempBoss2 } from '../classes/bosses/tempBoss2'
@@ -32,6 +34,7 @@ export class Level3 extends Scene {
     this.debugSetup()
 
     this.sound.stopAll()
+    this.sound.add('portalAudio')
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level3BgAudio')
@@ -102,6 +105,7 @@ export class Level3 extends Scene {
 
   enemySetup () {
     // set 1200, 5200
+    this.miniBoss = new TempBoss2(this, 1060, 1620)
     this.boss = new Boss3(this, 1200, 5200)
   }
 
@@ -202,15 +206,16 @@ export class Level3 extends Scene {
       this.player.die()
     }
 
+    if (this.miniBoss.hp > 0) {
+      this.miniBoss.update()
+    } else if (this.miniBoss.active) {
+      this.miniBoss.die()
+    }
+
     if (this.boss.hp > 0) {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
-      // this.jared.setVisible(true)
-      // this.jared.setActive(true)
-      // if (this.jared.active) {
-      //   this.jared.update()
-      // }
     }
   }
 }
