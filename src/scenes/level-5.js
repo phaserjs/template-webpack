@@ -121,17 +121,42 @@ export class Level5 extends Scene {
         idle: 0
       }
     }
+    const lilMineConfig = {
+      key: {
+        idle: '-idle'
+      },
+      w: 64,
+      h: 64,
+      xOff: 0,
+      yOff: 0,
+      scale: 0.5,
+      hasGun: false,
+      frameEnds: {
+        death: 3,
+        idle: 0
+      }
+    }
 
     this.enemy1 = new Patroller(this, this.curve, 775, 465, 'gen-mob-2', mob3Config)
-    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-2', mob3Config)
-    this.enemy3 = new Patroller(this, this.circleLoop, 1650, 480, 'big-fish', bigFishConfig)
+    this.enemy2 = new Patroller(this, this.march, 2400, 545, 'gen-mob-2', mob3Config)
+    this.enemy3 = new Patroller(this, this.flying, 1650, 480, 'big-fish', bigFishConfig)
     this.enemy4 = new Patroller(this, this.bob, 1350, 460, 'big-mine', bigMineConfig)
     this.enemy5 = new Patroller(this, this.march, 600, 1775, 'gen-mob-2', mob3Config)
     this.enemy6 = new Patroller(this, this.march, 670, 1775, 'gen-mob-2', mob3Config)
     this.enemy7 = new Patroller(this, this.march, 740, 1775, 'gen-mob-2', mob3Config)
     this.enemy8 = new Patroller(this, this.bob, 800, 1650, 'big-mine', bigMineConfig)
     this.enemy9 = new Patroller(this, this.curve, 1765, 1472, 'gen-mob-2', mob3Config)
-    this.enemy10 = new Patroller(this, this.flying, 1850, 1350, 'big-fish', mob3Config)
+    this.enemy10 = new Patroller(this, this.flying, 1850, 1350, 'big-fish', bigFishConfig)
+    this.enemy11 = new Patroller(this, this.bob, 960, 1160, 'big-mine', lilMineConfig)
+    this.enemy12 = new Patroller(this, this.bob, 860, 1150, 'big-mine', lilMineConfig)
+    this.enemy13 = new Patroller(this, this.bob, 760, 1050, 'big-mine', lilMineConfig)
+    this.enemy14 = new Patroller(this, this.bob, 660, 1170, 'big-mine', lilMineConfig)
+    this.enemy15 = new Patroller(this, this.bob, 950, 1000, 'big-mine', lilMineConfig)
+    this.enemy16 = new Patroller(this, this.bob, 840, 1100, 'big-mine', lilMineConfig)
+    this.enemy17 = new Patroller(this, this.bob, 700, 1050, 'big-mine', lilMineConfig)
+    this.enemy18 = new Patroller(this, this.bob, 620, 1070, 'big-mine', lilMineConfig)
+    this.enemy19 = new Patroller(this, this.march, 2700, 545, 'gen-mob-2', mob3Config)
+    this.enemy20 = new Patroller(this, this.march, 2850, 545, 'gen-mob-2', mob3Config)
 
     this.enemy1.startFollow({
       duration: 700,
@@ -140,13 +165,13 @@ export class Level5 extends Scene {
     })
 
     this.enemy2.startFollow({
-      duration: 700,
+      duration: 1500,
       yoyo: true,
       repeat: -1
     })
 
     this.enemy3.startFollow({
-      duration: 2500,
+      duration: 1500,
       yoyo: true,
       repeat: -1
     })
@@ -182,6 +207,56 @@ export class Level5 extends Scene {
       repeat: -1
     })
     this.enemy10.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy11.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy12.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy13.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy14.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy15.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy16.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy17.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy18.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy19.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy20.startFollow({
       duration: 1500,
       yoyo: true,
       repeat: -1
