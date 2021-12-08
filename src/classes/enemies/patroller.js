@@ -85,11 +85,12 @@ export class Patroller extends GameObjects.PathFollower {
   }
 
   setColliders (scene) {
-    scene.physics.world.addOverlap(scene.player, this, (player) => {
+    const hitbox = scene.physics.world.addOverlap(scene.player, this, (player) => {
       player.getDamage(20)
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
       scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
+      this.scene.physics.world.removeCollider(hitbox)
       this.dying = true
       this.die()
     })
