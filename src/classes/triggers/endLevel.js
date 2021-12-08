@@ -30,7 +30,7 @@ export class Trigger extends Physics.Arcade.Sprite {
         delay: 2500,
         callback: () => this.scene.changeScene()
       })
-
+      this.scene.sound.play('portalAudio', { volume: 0.2, loop: false })
       this.scene.physics.world.removeCollider(triggerZone)
     })
   }
