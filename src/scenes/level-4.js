@@ -1,4 +1,5 @@
 import { Scene, Curves, Display } from 'phaser'
+import { MobSpawner } from '../classes/groups/mob-spawner'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
 
@@ -75,6 +76,36 @@ export class Level4 extends Scene {
   }
 
   enemySetup () {
+    const carrotConifg = {
+      key: {
+        atk: '-atk',
+        run: '-run',
+        idle: '-idle'
+      },
+      w: 48,
+      h: 48,
+      xOff: 0,
+      yOff: 0,
+      scale: 3,
+      prefix: 'carrot-',
+      frameRate: 4,
+      frameEnds: {
+        idle: 0,
+        run: 2,
+        atk: 7,
+        death: 4
+      }
+    }
+
+    this.carrotSpawn = new MobSpawner(this, 3000, 1000, 'carrot', carrotConifg)
+    this.add.existing(this.carrotSpawn)
+
+    this.time.addEvent({
+      callback: () => this.carrotSpawn.spawnMob(3000, 850),
+      callbackScope: this,
+      delay: 4000,
+      loop: true
+    })
   }
 
   triggerSetup () {

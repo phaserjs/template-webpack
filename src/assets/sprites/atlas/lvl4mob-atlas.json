@@ -1,0 +1,524 @@
+{
+  "frames": [
+    {
+      "filename": "chicken-idle-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-idle-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-run-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 48
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-run-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 48
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-run-2",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 96,
+          "y": 48
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-run-3",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 48
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-death-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 96
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-death-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 96
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-death-2",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 96,
+          "y": 96
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-death-3",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 144,
+          "y": 96
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "chicken-death-4",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 192,
+          "y": 96
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bug-run-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 144
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bug-run-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 144
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bug-run-2",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 96,
+          "y": 144
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bug-run-3",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 144,
+          "y": 144
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bug-death-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 192
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bug-death-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 192
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bug-death-2",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 96,
+          "y": 192
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bug-death-3",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 144,
+          "y": 192
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "bug-death-4",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 192,
+          "y": 192
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-idle-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 240
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-idle-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 240
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-run-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 288
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-run-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 288
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-run-2",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 96,
+          "y": 288
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-run-3",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 144,
+          "y": 288
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-death-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 336
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-death-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 336
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-death-2",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 96,
+          "y": 336
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-death-3",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 144,
+          "y": 336
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "turd-death-4",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 192,
+          "y": 336
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "carrot-idle-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 384
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "carrot-run-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 432
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "carrot-run-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 432
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "carrot-run-2",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 96,
+          "y": 432
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "carrot-death-0",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 0,
+          "y": 480
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "carrot-death-1",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 48,
+          "y": 480
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "carrot-death-2",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 96,
+          "y": 480
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "carrot-death-3",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 144,
+          "y": 480
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "carrot-death-4",
+      "frame": {
+          "w": 48,
+          "h": 48,
+          "x": 192,
+          "y": 480
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    }
+  ]
+}

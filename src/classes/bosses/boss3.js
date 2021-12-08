@@ -21,13 +21,14 @@ export class Boss3 extends Actor {
       key: {
         atk: '-atk',
         run: '-run',
-        idle: 'idle'
+        idle: '-idle'
       },
       w: 30,
       h: 30,
       xOff: 50,
       yOff: 3,
       scale: 2,
+      prefix: '',
       frameRate: 12,
       frameEnds: {
         idle: 4,

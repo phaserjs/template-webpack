@@ -194,6 +194,11 @@ export class LoadingScene extends Scene {
     this.load.atlas('water-bullet', 'sprites/anims/water-bullet.png', 'sprites/atlas/water-bullet-atlas.json')
     this.load.atlas('water-bullet-impact', 'sprites/anims/water-bullet-impact.png', 'sprites/atlas/water-bullet-impact-atlas.json')
 
+    this.load.atlas('carrot', 'sprites/anims/lvl4mob.png', 'sprites/atlas/lvl4mob-atlas.json')
+    this.load.atlas('turd', 'sprites/anims/lvl4mob.png', 'sprites/atlas/lvl4mob-atlas.json')
+    this.load.atlas('bug', 'sprites/anims/lvl4mob.png', 'sprites/atlas/lvl4mob-atlas.json')
+    this.load.atlas('chicken', 'sprites/anims/lvl4mob.png', 'sprites/atlas/lvl4mob-atlas.json')
+
     // golem
     this.load.atlas('golem-dead', 'sprites/anims/golempack/GolemDead.png', 'sprites/atlas/golemAtlas/dead-atlas.json')
     this.load.atlas('golem-punch', 'sprites/anims/golempack/GolemDoublePunch.png', 'sprites/atlas/golemAtlas/punch-atlas.json')

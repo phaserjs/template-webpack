@@ -105,6 +105,7 @@ export class Level2 extends Scene {
       xOff: 73,
       yOff: 69,
       scale: 5,
+      prefix: '',
       frameEnds: {
         idle: 7,
         atk: 5,
@@ -123,6 +124,7 @@ export class Level2 extends Scene {
       xOff: 0,
       yOff: 0,
       scale: 0.2,
+      prefix: '',
       frameEnds: {
         idle: 3,
         atk: 0,
@@ -142,6 +144,7 @@ export class Level2 extends Scene {
       xOff: 0,
       yOff: 0,
       scale: 2,
+      prefix: '',
       frameEnds: {
         idle: 5,
         atk: 0,
@@ -161,6 +164,7 @@ export class Level2 extends Scene {
       xOff: 0,
       yOff: 0,
       scale: 2,
+      prefix: '',
       frameEnds: {
         idle: 5,
         atk: 0,

@@ -23,7 +23,7 @@ export class Mob extends Actor {
     this.scene.anims.create({
       key: this.name + '-run',
       frames: this.scene.anims.generateFrameNames(this.name, {
-        prefix: 'run-',
+        prefix: config.prefix + 'run-',
         end: config.frameEnds.run
       }),
       frameRate: config.frameRate
@@ -32,7 +32,7 @@ export class Mob extends Actor {
     this.scene.anims.create({
       key: this.name + '-idle',
       frames: this.scene.anims.generateFrameNames(this.name, {
-        prefix: 'idle-',
+        prefix: config.prefix + 'idle-',
         end: config.frameEnds.idle
       }),
       frameRate: config.frameRate
@@ -41,7 +41,7 @@ export class Mob extends Actor {
     this.scene.anims.create({
       key: this.name + '-atk',
       frames: this.scene.anims.generateFrameNames(this.name, {
-        prefix: 'atk-',
+        prefix: config.prefix + 'atk-',
         end: config.frameEnds.atk
       }),
       frameRate: 12
@@ -81,10 +81,18 @@ export class Mob extends Actor {
   }
 
   update () {
+    const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player) / 2
     if (this.active) {
-      this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-      this.anims.play(this.name + this.config.key.run, true)
-      this.checkFlip()
+      if (dist > 25000 && dist < 50000 && this.config.key.run !== undefined) {
+        this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
+        this.anims.play(this.name + this.config.key.run, true)
+        this.checkFlip()
+      } else if (dist < 25000 && this.config.key.atk !== undefined) {
+        this.anims.play(this.name + this.config.key.atk, true)
+      } else if (this.config.key.idle !== undefined) {
+        this.setVelocityX(0)
+        this.anims.play(this.name + this.config.key.idle, true)
+      }
     }
   }
 }

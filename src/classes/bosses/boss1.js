@@ -25,6 +25,7 @@ export class Boss1 extends Actor {
       },
       w: 128,
       h: 128,
+      prefix: '',
       xOff: 0,
       yOff: 0,
       scale: 0.3,

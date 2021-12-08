@@ -124,6 +124,7 @@ export class Level3 extends Scene {
       xOff: 14,
       yOff: 5,
       scale: 2,
+      prefix: '',
       frameRate: 12,
       frameEnds: {
         idle: 4,
@@ -137,13 +138,14 @@ export class Level3 extends Scene {
       key: {
         atk: '-atk',
         run: '-run',
-        idle: 'idle'
+        idle: '-idle'
       },
       w: 30,
       h: 30,
       xOff: 50,
       yOff: 3,
       scale: 1,
+      prefix: '',
       frameRate: 12,
       frameEnds: {
         idle: 4,

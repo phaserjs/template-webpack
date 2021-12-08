@@ -18,14 +18,13 @@ export class TempBoss2 extends Actor {
 
     const golemConfig = {
       key: {
-        run: '-golem-walk',
-        atk: '-atk',
-        idle: '-idle'
+        run: '-golem-walk'
       },
       w: 40,
       h: 50,
       xOff: 49,
       yOff: 60,
+      prefix: '',
       scale: 1,
       frameRate: 12,
       frameEnds: {
