@@ -162,7 +162,6 @@ export class LoadingScene extends Scene {
 
     // player sprite
     this.load.image('adventurer', 'sprites/img/adventurer-idle-00.png')
-    this.load.image('fly-mon', 'sprites/img/fly-mon.png')
 
     // load sprite atlases
     this.load.atlas('gen-mob-1', 'sprites/anims/gen-mob-1.png', 'sprites/atlas/gen-mob-1-atlas.json')
@@ -177,7 +176,9 @@ export class LoadingScene extends Scene {
 
     this.load.atlas('portal', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
 
-    this.load.atlas('dishes-poo', 'sprites/img/dishes-poo-fly.png', 'sprites/atlas/dishes-poo-fly-atlas.json')
+    this.load.atlas('fly-mon', 'sprites/anims/fly-mon.png', 'sprites/atlas/fly-mon-atlas.json')
+    this.load.atlas('dirty-dishes', 'sprites/anims/dirty-dishes.png', 'sprites/atlas/dirty-dishes-atlas.json')
+    this.load.atlas('dish', 'sprites/anims/dish.png', 'sprites/atlas/dish-atlas.json')
 
     // bullets
     this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')

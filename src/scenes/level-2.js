@@ -4,6 +4,7 @@ import { Patroller } from '../classes/enemies/patroller'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Boss2 } from '../classes/bosses/boss2'
 import { Trigger } from '../classes/triggers/endLevel'
+import { TestBoss } from '../classes/bosses/testflymon'
 
 export class Level2 extends Scene {
   constructor () {
@@ -120,51 +121,98 @@ export class Level2 extends Scene {
         run: 0
       }
     }
-
-    const genmob3Config = {
+    const flymonConfig = {
       key: {
         idle: '-idle',
         atk: '-atk',
         run: '-run'
       },
-      w: 12,
-      h: 16,
-      xOff: 14,
-      yOff: 5,
-      scale: 5,
+      w: 480,
+      h: 320,
+      xOff: 0,
+      yOff: 0,
+      scale: 0.2,
       frameEnds: {
-        idle: 4,
-        atk: 6,
-        run: 5,
-        death: 7
+        idle: 3,
+        atk: 0,
+        run: 0,
+        death: 4
       }
     }
 
-    this.enemy = new Patroller(this, this.curve, 818, 413, 'gen-mob-3', genmob3Config)
-    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-3', genmob3Config)
-    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-3', genmob3Config)
-    this.enemy4 = new Patroller(this, this.circleLoop, 960, 100, 'gen-mob-3', genmob3Config)
-    this.enemy5 = new Patroller(this, this.flying, 420, 120, 'gen-mob-3', genmob3Config)
-    this.enemy6 = new Patroller(this, this.circleLoop, 1660, 110, 'gen-mob-3', genmob3Config)
+    const dishesConfig = {
+      key: {
+        idle: '-idle',
+        atk: '-atk',
+        run: '-run'
+      },
+      w: 112,
+      h: 80,
+      xOff: 0,
+      yOff: 0,
+      scale: 2,
+      frameEnds: {
+        idle: 5,
+        atk: 0,
+        run: 0,
+        death: 5
+      }
+    }
+
+    const dishConfig = {
+      key: {
+        idle: '-idle',
+        atk: '-atk',
+        run: '-run'
+      },
+      w: 112,
+      h: 80,
+      xOff: 0,
+      yOff: 0,
+      scale: 2,
+      frameEnds: {
+        idle: 5,
+        atk: 0,
+        run: 0,
+        death: 4
+      }
+    }
+
+    this.enemy = new Patroller(this, this.curve, 818, 413, 'gen-mob-4', genmob4Config)
+    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-4', genmob4Config)
+    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-4', genmob4Config)
+    this.enemy4 = new Patroller(this, this.circleLoop, 960, 100, 'gen-mob-4', genmob4Config)
+    this.enemy5 = new Patroller(this, this.flying, 420, 120, 'gen-mob-4', genmob4Config)
+    this.enemy6 = new Patroller(this, this.circleLoop, 1660, 110, 'gen-mob-4', genmob4Config)
     this.enemy7 = new Patroller(this, this.circle, 2000, 400, 'gen-mob-4', genmob4Config)
     this.enemy8 = new Patroller(this, this.curve, 2327, 390, 'gen-mob-4', genmob4Config)
-    // this.enemy9 = new Patroller(this, this.circle, 2500, 96, 'fly-mon', genmob4Config)
+    this.enemy9 = new Patroller(this, this.circle, 2500, 96, 'fly-mon', flymonConfig)
     this.enemy10 = new Patroller(this, this.flying, 2350, 200, 'gen-mob-4', genmob4Config)
-    // this.enemy11 = new Patroller(this, this.circleLoop, 2900, 390, 'fly-mon', genmob4Config)
-    // this.enemy12 = new Patroller(this, this.circle, 3100, 390, 'fly-mon', genmob4Config)
-    // this.enemy13 = new Patroller(this, this.flying, 3300, 390, 'fly-mon', genmob4Config)
+    this.enemy11 = new Patroller(this, this.circleLoop, 2900, 390, 'fly-mon', flymonConfig)
+    this.enemy12 = new Patroller(this, this.circle, 3100, 390, 'fly-mon', flymonConfig)
+    this.enemy13 = new Patroller(this, this.flying, 3300, 390, 'fly-mon', flymonConfig)
+
+    this.enemy14 = new Patroller(this, this.circleLoop, 3782, 371, 'dirty-dishes', dishesConfig)
+    this.enemy15 = new Patroller(this, this.circle, 4038, 365, 'dirty-dishes', dishesConfig)
+    this.enemy16 = new Patroller(this, this.flying, 4232, 370, 'dirty-dishes', dishesConfig)
+
+    this.enemy17 = new Patroller(this, this.circleLoop, 3000, 374, 'dish', dishConfig)
+    this.enemy18 = new Patroller(this, this.circle, 3400, 70, 'dish', dishConfig)
+    this.enemy19 = new Patroller(this, this.curve, 4000, 374, 'dish', dishConfig)
 
     console.log(this.enemy2)
     this.boss = new Boss2(this, 5500, 220)
+    this.testBoss = new TestBoss(this, 200, 220)
+    console.log(this.testBoss)
 
     this.enemy.startFollow({
-      duration: 700,
+      duration: 2000,
       yoyo: true,
       repeat: -1
     })
 
     this.enemy2.startFollow({
-      duration: 700,
+      duration: 2000,
       yoyo: true,
       repeat: -1
     })
@@ -199,11 +247,11 @@ export class Level2 extends Scene {
       repeat: -1
     })
 
-    // this.enemy9.startFollow({
-    //   duration: 4000,
-    //   yoyo: true,
-    //   repeat: -1
-    // })
+    this.enemy9.startFollow({
+      duration: 4000,
+      yoyo: true,
+      repeat: -1
+    })
 
     this.enemy10.startFollow({
       duration: 1300,
@@ -211,22 +259,22 @@ export class Level2 extends Scene {
       repeat: -1
     })
 
-    // this.enemy11.startFollow({
-    //   duration: 1300,
-    //   yoyo: true,
-    //   repeat: -1
-    // })
+    this.enemy11.startFollow({
+      duration: 1300,
+      yoyo: true,
+      repeat: -1
+    })
 
-    // this.enemy12.startFollow({
-    //   duration: 2000,
-    //   yoyo: true,
-    //   repeat: -1
-    // })
-    // this.enemy13.startFollow({
-    //   duration: 4000,
-    //   yoyo: true,
-    //   repeat: -1
-    // })
+    this.enemy12.startFollow({
+      duration: 2000,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy13.startFollow({
+      duration: 4000,
+      yoyo: true,
+      repeat: -1
+    })
   }
 
   uISetup () {
@@ -326,16 +374,29 @@ export class Level2 extends Scene {
     this.enemy6.update()
     this.enemy7.update()
     this.enemy8.update()
-    // this.enemy9.update()
+    this.enemy9.update()
     this.enemy10.update()
-    // this.enemy11.update()
-    // this.enemy12.update()
-    // this.enemy13.update()
+    this.enemy11.update()
+    this.enemy12.update()
+    this.enemy13.update()
+
+    this.enemy14.update()
+    this.enemy15.update()
+    this.enemy16.update()
+    this.enemy17.update()
+    this.enemy18.update()
+    this.enemy19.update()
 
     if (this.boss.hp > 0) {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
+    }
+
+    if (this.testBoss.hp > 0) {
+      this.testBoss.update()
+    } else if (this.testBoss.active) {
+      this.testBoss.die()
     }
 
     if (this.player.hp > 0) {
