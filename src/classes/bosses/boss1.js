@@ -111,9 +111,10 @@ export class Boss1 extends Actor {
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
-      console.log('Sup g');
+      console.log('Sup g')
       this.getDamage(10)
-      this.scene.sound.play('enemyDamage', { loop: false })
+      this.scene.sound.stopByKey('stepsAudio')
+      this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
       // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
       // scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
       bullet.destroy()
