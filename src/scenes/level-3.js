@@ -6,6 +6,8 @@ import { Trigger } from '../classes/triggers/endLevel'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 
 import { TempBoss2 } from '../classes/bosses/tempBoss2'
+import { MobSpawner } from '../classes/groups/mob-spawner'
+import { Patroller } from '../classes/enemies/patroller'
 
 // import { Boss4 } from '../classes/bosses/boss4'
 // import { TempBoss } from '../classes/bosses/tempBoss'
@@ -96,6 +98,10 @@ export class Level3 extends Scene {
     const flyingPoints = [50, 400, 125, 320, 200, 400]
     this.curve = new Curves.Spline(points1)
     this.flying = new Curves.Spline(flyingPoints)
+    this.loop = new Curves.Path(400, 400)
+    this.loop.circleTo(100)
+    this.loop.moveTo(400, 300)
+    this.loop.circleTo(100, true, 180)
   }
 
   triggerSetup () {
@@ -105,8 +111,98 @@ export class Level3 extends Scene {
 
   enemySetup () {
     // set 1200, 5200
-    this.miniBoss = new TempBoss2(this, 1060, 1620)
+    this.miniBoss = new TempBoss2(this, 1060, 1500)
     this.boss = new Boss3(this, 1200, 5200)
+    const genMob1Config = {
+      key: {
+        run: '-run',
+        atk: '-atk',
+        idle: '-idle'
+      },
+      w: 12,
+      h: 16,
+      xOff: 14,
+      yOff: 5,
+      scale: 2,
+      frameRate: 12,
+      frameEnds: {
+        idle: 4,
+        run: 5,
+        atk: 6,
+        death: 7
+      }
+    }
+
+    const genMob2Config = {
+      key: {
+        atk: '-atk',
+        run: '-run',
+        idle: 'idle'
+      },
+      w: 30,
+      h: 30,
+      xOff: 50,
+      yOff: 3,
+      scale: 1,
+      frameRate: 12,
+      frameEnds: {
+        idle: 4,
+        run: 7,
+        atk: 7,
+        death: 4
+      }
+    }
+
+    this.mobSpawner1 = new MobSpawner(this, 2000, 1500, 'gen-mob-3', genMob1Config)
+    this.mobSpawner2 = new MobSpawner(this, 250, 5500, 'gen-mob-1', genMob2Config)
+    this.add.existing(this.mobSpawner1)
+    this.add.existing(this.mobSpawner2)
+
+    this.time.addEvent({
+      callback: () => this.mobSpawner1.spawnMob(1150, 450),
+      callbackScope: this,
+      delay: 500,
+      loop: true
+    })
+
+    this.time.addEvent({
+      callback: () => this.mobSpawner2.spawnMob(340, 5450),
+      callbackScope: this,
+      delay: 100,
+      loop: true
+    })
+
+    this.patrol1 = new Patroller(this, this.curve, 763, 2760, 'gen-mob-3', genMob1Config)
+    this.patrol2 = new Patroller(this, this.loop, 468, 2650, 'gen-mob-3', genMob1Config)
+    this.patrol3 = new Patroller(this, this.curve, 800, 2850, 'gen-mob-3', genMob1Config)
+    this.patrol4 = new Patroller(this, this.curve, 760, 3000, 'gen-mob-3', genMob1Config)
+    this.patrol5 = new Patroller(this, this.flying, 700, 3100, 'gen-mob-3', genMob1Config)
+
+    this.patrol1.startFollow({
+      duration: 3000,
+      yoyo: true,
+      repeat: -1
+    })
+    this.patrol2.startFollow({
+      duration: 3000,
+      yoyo: true,
+      repeat: -1
+    })
+    this.patrol3.startFollow({
+      duration: 3000,
+      yoyo: true,
+      repeat: -1
+    })
+    this.patrol4.startFollow({
+      duration: 200,
+      yoyo: true,
+      repeat: -1
+    })
+    this.patrol5.startFollow({
+      duration: 200,
+      yoyo: true,
+      repeat: -1
+    })
   }
 
   uISetup () {
@@ -199,6 +295,19 @@ export class Level3 extends Scene {
 
   update () {
     this.debugUpdate()
+
+    if (!this.patrol1.dying) {
+      this.patrol1.update()
+    }
+    if (!this.patrol2.dying) {
+      this.patrol2.update()
+    }
+    if (!this.patrol3.dying) {
+      this.patrol3.update()
+    }
+    if (!this.patrol4.dying) {
+      this.patrol4.update()
+    }
 
     if (this.player.hp > 0) {
       this.player.update()

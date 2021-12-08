@@ -28,6 +28,7 @@ export class Boss1 extends Actor {
       xOff: 0,
       yOff: 0,
       scale: 0.3,
+      frameRate: 12,
       frameEnds: {
         run: 3
       }

@@ -7,16 +7,35 @@ export class TempBoss2 extends Actor {
   constructor (scene, x, y) {
     super(scene, x, y, 'golem-idle')
 
-    this.setScale(2)
+    this.setScale(4)
     this.setSize(40, 50)
     this.setOffset(49, 60)
     this.setAnims()
 
+    this.hp = 100
+
     this.name = 'tempBoss2'
 
-    this.spawner = new MobSpawner(this.scene, 50, -30)
+    const golemConfig = {
+      key: {
+        run: '-golem-walk',
+        atk: '-atk',
+        idle: '-idle'
+      },
+      w: 40,
+      h: 50,
+      xOff: 49,
+      yOff: 60,
+      scale: 1,
+      frameRate: 12,
+      frameEnds: {
+        run: 14
+      }
+    }
 
-    this.golemGun = new Gun(this.scene, x, y - 400, false, true, 40)
+    this.spawner = new MobSpawner(this.scene, 50, -30, 'golem-walk', golemConfig)
+
+    this.golemGun = new Gun(this.scene, x, y - 400, 40)
     this.scene.add.existing(this.spawner)
 
     this.setColliders(scene)
@@ -53,12 +72,12 @@ export class TempBoss2 extends Actor {
 
     // run
     this.scene.anims.create({
-      key: 'golem-walk',
+      key: 'golem-walk-golem-walk',
       frames: this.scene.anims.generateFrameNames('golem-walk', {
-        prefix: 'walk-',
+        prefix: 'run-',
         end: 14
       }),
-      frameRate: 14,
+      frameRate: 100,
       repeat: -1
     })
 
@@ -77,21 +96,44 @@ export class TempBoss2 extends Actor {
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
     scene.physics.world.addCollider(this, this.scene.wall)
-    // scene.physics.world.addCollider(this.spawner, this.spawner)
+
+    scene.physics.world.addCollider(this.spawner, this.spawner)
+
+    scene.physics.world.addCollider(this.scene.player, this.golemGun, (player, bullet) => {
+      player.getDamage(10)
+      scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
+      scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
+      scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
+      bullet.destroy()
+    })
 
     scene.physics.world.addCollider(scene.player.gun, this, (boss, bullet) => {
-      // this.spawner.spawnMob(this.x, this.y)
-      // this.spawner.spawnMob(this.x, this.y)
-      // this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
+      this.spawner.spawnMob(this.x, this.y)
       this.scene.sound.play('enemyDamage', { loop: false })
-      this.getDamage(100)
+      this.getDamage(1)
       bullet.destroy()
     })
   }
 
   fireGun () {
+    const config = {
+      gunAnim: 'fireBullet',
+      enemyGun: true,
+      playerGun: false
+    }
     if (this.active && this.scene.player.active && Math.Distance.BetweenPointsSquared(this, this.scene.player) / 4 < 40000) {
-      this.golemGun.fireBullet(this.x, this.y, this.flipX, true, false)
+      this.golemGun.fireBullet(this.x, this.y - 20, this.flipX, config)
     }
   }
 
@@ -102,7 +144,7 @@ export class TempBoss2 extends Actor {
       this.checkFlip()
       if (dist <= 90000 && dist > 20000) {
         this.scene.physics.accelerateToObject(this, this.scene.player, 100, 180)
-        this.anims.play('golem-walk', true)
+        this.anims.play('golem-walk-golem-walk', true)
       } else if (dist < 20000) {
         this.setVelocityX(0)
         this.anims.play('golem-atk', true)
