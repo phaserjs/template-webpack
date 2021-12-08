@@ -256,6 +256,7 @@ export class Level1 extends Scene {
       this.boss.die()
       this.jared.setVisible(true)
       this.add.image(470, 60, 'jaredText').setScale(0.4).setScrollFactor(0)
+      this.sound.play('jaredAudio', { volume: 1, loop: false })
       this.jared.setActive(true)
       if (this.jared.active) {
         this.jared.update()
