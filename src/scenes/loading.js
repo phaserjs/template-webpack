@@ -101,6 +101,13 @@ export class LoadingScene extends Scene {
     this.load.audio('caroAudio', ['ui/audio/caro.mp3'])
     this.load.audio('eleanorAudio', ['ui/audio/eleanor.mp3'])
 
+    // facil speech to text
+    this.load.image('prueText', 'ui/speech-to-text/prue-text.png')
+    this.load.image('ahmadText', 'ui/speech-to-text/ahmad-text.png')
+    this.load.image('jaredText', 'ui/speech-to-text/jared-text2.png')
+    this.load.image('caroText', 'ui/speech-to-text/caro-text.png')
+    this.load.image('eleanorText', 'ui/speech-to-text/eleanor-text.png')
+
     // enemy health
     this.load.image('enemy-red-bar', 'ui/health/Pixel1_Healthbar_border.png')
     this.load.image('enemy-shadow-bar', 'ui/health/Pixel1_Healthbar.png')
@@ -190,6 +197,7 @@ export class LoadingScene extends Scene {
     // bullets
     this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
     this.load.atlas('ice-bullet', 'sprites/anims/ice-bullet.png', 'sprites/atlas/ice-bullet-atlas.json')
+    this.load.atlas('forloop', 'sprites/anims/forloop.png', 'sprites/atlas/forloop-atlas.json')
 
     this.load.atlas('water-bullet', 'sprites/anims/water-bullet.png', 'sprites/atlas/water-bullet-atlas.json')
     this.load.atlas('water-bullet-impact', 'sprites/anims/water-bullet-impact.png', 'sprites/atlas/water-bullet-impact-atlas.json')
@@ -201,7 +209,11 @@ export class LoadingScene extends Scene {
     this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
 
     // them peeps
-    this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/facilitator-atlas.json')
+    this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/jared-atlas.json')
+    this.load.atlas('eleanor', 'sprites/anims/eleanor-spritesheet.png', 'sprites/atlas/eleanor-atlas.json')
+    this.load.atlas('ahmad', 'sprites/anims/Ahmad-spritesheet.png', 'sprites/atlas/ahmad-atlas.json')
+    this.load.atlas('caro', 'sprites/anims/Caro-spritesheet-export.png', 'sprites/atlas/caro-atlas.json')
+    this.load.atlas('prue', 'sprites/anims/prue-spritesheet.png', 'sprites/atlas/prue-atlas.json')
   }
 
   create () {

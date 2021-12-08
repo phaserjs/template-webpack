@@ -15,11 +15,6 @@ export class Gun extends Physics.Arcade.Group {
       setXY: { x, y }
     })
 
-    // this.enemyGun = enemyGun
-    // this.bossGun = bossGun
-
-    // console.log('this.enemyGun', this.enemyGun)
-    // console.log('this.bossGun', this.bossGun)
     this.setAnims()
     this.setColliders(scene)
   }
@@ -112,6 +107,16 @@ export class Gun extends Physics.Arcade.Group {
         end: 15
       }),
       frameRate: 16
+    })
+
+    this.scene.anims.create({
+      key: 'forloop-ware',
+      frames: this.scene.anims.generateFrameNames('forloop', {
+        prefix: 'idle-',
+        end: 6
+      }),
+      frameRate: 7,
+      repeat: -1
     })
   }
 }

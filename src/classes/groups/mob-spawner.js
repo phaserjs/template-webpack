@@ -13,7 +13,7 @@ export class MobSpawner extends Physics.Arcade.Group {
 
     this.createMultiple({
       classType: Mob,
-      frameQuantity: 30,
+      frameQuantity: 120,
       active: false,
       visible: false,
       key: texture,
@@ -30,7 +30,6 @@ export class MobSpawner extends Physics.Arcade.Group {
   }
 
   spawnMob (x, y) {
-    console.log(';;;;', this)
     const mob = this.getFirstDead(false)
     if (mob) {
       mob.spawn(x, y, this.config)

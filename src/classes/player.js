@@ -11,7 +11,7 @@ export class Player extends Actor {
     this.keyD = this.scene.input.keyboard.addKey('D')
     this.keyShoot = this.scene.input.keyboard.addKey('SPACE')
 
-    this.gun = new Gun(this.scene, x, y, 200)
+    this.gun = new Gun(this.scene, x, y - 300, 200)
 
     this.setScale(0.5)
 
@@ -35,6 +35,15 @@ export class Player extends Actor {
   }
 
   fire () {
+    this.anims.play('attack', true)
+    this.once('animationcomplete', () => {
+      if (this.body.velocity.x < 30 || this.body.velocity.x > -30) {
+        this.anims.play('idle', false)
+      } else {
+        this.anims.play('run', false)
+      }
+    })
+    this.scene.sound.play('playerFireAudio', { volume: 0.8, loop: false })
     const config = {
       playerGun: true
     }
@@ -48,7 +57,8 @@ export class Player extends Actor {
         prefix: 'idle-',
         end: 4
       }),
-      frameRate: 12
+      frameRate: 12,
+      repeat: true
     })
 
     this.scene.anims.create({
@@ -66,7 +76,8 @@ export class Player extends Actor {
         prefix: 'atk-',
         end: 7
       }),
-      frameRate: 24
+      duration: 400,
+      repeat: false
     })
 
     this.scene.anims.create({
@@ -75,7 +86,7 @@ export class Player extends Actor {
         prefix: 'death-',
         end: 6
       }),
-      framerate: 12
+      duration: 1000
     })
   }
 
@@ -95,9 +106,6 @@ export class Player extends Actor {
     this.scene.physics.world.addCollider(this.gun, this.scene.jumpLayer, (bullet) => {
       bullet.destroy()
     })
-    // this.scene.physics.world.addCollider(this.gun, this.scene.boss, (bullet) => {
-    //   bullet.destroy()
-    // })
   }
 
   hitGround () {
@@ -112,6 +120,15 @@ export class Player extends Actor {
       this.speed = 220
       this.jump = 220
     }
+  }
+
+  die () {
+    this.setVelocityX(0)
+    this.anims.play(this.name + '-death', true)
+    this.once('animationcomplete', () => {
+      console.log('animationcomplete')
+      this.scene.scene.start('death-scene', { checkpoint: this.scene.sceneNum })
+    })
   }
 
   update () {
@@ -136,24 +153,27 @@ export class Player extends Actor {
 
       if (this.keyShoot.isDown) {
         if (this.canShoot) {
-          this.anims.play('attack', true)
           this.fire()
-          this.canShoot = false
-          this.scene.sound.stopByKey('playerFireAudio')
-          this.scene.sound.play('playerFireAudio', { volume: 0.8, loop: false })
         }
-      } else if (this.keyA.isDown) {
-        this.anims.play('run', true)
+        this.canShoot = false
+      }
+
+      if (this.keyA.isDown) {
+        if (this.canShoot) {
+          this.anims.play('run', true)
+        }
         this.body.velocity.x = -this.speed
         this.checkFlip()
         this.body.setOffset(95, 55)
       } else if (this.keyD.isDown) {
-        this.anims.play('run', true)
+        if (this.canShoot) {
+          this.anims.play('run', true)
+        }
         this.body.velocity.x = this.speed
         this.checkFlip()
-      } else {
+      } else if (this.canShoot) {
         this.anims.play('idle', true)
-        this.scene.sound.stopByKey('playerFireAudio')
+
         if (this.flipX) {
           this.body.setOffset(95, 55)
         }

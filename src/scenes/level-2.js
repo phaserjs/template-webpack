@@ -5,6 +5,7 @@ import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Boss2 } from '../classes/bosses/boss2'
 import { Trigger } from '../classes/triggers/endLevel'
 import { TestBoss } from '../classes/bosses/testflymon'
+import { Facilitator } from '../classes/npc'
 
 export class Level2 extends Scene {
   constructor () {
@@ -12,8 +13,11 @@ export class Level2 extends Scene {
   }
 
   create () {
+    this.sceneNum = 2
+
     this.initMap()
     this.initPlayer()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
@@ -22,6 +26,7 @@ export class Level2 extends Scene {
     this.debugSetup()
 
     this.sound.stopAll()
+    this.sound.add('eleanorAudio')
     this.sound.add('portalAudio')
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
@@ -60,6 +65,10 @@ export class Level2 extends Scene {
     this.player = new Player(this, 100, 300)
   }
 
+  initNpc () {
+    this.eleanor = new Facilitator(this, 5200, 410, 'eleanor').setScale(0.5)
+  }
+
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
     this.physics.world.setBounds(0, 0, 5760, 540)
@@ -93,18 +102,6 @@ export class Level2 extends Scene {
   }
 
   enemySetup () {
-    const vikingConfig = {
-      w: 24,
-      h: 24,
-      xOff: 5,
-      yOff: 8,
-      scale: 1,
-      frameEnds: {
-        idle: 6,
-        atk: 8
-      }
-    }
-
     const genmob4Config = {
       key: {
         idle: '-idle',
@@ -460,10 +457,14 @@ export class Level2 extends Scene {
       this.enemy18.update()
     }
 
-    if (this.boss.hp > 0) {
+    if (this.boss.hp > 0 && !this.boss.dying) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.eleanor.active) {
       this.boss.die()
+    }
+
+    if (this.eleanor.active) {
+      this.eleanor.update()
     }
 
     if (this.testBoss.hp > 0) {
@@ -476,7 +477,6 @@ export class Level2 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
-      this.scene.start('death-scene', { checkpoint: 2 })
     }
   }
 }

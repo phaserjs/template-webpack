@@ -4,6 +4,7 @@ import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Patroller } from '../classes/enemies/patroller'
+import { Facilitator } from '../classes/npc'
 
 export class Level5 extends Scene {
   constructor () {
@@ -11,8 +12,10 @@ export class Level5 extends Scene {
   }
 
   create () {
+    this.sceneNum = 5
     this.initMap()
     this.initPlayer()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
@@ -61,6 +64,10 @@ export class Level5 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 0, 1600)
+  }
+
+  initNpc () {
+    this.prue = new Facilitator(this, 4025, 1765, 'prue').setScale(0.5)
   }
 
   cameraSetup () {
@@ -401,13 +408,16 @@ export class Level5 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
-      this.scene.start('death-scene', { checkpoint: 5 })
     }
 
     if (this.boss.hp > 0) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.prue.active) {
       this.boss.die()
+    }
+
+    if (this.prue.active) {
+      this.prue.update()
     }
   }
 }

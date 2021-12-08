@@ -42,6 +42,16 @@ export class Boss4 extends Actor {
     })
   }
 
+  die () {
+    this.setVelocityX(0)
+    this.anims.play(this.name + '-death', true)
+    this.scene.caro.spawn()
+    this.once('animationcomplete', () => {
+      console.log('animationcomplete')
+      this.destroy()
+    })
+  }
+
   setColliders (scene) {
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.jumpLayer)

@@ -19,14 +19,6 @@ export class Hitboxes extends Physics.Arcade.Group {
       key: 'shame',
       setXY: { x, y, stepX: 50 }
     })
-
-    this.setColliders(scene)
-  }
-
-  setColliders (scene) {
-    scene.physics.world.addOverlap(this, this.scene.player, (hitbox) => {
-      hitbox.destroy()
-    })
   }
 
   spawnHitBox (x, y) {
