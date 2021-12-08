@@ -186,8 +186,7 @@ export class LoadingScene extends Scene {
     this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
     this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
 
-    this.load.atlas('portal', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
-    this.load.image('static-portal', 'sprites/anims/portal.png')
+    this.load.atlas('end-level', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
 
     // bullets
     this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
@@ -207,8 +206,8 @@ export class LoadingScene extends Scene {
   }
 
   create () {
-    this.sound.add('titleAudio', { loop: true })
-    this.sound.play('titleAudio')
+    this.sound.add('titleAudio')
+    this.sound.play('titleAudio', { volume: 0.3, loop: true })
     this.scene.start('title-scene')
   }
 }

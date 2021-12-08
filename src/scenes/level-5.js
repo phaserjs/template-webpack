@@ -20,10 +20,11 @@ export class Level5 extends Scene {
     this.debugSetup()
 
     this.sound.stopAll()
+    this.sound.add('portalAudio')
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level5BgAudio')
-    this.sound.play('level5BgAudio', { loop: true })
+    this.sound.play('level5BgAudio', { volume: 0.2, loop: true })
   }
 
   changeScene () {

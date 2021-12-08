@@ -94,7 +94,7 @@ export class Boss1 extends Actor {
         player.getDamage(10)
         scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
         scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
-        scene.sound.play('playerDamageAudio', { loop: false })
+        scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
       })
 
     // hit by mon gun
@@ -102,7 +102,7 @@ export class Boss1 extends Actor {
       player.getDamage(10)
       scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
       scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
-      scene.sound.play('playerDamageAudio', { loop: false })
+      scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
       bullet.destroy()
     })
 
@@ -111,7 +111,6 @@ export class Boss1 extends Actor {
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
-      console.log('Sup g')
       this.getDamage(10)
       this.scene.sound.stopByKey('stepsAudio')
       this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })

@@ -20,10 +20,11 @@ export class Level45 extends Scene {
     this.debugSetup()
 
     this.sound.stopAll()
+    this.sound.add('portalAudio')
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level45BgAudio')
-    this.sound.play('level45BgAudio', { volume: 0.2, loop: true })
+    this.sound.play('level45BgAudio', { volume: 0.3, loop: true })
   }
 
   changeScene () {
