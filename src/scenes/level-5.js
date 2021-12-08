@@ -23,7 +23,7 @@ export class Level5 extends Scene {
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level5BgAudio')
-    this.sound.play('level5BgAudio', { volume: 0.25, loop: true })
+    this.sound.play('level5BgAudio', { loop: true })
   }
 
   changeScene () {
@@ -63,9 +63,9 @@ export class Level5 extends Scene {
 
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
-    this.physics.world.setBounds(0, 0, 6000, 5760)
-    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
-    this.cameras.main.setBounds(0, 0, 6000, 1920)
+    this.physics.world.setBounds(0, 0, 5755, 5760)
+    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, 0, 20)
+    this.cameras.main.setBounds(0, 0, 5755, 1920)
   }
 
   enemySetup () {
