@@ -3,6 +3,7 @@ import { Boss5 } from '../classes/bosses/boss5'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
+import { Patroller } from '../classes/enemies/patroller'
 
 export class Level5 extends Scene {
   constructor () {
@@ -71,6 +72,46 @@ export class Level5 extends Scene {
 
   enemySetup () {
     this.boss = new Boss5(this, 4200, 1200)
+    const mob3Config = {
+      key: {
+        idle: '-idle',
+        atk: '-atk',
+        run: '-run'
+      },
+      w: 15,
+      h: 16,
+      xOff: 9,
+      yOff: 3,
+      scale: 2,
+      frameEnds: {
+        idle: 4,
+        atk: 10,
+        run: 7,
+        death: 4
+      }
+    }
+
+    this.enemy1 = new Patroller(this, this.curve, 818, 413, 'gen-mob-2', mob3Config)
+    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-2', mob3Config)
+    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-2', mob3Config)
+
+    this.enemy1.startFollow({
+      duration: 700,
+      yoyo: true,
+      repeat: -1
+    })
+
+    this.enemy2.startFollow({
+      duration: 700,
+      yoyo: true,
+      repeat: -1
+    })
+
+    this.enemy3.startFollow({
+      duration: 1300,
+      yoyo: true,
+      repeat: -1
+    })
   }
 
   triggerSetup () {
@@ -81,8 +122,21 @@ export class Level5 extends Scene {
   pathSetup () {
     const points1 = [50, 400, 135, 400]
     const flyingPoints = [50, 400, 125, 320, 200, 400]
+
     this.curve = new Curves.Spline(points1)
     this.flying = new Curves.Spline(flyingPoints)
+    this.circle = new Curves.Path(50, 500)
+    this.circle.splineTo([164, 446, 274, 542, 412, 457, 522, 541, 664, 464])
+    this.circle.lineTo(700, 300)
+    this.circle.lineTo(600, 350)
+    this.circle.ellipseTo(200, 100, 100, 250, false, 0)
+    this.circle.cubicBezierTo(222, 119, 308, 107, 208, 368)
+    this.circle.ellipseTo(60, 60, 0, 360, true)
+
+    this.circleLoop = new Curves.Path(400, 300)
+    this.circleLoop.circleTo(100)
+    this.circleLoop.moveTo(400, 300)
+    this.circleLoop.circleTo(100, true, 180)
   }
 
   debugSetup () {
