@@ -199,7 +199,6 @@ export class Level2 extends Scene {
     this.enemy17 = new Patroller(this, this.circleLoop, 3000, 374, 'dish', dishConfig)
     this.enemy18 = new Patroller(this, this.circle, 3400, 70, 'dish', dishConfig)
     this.enemy1 = new Patroller(this, this.curve, 4000, 374, 'dish', dishConfig)
-    const enemyArr = [this.enemy0, this.enemy1, this.enemy2, this.enemy3]
 
     console.log(this.enemy2)
     this.boss = new Boss2(this, 5500, 220)

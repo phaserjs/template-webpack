@@ -1,6 +1,7 @@
 // testing atlas purposes only
 import { Math } from 'phaser'
 import { Actor } from '../actor'
+import { Hitboxes } from '../groups/hitboxes'
 import { MobSpawner } from '../groups/mob-spawner'
 
 export class Boss2 extends Actor {
@@ -11,6 +12,9 @@ export class Boss2 extends Actor {
     this.setSize(45, 55)
     this.setOffset(80, 36)
     this.setAnims()
+    this.initHitBox()
+
+    this.atkPlayer = false
 
     this.name = 'boss2'
     this.hp = 100
@@ -18,9 +22,26 @@ export class Boss2 extends Actor {
 
     this.spawner = new MobSpawner(this.scene, 50, -30)
     this.scene.add.existing(this.spawner)
-    console.log(this.scene.player)
 
     this.setColliders(scene)
+  }
+
+  initHitBox () {
+    const hitConfig = {
+      w: 45,
+      h: 55,
+      xOff: 80,
+      yOff: 36,
+      scale: 5
+    }
+    this.hitbox = new Hitboxes(this.scene, this.body.x, this.body.y, hitConfig)
+  }
+
+  spawnHitBox () {
+    if (this.anims.getName() === 'atk-test-boss') {
+      this.hitbox.spawnHitBox(this.body.x - 400, this.body.y)
+      console.log(this.scene.player.active)
+    }
   }
 
   setAnims () {
@@ -89,13 +110,13 @@ export class Boss2 extends Actor {
       // flip broken
       // this.boss2Flip()
 
-      const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
+      const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player) / 4
 
       if (dist > 20000 && dist < 80000) {
         this.scene.physics.accelerateToObject(this, this.scene.player, 100, 180)
         this.anims.play('run-test-boss', true)
-      } else if (dist <= 20000) {
-        this.anims.play('atk-test-boss', true)
+      } else if (dist < 20000) {
+        this.atkPlayer = true
       } else {
         this.setVelocityX(0)
         this.anims.play('idle-test-boss', true)

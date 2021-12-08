@@ -1,8 +1,8 @@
 import { Physics } from 'phaser'
-import { Mob } from '../enemies/mob'
+import { HitBox } from '../enemies/hitbox'
 
 export class Hitboxes extends Physics.Arcade.Group {
-  constructor (scene, x, y, texture, config) {
+  constructor (scene, x, y, config) {
     super(scene.physics.world, scene)
 
     this.defaults.setCollideWorldBounds = true
@@ -12,11 +12,11 @@ export class Hitboxes extends Physics.Arcade.Group {
     this.config = config
 
     this.createMultiple({
-      classType: Mob,
+      classType: HitBox,
       frameQuantity: 30,
       active: false,
       visible: false,
-      key: texture,
+      key: 'shame',
       setXY: { x, y, stepX: 50 }
     })
 
@@ -24,16 +24,16 @@ export class Hitboxes extends Physics.Arcade.Group {
   }
 
   setColliders (scene) {
-    scene.physics.world.addCollider(this, scene.walls)
-    scene.physics.world.addCollider(this, scene.jumpLayer)
-    scene.physics.world.addCollider(this, this)
+    scene.physics.world.addOverlap(this, this.scene.player, (hitbox) => {
+      hitbox.destroy()
+    })
   }
 
-  spawnMob (x, y) {
-    console.log(';;;;', this)
-    const mob = this.getFirstDead(false)
-    if (mob) {
-      mob.spawn(x, y, this.config)
+  spawnHitBox (x, y) {
+    console.log('spawnHitbox')
+    const hitbox = this.getFirstDead(false)
+    if (hitbox) {
+      hitbox.spawn(x, y, this.config)
     }
   }
 }

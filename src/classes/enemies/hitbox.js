@@ -1,49 +1,51 @@
-import { Math } from 'phaser'
-import { Actor } from '../actor'
+import { Math, Physics } from 'phaser'
 
-export class HitBox extends Actor {
-  constructor (scene, x, y, texture, config) {
-    super(scene, x, y, texture, config)
-    scene.physics.add.existing(this)
-    this.name = texture
+export class HitBox extends Physics.Arcade.Sprite {
+  constructor (scene, x, y) {
+    super(scene, x, y)
+
+    this.hitPlayer = false
   }
 
   setColliders (scene) {
     scene.physics.world.addOverlap(scene.player, this, () => {
-      this.scene.player.getDamage(20)
+      this.scene.player.getDamage(50)
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
       this.scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
-      this.destroy()
-    })
-    scene.physics.world.addCollider(this, scene.water)
-    scene.physics.world.addCollider(this, scene.wall)
-    scene.physics.world.addCollider(this, scene.jumpLayer)
-    scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
-      bullet.destroy()
+      this.hitPlayer = true
       this.destroy()
     })
   }
 
   spawn (x, y, config) {
+    console.log('hitbox, spawned')
+    this.scene.add.existing(this)
+    this.config = config
     this.setScale(config.scale)
     this.setSize(config.w, config.h)
     this.setOffset(config.xOff, config.yOff)
     this.setColliders(this.scene)
-    this.config = config
     this.x = x
     this.y = y
     this.setActive(true)
-    this.setVisible(true)
-    this.body.allowGravity = true
+    this.setVisible(false)
+    this.body.allowGravity = false
     this.setVelocity(Math.Between(-300, -100), Math.Between(-200, -50))
-  }
 
-  update () {
-    if (this.active) {
-      this.scene.physics.accelerateToObject(this, this.scene.player, 70, 180)
-      this.anims.play(this.name + this.config.key.run, true)
-      this.checkFlip()
+    if (this.scene.player.anims.getName() === 'atk-test-boss' && this.hitPlayer === true) {
+      this.body.reset(x + 20, y)
+      this.anims.play(this.config.atkAnim, true)
+      this.once('animationcomplete', () => {
+        console.log('animationcomplete')
+        this.destroy()
+      })
+    } else {
+      this.body.reset(x + 20, y)
+      this.scene.time.addEvent({
+        delay: 700,
+        callback: () => this.destroy()
+      })
     }
   }
 }

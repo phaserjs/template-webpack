@@ -7,12 +7,6 @@ export class Mob extends Actor {
 
     scene.physics.add.existing(this)
     this.name = texture
-
-    // this.setAnims(config)
-    // this.setColliders(scene)
-
-    console.log(this.key)
-    console.log(this.config)
   }
 
   setAnims (config) {
