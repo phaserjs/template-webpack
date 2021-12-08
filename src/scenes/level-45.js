@@ -10,6 +10,8 @@ export class Level45 extends Scene {
   }
 
   create () {
+    this.sceneNum = 4
+
     this.initMap()
     this.initPlayer()
     this.pathSetup()
@@ -172,7 +174,6 @@ export class Level45 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
-      this.scene.start('death-scene', { checkpoint: 4 })
     }
     if (this.boss.hp > 0) {
       this.boss.update()

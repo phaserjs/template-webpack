@@ -10,6 +10,7 @@ export class Level5 extends Scene {
   }
 
   create () {
+    this.sceneNum = 5
     this.initMap()
     this.initPlayer()
     this.pathSetup()
@@ -70,7 +71,7 @@ export class Level5 extends Scene {
   }
 
   enemySetup () {
-    this.boss = new Boss5(this, 4000, 1450)
+    this.boss = new Boss5(this, 4200, 1200)
   }
 
   triggerSetup () {
@@ -177,7 +178,6 @@ export class Level5 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
-      this.scene.start('death-scene', { checkpoint: 5 })
     }
 
     if (this.boss.hp > 0) {

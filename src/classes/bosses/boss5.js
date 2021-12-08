@@ -1,6 +1,7 @@
 // testing atlas purposes only
 import { Math } from 'phaser'
 import { Actor } from '../actor'
+import { Gun } from '../groups/gun'
 // import { MobSpawner } from '../groups/mob-spawner'
 
 export class Boss5 extends Actor {
@@ -13,11 +14,10 @@ export class Boss5 extends Actor {
     this.setAnims()
 
     this.name = 'boss5'
-
+    this.gun = new Gun(this.scene, x, y - 400, false, true, 40)
+    this.setColliders(scene)
     // this.spawner = new MobSpawner(this.scene, 50, -30)
     // this.scene.add.existing(this.spawner)
-
-    this.setColliders(scene)
   }
 
   setAnims () {
@@ -89,9 +89,19 @@ export class Boss5 extends Actor {
   setColliders (scene) {
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
-    scene.physics.world.addCollider(this, this.scene.wall)
+    scene.physics.world.addCollider(this, this.scene.walls)
+
+    scene.physics.world.addCollider(this.scene.player, this.gun, (player, bullet) => {
+      player.getDamage(10)
+      // scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
+      // scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
+      scene.sound.play('playerDamageAudio', { loop: false })
+      bullet.destroy()
+    })
 
     scene.physics.world.addCollider(scene.player.gun, this, (boss, bullet) => {
+      // this.scene.sound.play('enemyDamage', { loop: false })
+      this.gun.fireBullet(this.x, this.y, this.flipX, true, false)
       this.getDamage(10)
       bullet.destroy()
       this.scene.sound.stopByKey('stepsAudio')
@@ -101,17 +111,19 @@ export class Boss5 extends Actor {
 
   update () {
     const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
+    console.log(this.body.x)
+    console.log(this.body.y)
     if (this.active && this.hp > 0) {
       this.boss2Flip()
       if (this.active && this.hp > 60 && dist > 300000) {
-        this.scene.physics.accelerateToObject(this, this.scene.player, 100, 180)
+        // this.scene.physics.accelerateToObject(this, this.scene.player, 100, 180)
         this.anims.play('surf-prue-boss', true)
       } else if (this.active && this.hp < 50 && dist < 120000) {
         this.anims.play('falling-prue-boss', true)
       } else if (dist < 120000) {
         this.anims.play('attack-prue-boss', true)
       } else if (dist < 200000) {
-        this.scene.physics.accelerateToObject(this, this.scene.player)
+        // this.scene.physics.accelerateToObject(this, this.scene.player)
         this.anims.play('run-prue-boss', true)
       } else {
         this.setVelocityX(0)
