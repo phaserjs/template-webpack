@@ -11,6 +11,7 @@ export class Trigger extends Physics.Arcade.Sprite {
     this.setColliders(scene)
     this.setVisible(true)
     this.setActive(true)
+    // this.scene.add.image(875, 20, 'static-portal').setScrollFactor(0)
 
     this.scene.anims.create({
       key: 'portal',

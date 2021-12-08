@@ -14,7 +14,7 @@ export class BossHpTrigger extends Physics.Arcade.Sprite {
       this.scene.physics.world.removeCollider(triggerZone)
     })
 
-    this.setSize(28, 65)
+    this.setSize(config.sizeX, config.sizeY)
   }
 
   update () {
