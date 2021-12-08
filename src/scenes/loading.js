@@ -189,6 +189,7 @@ export class LoadingScene extends Scene {
     // bullets
     this.load.atlas('mon-bullet', 'sprites/anims/mon-bullet.png', 'sprites/atlas/mon-bullet-atlas.json')
     this.load.atlas('ice-bullet', 'sprites/anims/ice-bullet.png', 'sprites/atlas/ice-bullet-atlas.json')
+    this.load.atlas('forloop', 'sprites/anims/forloop.png', 'sprites/atlas/forloop-atlas.json')
 
     this.load.atlas('water-bullet', 'sprites/anims/water-bullet.png', 'sprites/atlas/water-bullet-atlas.json')
     this.load.atlas('water-bullet-impact', 'sprites/anims/water-bullet-impact.png', 'sprites/atlas/water-bullet-impact-atlas.json')

@@ -95,18 +95,6 @@ export class Level2 extends Scene {
   }
 
   enemySetup () {
-    const vikingConfig = {
-      w: 24,
-      h: 24,
-      xOff: 5,
-      yOff: 8,
-      scale: 1,
-      frameEnds: {
-        idle: 6,
-        atk: 8
-      }
-    }
-
     const genmob4Config = {
       key: {
         idle: '-idle',
