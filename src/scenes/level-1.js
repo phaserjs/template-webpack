@@ -148,8 +148,8 @@ export class Level1 extends Scene {
   }
 
   triggerSetup () {
-    this.endLevel = new Trigger(this, 3740, 490)
-    this.bossHealth = new BossHpTrigger(this, 2520, 300, { healthBarX: 3450, healthBarY: 34, sizeX: 28, sizeY: 500 })
+    this.endLevel = new Trigger(this, 3740, 450)
+    this.bossHealth = new BossHpTrigger(this, 2520, 460, { healthBarX: 3450, healthBarY: 34, sizeX: 28, sizeY: 500 })
   }
 
   uISetup () {

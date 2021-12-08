@@ -43,7 +43,7 @@ export class Player extends Actor {
       key: 'idle',
       frames: this.scene.anims.generateFrameNames('player', {
         prefix: 'idle-',
-        end: 5
+        end: 4
       }),
       frameRate: 12
     })

@@ -1,10 +1,10 @@
 {
     "frames": [
         {
-            "filename": "portal-0",
+            "filename": "idle-0",
             "frame": {
-                "w": 24,
-                "h": 118,
+                "w": 128,
+                "h": 128,
                 "x": 0,
                 "y": 0
             },
@@ -14,12 +14,12 @@
             }
         },
         {
-            "filename": "portal-1",
+            "filename": "idle-1",
             "frame": {
-                "w": 24,
-                "h": 118,
+                "w": 128,
+                "h": 128,
                 "x": 0,
-                "y": 118
+                "y": 128
             },
             "anchor": {
                 "x": 0.5,
@@ -27,12 +27,12 @@
             }
         },
         {
-            "filename": "portal-2",
+            "filename": "idle-2",
             "frame": {
-                "w": 24,
-                "h": 118,
+                "w": 128,
+                "h": 128,
                 "x": 0,
-                "y": 236
+                "y": 256
             },
             "anchor": {
                 "x": 0.5,
@@ -40,12 +40,12 @@
             }
         },
         {
-            "filename": "portal-3",
+            "filename": "idle-3",
             "frame": {
-                "w": 24,
-                "h": 118,
+                "w": 128,
+                "h": 128,
                 "x": 0,
-                "y": 354
+                "y": 384
             },
             "anchor": {
                 "x": 0.5,
@@ -53,12 +53,12 @@
             }
         },
         {
-            "filename": "portal-4",
+            "filename": "idle-4",
             "frame": {
-                "w": 24,
-                "h": 118,
+                "w": 128,
+                "h": 128,
                 "x": 0,
-                "y": 472
+                "y": 512
             },
             "anchor": {
                 "x": 0.5,

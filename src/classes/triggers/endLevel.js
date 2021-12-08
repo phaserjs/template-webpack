@@ -3,23 +3,26 @@ import { Physics } from 'phaser'
 export class Trigger extends Physics.Arcade.Sprite {
   constructor (scene, x, y) {
     super(scene, x, y)
+    scene.add.existing(this)
     scene.physics.add.existing(this)
     this.body.allowGravity = false
     this.body.setImmovable(true)
-    this.body.setSize(55, 80)
-    this.speed = 220
+    this.body.setSize(45, 80)
+    this.body.setOffset(45, 22)
+    this.setScale(0.8)
+
     this.setColliders(scene)
     this.setVisible(true)
     this.setActive(true)
     // this.scene.add.image(875, 20, 'static-portal').setScrollFactor(0)
 
     this.scene.anims.create({
-      key: 'portal',
-      frames: this.scene.anims.generateFrameNames('portal', {
-        prefix: 'portal-',
+      key: 'portal-idle',
+      frames: this.scene.anims.generateFrameNames('end-level', {
+        prefix: 'idle-',
         end: 4
       }),
-      framerate: 5
+      framerate: 1.25
     })
 
     const triggerZone = scene.physics.world.addOverlap(this, this.scene.player, () => {
@@ -30,12 +33,13 @@ export class Trigger extends Physics.Arcade.Sprite {
 
       this.scene.physics.world.removeCollider(triggerZone)
     })
-
-    this.setSize(28, 65)
   }
 
   update () {
-    this.anims.play('portal', true)
+    if (this.active) {
+      console.log('Sup g')
+      this.anims.play('portal-idle', true)
+    }
   }
 
   setColliders (scene) {
