@@ -63,7 +63,12 @@ export class LoadingScene extends Scene {
     this.load.image('titleForeground', 'title/parallax-mountain-foreground-trees.png')
     this.load.image('start-game', 'title/start-game.png')
     this.load.image('game-logo', 'title/game-logo.png')
+    // credits
+    this.load.image('credits-button', 'title/credits-button.png')
+    this.load.image('credits-text', 'title/credits-text.png')
+    this.load.image('home-button', 'title/home-button.png')
 
+    // controls
     this.load.image('controlsIntro', 'title/intro.png')
     this.load.image('arrow', 'title/arrow.png')
 
@@ -174,7 +179,7 @@ export class LoadingScene extends Scene {
     this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
     this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
 
-    this.load.atlas('portal', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
+    this.load.atlas('end-level', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
 
     this.load.atlas('fly-mon', 'sprites/anims/fly-mon.png', 'sprites/atlas/fly-mon-atlas.json')
     this.load.atlas('dirty-dishes', 'sprites/anims/dirty-dishes.png', 'sprites/atlas/dirty-dishes-atlas.json')
@@ -198,8 +203,8 @@ export class LoadingScene extends Scene {
   }
 
   create () {
-    this.sound.add('titleAudio', { loop: true })
-    this.sound.play('titleAudio')
+    this.sound.add('titleAudio')
+    this.sound.play('titleAudio', { volume: 0.3, loop: true })
     this.scene.start('title-scene')
   }
 }

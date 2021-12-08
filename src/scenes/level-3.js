@@ -3,6 +3,7 @@ import { Player } from '../classes/player'
 import { Boss3 } from '../classes/bosses/boss3'
 import { Facilitator } from '../classes/npc'
 import { Trigger } from '../classes/triggers/endLevel'
+import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 
 import { TempBoss2 } from '../classes/bosses/tempBoss2'
 
@@ -34,7 +35,11 @@ export class Level3 extends Scene {
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level3BgAudio')
-    this.sound.play('level3BgAudio', { volume: 0.9, loop: true })
+    this.sound.play('level3BgAudio', { volume: 0.7, loop: true })
+  }
+
+  changeScene () {
+    this.scene.start('level-4-scene')
   }
 
   initMap () {
@@ -44,6 +49,7 @@ export class Level3 extends Scene {
 
     this.walls = level3map.createLayer('Wall', tileSetLevel2)
     // creating bg
+    this.jumpLayer = level3map.createLayer('jumpLayer', tileSetLevel2, 0, 0)
     this.add.image(400, 300, 'level3Bg').setScale(3)
       .setScrollFactor(0)
     this.add.tileSprite(200, 4000, 4500, 350, 'level3Mountain1')
@@ -51,7 +57,6 @@ export class Level3 extends Scene {
     this.add.tileSprite(200, 3800, 4500, 350, 'level3Mountain2')
       .setScrollFactor(0.4, 0.4)
 
-    this.jumpLayer = level3map.createLayer('jumpLayer', tileSetLevel2, 0, 0)
     // creating layers to reflect tilemap layers - order matters for rendering
     level3map.createLayer('Platform', tileSetLevel2, 0, 0)
     this.water = level3map.createLayer('Water', tileSetLevel2, 0, 0)
@@ -73,9 +78,15 @@ export class Level3 extends Scene {
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
     this.physics.world.setBounds(0, 0, 1920, 5760)
-    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
+    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, 0, 20)
     this.cameras.main.setBounds(0, 0, 1920, 5760)
   }
+
+  // cameraUpdate () {
+  //   if(this.player.velocity.x < 0) {
+  //     this.cameras.
+  //   }
+  // }
 
   pathSetup () {
     const points1 = [50, 400, 135, 400]
@@ -86,6 +97,7 @@ export class Level3 extends Scene {
 
   triggerSetup () {
     this.endLevel = new Trigger(this, 1800, 5540)
+    this.bossHealth = new BossHpTrigger(this, 970, 3300, { healthBarX: 5400, healthBarY: 34, sizeX: 600, sizeY: 28 })
   }
 
   enemySetup () {

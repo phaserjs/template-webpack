@@ -36,7 +36,7 @@ export class Boss1 extends Actor {
     // bleed bears
     this.spawner = new MobSpawner(this.scene, 50, -30, 'bear-boss', bearConfig)
 
-    this.bossGun = new Gun(this.scene, x, y - 400, false, true, 1000)
+    this.bossGun = new Gun(this.scene, x, y - 400, 1000)
 
     this.scene.add.existing(this.spawner)
 
@@ -83,8 +83,13 @@ export class Boss1 extends Actor {
   }
 
   fireGun () {
+    const config = {
+      gunAnim: 'fireBullet',
+      enemyGun: true,
+      playerGun: false
+    }
     if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
-      this.bossGun.fireBullet(this.x, this.y, this.flipX, true)
+      this.bossGun.fireBullet(this.x, this.y, this.flipX, config)
     }
   }
 
@@ -118,9 +123,9 @@ export class Boss1 extends Actor {
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
       this.spawner.spawnMob(this.x, this.y)
-
       this.getDamage(10)
-      this.scene.sound.play('enemyDamage', { loop: false })
+      this.scene.sound.stopByKey('stepsAudio')
+      this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
       // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
       // scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
       bullet.destroy()

@@ -25,7 +25,7 @@ export class Level2 extends Scene {
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level2BgAudio')
-    this.sound.play('level2BgAudio', { volume: 0.6, loop: true })
+    this.sound.play('level2BgAudio', { volume: 0.4, loop: true })
   }
 
   changeScene () {
@@ -88,7 +88,7 @@ export class Level2 extends Scene {
 
   triggerSetup () {
     this.endLevel = new Trigger(this, 5760, 390)
-    this.bossHealth = new BossHpTrigger(this, 4500, 460, { healthBarX: 5400, healthBarY: 34 })
+    this.bossHealth = new BossHpTrigger(this, 4500, 200, { healthBarX: 5400, healthBarY: 34, sizeX: 28, sizeY: 500 })
   }
 
   enemySetup () {
@@ -178,7 +178,7 @@ export class Level2 extends Scene {
       }
     }
 
-    this.enemy = new Patroller(this, this.curve, 818, 413, 'gen-mob-4', genmob4Config)
+    this.enemy0 = new Patroller(this, this.curve, 818, 413, 'gen-mob-4', genmob4Config)
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-4', genmob4Config)
     this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-4', genmob4Config)
     this.enemy4 = new Patroller(this, this.circleLoop, 960, 100, 'gen-mob-4', genmob4Config)
@@ -198,14 +198,15 @@ export class Level2 extends Scene {
 
     this.enemy17 = new Patroller(this, this.circleLoop, 3000, 374, 'dish', dishConfig)
     this.enemy18 = new Patroller(this, this.circle, 3400, 70, 'dish', dishConfig)
-    this.enemy19 = new Patroller(this, this.curve, 4000, 374, 'dish', dishConfig)
+    this.enemy1 = new Patroller(this, this.curve, 4000, 374, 'dish', dishConfig)
+    const enemyArr = [this.enemy0, this.enemy1, this.enemy2, this.enemy3]
 
     console.log(this.enemy2)
     this.boss = new Boss2(this, 5500, 220)
     this.testBoss = new TestBoss(this, 200, 220)
     console.log(this.testBoss)
 
-    this.enemy.startFollow({
+    this.enemy0.startFollow({
       duration: 2000,
       yoyo: true,
       repeat: -1
@@ -271,6 +272,39 @@ export class Level2 extends Scene {
       repeat: -1
     })
     this.enemy13.startFollow({
+      duration: 4000,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy14.startFollow({
+      duration: 4000,
+      yoyo: true,
+      repeat: -1
+    })
+
+    this.enemy15.startFollow({
+      duration: 1300,
+      yoyo: true,
+      repeat: -1
+    })
+
+    this.enemy16.startFollow({
+      duration: 1300,
+      yoyo: true,
+      repeat: -1
+    })
+
+    this.enemy17.startFollow({
+      duration: 2000,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy18.startFollow({
+      duration: 4000,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy1.startFollow({
       duration: 4000,
       yoyo: true,
       repeat: -1
@@ -366,26 +400,65 @@ export class Level2 extends Scene {
 
   update () {
     this.debugUpdate()
-    this.enemy.update()
-    this.enemy2.update()
-    this.enemy3.update()
-    this.enemy4.update()
-    this.enemy5.update()
-    this.enemy6.update()
-    this.enemy7.update()
-    this.enemy8.update()
-    this.enemy9.update()
-    this.enemy10.update()
-    this.enemy11.update()
-    this.enemy12.update()
-    this.enemy13.update()
+    if (!this.enemy0.dying) {
+      this.enemy0.update()
+    }
 
-    this.enemy14.update()
-    this.enemy15.update()
-    this.enemy16.update()
-    this.enemy17.update()
-    this.enemy18.update()
-    this.enemy19.update()
+    if (!this.enemy1.dying) {
+      this.enemy1.update()
+    }
+
+    if (!this.enemy2.dying) {
+      this.enemy2.update()
+    }
+    if (!this.enemy3.dying) {
+      this.enemy3.update()
+    }
+    if (!this.enemy4.dying) {
+      this.enemy4.update()
+    }
+    if (!this.enemy5.dying) {
+      this.enemy5.update()
+    }
+    if (!this.enemy6.dying) {
+      this.enemy6.update()
+    }
+    if (!this.enemy7.dying) {
+      this.enemy7.update()
+    }
+    if (!this.enemy8.dying) {
+      this.enemy8.update()
+    }
+    if (!this.enemy9.dying) {
+      this.enemy9.update()
+    }
+    if (!this.enemy10.dying) {
+      this.enemy10.update()
+    }
+    if (!this.enemy11.dying) {
+      this.enemy11.update()
+    }
+    if (!this.enemy12.dying) {
+      this.enemy12.update()
+    }
+    if (!this.enemy13.dying) {
+      this.enemy13.update()
+    }
+    if (!this.enemy14.dying) {
+      this.enemy14.update()
+    }
+    if (!this.enemy15.dying) {
+      this.enemy15.update()
+    }
+    if (!this.enemy16.dying) {
+      this.enemy16.update()
+    }
+    if (!this.enemy17.dying) {
+      this.enemy17.update()
+    }
+    if (!this.enemy18.dying) {
+      this.enemy18.update()
+    }
 
     if (this.boss.hp > 0) {
       this.boss.update()

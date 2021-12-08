@@ -52,9 +52,10 @@ export class Boss4 extends Actor {
       // this.spawner.spawnMob(this.x, this.y)
       // this.spawner.spawnMob(this.x, this.y)
       // this.spawner.spawnMob(this.x, this.y)
-      this.scene.sound.play('enemyDamage', { loop: false })
       this.getDamage(100)
       bullet.destroy()
+      this.scene.sound.stopByKey('stepsAudio')
+      this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
     })
   }
 

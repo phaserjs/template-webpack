@@ -100,10 +100,12 @@ export class Boss5 extends Actor {
     })
 
     scene.physics.world.addCollider(scene.player.gun, this, (boss, bullet) => {
-      this.scene.sound.play('enemyDamage', { loop: false })
+      // this.scene.sound.play('enemyDamage', { loop: false })
       this.gun.fireBullet(this.x, this.y, this.flipX, true, false)
       this.getDamage(10)
       bullet.destroy()
+      this.scene.sound.stopByKey('stepsAudio')
+      this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
     })
   }
 

@@ -10,9 +10,11 @@ export class Patroller extends GameObjects.PathFollower {
     this.body.allowGravity = false
     this.config = config
 
+    this.dying = false
+
     console.log(this.body)
 
-    this.gun = new Gun(this.scene, x, y - 400, true, true, true, 500)
+    this.gun = new Gun(this.scene, x, y - 400, 20)
     this.name = texture
     this.setColliders(scene)
     this.setAnims()
@@ -20,7 +22,7 @@ export class Patroller extends GameObjects.PathFollower {
     this.scene.time.addEvent({
       callback: this.fireGun,
       callbackScope: this,
-      delay: 500,
+      delay: 1000,
       loop: true
     })
     this.body.setSize(this.config.w, this.config.h)
@@ -88,6 +90,7 @@ export class Patroller extends GameObjects.PathFollower {
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
       scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
+      this.dying = true
       this.die()
     })
 
@@ -101,13 +104,19 @@ export class Patroller extends GameObjects.PathFollower {
 
     scene.physics.world.addOverlap(scene.player.gun, this, (mob, bullet) => {
       bullet.destroy()
-      this.destroy()
+      this.dying = true
+      this.die()
     })
   }
 
   fireGun () {
+    const config = {
+      gunAnim: 'fireBullet',
+      enemyGun: true,
+      playerGun: false
+    }
     if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
-      this.gun.fireBullet(this.x, this.y, this.flipX, true)
+      this.gun.fireBullet(this.x, this.y, this.flipX, config)
     }
   }
 
