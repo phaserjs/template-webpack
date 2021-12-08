@@ -88,6 +88,15 @@ export class Player extends Actor {
       }),
       duration: 1000
     })
+
+    this.scene.anims.create({
+      key: 'jump',
+      frames: this.scene.anims.generateFrameNames('player', {
+        prefix: 'jump-',
+        end: 1
+      }),
+      frameRate: 12
+    })
   }
 
   setColliders () {
