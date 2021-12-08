@@ -1,0 +1,69 @@
+{
+  "frames": [
+    {
+      "filename": "big-mine-idle-0",
+      "frame": {
+          "w": 64,
+          "h": 64,
+          "x": 0,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "death-0",
+      "frame": {
+          "w": 64,
+          "h": 64,
+          "x": 0,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "death-1",
+      "frame": {
+          "w": 64,
+          "h": 64,
+          "x": 64,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "death-2",
+      "frame": {
+          "w": 64,
+          "h": 64,
+          "x": 128,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    },
+    {
+      "filename": "death-3",
+      "frame": {
+          "w": 64,
+          "h": 64,
+          "x": 192,
+          "y": 0
+      },
+      "anchor": {
+          "x": 0.5,
+          "y": 0.5
+      }
+    }
+  ]
+}

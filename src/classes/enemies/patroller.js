@@ -18,7 +18,6 @@ export class Patroller extends GameObjects.PathFollower {
     this.name = texture
     this.setColliders(scene)
     this.setAnims()
-
     this.scene.time.addEvent({
       callback: this.fireGun,
       callbackScope: this,
@@ -85,9 +84,10 @@ export class Patroller extends GameObjects.PathFollower {
   }
 
   setColliders (scene) {
-    scene.physics.world.addOverlap(scene.player, this, (player) => {
+    const playerhit = scene.physics.world.addOverlap(scene.player, this, (player) => {
       player.getDamage(20)
       this.scene.playerHealthBar.scaleX = (this.scene.player.hp / this.scene.player.maxHealth)
+      this.scene.physics.world.removeCollider()
       this.scene.playerHealthBar.x -= (this.scene.player.hp / this.scene.player.maxHealth) - 1
       scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
       this.dying = true
@@ -115,7 +115,7 @@ export class Patroller extends GameObjects.PathFollower {
       enemyGun: true,
       playerGun: false
     }
-    if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
+    if (this.active && this.config.hasGun && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
       this.gun.fireBullet(this.x, this.y, this.flipX, config)
     }
   }

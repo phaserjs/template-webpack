@@ -83,6 +83,7 @@ export class Level5 extends Scene {
       xOff: 9,
       yOff: 3,
       scale: 2,
+      hasGun: true,
       frameEnds: {
         idle: 4,
         atk: 10,
@@ -90,10 +91,47 @@ export class Level5 extends Scene {
         death: 4
       }
     }
+    const bigFishConfig = {
+      key: {
+        idle: '-run'
+      },
+      w: 48,
+      h: 48,
+      xOff: 0,
+      yOff: 0,
+      scale: 2,
+      hasGun: true,
+      frameEnds: {
+        run: 3,
+        death: 10
+      }
+    }
+    const bigMineConfig = {
+      key: {
+        idle: '-idle'
+      },
+      w: 64,
+      h: 64,
+      xOff: 0,
+      yOff: 0,
+      scale: 2,
+      hasGun: false,
+      frameEnds: {
+        death: 3,
+        idle: 0
+      }
+    }
 
-    this.enemy1 = new Patroller(this, this.curve, 818, 413, 'gen-mob-2', mob3Config)
+    this.enemy1 = new Patroller(this, this.curve, 775, 465, 'gen-mob-2', mob3Config)
     this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-2', mob3Config)
-    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-2', mob3Config)
+    this.enemy3 = new Patroller(this, this.circleLoop, 1650, 480, 'big-fish', bigFishConfig)
+    this.enemy4 = new Patroller(this, this.bob, 1350, 460, 'big-mine', bigMineConfig)
+    this.enemy5 = new Patroller(this, this.march, 600, 1775, 'gen-mob-2', mob3Config)
+    this.enemy6 = new Patroller(this, this.march, 670, 1775, 'gen-mob-2', mob3Config)
+    this.enemy7 = new Patroller(this, this.march, 740, 1775, 'gen-mob-2', mob3Config)
+    this.enemy8 = new Patroller(this, this.bob, 800, 1650, 'big-mine', bigMineConfig)
+    this.enemy9 = new Patroller(this, this.curve, 1765, 1472, 'gen-mob-2', mob3Config)
+    this.enemy10 = new Patroller(this, this.flying, 1850, 1350, 'big-fish', mob3Config)
 
     this.enemy1.startFollow({
       duration: 700,
@@ -108,7 +146,43 @@ export class Level5 extends Scene {
     })
 
     this.enemy3.startFollow({
-      duration: 1300,
+      duration: 2500,
+      yoyo: true,
+      repeat: -1
+    })
+
+    this.enemy4.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy5.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy6.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy7.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy8.startFollow({
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy9.startFollow({
+      duration: 700,
+      yoyo: true,
+      repeat: -1
+    })
+    this.enemy10.startFollow({
+      duration: 1500,
       yoyo: true,
       repeat: -1
     })
@@ -120,10 +194,14 @@ export class Level5 extends Scene {
   }
 
   pathSetup () {
-    const points1 = [50, 400, 135, 400]
+    const bob = [0, 20, 0, 40, 0, 20, 0, 0]
+    const march = [50, 400, 650, 400]
     const flyingPoints = [50, 400, 125, 320, 200, 400]
+    const platformPoints = [50, 400, 135, 400]
 
-    this.curve = new Curves.Spline(points1)
+    this.curve = new Curves.Spline(platformPoints)
+    this.march = new Curves.Spline(march)
+    this.bob = new Curves.Spline(bob)
     this.flying = new Curves.Spline(flyingPoints)
     this.circle = new Curves.Path(50, 500)
     this.circle.splineTo([164, 446, 274, 542, 412, 457, 522, 541, 664, 464])

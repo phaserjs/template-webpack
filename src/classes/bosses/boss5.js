@@ -111,8 +111,6 @@ export class Boss5 extends Actor {
 
   update () {
     const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
-    console.log(this.body.x)
-    console.log(this.body.y)
     if (this.active && this.hp > 0) {
       this.boss2Flip()
       if (this.active && this.hp > 60 && dist > 300000) {
