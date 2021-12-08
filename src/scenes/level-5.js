@@ -68,7 +68,7 @@ export class Level5 extends Scene {
   }
 
   enemySetup () {
-    this.boss = new Boss5(this, 4000, 1450)
+    this.boss = new Boss5(this, 4200, 1200)
   }
 
   triggerSetup () {

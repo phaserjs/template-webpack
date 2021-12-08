@@ -1,13 +1,16 @@
-import { GameObjects, Math } from 'phaser'
+import { GameObjects, Math, Physics } from 'phaser'
 import { Gun } from '../groups/gun'
 
 export class Patroller extends GameObjects.PathFollower {
   constructor (scene, path, x, y, texture, config) {
     super(scene, path, x, y, texture)
+    this.body = new Physics.Arcade.Body(scene.physics.world, this)
     scene.add.existing(this)
     scene.physics.add.existing(this)
     this.body.allowGravity = false
     this.config = config
+
+    console.log(this.body)
 
     this.gun = new Gun(this.scene, x, y - 400, true, true, true, 500)
     this.name = texture
@@ -20,6 +23,17 @@ export class Patroller extends GameObjects.PathFollower {
       delay: 500,
       loop: true
     })
+    this.body.setSize(this.config.w, this.config.h)
+    this.body.setOffset(this.config.xOff, this.config.yOff)
+    this.setScale(this.config.scale)
+  }
+
+  checkFlip () {
+    if (this.body.velocity.x < 0) {
+      this.flipX = true
+    } else {
+      this.flipX = false
+    }
   }
 
   die () {
@@ -32,106 +46,67 @@ export class Patroller extends GameObjects.PathFollower {
 
   setAnims () {
     this.scene.anims.create({
-      key: 'adventurer-death',
-      frames: this.scene.anims.generateFrameNames('player', {
-        prefix: 'death-',
-        end: 6
+      key: this.name + '-run',
+      frames: this.scene.anims.generateFrameNames(this.name, {
+        prefix: 'run-',
+        end: this.config.frameEnds.run
       }),
-      framerate: 12
+      frameRate: 12
     })
 
-    // gen mob 4
     this.scene.anims.create({
-      key: 'gen-mob-4-idle',
-      frames: this.scene.anims.generateFrameNames('gen-mob-4', {
+      key: this.name + '-idle',
+      frames: this.scene.anims.generateFrameNames(this.name, {
         prefix: 'idle-',
-        end: 4
+        end: this.config.frameEnds.idle
       }),
-      framerate: 12
-    })
-
-    // gen mob 3
-    this.scene.anims.create({
-      key: 'gen-mob-3-idle',
-      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
-        prefix: 'idle-',
-        end: 4
-      }),
-      framerate: 12
+      frameRate: 12
     })
 
     this.scene.anims.create({
-      key: 'gen-mob-3-death',
-      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
-        prefix: 'death-',
-        end: 7
-      }),
-      framerate: 12
-    })
-
-    this.scene.anims.create({
-      key: 'gen-mob-3-atk',
-      frames: this.scene.anims.generateFrameNames('gen-mob-3', {
+      key: this.name + '-atk',
+      frames: this.scene.anims.generateFrameNames(this.name, {
         prefix: 'atk-',
-        end: 6
+        end: this.config.frameEnds.atk
       }),
-      framerate: 12
-    })
-
-    // flyin mon
-    this.scene.anims.create({
-      key: 'gen-mob-4-idle',
-      frames: this.scene.anims.generateFrameNames('gen-mob-4', {
-        prefix: 'idle-',
-        end: 7
-      }),
-      framerate: 12
+      frameRate: 12
     })
 
     this.scene.anims.create({
-      key: 'gen-mob-4-death',
-      frames: this.scene.anims.generateFrameNames('gen-mob-4', {
+      key: this.name + '-death',
+      frames: this.scene.anims.generateFrameNames(this.name, {
         prefix: 'death-',
-        end: 3
+        end: this.config.frameEnds.death
       }),
-      framerate: 12
+      frameRate: 12
     })
 
-    this.scene.anims.create({
-      key: 'gen-mob-4-atk',
-      frames: this.scene.anims.generateFrameNames('gen-mob-4', {
-        prefix: 'atk-',
-        end: 5
-      }),
-      framerate: 12
-    })
-
-    this.scene.anims.create({
-      key: 'dishes-poo-idle',
-      frames: this.scene.anims.generateFrameNames('dishes-poo', {
-        prefix: 'fly-',
-        end: 2
-      }),
-      framerate: 12,
-      repeat: -1
-    })
-    this.scene.anims.create({
-      key: 'dishes-poo-plate',
-      frames: this.scene.anims.generateFrameNames('dishes-poo', {
-        prefix: 'plate-',
-        end: 1
-      }),
-      framerate: 12,
-      repeat: -1
-    })
-    this.scene.anims.create({
-      key: 'dishes-poo-poo',
-      frames: this.scene.anims.generateFrameNames('dishes-poo', {
-        prefix: 'poo-',
-        end: 0
-      }),
-      framerate: 12
-    })
+    // this.scene.anims.create({
+    //   key: 'dishes-poo-idle',
+    //   frames: this.scene.anims.generateFrameNames('dishes-poo', {
+    //     prefix: 'fly-',
+    //     end: 2
+    //   }),
+    //   framerate: 12,
+    //   repeat: -1
+    // })
+    // this.scene.anims.create({
+    //   key: 'dishes-poo-plate',
+    //   frames: this.scene.anims.generateFrameNames('dishes-poo', {
+    //     prefix: 'plate-',
+    //     end: 1
+    //   }),
+    //   framerate: 12,
+    //   repeat: -1
+    // })
+    // this.scene.anims.create({
+    //   key: 'dishes-poo-poo',
+    //   frames: this.scene.anims.generateFrameNames('dishes-poo', {
+    //     prefix: 'poo-',
+    //     end: 0
+    //   }),
+    //   framerate: 12
+    // })
   }
 
   setColliders (scene) {
@@ -165,7 +140,8 @@ export class Patroller extends GameObjects.PathFollower {
 
   update () {
     if (this.active) {
-      this.anims.play(this.name + '-idle', true)
+      // this.checkFlip()
+      this.anims.play(this.name + this.config.key.idle, true)
     }
   }
 }

@@ -103,7 +103,11 @@ export class Level2 extends Scene {
       }
     }
 
-    const flymonConfig = {
+    const genmob4Config = {
+      key: {
+        idle: '-idle',
+        atk: '-atk'
+      },
       w: 16,
       h: 16,
       xOff: 73,
@@ -111,26 +115,44 @@ export class Level2 extends Scene {
       scale: 5,
       frameEnds: {
         idle: 7,
-        atk: 5
+        atk: 5,
+        death: 3,
+        run: 0
       }
     }
 
-    console.log(this.enemy2)
-    console.log(this.enemy11)
+    const genmob3Config = {
+      key: {
+        idle: '-idle',
+        atk: '-atk',
+        run: '-run'
+      },
+      w: 12,
+      h: 16,
+      xOff: 14,
+      yOff: 5,
+      scale: 5,
+      frameEnds: {
+        idle: 4,
+        atk: 6,
+        run: 5,
+        death: 7
+      }
+    }
 
-    this.enemy = new Patroller(this, this.curve, 818, 413, 'gen-mob-3')
-    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-3')
-    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-3')
-    this.enemy4 = new Patroller(this, this.circleLoop, 960, 100, 'gen-mob-3')
-    this.enemy5 = new Patroller(this, this.flying, 420, 120, 'gen-mob-3')
-    this.enemy6 = new Patroller(this, this.circleLoop, 1660, 110, 'gen-mob-3')
-    this.enemy7 = new Patroller(this, this.circle, 2000, 400, 'gen-mob-4')
-    this.enemy8 = new Patroller(this, this.curve, 2327, 390, 'gen-mob-4')
-    this.enemy9 = new Patroller(this, this.circle, 2500, 96, 'fly-mon')
-    this.enemy10 = new Patroller(this, this.flying, 2350, 200, 'gen-mob-4')
-    this.enemy11 = new Patroller(this, this.circleLoop, 2900, 390, 'fly-mon')
-    this.enemy12 = new Patroller(this, this.circle, 3100, 390, 'fly-mon')
-    this.enemy13 = new Patroller(this, this.flying, 3300, 390, 'fly-mon')
+    this.enemy = new Patroller(this, this.curve, 818, 413, 'gen-mob-3', genmob3Config)
+    this.enemy2 = new Patroller(this, this.curve, 1712, 412, 'gen-mob-3', genmob3Config)
+    this.enemy3 = new Patroller(this, this.flying, 1535, 392, 'gen-mob-3', genmob3Config)
+    this.enemy4 = new Patroller(this, this.circleLoop, 960, 100, 'gen-mob-3', genmob3Config)
+    this.enemy5 = new Patroller(this, this.flying, 420, 120, 'gen-mob-3', genmob3Config)
+    this.enemy6 = new Patroller(this, this.circleLoop, 1660, 110, 'gen-mob-3', genmob3Config)
+    this.enemy7 = new Patroller(this, this.circle, 2000, 400, 'gen-mob-4', genmob4Config)
+    this.enemy8 = new Patroller(this, this.curve, 2327, 390, 'gen-mob-4', genmob4Config)
+    // this.enemy9 = new Patroller(this, this.circle, 2500, 96, 'fly-mon', genmob4Config)
+    this.enemy10 = new Patroller(this, this.flying, 2350, 200, 'gen-mob-4', genmob4Config)
+    // this.enemy11 = new Patroller(this, this.circleLoop, 2900, 390, 'fly-mon', genmob4Config)
+    // this.enemy12 = new Patroller(this, this.circle, 3100, 390, 'fly-mon', genmob4Config)
+    // this.enemy13 = new Patroller(this, this.flying, 3300, 390, 'fly-mon', genmob4Config)
 
     console.log(this.enemy2)
     this.boss = new Boss2(this, 5500, 220)
@@ -177,11 +199,11 @@ export class Level2 extends Scene {
       repeat: -1
     })
 
-    this.enemy9.startFollow({
-      duration: 4000,
-      yoyo: true,
-      repeat: -1
-    })
+    // this.enemy9.startFollow({
+    //   duration: 4000,
+    //   yoyo: true,
+    //   repeat: -1
+    // })
 
     this.enemy10.startFollow({
       duration: 1300,
@@ -189,22 +211,22 @@ export class Level2 extends Scene {
       repeat: -1
     })
 
-    this.enemy11.startFollow({
-      duration: 1300,
-      yoyo: true,
-      repeat: -1
-    })
+    // this.enemy11.startFollow({
+    //   duration: 1300,
+    //   yoyo: true,
+    //   repeat: -1
+    // })
 
-    this.enemy12.startFollow({
-      duration: 2000,
-      yoyo: true,
-      repeat: -1
-    })
-    this.enemy13.startFollow({
-      duration: 4000,
-      yoyo: true,
-      repeat: -1
-    })
+    // this.enemy12.startFollow({
+    //   duration: 2000,
+    //   yoyo: true,
+    //   repeat: -1
+    // })
+    // this.enemy13.startFollow({
+    //   duration: 4000,
+    //   yoyo: true,
+    //   repeat: -1
+    // })
   }
 
   uISetup () {
@@ -296,6 +318,19 @@ export class Level2 extends Scene {
 
   update () {
     this.debugUpdate()
+    this.enemy.update()
+    this.enemy2.update()
+    this.enemy3.update()
+    this.enemy4.update()
+    this.enemy5.update()
+    this.enemy6.update()
+    this.enemy7.update()
+    this.enemy8.update()
+    // this.enemy9.update()
+    this.enemy10.update()
+    // this.enemy11.update()
+    // this.enemy12.update()
+    // this.enemy13.update()
 
     if (this.boss.hp > 0) {
       this.boss.update()
