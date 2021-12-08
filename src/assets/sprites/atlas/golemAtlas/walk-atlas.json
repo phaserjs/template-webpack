@@ -1,7 +1,7 @@
 {
   "frames" :[
     {
-      "filename": "walk-0",
+      "filename": "run-0",
       "frame":{
         "w": 128,
         "h": 128,
@@ -14,7 +14,7 @@
       }
     },
     {
-      "filename": "walk-1",
+      "filename": "run-1",
       "frame":{
         "w": 128,
         "h": 128,
@@ -27,7 +27,7 @@
       }
     },
     {
-      "filename": "walk-2",
+      "filename": "run-2",
       "frame":{
         "w": 128,
         "h": 128,
@@ -40,7 +40,7 @@
       }
     },
     {
-      "filename": "walk-3",
+      "filename": "run-3",
       "frame":{
         "w": 128,
         "h": 128,
@@ -53,7 +53,7 @@
       }
     },
     {
-      "filename": "walk-4",
+      "filename": "run-4",
       "frame":{
         "w": 128,
         "h": 128,
@@ -66,7 +66,7 @@
       }
     },
     {
-      "filename": "walk-5",
+      "filename": "run-5",
       "frame":{
         "w": 128,
         "h": 128,
@@ -79,7 +79,7 @@
       }
     },
     {
-      "filename": "walk-6",
+      "filename": "run-6",
       "frame":{
         "w": 128,
         "h": 128,
@@ -92,7 +92,7 @@
       }
     },
     {
-      "filename": "walk-7",
+      "filename": "run-7",
       "frame":{
         "w": 128,
         "h": 128,
@@ -105,7 +105,7 @@
       }
     },
     {
-      "filename": "walk-8",
+      "filename": "run-8",
       "frame":{
         "w": 128,
         "h": 128,
@@ -118,7 +118,7 @@
       }
     },
     {
-      "filename": "walk-9",
+      "filename": "run-9",
       "frame":{
         "w": 128,
         "h": 128,
@@ -131,7 +131,7 @@
       }
     },
     {
-      "filename": "walk-10",
+      "filename": "run-10",
       "frame":{
         "w": 128,
         "h": 128,
@@ -144,7 +144,7 @@
       }
     },
     {
-      "filename": "walk-11",
+      "filename": "run-11",
       "frame":{
         "w": 128,
         "h": 128,
@@ -157,7 +157,7 @@
       }
     },
     {
-      "filename": "walk-12",
+      "filename": "run-12",
       "frame":{
         "w": 128,
         "h": 128,
@@ -170,7 +170,7 @@
       }
     },
     {
-      "filename": "walk-13",
+      "filename": "run-13",
       "frame":{
         "w": 128,
         "h": 128,
@@ -183,7 +183,7 @@
       }
     },
     {
-      "filename": "walk-14",
+      "filename": "run-14",
       "frame":{
         "w": 128,
         "h": 128,

@@ -97,6 +97,7 @@ export class Level1 extends Scene {
       xOff: 9,
       yOff: 3,
       scale: 2,
+      frameRate: 12,
       frameEnds: {
         idle: 4,
         atk: 10,

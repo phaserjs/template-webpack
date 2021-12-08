@@ -113,5 +113,15 @@ export class Gun extends Physics.Arcade.Group {
       }),
       frameRate: 16
     })
+
+    this.scene.anims.create({
+      key: 'forloop-ware',
+      frames: this.scene.anims.generateFrameNames('forloop', {
+        prefix: 'idle-',
+        end: 6
+      }),
+      frameRate: 7,
+      repeat: -1
+    })
   }
 }

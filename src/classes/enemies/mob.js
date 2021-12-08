@@ -26,7 +26,7 @@ export class Mob extends Actor {
         prefix: 'run-',
         end: config.frameEnds.run
       }),
-      frameRate: 12
+      frameRate: config.frameRate
     })
 
     this.scene.anims.create({
@@ -35,7 +35,7 @@ export class Mob extends Actor {
         prefix: 'idle-',
         end: config.frameEnds.idle
       }),
-      frameRate: 12
+      frameRate: config.frameRate
     })
 
     this.scene.anims.create({

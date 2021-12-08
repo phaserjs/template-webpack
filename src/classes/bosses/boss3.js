@@ -1,6 +1,7 @@
 // testing atlas purposes only
 import { Math } from 'phaser'
 import { Actor } from '../actor'
+import { Gun } from '../groups/gun'
 import { MobSpawner } from '../groups/mob-spawner'
 
 export class Boss3 extends Actor {
@@ -27,6 +28,7 @@ export class Boss3 extends Actor {
       xOff: 50,
       yOff: 3,
       scale: 2,
+      frameRate: 12,
       frameEnds: {
         idle: 4,
         run: 7,
@@ -34,9 +36,29 @@ export class Boss3 extends Actor {
       }
     }
     this.spawner = new MobSpawner(this.scene, 50, -30, 'gen-mob-1', ahmadMob)
+
+    this.forLoopGun = new Gun(this.scene, x, y - 400, 300)
     this.scene.add.existing(this.spawner)
     // console.log(this.spawner)
     this.setColliders(scene)
+
+    this.scene.time.addEvent({
+      callback: this.fireGun,
+      callbackScope: this,
+      delay: 500,
+      loop: true
+    })
+  }
+
+  fireGun () {
+    const config = {
+      gunAnim: 'forloop-ware',
+      enemyGun: true,
+      playerGun: false
+    }
+    if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 800) {
+      this.forLoopGun.fireBullet(this.x, this.y, this.flipX, config)
+    }
   }
 
   setAnims () {
@@ -103,7 +125,7 @@ export class Boss3 extends Actor {
   }
 
   update () {
-    const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
+    const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player) / 2
     if (this.active && this.hp > 0) {
       this.boss2Flip()
       if (this.active && this.hp < 50 && dist > 800000) {
