@@ -10,7 +10,8 @@ export class Level1 extends Scene {
     super('level-1-scene')
   }
 
-  create () {
+  create() {
+    this.sceneNum = 1
     this.initMap()
     this.initPlayer()
     this.initNpc()
@@ -265,7 +266,7 @@ export class Level1 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
-      this.scene.start('death-scene', { checkpoint: 1 })
+      
     }
   }
 }

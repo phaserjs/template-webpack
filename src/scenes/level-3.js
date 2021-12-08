@@ -19,6 +19,8 @@ export class Level3 extends Scene {
   }
 
   create () {
+    this.sceneNum = 3
+
     this.initMap()
     this.initPlayer()
     this.initNpc()
@@ -198,7 +200,6 @@ export class Level3 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
-      this.scene.start('death-scene', { checkpoint: 3 })
     }
 
     if (this.boss.hp > 0) {

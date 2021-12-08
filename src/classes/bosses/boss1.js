@@ -79,7 +79,7 @@ export class Boss1 extends Actor {
 
   fireGun () {
     if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
-      this.bossGun.fireBullet(this.x, this.y, this.flipX, true)
+      this.bossGun.fireBullet(this.x, this.y, this.flipX, false, true)
     }
   }
 
