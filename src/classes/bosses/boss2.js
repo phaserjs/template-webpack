@@ -24,23 +24,33 @@ export class Boss2 extends Actor {
     this.scene.add.existing(this.spawner)
 
     this.setColliders(scene)
+    this.scene.time.addEvent({
+      callback: this.spawnHitBox,
+      callbackScope: this,
+      delay: 5000,
+      loop: true
+    })
   }
 
   initHitBox () {
     const hitConfig = {
+      boss: this,
       w: 45,
       h: 55,
       xOff: 80,
       yOff: 36,
-      scale: 5
+      scale: 5,
+      atkAnim: 'atk-test-boss'
     }
     this.hitbox = new Hitboxes(this.scene, this.body.x, this.body.y, hitConfig)
   }
 
   spawnHitBox () {
-    if (this.anims.getName() === 'atk-test-boss') {
-      this.hitbox.spawnHitBox(this.body.x - 400, this.body.y)
+    if (this.atkPlayer === true && this.scene.player.active) {
+      this.hitbox.spawnHitBox(this.body.x - 400, this.body.y - 100)
+      this.anims.play('atk-test-boss', true)
       console.log(this.scene.player.active)
+      this.hitbox.hitPlayer = false
     }
   }
 
@@ -103,6 +113,13 @@ export class Boss2 extends Actor {
       // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
       // scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
     })
+
+    scene.physics.world.addOverlap(this.scene.player, this.hitbox, (player, hitbox) => {
+      this.scene.player.getDamage(10)
+      this.scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
+      this.hitbox.hitPlayer = true
+      hitbox.destroy()
+    })
   }
 
   update () {
@@ -115,9 +132,10 @@ export class Boss2 extends Actor {
       if (dist > 20000 && dist < 80000) {
         this.scene.physics.accelerateToObject(this, this.scene.player, 100, 180)
         this.anims.play('run-test-boss', true)
-      } else if (dist < 20000) {
+      } else if (dist < 50000) {
         this.atkPlayer = true
       } else {
+        this.atkPlayer = false
         this.setVelocityX(0)
         this.anims.play('idle-test-boss', true)
       }
