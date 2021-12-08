@@ -48,7 +48,7 @@ export class Boss2 extends Actor {
   }
 
   spawnHitBox () {
-    if (this.atkPlayer === true && this.scene.player.active) {
+    if (this.atkPlayer === true && !this.dying && this.scene.player.active) {
       this.hitbox.spawnHitBox(this.body.x - 400, this.body.y - 100)
       const atkHitbox = this.scene.physics.world.addOverlap(this.scene.player, this.hitbox, (hitbox, player) => {
         this.scene.player.getDamage(10)
@@ -101,6 +101,16 @@ export class Boss2 extends Actor {
       }),
       frameRate: 12,
       repeat: 0
+    })
+  }
+
+  die () {
+    this.setVelocityX(0)
+    this.anims.play(this.name + '-death', true)
+    this.scene.eleanor.spawn()
+    this.once('animationcomplete', () => {
+      console.log('animationcomplete')
+      this.destroy()
     })
   }
 

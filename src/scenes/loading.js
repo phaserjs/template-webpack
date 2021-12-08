@@ -207,7 +207,11 @@ export class LoadingScene extends Scene {
     this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
 
     // them peeps
-    this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/facilitator-atlas.json')
+    this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/jared-atlas.json')
+    this.load.atlas('eleanor', 'sprites/anims/eleanor-spritesheet.png', 'sprites/atlas/eleanor-atlas.json')
+    this.load.atlas('ahmad', 'sprites/anims/Ahmad-spritesheet.png', 'sprites/atlas/ahmad-atlas.json')
+    this.load.atlas('caro', 'sprites/anims/Caro-spritesheet-export.png', 'sprites/atlas/caro-atlas.json')
+    this.load.atlas('prue', 'sprites/anims/prue-spritesheet.png', 'sprites/atlas/prue-atlas.json')
   }
 
   create () {

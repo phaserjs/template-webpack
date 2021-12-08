@@ -3,6 +3,7 @@ import { Boss4 } from '../classes/bosses/boss4'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
+import { Facilitator } from '../classes/npc'
 
 export class Level45 extends Scene {
   constructor () {
@@ -14,6 +15,7 @@ export class Level45 extends Scene {
 
     this.initMap()
     this.initPlayer()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
@@ -49,6 +51,10 @@ export class Level45 extends Scene {
     this.jumpLayer.setCollisionByExclusion(-1, true)
     this.walls.setCollisionByExclusion(-1, true)
     this.water.setCollisionByExclusion(-1, 0)
+  }
+
+  initNpc () {
+    this.caro = new Facilitator(this, 314, 458, 'caro').setScale(0.5)
   }
 
   initPlayer () {
@@ -177,9 +183,11 @@ export class Level45 extends Scene {
     }
     if (this.boss.hp > 0) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.caro.active) {
       this.boss.die()
-      this.add.image(470, 60, 'caroText').setScale(0.4).setScrollFactor(0)
+    }
+    if (this.caro.active) {
+      this.caro.update()
     }
   }
 }

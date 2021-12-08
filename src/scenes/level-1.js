@@ -1,4 +1,4 @@
-import Phaser, { Scene, Curves, Display } from 'phaser'
+import { Scene, Curves, Display } from 'phaser'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss1'
@@ -10,7 +10,7 @@ export class Level1 extends Scene {
     super('level-1-scene')
   }
 
-  create() {
+  create () {
     this.sceneNum = 1
     this.initMap()
     this.initPlayer()
@@ -72,7 +72,7 @@ export class Level1 extends Scene {
   }
 
   initNpc () {
-    this.jared = new Facilitator(this, 3000, 200, 'jared')
+    this.jared = new Facilitator(this, 3000, 440, 'jared').setScale(0.7)
   }
 
   cameraSetup () {
@@ -256,7 +256,6 @@ export class Level1 extends Scene {
       this.player.update()
     } else if (this.player.active) {
       this.player.die()
-      
     }
   }
 }

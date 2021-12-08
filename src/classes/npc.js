@@ -8,9 +8,10 @@ export class Facilitator extends Actor {
     this.scene.add.existing(this)
     this.body.setSize(55, 80)
     this.body.setOffset(5, 0)
+    this.body.allowGravity = false
     this.name = texture
     this.speed = 220
-    console.log('jared', this)
+    console.log(this.name, this)
     this.initAnimations()
     this.setColliders(scene)
     this.setVisible(false)
@@ -21,6 +22,7 @@ export class Facilitator extends Actor {
   spawn (config) {
     this.setVisible(true)
     this.setActive(true)
+    console.log('on death', this.name, this)
     this.scene.add.image(470, 60, this.name + 'Text').setScale(0.4).setScrollFactor(0)
     this.scene.sound.play(this.name + 'Audio', { volume: 1, loop: false })
   }
@@ -38,7 +40,7 @@ export class Facilitator extends Actor {
   }
 
   setColliders (scene) {
-    scene.physics.world.addCollider(this, scene.wall)
+    scene.physics.world.addCollider(this, scene.walls)
     scene.physics.world.addCollider(this, scene.jumpLayer)
     scene.physics.world.addCollider(this, scene.water, () => {
       this.destroy()
@@ -46,8 +48,8 @@ export class Facilitator extends Actor {
   }
 
   update () {
-    this.setVelocityY(-220)
-    this.setVelocityX(-220)
+    this.setVelocityY(0)
+    this.setVelocityX(0)
     this.anims.play(this.name + '-walk', true)
   }
 }
