@@ -212,6 +212,7 @@ export class Level2 extends Scene {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
+      this.add.image(470, 60, 'eleanorText').setScale(0.4).setScrollFactor(0)
     }
 
     if (this.player.hp > 0) {

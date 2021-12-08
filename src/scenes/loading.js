@@ -101,6 +101,13 @@ export class LoadingScene extends Scene {
     this.load.audio('caroAudio', ['ui/audio/caro.mp3'])
     this.load.audio('eleanorAudio', ['ui/audio/eleanor.mp3'])
 
+    // facil speech to text
+    this.load.image('prueText', 'ui/speech-to-text/prue-text.png')
+    this.load.image('ahmadText', 'ui/speech-to-text/ahmad-text.png')
+    this.load.image('jaredText', 'ui/speech-to-text/jared-text2.png')
+    this.load.image('caroText', 'ui/speech-to-text/caro-text.png')
+    this.load.image('eleanorText', 'ui/speech-to-text/eleanor-text.png')
+
     // enemy health
     this.load.image('enemy-red-bar', 'ui/health/Pixel1_Healthbar_border.png')
     this.load.image('enemy-shadow-bar', 'ui/health/Pixel1_Healthbar.png')

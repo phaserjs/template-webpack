@@ -177,6 +177,7 @@ export class Level45 extends Scene {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
+      this.add.image(470, 60, 'caroText').setScale(0.4).setScrollFactor(0)
     }
   }
 }

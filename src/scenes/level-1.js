@@ -255,6 +255,7 @@ export class Level1 extends Scene {
     } else if (this.boss.active) {
       this.boss.die()
       this.jared.setVisible(true)
+      this.add.image(470, 60, 'jaredText').setScale(0.4).setScrollFactor(0)
       this.jared.setActive(true)
       if (this.jared.active) {
         this.jared.update()
