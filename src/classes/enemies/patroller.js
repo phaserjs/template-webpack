@@ -12,11 +12,12 @@ export class Patroller extends GameObjects.PathFollower {
 
     this.dying = false
 
-    this.gun = new Gun(this.scene, x, y - 400, 20)
+    console.log(this.body)
+
+    this.gun = new Gun(this.scene, x, 0, 20)
     this.name = texture
     this.setColliders(scene)
     this.setAnims()
-
     this.scene.time.addEvent({
       callback: this.fireGun,
       callbackScope: this,
@@ -114,7 +115,7 @@ export class Patroller extends GameObjects.PathFollower {
       enemyGun: true,
       playerGun: false
     }
-    if (this.active && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
+    if (this.active && this.config.hasGun && this.scene.player.active && Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) < 350) {
       this.gun.fireBullet(this.x, this.y, this.flipX, config)
     }
   }

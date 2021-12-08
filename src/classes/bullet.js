@@ -35,6 +35,9 @@ export class Bullet extends Physics.Arcade.Sprite {
       this.body.reset(x, y)
       this.setVelocity(this.scene.player.x - this.x, this.scene.player.y - this.y)
       this.anims.play(this.config.gunAnim, true)
+      this.once('animationcomplete', () => {
+        this.destroy()
+      })
     }
   }
 }
