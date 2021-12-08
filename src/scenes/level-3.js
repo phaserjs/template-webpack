@@ -3,6 +3,7 @@ import { Player } from '../classes/player'
 import { Boss3 } from '../classes/bosses/boss3'
 import { Facilitator } from '../classes/npc'
 import { Trigger } from '../classes/triggers/endLevel'
+import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 
 // import { Boss4 } from '../classes/bosses/boss4'
 // import { TempBoss } from '../classes/bosses/tempBoss'
@@ -94,6 +95,7 @@ export class Level3 extends Scene {
 
   triggerSetup () {
     this.endLevel = new Trigger(this, 1800, 5540)
+    this.bossHealth = new BossHpTrigger(this, 970, 3300, { healthBarX: 5400, healthBarY: 34, sizeX: 600, sizeY: 28 })
   }
 
   enemySetup () {

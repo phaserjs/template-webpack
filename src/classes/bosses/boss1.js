@@ -92,16 +92,16 @@ export class Boss1 extends Actor {
     scene.physics.world.addCollider(this.scene.player, this,
       (player, boss) => {
         player.getDamage(10)
-        // scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
-        // scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
+        scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
+        scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
         scene.sound.play('playerDamageAudio', { loop: false })
       })
 
     // hit by mon gun
     scene.physics.world.addOverlap(scene.player, this.gun, (player, bullet) => {
       player.getDamage(10)
-      // scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
-      // scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
+      scene.playerHealthBar.scaleX = (scene.player.hp / scene.player.maxHealth)
+      scene.playerHealthBar.x -= (scene.player.hp / scene.player.maxHealth) - 1
       scene.sound.play('playerDamageAudio', { loop: false })
       bullet.destroy()
     })
@@ -115,8 +115,8 @@ export class Boss1 extends Actor {
       this.getDamage(10)
       this.scene.sound.stopByKey('stepsAudio')
       this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
-      // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
-      // scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
+      scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
+      scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
       bullet.destroy()
     })
   }

@@ -2,6 +2,7 @@ import { Scene, Curves, Display } from 'phaser'
 import { Boss5 } from '../classes/bosses/boss5'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
+import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 
 export class Level5 extends Scene {
   constructor () {
@@ -73,6 +74,7 @@ export class Level5 extends Scene {
 
   triggerSetup () {
     this.endLevel = new Trigger(this, 3050, 1750)
+    this.bossHealth = new BossHpTrigger(this, 4800, 1245, { healthBarX: 5400, healthBarY: 34, sizeX: 28, sizeY: 1200 })
   }
 
   pathSetup () {
