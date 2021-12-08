@@ -164,9 +164,11 @@ export class Player extends Actor {
           this.canJump = false
         }
         this.body.velocity.y = -this.jump
+        this.anims.play('jump', true)
       }
       if (this.keyS.isDown && this.godMode) {
         this.body.velocity.y = this.jump
+        this.anims.play('fall', true)
       }
 
       if (this.keyShoot.isDown) {
