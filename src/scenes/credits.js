@@ -6,6 +6,7 @@ export class Credits extends Scene {
   }
 
   create () {
+    this.startScroll = false
     this.cameraSetup()
     // Load image assets for title screen
     this.add.image(480, 260, 'winBg').setScale(3.6)
@@ -13,7 +14,7 @@ export class Credits extends Scene {
     const mount = this.add.image(490, 400, 'titleMount').setScale(3.6).setInteractive()
     const tree = this.add.image(490, 310, 'titleTrees').setScale(3.6).setInteractive()
     const fore = this.add.image(400, 310, 'titleForeground').setScale(3.6).setInteractive()
-    this.text = this.add.tileSprite(490, 0, 950, 2160, 'credits-text').setScale(0.8)
+    this.text = this.add.tileSprite(490, 750, 950, 2160, 'credits-text').setScale(0.7)
     const home = this.add.sprite(920, 500, 'arrow').setScale(0.08).setInteractive()
 
     // Detect when pointer is hovering over button, and change scene on click
@@ -38,9 +39,13 @@ export class Credits extends Scene {
 
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
-    // this.physics.world.setBounds(0, 0, 950, 2160)
+    this.physics.world.setBounds(0, 0, 950, 2160)
     this.cameras.main.setBounds(0, 0, 950, 2160)
-    this.cameras.main.setScroll(0, 1)
+    this.time.addEvent({
+      callback: () => this.startScroll = true,
+      delay: 2000,
+      loop: false
+    })
   }
 
   moveSprite () {
@@ -48,7 +53,9 @@ export class Credits extends Scene {
   }
 
   update () {
-    this.text.tilePositionY = iter * 100
-    iter += 0.01
+    if (this.startScroll) {
+      this.text.tilePositionY = iter * 70
+      iter += 0.01
+    }
   }
 }
