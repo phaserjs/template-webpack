@@ -1,4 +1,4 @@
-import { Scene, Curves, Display } from 'phaser'
+import Phaser, { Scene, Curves, Display } from 'phaser'
 import { Player } from '../classes/player'
 import { Patroller } from '../classes/enemies/patroller'
 import { Boss1 } from '../classes/bosses/boss1'
@@ -21,7 +21,10 @@ export class Level1 extends Scene {
     this.cameraSetup()
     this.debugSetup()
 
+    //  = pause
     this.sound.stopAll()
+    this.sound.add('jaredAudio')
+
     this.sound.add('portalAudio')
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
@@ -253,15 +256,11 @@ export class Level1 extends Scene {
 
     if (this.boss.hp > 0) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.jared.active) {
       this.boss.die()
-      this.jared.setVisible(true)
-      this.add.image(470, 60, 'jaredText').setScale(0.4).setScrollFactor(0)
-      this.sound.play('jaredAudio', { volume: 1npm, loop: false })
-      this.jared.setActive(true)
-      if (this.jared.active) {
-        this.jared.update()
-      }
+    }
+    if (this.jared.active) {
+      this.jared.update()
     }
 
     if (this.player.hp > 0) {
