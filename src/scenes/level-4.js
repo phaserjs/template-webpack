@@ -78,7 +78,6 @@ export class Level4 extends Scene {
   enemySetup () {
     const carrotConifg = {
       key: {
-        atk: '-atk',
         run: '-run',
         idle: '-idle'
       },
@@ -92,7 +91,6 @@ export class Level4 extends Scene {
       frameEnds: {
         idle: 0,
         run: 2,
-        atk: 7,
         death: 4
       }
     }
