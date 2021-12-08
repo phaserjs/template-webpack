@@ -16,6 +16,8 @@ export class Boss2 extends Actor {
 
     this.atkPlayer = false
 
+    this.dying = false
+
     this.name = 'boss2'
     this.hp = 100
     this.maxHealth = 100
@@ -48,6 +50,12 @@ export class Boss2 extends Actor {
   spawnHitBox () {
     if (this.atkPlayer === true && this.scene.player.active) {
       this.hitbox.spawnHitBox(this.body.x - 400, this.body.y - 100)
+      const atkHitbox = this.scene.physics.world.addOverlap(this.scene.player, this.hitbox, (hitbox, player) => {
+        this.scene.player.getDamage(10)
+        this.scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
+        this.scene.physics.world.removeCollider(atkHitbox)
+        this.hitbox.hitPlayer = true
+      })
       this.anims.play('atk-test-boss', true)
       console.log(this.scene.player.active)
       this.hitbox.hitPlayer = false
@@ -112,13 +120,6 @@ export class Boss2 extends Actor {
       this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
       // scene.enemyHealthBar.scaleX = (this.hp / this.maxHealth)
       // scene.enemyHealthBar.x -= (this.hp / this.maxHealth) - 1
-    })
-
-    scene.physics.world.addOverlap(this.scene.player, this.hitbox, (player, hitbox) => {
-      this.scene.player.getDamage(10)
-      this.scene.sound.play('playerDamageAudio', { volume: 0.1, loop: false })
-      this.hitbox.hitPlayer = true
-      hitbox.destroy()
     })
   }
 

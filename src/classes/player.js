@@ -36,7 +36,13 @@ export class Player extends Actor {
 
   fire () {
     this.anims.play('attack', true)
-    this.anims.chain('idle', true)
+    this.once('animationcomplete', () => {
+      if (this.body.velocity.x < 30 || this.body.velocity.x > -30) {
+        this.anims.play('idle', false)
+      } else {
+        this.anims.play('run', false)
+      }
+    })
     this.scene.sound.play('playerFireAudio', { volume: 0.8, loop: false })
     const config = {
       playerGun: true
@@ -51,7 +57,8 @@ export class Player extends Actor {
         prefix: 'idle-',
         end: 4
       }),
-      frameRate: 12
+      frameRate: 12,
+      repeat: true
     })
 
     this.scene.anims.create({
@@ -69,7 +76,7 @@ export class Player extends Actor {
         prefix: 'atk-',
         end: 7
       }),
-      frameRate: 24,
+      duration: 400,
       repeat: false
     })
 
@@ -149,23 +156,27 @@ export class Player extends Actor {
           this.fire()
         }
         this.canShoot = false
-      } else {
+      }
+
+      if (this.keyA.isDown) {
+        if (this.canShoot) {
+          this.anims.play('run', true)
+        }
+        this.body.velocity.x = -this.speed
+        this.checkFlip()
+        this.body.setOffset(95, 55)
+      } else if (this.keyD.isDown) {
+        if (this.canShoot) {
+          this.anims.play('run', true)
+        }
+        this.body.velocity.x = this.speed
+        this.checkFlip()
+      } else if (this.canShoot) {
         this.anims.play('idle', true)
 
         if (this.flipX) {
           this.body.setOffset(95, 55)
         }
-      }
-
-      if (this.keyA.isDown) {
-        this.anims.play('run', true)
-        this.body.velocity.x = -this.speed
-        this.checkFlip()
-        this.body.setOffset(95, 55)
-      } else if (this.keyD.isDown) {
-        this.anims.play('run', true)
-        this.body.velocity.x = this.speed
-        this.checkFlip()
       }
     }
   }

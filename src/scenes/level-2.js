@@ -462,7 +462,7 @@ export class Level2 extends Scene {
       this.enemy18.update()
     }
 
-    if (this.boss.hp > 0) {
+    if (this.boss.hp > 0 && !this.boss.dying) {
       this.boss.update()
     } else if (this.boss.active) {
       this.boss.die()
