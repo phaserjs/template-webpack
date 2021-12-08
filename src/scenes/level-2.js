@@ -5,6 +5,7 @@ import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 import { Boss2 } from '../classes/bosses/boss2'
 import { Trigger } from '../classes/triggers/endLevel'
 import { TestBoss } from '../classes/bosses/testflymon'
+import { Facilitator } from '../classes/npc'
 
 export class Level2 extends Scene {
   constructor () {
@@ -16,6 +17,7 @@ export class Level2 extends Scene {
 
     this.initMap()
     this.initPlayer()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
@@ -24,6 +26,7 @@ export class Level2 extends Scene {
     this.debugSetup()
 
     this.sound.stopAll()
+    this.sound.add('eleanorAudio')
     this.sound.add('portalAudio')
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
@@ -60,6 +63,10 @@ export class Level2 extends Scene {
 
   initPlayer () {
     this.player = new Player(this, 100, 300)
+  }
+
+  initNpc () {
+    this.eleanor = new Facilitator(this, 5200, 410, 'eleanor').setScale(0.5)
   }
 
   cameraSetup () {
@@ -452,8 +459,12 @@ export class Level2 extends Scene {
 
     if (this.boss.hp > 0 && !this.boss.dying) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.eleanor.active) {
       this.boss.die()
+    }
+
+    if (this.eleanor.active) {
+      this.eleanor.update()
     }
 
     if (this.testBoss.hp > 0) {

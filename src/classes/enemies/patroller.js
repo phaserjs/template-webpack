@@ -12,8 +12,6 @@ export class Patroller extends GameObjects.PathFollower {
 
     this.dying = false
 
-    console.log(this.body)
-
     this.gun = new Gun(this.scene, x, y - 400, 20)
     this.name = texture
     this.setColliders(scene)
