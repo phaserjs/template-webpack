@@ -1,6 +1,7 @@
 import { Scene, Curves, Display } from 'phaser'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
+import { Otter } from '../classes/bosses/otter'
 
 export class Level4 extends Scene {
   constructor () {
@@ -75,6 +76,7 @@ export class Level4 extends Scene {
   }
 
   enemySetup () {
+    this.otter = new Otter(this, 4414, 850)
   }
 
   triggerSetup () {
