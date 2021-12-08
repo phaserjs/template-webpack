@@ -16,7 +16,11 @@ export class Facilitator extends Actor {
     this.setColliders(scene)
     this.setVisible(false)
     this.setActive(false)
-    this.flipX = true
+    if (this.name === 'prue' || 'eleanor' || 'caro') {
+      this.flipX = false
+    } else {
+      this.flipX = true
+    }
   }
 
   spawn (config) {
