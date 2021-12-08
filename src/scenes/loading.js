@@ -220,6 +220,8 @@ export class LoadingScene extends Scene {
     this.load.atlas('ahmad', 'sprites/anims/Ahmad-spritesheet.png', 'sprites/atlas/ahmad-atlas.json')
     this.load.atlas('caro', 'sprites/anims/Caro-spritesheet-export.png', 'sprites/atlas/caro-atlas.json')
     this.load.atlas('prue', 'sprites/anims/prue-spritesheet.png', 'sprites/atlas/prue-atlas.json')
+
+    this.load.atlas('otter', 'sprites/anims/otter-spritesheet.png', 'sprites/atlas/otter-atlas.json')
   }
 
   create () {

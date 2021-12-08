@@ -92,8 +92,6 @@ export class Level1 extends Scene {
   enemySetup () {
     const mob3Config = {
       key: {
-        idle: '-idle',
-        atk: '-atk',
         run: '-run'
       },
       w: 15,
@@ -101,6 +99,7 @@ export class Level1 extends Scene {
       xOff: 9,
       yOff: 3,
       scale: 2,
+      prefix: '',
       frameRate: 12,
       frameEnds: {
         idle: 4,

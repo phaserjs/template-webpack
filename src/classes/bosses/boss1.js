@@ -19,9 +19,7 @@ export class Boss1 extends Actor {
 
     const bearConfig = {
       key: {
-        run: '-run',
-        atk: '-atk',
-        idle: '-idle'
+        run: '-run'
       },
       w: 128,
       h: 128,

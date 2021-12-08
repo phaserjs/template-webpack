@@ -2,6 +2,7 @@ import { Scene, Curves, Display } from 'phaser'
 import { MobSpawner } from '../classes/groups/mob-spawner'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
+import { Otter } from '../classes/bosses/otter'
 
 export class Level4 extends Scene {
   constructor () {
@@ -104,6 +105,7 @@ export class Level4 extends Scene {
       delay: 4000,
       loop: true
     })
+    this.otter = new Otter(this, 4414, 850)
   }
 
   triggerSetup () {
