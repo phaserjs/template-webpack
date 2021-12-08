@@ -1,5 +1,5 @@
 import { Scene } from 'phaser'
-var iter = 100
+var iter = 0
 export class Credits extends Scene {
   constructor () {
     super('credits-scene')
@@ -13,8 +13,8 @@ export class Credits extends Scene {
     const mount = this.add.image(490, 400, 'titleMount').setScale(3.6).setInteractive()
     const tree = this.add.image(490, 310, 'titleTrees').setScale(3.6).setInteractive()
     const fore = this.add.image(400, 310, 'titleForeground').setScale(3.6).setInteractive()
-    this.text = this.add.tileSprite(490, 100, 950, 2160, 'credits-text').setScrollFactor(1)
-    const home = this.add.sprite(490, 430, 'home-button').setScale(0.4).setInteractive()
+    this.text = this.add.tileSprite(490, 0, 950, 2160, 'credits-text').setScale(0.8)
+    const home = this.add.sprite(920, 500, 'arrow').setScale(0.08).setInteractive()
 
     // Detect when pointer is hovering over button, and change scene on click
     home.on('pointerdown', () =>

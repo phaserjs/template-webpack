@@ -55,6 +55,8 @@ export class Boss4 extends Actor {
       this.scene.sound.play('enemyDamage', { loop: false })
       this.getDamage(100)
       bullet.destroy()
+      this.scene.sound.stopByKey('stepsAudio')
+      this.scene.sound.play('stepsAudio', { volume: 0.08, loop: false })
     })
   }
 

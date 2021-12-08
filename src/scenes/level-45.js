@@ -2,6 +2,7 @@ import { Scene, Curves, Display } from 'phaser'
 import { Boss4 } from '../classes/bosses/boss4'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
+import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 
 export class Level45 extends Scene {
   constructor () {
@@ -54,7 +55,7 @@ export class Level45 extends Scene {
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
     this.physics.world.setBounds(0, 0, 4800, 1088)
-    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
+    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, 0, 20)
     this.cameras.main.setBounds(0, 0, 4800, 1088)
   }
 
@@ -64,7 +65,8 @@ export class Level45 extends Scene {
   }
 
   triggerSetup () {
-    this.endLevel = new Trigger(this, 1000, 300)
+    this.endLevel = new Trigger(this, 32, 420)
+    this.bossHealth = new BossHpTrigger(this, 900, 280, { healthBarX: 5400, healthBarY: 34, sizeX: 28, sizeY: 600 })
   }
 
   pathSetup () {

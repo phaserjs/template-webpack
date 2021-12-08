@@ -2,6 +2,7 @@ import { Scene, Curves, Display } from 'phaser'
 import { Boss5 } from '../classes/bosses/boss5'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
+import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
 
 export class Level5 extends Scene {
   constructor () {
@@ -22,7 +23,7 @@ export class Level5 extends Scene {
     this.sound.add('stepsAudio')
     this.sound.add('playerFireAudio')
     this.sound.add('level5BgAudio')
-    this.sound.play('level5BgAudio', { volume: 0.25, loop: true })
+    this.sound.play('level5BgAudio', { loop: true })
   }
 
   changeScene () {
@@ -62,9 +63,9 @@ export class Level5 extends Scene {
 
   cameraSetup () {
     this.cameras.main.setViewport(0, 0, 960, 540)
-    this.physics.world.setBounds(0, 0, 6000, 5760)
-    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, -400, 20)
-    this.cameras.main.setBounds(0, 0, 6000, 1920)
+    this.physics.world.setBounds(0, 0, 5755, 5760)
+    this.cameras.main.startFollow(this.player, false, 0.5, 0.5, 0, 20)
+    this.cameras.main.setBounds(0, 0, 5755, 1920)
   }
 
   enemySetup () {
@@ -73,6 +74,7 @@ export class Level5 extends Scene {
 
   triggerSetup () {
     this.endLevel = new Trigger(this, 3050, 1750)
+    this.bossHealth = new BossHpTrigger(this, 4800, 1245, { healthBarX: 5400, healthBarY: 34, sizeX: 28, sizeY: 1200 })
   }
 
   pathSetup () {

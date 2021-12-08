@@ -151,7 +151,6 @@ export class Player extends Actor {
       } else {
         this.anims.play('idle', true)
         this.scene.sound.stopByKey('playerFireAudio')
-        this.scene.sound.stopByKey('stepsAudio')
         if (this.flipX) {
           this.body.setOffset(95, 55)
         }
