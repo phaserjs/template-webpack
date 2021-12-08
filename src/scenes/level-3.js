@@ -77,7 +77,7 @@ export class Level3 extends Scene {
   }
 
   initNpc () {
-    this.jared = new Facilitator(this, 3000, 200, 'jared')
+    this.ahmad = new Facilitator(this, 870, 5570, 'ahmad').setScale(0.5)
   }
 
   cameraSetup () {
@@ -325,8 +325,12 @@ export class Level3 extends Scene {
 
     if (this.boss.hp > 0) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.ahmad.active) {
       this.boss.die()
+    }
+
+    if (this.ahmad.active) {
+      this.ahmad.update()
     }
   }
 }

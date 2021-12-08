@@ -40,6 +40,26 @@ export class Boss4 extends Actor {
       }),
       frameRate: 12
     })
+
+    this.scene.anims.create({
+      key: 'boss4-blood',
+      frames: this.scene.anims.generateFrameNames('blood', {
+        prefix: 'blood-',
+        end: 5
+      }),
+      duration: 2000
+    })
+  }
+
+  die () {
+    this.setVelocityX(0)
+    this.anims.play(this.name + '-death', true)
+    this.anims.play(this.name + '-blood', true)
+    this.scene.caro.spawn()
+    this.once('animationcomplete', () => {
+      console.log('animationcomplete')
+      this.destroy()
+    })
   }
 
   setColliders (scene) {

@@ -101,6 +101,13 @@ export class LoadingScene extends Scene {
     this.load.audio('caroAudio', ['ui/audio/caro.mp3'])
     this.load.audio('eleanorAudio', ['ui/audio/eleanor.mp3'])
 
+    // facil speech to text
+    this.load.image('prueText', 'ui/speech-to-text/prue-text.png')
+    this.load.image('ahmadText', 'ui/speech-to-text/ahmad-text.png')
+    this.load.image('jaredText', 'ui/speech-to-text/jared-text2.png')
+    this.load.image('caroText', 'ui/speech-to-text/caro-text.png')
+    this.load.image('eleanorText', 'ui/speech-to-text/eleanor-text.png')
+
     // enemy health
     this.load.image('enemy-red-bar', 'ui/health/Pixel1_Healthbar_border.png')
     this.load.image('enemy-shadow-bar', 'ui/health/Pixel1_Healthbar.png')
@@ -179,8 +186,10 @@ export class LoadingScene extends Scene {
     this.load.atlas('sushi-hands', 'sprites/anims/sushi-hands.png', 'sprites/atlas/hand-sushi-boss-atlas.json')
     this.load.atlas('prue-boss', 'sprites/anims/prue-boss.png', 'sprites/atlas/prue-boss-atlas.json')
     this.load.atlas('ahmad-boss', 'sprites/anims/ahmad-boss.png', 'sprites/atlas/ahmad-boss-atlas.json')
-
+    this.load.atlas('big-fish', 'sprites/anims/big-fish.png', 'sprites/atlas/big-fish-atlas.json')
+    this.load.atlas('big-mine', 'sprites/anims/big-mine.png', 'sprites/atlas/big-mine-atlas.json')
     this.load.atlas('end-level', 'sprites/anims/portal.png', 'sprites/atlas/portal.json')
+    this.load.atlas('blood', 'sprites/anims/blood.png', 'sprites/atlas/blood.json')
 
     this.load.atlas('fly-mon', 'sprites/anims/fly-mon.png', 'sprites/atlas/fly-mon-atlas.json')
     this.load.atlas('dirty-dishes', 'sprites/anims/dirty-dishes.png', 'sprites/atlas/dirty-dishes-atlas.json')
@@ -206,12 +215,16 @@ export class LoadingScene extends Scene {
     this.load.atlas('golem-walk', 'sprites/anims/golempack/GolemWalk.png', 'sprites/atlas/golemAtlas/walk-atlas.json')
 
     // them peeps
-    this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/facilitator-atlas.json')
+    this.load.atlas('jared', 'sprites/anims/jared-spritesheet.png', 'sprites/atlas/jared-atlas.json')
+    this.load.atlas('eleanor', 'sprites/anims/eleanor-spritesheet.png', 'sprites/atlas/eleanor-atlas.json')
+    this.load.atlas('ahmad', 'sprites/anims/Ahmad-spritesheet.png', 'sprites/atlas/ahmad-atlas.json')
+    this.load.atlas('caro', 'sprites/anims/Caro-spritesheet-export.png', 'sprites/atlas/caro-atlas.json')
+    this.load.atlas('prue', 'sprites/anims/prue-spritesheet.png', 'sprites/atlas/prue-atlas.json')
   }
 
   create () {
     this.sound.add('titleAudio')
-    this.sound.play('titleAudio', { volume: 0.3, loop: true })
+    this.sound.play('titleAudio', { volume: 0.2, loop: true })
     this.scene.start('title-scene')
   }
 }

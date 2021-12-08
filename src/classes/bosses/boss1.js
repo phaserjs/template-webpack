@@ -11,7 +11,7 @@ export class Boss1 extends Actor {
     // this.setScale(10)
     // this.setSize(30, 30)
     // this.setOffset(50, 3)
-
+    this.scene.add.existing(this)
     this.setAnims()
     this.hp = 100
     this.maxHealth = 100
@@ -81,6 +81,16 @@ export class Boss1 extends Actor {
       }),
       frameRate: 3,
       repeat: 0
+    })
+  }
+
+  die () {
+    this.setVelocityX(0)
+    this.anims.play(this.name + '-death', true)
+    this.scene.jared.spawn()
+    this.once('animationcomplete', () => {
+      console.log('animationcomplete')
+      this.destroy()
     })
   }
 

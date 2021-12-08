@@ -3,6 +3,7 @@ import { Boss4 } from '../classes/bosses/boss4'
 import { Player } from '../classes/player'
 import { Trigger } from '../classes/triggers/endLevel'
 import { BossHpTrigger } from '../classes/triggers/bossHpTrigger'
+import { Facilitator } from '../classes/npc'
 
 export class Level45 extends Scene {
   constructor () {
@@ -14,6 +15,7 @@ export class Level45 extends Scene {
 
     this.initMap()
     this.initPlayer()
+    this.initNpc()
     this.pathSetup()
     this.enemySetup()
     this.triggerSetup()
@@ -51,6 +53,10 @@ export class Level45 extends Scene {
     this.water.setCollisionByExclusion(-1, 0)
   }
 
+  initNpc () {
+    this.caro = new Facilitator(this, 270, 458, 'caro').setScale(0.5)
+  }
+
   initPlayer () {
     this.player = new Player(this, 4320, 944)
   }
@@ -85,18 +91,18 @@ export class Level45 extends Scene {
     })
 
     const debugGraphics = this.add.graphics().setAlpha(0.7)
-    this.jumpLayer.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 234, 48, 255)
-    })
-    this.walls.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(243, 20, 48, 255)
-    })
-    this.water.renderDebug(debugGraphics, {
-      tileColor: null,
-      collidingTileColor: new Display.Color(20, 234, 48, 255)
-    })
+    // this.jumpLayer.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(243, 234, 48, 255)
+    // })
+    // this.walls.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(243, 20, 48, 255)
+    // })
+    // this.water.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Display.Color(20, 234, 48, 255)
+    // })
     this.mouseCoords = this.add.text(50, 25)
     this.godMode = this.add.text(50, 45)
     this.playerHealth = this.add.text(50, 65)
@@ -177,8 +183,11 @@ export class Level45 extends Scene {
     }
     if (this.boss.hp > 0) {
       this.boss.update()
-    } else if (this.boss.active) {
+    } else if (this.boss.active && !this.caro.active) {
       this.boss.die()
+    }
+    if (this.caro.active) {
+      this.caro.update()
     }
   }
 }

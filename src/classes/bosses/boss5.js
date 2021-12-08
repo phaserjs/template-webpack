@@ -86,6 +86,16 @@ export class Boss5 extends Actor {
     })
   }
 
+  die () {
+    this.setVelocityX(0)
+    this.anims.play(this.name + '-death', true)
+    this.scene.prue.spawn()
+    this.once('animationcomplete', () => {
+      console.log('animationcomplete')
+      this.destroy()
+    })
+  }
+
   setColliders (scene) {
     scene.physics.world.addCollider(this.scene.player, this)
     scene.physics.world.addCollider(this, this.scene.jumpLayer)
@@ -111,8 +121,6 @@ export class Boss5 extends Actor {
 
   update () {
     const dist = Math.Distance.BetweenPointsSquared(this, this.scene.player)
-    console.log(this.body.x)
-    console.log(this.body.y)
     if (this.active && this.hp > 0) {
       this.boss2Flip()
       if (this.active && this.hp > 60 && dist > 300000) {
