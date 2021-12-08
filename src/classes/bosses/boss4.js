@@ -40,10 +40,20 @@ export class Boss4 extends Actor {
       }),
       frameRate: 12
     })
+
+    this.scene.anims.create({
+      key: 'boss4-blood',
+      frames: this.scene.anims.generateFrameNames('blood', {
+        prefix: 'blood-',
+        end: 5
+      }),
+      duration: 3000
+    })
   }
 
   die () {
     this.setVelocityX(0)
+    this.anims.play(this.name + '-blood', true)
     this.anims.play(this.name + '-death', true)
     this.scene.caro.spawn()
     this.once('animationcomplete', () => {
