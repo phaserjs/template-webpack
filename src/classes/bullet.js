@@ -5,15 +5,14 @@ export class Bullet extends Physics.Arcade.Sprite {
     super(scene, x, y, 'mon-bullet')
   }
 
-  fire (x, y, facingLeft, enemyGun, bossGun) {
+  fire (x, y, facingLeft, config) {
+    this.config = config
     this.scene.add.existing(this)
     // console.log(this.flipX)
     this.setActive(true)
     this.setVisible(true)
-    console.log('boosgun', bossGun)
-    console.log('enem gun', enemyGun)
 
-    if (this.scene.player.anims.getName() === 'attack') {
+    if (this.scene.player.anims.getName() === 'attack' && this.config.playerGun === true) {
       this.scene.time.addEvent({
         delay: 2300,
         callback: () => this.destroy()
@@ -32,31 +31,10 @@ export class Bullet extends Physics.Arcade.Sprite {
         this.flipX = false
       }
     }
-    if (bossGun === true) {
-      if (facingLeft) {
-        this.body.reset(x - 20, y)
-        this.setVelocity(this.scene.player.x - this.x, this.scene.player.y - this.y)
-        this.anims.play('iceBulletStart', true)
-        this.anims.chain(['iceBulletMid', 'iceBulletHit'], true)
-        this.flipX = true
-      } else {
-        this.body.reset(x + 20, y)
-        this.setVelocity(this.scene.player.x - this.x, this.scene.player.y - this.y)
-        this.anims.play('iceBulletStart')
-        this.anims.chain(['iceBulletMid', 'iceBulletHit'], true)
-        this.flipX = false
-      }
-    }
-
-    if (enemyGun) {
+    if (this.config.enemyGun) {
       this.body.reset(x, y)
       this.setVelocity(this.scene.player.x - this.x, this.scene.player.y - this.y)
-      this.anims.play('fireBullet', true)
-
-      this.scene.time.addEvent({
-        delay: 1000,
-        callback: () => this.setActive(false)
-      })
+      this.anims.play(this.config.gunAnim, true)
     }
   }
 }
