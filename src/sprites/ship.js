@@ -1,4 +1,10 @@
+import Phaser from 'phaser';
+
 let id = 0;
+const { KeyCodes } = Phaser.Input.Keyboard;
+const KEY_BINDINGS = {
+  BOOST: KeyCodes.SPACE,
+};
 
 export default class Ship {
   constructor(scene, config) {
@@ -58,10 +64,8 @@ export default class Ship {
     }
   }
 
-  createControl() {
-    window.addEventListener('click', () => {
-      this.boostSpeed();
-    });
+  createControl() {	
+    this.KEYS = this.scene.input.keyboard.addKeys(KEY_BINDINGS);
   }
 
   die() {
@@ -156,6 +160,10 @@ export default class Ship {
         const d = this.scene.game.input.mousePointer.y - centerY;
         const k = this.scene.game.input.mousePointer.x - centerX;
         this.rotation = Math.atan2(d, k);
+
+        if (this.KEYS.BOOST.isDown) {
+          this.boostSpeed();
+        }
       } else { // Bot
         const head = body[body.length - 1];
 
