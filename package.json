@@ -1,38 +1,61 @@
 {
-  "name": "phaser3-project-template",
-  "version": "1.1.2",
-  "description": "A Phaser 3 Project Template",
-  "main": "src/index.js",
+  "name": "phaser-project-template",
+  "version": "3.55.2",
+  "description": "Phaser 3 starter template with TypeScript and webpack.",
+  "homepage": "https://github.com/yandeu/phaser-project-template#readme",
+  "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack/prod.js ",
-    "start": "webpack-dev-server --config webpack/base.js --open"
+    "start": "webpack serve --config webpack/webpack.dev.js",
+    "build": "rimraf dist && webpack --config webpack/webpack.prod.js",
+    "bundle": "npm run build",
+    "serve": "serve dist",
+    "format": "prettier --check src/scripts/**",
+    "format:write": "prettier --write src/scripts/**"
+  },
+  "keywords": [
+    "Phaser",
+    "Phaser 3",
+    "Phaser3",
+    "html5 game",
+    "TypeScript",
+    "webpack",
+    "starter"
+  ],
+  "author": {
+    "name": "Yannick Deubel",
+    "url": "https://github.com/yandeu"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/photonstorm/phaser3-project-template.git"
+    "url": "https://github.com/yandeu/phaser-project-template.git"
   },
-  "author": "Richard Davey <rdavey@gmail.com> (http://www.photonstorm.com)",
+  "template": {
+    "name": "phaser-project-template",
+    "url": "https://github.com/yandeu/phaser-project-template",
+    "author": "Yannick Deubel (https://github.com/yandeu)"
+  },
+  "engines": {
+    "node": ">=12"
+  },
   "license": "MIT",
-  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
-  "bugs": {
-    "url": "https://github.com/photonstorm/phaser3-project-template/issues"
-  },
-  "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
-  "devDependencies": {
-    "@babel/core": "^7.17.10",
-    "@babel/preset-env": "^7.17.10",
-    "babel-loader": "^8.2.5",
-    "clean-webpack-plugin": "^4.0.0",
-    "file-loader": "^6.2.0",
-    "html-webpack-plugin": "^5.5.0",
-    "raw-loader": "^4.0.2",
-    "terser-webpack-plugin": "^5.3.1",
-    "webpack": "^5.72.1",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.9.0",
-    "webpack-merge": "^5.8.0"
-  },
   "dependencies": {
     "phaser": "^3.55.2"
+  },
+  "devDependencies": {
+    "@yandeu/prettier-config": "^0.0.3",
+    "copy-webpack-plugin": "^10.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "javascript-obfuscator": "^4.0.0",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "serve": "^13.0.2",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.3",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0",
+    "webpack-merge": "^5.8.0",
+    "webpack-obfuscator": "^3.5.0",
+    "workbox-webpack-plugin": "^6.4.2"
   }
 }

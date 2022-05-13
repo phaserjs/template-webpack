@@ -1,0 +1,22 @@
+{
+  "short_name": "Phaser Game",
+  "name": "My Cool Phaser 3 Game",
+  "icons": [
+    {
+      "src": "./icons/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./icons/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#e6e6e6",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "scope": "./",
+  "theme_color": "#000000"
+}
