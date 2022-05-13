@@ -39,7 +39,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "phaser": "^3.55.2"
+    "phaser": "^3.55.2",
+    "phaser-utility": "^1.0.7"
   },
   "devDependencies": {
     "@yandeu/prettier-config": "^0.0.3",
