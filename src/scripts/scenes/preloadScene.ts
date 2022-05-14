@@ -5,7 +5,16 @@ export default class PreloadScene extends Phaser.Scene {
 
   preload() {
     this.load.image('phaser-logo', 'assets/img/phaser-logo.png');
-    this.load.image('background', 'assets/img/background/Background 07/PARALLAX/layer_08_2048 x 1546.png')
+    this.load.image('background', 'assets/img/background/layer_08_1920 x 1080.png')
+    this.load.image('layer_1', 'assets/img/background/layer_01_1920 x 1080.png')
+    this.load.image('layer_2', 'assets/img/background/layer_02_1920 x 1080.png')
+    this.load.image('layer_3', 'assets/img/background/layer_03_1920 x 1080.png')
+    this.load.image('layer_4', 'assets/img/background/layer_04_1920 x 1080.png')
+    this.load.image('layer_5', 'assets/img/background/layer_05_1920 x 1080.png')
+    this.load.image('layer_6', 'assets/img/background/layer_06_1920 x 1080.png')
+    this.load.image('layer_7', 'assets/img/background/layer_07_1920 x 1080.png')
+    // this.load.image('layer_8', 'assets/img/background/layer_1920 x 1080.png')
+    
     this.load.image('title', 'assets/img/Menu/Bug-buster.png')
     this.load.image('start-btn', 'assets/img/Menu/start.png')
   }
