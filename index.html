@@ -1,8 +1,205 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-  </head>
-  <body>
-  </body>
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Bombing Mission</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+    // The config object can contain many options to configure our game. For now, the renderer, dimensions and default Scene are set:
+    var config = {
+        type: Phaser.AUTO, // AUTO renders WebGL if compatible, if not, then canvas renders
+        width: 800, // resolution: 800 x 600
+        height: 600,
+        physics: {
+          default: 'arcade',
+          arcade: {
+            gravity: { y: 300 },
+            debug: false
+          }
+        },
+        scene: {
+            preload: preload, // loads assets. Phaser automatically looks for this function when it starts
+            create: create, // displays the assets/images
+            update: update
+        },
+        audio: {
+          disableWebAudio: false
+        }
+    };
+
+    var game = new Phaser.Game(config);
+    // the first param is the * ASSET *. The 2nd is a string-link to the loaded asset
+    function preload ()
+    {
+      this.load.audio('theme', 'src/assets/audio/03-Bombing Mission.mp3');
+      this.load.image('sky', 'src/assets/sky.png');
+      this.load.image('ground', 'src/assets/icy-platform.png');
+      this.load.image('star', 'src/assets/star.png');
+      this.load.image('bomb', 'src/assets/bomb.png');
+      this.load.spritesheet('dude', 'src/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+      // 'dude' was loaded as a sprite sheet, not an image. That is because it contains animation frames: 4 for running left, 1 facing camera, 4 for running right.
+    }
+
+    var music;
+    var platforms;
+    var player;
+    var cursors;
+    var stars;
+    var score = 0; 
+    var scoreText; // Text Game Object
+    var bombs;
+    var movingPlatform;
+    var gameOverText;
+
+    function create () // displays the loaded assets using .add method
+    // The order in which game objects are displayed matches the order in which you create them. So if you wish to place a star sprite above the background, you would need to ensure that it was added as an image second, after the sky image:
+
+    {
+      music = this.sound.add('theme');
+      music.play();
+      this.add.image(400, 300, 'sky'); // dimensions are half of the background-img res for centering
+      // this.physics is part of the Arcade Physics system. physics needs to be added as a property in our Game Config to be usable. See lines 22-27. Arcade Physics has two types of physics bodies:
+      // 1) Dynamic: velocity & acceleration i.e object collision influenced by mass 
+      // 2) Static: simply has position and size, no movement
+      // Physics Groups are used to categorize similar objects and control them as a single unit. Groups are capable of creating their own Game Objects via handy helper functions like create
+      platforms = this.physics.add.staticGroup(); // 57-63 comprise of a Static platform group
+      // default ground:
+      platforms.create(400, 568, 'ground').setScale(2).refreshBody(); // setScale(2) to span ground to full width of game
+      // The call to refreshBody() is required because we have scaled a static physics body, so we have to tell the physics world about the changes we made.
+      // setting x, y coordinates of platforms using 'ground' image asset loaded from preload()
+      platforms.create(650, 400, 'ground');
+      platforms.create(750, 160, 'ground');
+
+      movingPlatform = this.physics.add.image(50, 300, 'ground');
+
+      movingPlatform.setImmovable(true);
+      movingPlatform.body.allowGravity = false; // prevents platform from collapsing
+      movingPlatform.setVelocityX(50); // platform moves across x axis at 50 velocity
+
+      player = this.physics.add.sprite(100, 450, 'dude');
+ 
+      player.setBounce(0.5);
+      player.setCollideWorldBounds(true);
+      // animations for Physics Sprite (player) to use:
+      this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3}), // start and end are the frames of the spritesheet being used
+        frameRate: 10,
+        repeat: -1 // tells animation to loop
+      });
+
+      this.anims.create({
+        key: 'turn',
+        frames: [ { key: 'dude', frame: 4} ],
+        frameRate: 20
+      });
+
+      this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+        frameRate: 10,
+        repeat: -1
+      })
+      // Phaser 3 Animation Manager is a global system. Each anims.create is globally available to ALL Game Objects. This allows you to define a single animation once and apply it to as many Game Objects as you require.
+      // When a Physics Sprite is created it is given a body property, which is a reference to its Arcade Physics Body. This represents the sprite as a physical body in Phasers Arcade Physics engine. The body object has a lot of properties and methods that we can play with.
+      this.physics.add.collider(player, movingPlatform);
+      this.physics.add.collider(player, platforms); // created a Collider obj monitoring two physics objects|groups args and tests for collisions and overlaps between them. The player sprite will now collide against the ground and all platforms without collpasing.
+      // Phaser's built-in keyboard manager:
+      cursors = this.input.keyboard.createCursorKeys();
+      // This populates the cursors obj with 4 properties: up, down, left, right. Need to poll in update loop
+
+      stars = this.physics.add.group({ // creating a stars config obj
+        key: 'star',
+        repeat: 11, // 1 is created automatically, repeat 11 times --> 12 total
+        setXY: { x: 12, y: 0, stepX: 70 } // sets position of each star-child
+        // stepX places the next child 70 pixels apart from the last child, with the first one at 12 x 0
+      });
+      stars.children.iterate(function (child) {
+        child.setBounceY(Phaser.Math.FloatBetween(0.3, 0.5)); // iterates each child and gives a random bounce between 0.4-0.8.
+        // no bounce = 0; full bounce = 1.
+      });
+
+      // creating collider obj for stars and platforms groups
+      this.physics.add.collider(stars, movingPlatform);
+      this.physics.add.collider(stars, platforms);
+      this.physics.add.overlap(player, stars, collectStar, null, this);
+      // if collision occurs between any star and player, pass them to the collectStar function:
+      function collectStar(player, star) {
+        star.disableBody(true, true); // star will have its physics body disabled. Parent Game Object is made inactive an invisible, removing it from display.
+        score += 10;
+        scoreText.setText('Score: ' + score);
+        // countActive is a Group method. It will check how many stars are still displayed. 
+        if (stars.countActive(true) === 0) {
+          // If all are collected and non are displayed, the iterate function will re-enable all the stars and set their y positions to 0
+          stars.children.iterate(function(child) {
+            child.enableBody(true, child.x, 0, true, true); 
+          });
+          // create a random x coordinate on the opposite side of the player's location
+          var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+          
+          var bomb = bombs.create(x, 16, 'bomb');
+          bomb.setBounce(1);
+          bomb.setCollideWorldBounds(true);
+          bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        }
+      }
+      
+      scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+      // 16 x 16 is the coordinate the scoreText will display.
+      // By not specifying which font we'll actually use the Phaser default, which is Courier
+
+      // create a group for bombs:
+      bombs = this.physics.add.group();
+      // create collider obj for bombs and platforms so they don't just collapse through them
+      this.physics.add.collider(bombs, platforms);
+      this.physics.add.collider(bombs, movingPlatform);
+      this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+      function hitBomb(player, bomb) {
+      // when the player hits a bomb, the game will stop and the player will turn red:
+        this.physics.pause();
+        player.setTint(0xff0000); // red
+        player.anims.play('turn');
+        gameOver = true;
+        gameOverText = this.add.text(210, 225, 'GAME OVER', {fontSize: '70px', fill: '#000'});
+      }
+    }
+
+    function update ()
+    {
+      if (cursors.left.isDown) {
+        player.setVelocityX(-160);
+        player.anims.play('left', true);
+      }
+      else if (cursors.right.isDown) {
+        player.setVelocityX(160);
+        player.anims.play('right', true);
+      }
+      else {
+        player.setVelocityX(0);
+        player.anims.play('turn');
+      }
+      if (cursors.up.isDown && player.body.touching.down) {
+        player.setVelocityY(-320);
+      }
+
+      if (movingPlatform.x >= 500) {
+        movingPlatform.setVelocityX(-60);
+      }
+      else if (movingPlatform.x <= 300) {
+        movingPlatform.setVelocityX(60);
+      }
+    }
+
+</script>
+
+</body>
 </html>
