@@ -7,7 +7,7 @@
 //     {
 //         super();
 //     }
-
+function ()
 //     preload ()
 //     {
 //         this.load.image('logo', logoImg);
