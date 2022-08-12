@@ -33,6 +33,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "dotenv": "^16.0.1",
     "phaser": "^3.50.0"
   }
 }
