@@ -1,16 +1,29 @@
 // reads in our .env file and makes those values available as environment variables
 require('dotenv').config();
-const mongoose = require('mongoose')
+
 
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const mongoose = require('mongoose')
 const routes = require('./routes/main');
 const secureRoutes = require('./routes/secure');
 
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}, 
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
+
+/*mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}, 
     () => { console.log('connected to mongo: ', process.env.MONGO_URI) }
-  )
+  )*/
+
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser : true, useUnifiedTopology: true });
+mongoose.connection.on('error', (error) => {
+   console.log(error);
+   process.exit(1);
+});
+mongoose.connection.on('connected', function () {
+   console.log('connected to mongo');
+});
 
 // create an instance of an express app
 const app = express();
@@ -18,12 +31,21 @@ const app = express();
 // update express settings
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
+app.use(cookieParser());
+
+// require passport auth
+require('./auth/auth.js');
+
+app.use(express.static(__dirname + '/public'));
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
 
 // main routes
 app.use('/', routes);
 
 //secure routes
-app.use('/', secureRoutes);
+app.use('/', passport.authenticate('jwt', { session : false }), secureRoutes);
 
 // catch all other routes
 app.use((req, res, next) => {

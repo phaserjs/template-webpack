@@ -1,5 +1,5 @@
 import { Scene } from 'Phaser'
-import logoImg from './assets/logo.png';
+import logoImg from '../assets/logo.png';
 
 class MyGame extends Scene
 {
