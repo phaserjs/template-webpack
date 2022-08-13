@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
@@ -10,7 +11,7 @@ const secureRoutes = require('./routes/secure');
 
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-
+const path = require('path');
 /*mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}, 
     () => { console.log('connected to mongo: ', process.env.MONGO_URI) }
   )*/
@@ -36,13 +37,17 @@ app.use(cookieParser());
 // require passport auth
 require('./auth/auth.js');
 
-app.use(express.static(__dirname + '/public'));
+let reqPath = path.join(__dirname, '../public/login.html')
+console.log(reqPath)
+
+app.use(express.static(reqPath));
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(reqPath);
 });
 
 // main routes
 app.use('/', routes);
+
 
 //secure routes
 app.use('/', passport.authenticate('jwt', { session : false }), secureRoutes);
@@ -63,3 +68,6 @@ app.use((err, req, res, next) => {
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Server started on port ${process.env.PORT || 3000}`);
 });
+
+
+
