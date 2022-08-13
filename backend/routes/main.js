@@ -17,10 +17,20 @@ router.post('/signup', asyncMiddleware( async (req, res, next) => {
     res.status(200).json({ 'status': 'ok' });
   }));
 
-router.post('/login', (req, res, next) => {
-    res.status(200);
-    res.json({ 'status': 'ok' });
-  });
+  router.post('/login', asyncMiddleware(async (req, res, next) => {
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      res.status(401).json({ 'message': 'unauthenticated' });
+      return;
+    }
+    const validate = await user.isValidPassword(password);
+    if (!validate) {
+      res.status(401).json({ 'message': 'unauthenticated' });
+      return;
+    }
+    res.status(200).json({ 'status': 'ok' });
+  }));
 
 router.post('/logout', (req, res, next) => {
     res.status(200);
