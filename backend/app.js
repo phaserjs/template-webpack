@@ -44,6 +44,9 @@ console.log(reqPath)
 let secPath = path.join(__dirname, '../src/signup.html')
 console.log(secPath)
 
+let gamPath = path.join(__dirname, '../src/game.html')
+console.log(gamPath)
+
 app.use(express.static(reqPath));
 app.get('/login', function (req, res) {
   res.sendFile(reqPath);
@@ -53,6 +56,10 @@ app.use(express.static(secPath));
 app.get('/register', function (req, res) {
   res.sendFile(secPath);
 });
+
+app.get('/game', passport.authenticate('jwt', { session : false }), function (req, res) {
+    res.sendFile(gamPath);
+  });
 
 // main routes
 app.use('/', routes);
