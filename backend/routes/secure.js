@@ -16,3 +16,4 @@ router.get('/scores', asyncMiddleware(async (req, res, next) => {
 }));
 
 module.exports = router;
+

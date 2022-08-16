@@ -19,7 +19,7 @@ router.post('/login', async (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
     try {
       if (err || !user) {
-        const error = new Error('An Error occured');
+        const error = Error('An Error occured');
         return next(error);
       }
       req.login(user, { session: false }, async (error) => {
@@ -54,12 +54,12 @@ router.post('/login', async (req, res, next) => {
 });
 
 router.post('/token', (req, res) => {
-  const { email, refreshToken } = req.body;
+    const { refreshToken } = req.body;
 
-  if ((refreshToken in tokenList) && (tokenList[refreshToken].email === email)) {
-    const body = { email, _id: tokenList[refreshToken]._id };
-    const token = jwt.sign({ user: body }, 'top_secret', { expiresIn: 300 });
-
+    if ((refreshToken in tokenList) && (tokenList[refreshToken].email === email)) {
+        const body = { email, _id: tokenList[refreshToken]._id };
+        const token = jwt.sign({ user: body }, 'top_secret', { expiresIn: 300 });
+  
     // update jwt
     res.cookie('jwt', token);
     tokenList[refreshToken].token = token;
@@ -127,6 +127,49 @@ router.post('/logout', (req, res, next) => {
   });
 
 router.post('/token', (req, res, next) => {
+    res.status(200);
+    res.json({ 'status': 'ok' });
+  });
+
+module.exports = router;*/
+
+/*const express = require('express');
+const asyncMiddleware = require('../middleware/asyncMiddleware');
+const UserModel = require('../models/userModel');
+
+const router = express.Router();
+
+router.get('/status', (req, res, next) => {
+  res.status(200);
+  res.json({ 'status': 'ok' });
+});
+
+router.post('/signup', asyncMiddleware( async (req, res, next) => {
+    const { name, email, password } = req.body;
+    await UserModel.create({ email, password, name });
+    res.status(200).json({ 'status': 'ok' });
+  }));
+
+  router.post('/login', asyncMiddleware(async (req, res, next) => {
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      res.status(401).json({ 'message': 'unauthenticated' });
+      return;
+    }
+    const validate = await user.isValidPassword(password);
+    if (!validate) {
+      res.status(401).json({ 'message': 'unauthenticated' });
+      return;
+    }
+    res.status(200).json({ 'status': 'ok' });
+  }));
+
+  router.post('/logout', (req, res, next) => {
+    res.status(200);
+    res.json({ 'status': 'ok' });
+  });
+  router.post('/token', (req, res, next) => {
     res.status(200);
     res.json({ 'status': 'ok' });
   });
