@@ -13,7 +13,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link href="./assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/main.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body class="text-center">
@@ -37,7 +37,7 @@
         required
       />
       <a class="btn btn-lg btn-primary btn-block" onClick="signIn()">Sign in</a>
-      <a href="/register">Don't have an account? Sign up here.</a>
+      <a href="/signup.html">Don't have an account? Sign up here.</a>
     </form>
     <script>
       function signIn() {
@@ -50,11 +50,11 @@
           url: "/login",
           data,
           success: function (data) {
-            window.location.replace("/game");
+            window.location.replace("/game.html");
           },
           error: function (xhr) {
             window.alert(JSON.stringify(xhr));
-            window.location.replace("/login");
+            window.location.replace("/login.html");
           },
         });
       }

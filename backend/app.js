@@ -38,28 +38,31 @@ app.use(cookieParser());
 // require passport auth
 require('./auth/auth');
 
-let reqPath = path.join(__dirname, '../src/login.html')
-console.log(reqPath)
-
-let secPath = path.join(__dirname, '../src/signup.html')
-console.log(secPath)
-
-let gamPath = path.join(__dirname, '../src/game.html')
-console.log(gamPath)
-
-app.use(express.static(reqPath));
-app.get('/login', function (req, res) {
-  res.sendFile(reqPath);
-});
-
-app.use(express.static(secPath));
-app.get('/register', function (req, res) {
-  res.sendFile(secPath);
-});
-
 app.get('/game', passport.authenticate('jwt', { session : false }), function (req, res) {
     res.sendFile(gamPath);
   });
+  
+//let reqPath = path.join(__dirname + '/public')
+//console.log(__dirname + '/public')
+
+/*let secPath = path.join(__dirname, '../src/signup.html')
+console.log(secPath)
+
+let gamPath = path.join(__dirname, '../src/game.html')
+console.log(gamPath)*/
+
+app.use(express.static(__dirname + '/public'));
+app.get('/login', function (req, res) {
+  res.sendFile(__dirname + '/login.html');
+});
+
+/*app.use(express.static(secPath));
+app.get('/register', function (req, res) {
+  res.sendFile(secPath);
+});*/
+
+
+
 
 // main routes
 app.use('/', routes);

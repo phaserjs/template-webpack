@@ -23,7 +23,7 @@ function getCookie(cname) {
       success: function(data) {},
       error: function(xhr) {
         window.alert(JSON.stringify(xhr));
-        window.location.replace('/login');
+        window.location.replace('/login.html');
       }
     });
   }, 10000);

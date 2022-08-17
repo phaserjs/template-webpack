@@ -1,8 +1,9 @@
 
-/*body {
+html,
+body {
   height: 100%;
 }
-/*body {
+body {
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
@@ -17,12 +18,14 @@
   background-color: #f5f5f5;
 }
 .form-signin {
-  width: 50%;
+  width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
 }
-
+.form-signin .checkbox {
+  font-weight: 400;
+}
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
@@ -37,4 +40,4 @@
   margin-bottom: 10px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-}*/
+}

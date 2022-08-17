@@ -6,7 +6,7 @@
   <title>Sign Up Page</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
-  <link href="./assets/css/main.css" rel="stylesheet">
+  <link href="/assets/css/main.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body class="text-center">
@@ -19,7 +19,7 @@
     <label for="name" class="sr-only">Name</label>
     <input type="text" id="name" class="form-control" placeholder="Name" required>
     <a class="btn btn-lg btn-primary btn-block" onClick="signUp()">Sign up</a>
-    <a href="/login">Already have an account? Login here.</a>
+    <a href="/login.html">Already have an account? Login here.</a>
   </form>
   <script>
     function signUp() {
@@ -34,11 +34,11 @@
         data,
         success: function (data) {
           window.alert('user created successfully');
-          window.location.replace('/login');
+          window.location.replace('/login.html');
         },
         error: function (xhr) {
           window.alert(JSON.stringify(xhr));
-          window.location.replace('/register');
+          window.location.replace('/signup.html');
         }
       });
     }
