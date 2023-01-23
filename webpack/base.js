@@ -11,11 +11,10 @@ module.exports = {
     rules: [
 
       {
-        test: /\.tsx?$/,     
-        use: {
-          loader: "babel-loader"
-        }
-      },
+        test: /\.(js|jsx|tsx|ts)$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -33,6 +32,9 @@ module.exports = {
         type: "asset/resource" 
       }
     ]
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
   },
   plugins: [
     new webpack.DefinePlugin({
