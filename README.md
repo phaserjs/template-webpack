@@ -1,6 +1,6 @@
-# Phaser 3 Webpack Project Template
+# Phaser 3 Webpack Typescript Project Template
 
-A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/) that includes hot-reloading for development and production-ready builds.
+A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/), [Typescript](https://www.typescriptlang.org) and [Webpack 5](https://webpack.js.org/) that includes hot-reloading for development and production-ready builds.
 
 This has been updated for Phaser 3.50.0 version and above.
 
