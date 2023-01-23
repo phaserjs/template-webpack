@@ -34,7 +34,6 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "phaser": "^3.50.0",
-    "phaser3-rex-plugins": "^1.1.79"
+    "phaser": "^3.50.0"
   }
 }
