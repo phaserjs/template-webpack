@@ -1,34 +1,40 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
 
 module.exports = {
   mode: "development",
-  devtool: "eval-source-map",
+  entry: './src/index.ts',
+  devtool: "inline-source-map",
   module: {
     rules: [
+
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
+        test: /\.tsx?$/,     
         use: {
           loader: "babel-loader"
         }
       },
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "source-map-loader"
+        },
+        enforce: "pre"
+      },
+      {
         test: [/\.vert$/, /\.frag$/],
-        use: "raw-loader"
+        type: "asset/source" 
       },
       {
         test: /\.(gif|png|jpe?g|svg|xml)$/i,
-        use: "file-loader"
+        type: "asset/resource" 
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin({
-      root: path.resolve(__dirname, "../")
-    }),
     new webpack.DefinePlugin({
       CANVAS_RENDERER: JSON.stringify(true),
       WEBGL_RENDERER: JSON.stringify(true)

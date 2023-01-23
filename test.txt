@@ -1,0 +1,37 @@
+WEBPACK 5 MIGRATION
+----------
+first `npm install webpack@5`
+
+then change 
+You can give ‘type’ four main values:
+asset/resource : Equivalent to file-loader.
+asset/inline: Equivalent to url-loader.
+asset/source: Equivalent to raw-loader.
+asset: Equivalent to url-loader with a limit size.
+
+Incompatible packages
+----------------------
+WEBPACK-cli
+html-webpack-plugin
+webpack-dev-server
+
+uninstalled using `npm uninstall <package> --force` then `npm install --save-dev <package>`
+
+
+TYPESCRIPT MIGRATION
+---------
+https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
+- Added tsconfig.JSON
+- installed ts-loader and source-map-loader using npm install --save-dev
+- for resolving babel <https://medium.com/@francesco.agnoletto/how-to-set-up-typescript-with-babel-and-webpack-6fba1b6e72d5>
+-- npm i -D typescript @babel/preset-typescript source-map-loader
+-- Added ```/ .babelrc
+            {
+              "presets": ["@babel/typescript", ["@babel/env",... { "modules": false }]],
+        ...
+        ```
+-- changed webpack config , check diff file 
+
+-- Changed tsconfig.js <https://webpack.js.org/guides/typescript/> accordingly
+-- 
+
