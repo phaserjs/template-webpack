@@ -1,10 +1,9 @@
 # Phaser 3 Webpack Typescript Project Template
 
-A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/), [Typescript](https://www.typescriptlang.org) and [Webpack 5](https://webpack.js.org/) that includes hot-reloading for development and production-ready builds.
+A Phaser 3 project template with ES6 support via [Typescript](https://www.typescriptlang.org) and [Webpack 5](https://webpack.js.org/) that includes hot-reloading for development and production-ready builds.
 
-This has been updated for Phaser 3.50.0 version and above.
+This has been updated for Phaser 3.55.0 version and above.
 
-Loading images via JavaScript module `import` is also supported, although not recommended.
 
 ## Requirements
 
@@ -26,21 +25,9 @@ After starting the development server with `npm start`, you can edit any files i
 
 ## Customizing the Template
 
-### Babel
+## Webpack
 
-You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you want your project to support. The targeted browsers are set in the `.babelrc` file and the default currently targets all browsers with total usage over "0.25%" but excludes IE11 and Opera Mini.
-
- ```
-"browsers": [
-  ">0.25%",
-  "not ie 11",
-  "not op_mini all"
-]
- ```
-
-### Webpack
-
-If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create new configuration files and target them in specific npm tasks inside of `package.json'.
+If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can checkout `webpack` folder.
 
 ## Deploying Code
 
