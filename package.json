@@ -1,36 +1,57 @@
 {
   "name": "phaser3-project-template",
-  "version": "1.1.2",
-  "description": "A Phaser 3 Project Template",
+  "version": "1.2.0",
+  "description": "A Phaser 3 Project Template with Typescript and webpack",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack --config webpack/prod.js ",
-    "start": "webpack serve --config webpack/base.js --open"
+    "build": "rimraf dist && webpack --config webpack/webpack.prod.js",
+    "start": "webpack serve --config webpack/webpack.dev.js --open",
+    "bundle": "npm run build",
+    "serve": "serve dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/photonstorm/phaser3-project-template.git"
+    "url": "git+https://github.com/abhishek0010/phaser3-project-template.git"
   },
-  "author": "Richard Davey <rdavey@gmail.com> (http://www.photonstorm.com)",
+  "keywords": [
+    "Phaser",
+    "Phaser 3",
+    "Phaser3",
+    "html5 game",
+    "TypeScript",
+    "webpack",
+    "starter"
+  ],
+  "author": "Abhishek Kumar",
   "license": "MIT",
   "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
   "bugs": {
-    "url": "https://github.com/photonstorm/phaser3-project-template/issues"
+    "url": "https://github.com/abhishek0010/phaser3-project-template/issues"
   },
-  "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
+  "template": {
+    "name": "phaser3-project-template",
+    "url": "https://github.com/abhishek0010/phaser3-project-template",
+    "author": "Abhishek Kumar (https://github.com/abhishek0010)"
+  },
   "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "html-webpack-plugin": "^5.5.0",
-    "http-server": "^14.1.1",
+    "javascript-obfuscator": "^4.0.0",
+    "rimraf": "^4.1.2",
+    "serve": "^14.1.2",
     "source-map-loader": "^4.0.1",
     "terser-webpack-plugin": "^2.2.1",
+    "ts-loader": "^9.4.2",
     "typescript": "^4.9.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "webpack-obfuscator": "^3.5.1",
+    "workbox-webpack-plugin": "^6.5.4"
   },
   "dependencies": {
-    "phaser": "^3.50.0",
+    "phaser": "^3.55.2",
     "phaser3-rex-plugins": "^1.1.79"
   }
 }

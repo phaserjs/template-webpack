@@ -1,15 +1,18 @@
 {
     "compilerOptions": {
-      "outDir": "./dist",
       "sourceMap": true,
-      //"strict": true,
+      "strict": true,
+      "strictPropertyInitialization": false,
       "allowSyntheticDefaultImports": true,
-      "noImplicitAny": true,
-      "module": "es6",
+      "allowUnreachableCode": false,
+      "noImplicitAny": false,
+      "esModuleInterop": true,
+      "module": "commonjs",
       "target": "es5",
       "allowJs": true,
       "moduleResolution": "node",
-      "baseUrl": "./src"
+      "lib": ["dom", "es5", "esnext"],
+      "skipLibCheck": true
     },
-    "include": ["./src/**/*"]
+    "exclude": ["node_modules", "pwa", "webpack"]
   }
