@@ -12,7 +12,24 @@
       "allowJs": true,
       "moduleResolution": "node",
       "lib": ["dom", "es5", "esnext"],
-      "skipLibCheck": true
+      "skipLibCheck": true,
+      "importHelpers": true,
+      "baseUrl": "./src",
+      "paths": {
+        "~/*": ["./*"]
+      },
+      "typeRoots": [
+        "@types",
+        "node_modules/@types",
+        "node_module/phaser/types"
+      ],
+      "types": [
+        "Phaser"
+      ]
     },
-    "exclude": ["node_modules", "pwa", "webpack"]
-  }
+    "exclude": ["node_modules", "pwa", "webpack"],
+    "include": [
+      "src/**/*"
+    ]
+    
+}
