@@ -18,6 +18,7 @@ class gameScene extends Phaser.Scene {
     {
         //Setting boundaries for our world
         this.physics.world.setBounds(0, 0, 800, 600);
+        const logo = this.add.image(800, 900, 'logo');
       
         //Seting our movement speed
         this.movementSpeed = 6    
