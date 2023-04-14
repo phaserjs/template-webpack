@@ -11,7 +11,7 @@ class gameScene extends Phaser.Scene {
       
     create ()
     {
-        const logo = this.add.image(400, 150, 'logo');
+        const logo = this.add.image(800, 900, 'logo');
       
         this.tweens.add({
             targets: logo,
