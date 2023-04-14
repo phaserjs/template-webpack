@@ -6,6 +6,8 @@ class Game extends Phaser.Game {
         this.scene.add('boot', bootScene);
         this.scene.add('preload', preloadScene);
         this.scene.add('levelMenu', levelMenuScene);
+        this.scene.add('menu', menuScene);
+        this.scene.add('level1', level1Scene);
         this.scene.start('boot');
     }
 }
