@@ -1,13 +1,12 @@
 
 
-export default class gameScene extends Phaser.Scene {
+class gameScene extends Phaser.Scene {
     constructor (){
         super('game');
     }
 
     preload ()
     {
-        this.load.image('logo', logoImg);
     }
       
     create ()

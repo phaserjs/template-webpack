@@ -1,6 +1,5 @@
-import logoImg from '../assets/logo.png';
 
-export default class preloadScene extends Phaser.Scene {
+class preloadScene extends Phaser.Scene {
     constructor (){
         super('preload');
     }
@@ -8,7 +7,7 @@ export default class preloadScene extends Phaser.Scene {
     preload ()
     {
         // load all assets for the game
-        this.load.image('logo', logoImg);
+        this.load.image('logo', 'src/assets/logo.png');
 
         // load tile map
     }
