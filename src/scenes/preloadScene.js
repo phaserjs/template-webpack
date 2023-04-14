@@ -14,6 +14,6 @@ class preloadScene extends Phaser.Scene {
       
     create ()
     {
-        this.scene.start('game');
+        this.scene.start('levelMenu');
     }
 }
