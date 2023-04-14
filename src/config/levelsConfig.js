@@ -1,9 +1,9 @@
 const level1TileMap = [
-  {X: 20, Y: 10, tileType: 'standard'},
-  {X: 20, Y: 10, tileType: 'standard'},
-  {X: 20, Y: 10, tileType: 'standard'},
-  {X: 20, Y: 10, tileType: 'standard'},
-  {X: 20, Y: 10, tileType: 'standard'}
+  {X: 20, Y: 10, tileType: 'standard', finishedTile: false},
+  {X: 20, Y: 10, tileType: 'standard', finishedTile: false},
+  {X: 20, Y: 10, tileType: 'standard', finishedTile: false},
+  {X: 20, Y: 10, tileType: 'standard', finishedTile: false},
+  {X: 20, Y: 10, tileType: 'standard', finishedTile: true}
 ];
 
 // Define the levels array globally
