@@ -1,8 +1,9 @@
 class Tile {
-    constructor(id, x, showNum, tileType, finishedTile) {
+    constructor(id, x ,y, showNum, tileType, finishedTile) {
         this.id = id;
         this.x = x;
-        this.tileType = showNum;
+        this.y=y;
+        this.showNum = showNum;
         this.tileType = tileType;
         this.finishedTile = finishedTile;
     }
