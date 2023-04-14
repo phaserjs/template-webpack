@@ -76,7 +76,7 @@ class levelMenuScene extends Phaser.Scene {
         
                 // Add a click event to the button
                 button.on('pointerup', () => {
-                    this.scene.start(level.scene);
+                    this.scene.start('LevelScene', {level: level});
                 });
             }
         });

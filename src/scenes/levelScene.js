@@ -1,8 +1,12 @@
 
 
-class level3Scene extends Phaser.Scene {
-    constructor (){
-        super('Level3Scene');
+class levelScene extends Phaser.Scene {
+    constructor (level){
+        super('LevelScene');
+    }
+
+    init(data) {
+        this.level = data.level;
     }
 
     preload ()
@@ -12,6 +16,8 @@ class level3Scene extends Phaser.Scene {
       
     create ()
     {
+        console.log(this.level);
+
             // create repeating tile sprite for background
             const background = this.add.tileSprite(0, 0, this.cameras.main.width, this.cameras.main.height, 'background');
             

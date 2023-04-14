@@ -1,12 +1,13 @@
 // Define the Level class globally
 class Level {
-    constructor(id, name, difficulty, scene, unlocked, mapName) {
+    constructor(id, name, difficulty, scene, unlocked, mapName, tileMap) {
         this.id = id;
         this.name = name;
         this.difficulty = difficulty;
         this.scene = scene;
         this.unlocked = unlocked;
         this.mapName = mapName;
+        this.tileMap = tileMap
         this.completed = false;
         this.score = 0;
     }
