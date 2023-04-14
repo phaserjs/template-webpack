@@ -1,4 +1,3 @@
-import 'phaser';
 import logoImg from '../assets/logo.png';
 
 export default class preloadScene extends Phaser.Scene {

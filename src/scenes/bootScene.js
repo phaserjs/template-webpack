@@ -1,4 +1,3 @@
-import 'phaser';
 
 export default class bootScene extends Phaser.Scene {
     constructor (){
