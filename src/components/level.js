@@ -15,7 +15,9 @@ class Level {
       this.completed = true;
       this.score = score > this.score ? score : this.score;
       // unlock next level
+      if (levels[this.id + 1]){
         levels[this.id + 1].setUnlocked(true);
+      }
     }
 
     setUnlocked(unlocked){

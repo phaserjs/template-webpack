@@ -51,7 +51,6 @@ class levelMenuScene extends Phaser.Scene {
             .setFontStyle('900')
             .setOrigin(0.5);
 
-
             if(level.completed){
                 for (let i=0; i<level.score; i++) {
                     this.add.text(x - 20 + i*20, y+60, '⭐️', {fontSize: '15px'})
