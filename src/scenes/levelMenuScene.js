@@ -29,7 +29,7 @@ class levelMenuScene extends Phaser.Scene {
 
             // level preview image
             const levelImage = this.add.image(x, y+55, level.mapName + 'preview');
-            levelImage.setScale(0.5);
+            levelImage.setScale(0.4);
 
             // create a graphics object
             const graphics = this.add.graphics();

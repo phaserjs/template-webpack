@@ -12,14 +12,14 @@ class preloadScene extends Phaser.Scene {
         this.load.image('logo', 'src/assets/logo.png');
         this.load.image('menuBackground', 'src/assets/menuBackground.png');
         // load level preview images
-        this.load.image('level1preview', 'src/assets/level1preview.png');
-        this.load.image('level2preview', 'src/assets/level2preview.png');
-        this.load.image('level3preview', 'src/assets/level3preview.png');
-        this.load.image('level4preview', 'src/assets/level4preview.png');
+        this.load.image('level1preview', 'src/assets/Level1ScenePreview.png');
+        this.load.image('level2preview', 'src/assets/Level2ScenePreview.png');
+        this.load.image('level3preview', 'src/assets/Level3ScenePreview.png');
+        this.load.image('level4preview', 'src/assets/Level4ScenePreview.png');
     }
       
     create ()
     {
-        this.scene.start('boot');
+        this.scene.start('levelMenu');
     }
 }
