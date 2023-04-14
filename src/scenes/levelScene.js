@@ -19,7 +19,7 @@ class levelScene extends Phaser.Scene {
         console.log(this.level);
 
             // create repeating tile sprite for background
-            const background = this.add.tileSprite(0, 0, this.cameras.main.width, this.cameras.main.height, 'background');
+            const background = this.add.tileSprite(0, 0, this.cameras.main.width, this.cameras.main.height, this.level.mapName);
             
             let prevFix=600;
             let prev=prevFix;
