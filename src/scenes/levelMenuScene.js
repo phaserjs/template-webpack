@@ -11,6 +11,11 @@ class levelMenuScene extends Phaser.Scene {
       
     create ()
     {
-        const logo = this.add.image(400, 150, 'logo');
+        // background image
+        const menuBackground = this.add.image(0, 0, 'menuBackground');
+        menuBackground.setOrigin(0);
+        menuBackground.setScale(this.cameras.main.width / menuBackground.width, this.cameras.main.height / menuBackground.height);
+
+
     }
 }
