@@ -10,6 +10,11 @@ class preloadScene extends Phaser.Scene {
         this.load.image('button', 'src/assets/button.png');
         // load all assets for the game
         this.load.image('logo', 'src/assets/logo.png');
+
+        this.load.image('person', 'src/assets/person.png');
+        this.load.image('slider', 'src/assets/bullet.png');
+        this.load.image('progressBarHorizontal', 'src/assets/progressBarHorizontal.png');
+        this.load.image('progressBarVertical', 'src/assets/progressBarVertical.png');
         this.load.image('menuBackground', 'src/assets/menuBackground.png');
 
         // load level preview images
