@@ -16,7 +16,7 @@ class levelMenuScene extends Phaser.Scene {
         menuBackground.setOrigin(0);
         menuBackground.setScale(this.cameras.main.width / menuBackground.width, this.cameras.main.height / menuBackground.height);
 
-        this.add.text(game.config.width / 2, 100, 'CHOSE LEVEL', { fontSize: '60px', fill: '#fff' })
+        this.add.text(game.config.width / 2, 200, 'CHOSE LEVEL', { fontSize: '60px', fill: '#fff' })
         .setFontFamily('Montserrat')
         .setFontStyle('900')
         .setOrigin(0.5);
@@ -25,7 +25,7 @@ class levelMenuScene extends Phaser.Scene {
         // Create a button for each level
         levels.forEach((level, index) => {
             const x = 180 + index * 150;
-            const y = 350;
+            const y = 400;
 
             // level preview image
             const levelImage = this.add.image(x, y+55, level.mapName + 'preview');
@@ -51,26 +51,35 @@ class levelMenuScene extends Phaser.Scene {
             .setFontStyle('900')
             .setOrigin(0.5);
 
-            // display lock on level
+
+            if(level.completed){
+                for (let i=0; i<level.score; i++) {
+                    this.add.text(x - 20 + i*20, y+60, '⭐️', {fontSize: '15px'})
+                    .setOrigin(0.5);
+                }
+            }
+
+            // display lock on level or add button start
             if (!level.unlocked){
                 this.add.text(x, y+60, 'Locked', {fontSize: '15px',color: '#ffffff',})
                 .setFontFamily('Montserrat')
                 .setFontStyle('600')
                 .setOrigin(0.5);
+            }else{
+                const buttonImage = this.add.image(x, y+150, 'button');
+                buttonImage.setScale(0.35);
+                const button = this.add.text(x, y+150, 'START', {fontSize: '20px',color: '#ffffff',})
+                .setFontFamily('Montserrat')
+                .setFontStyle('900')
+                .setOrigin(0.5);
+        
+                button.setInteractive();
+        
+                // Add a click event to the button
+                button.on('pointerup', () => {
+                    this.scene.start(level.scene);
+                });
             }
-    
-            // const button = this.add.text(x, y, `${level.name} (Difficulty: ${level.difficulty})`, {
-            // fontSize: '12px',
-            // fontFamily: 'Montserrat',
-            // fill: level.completed ? '#00ff00' : '#ffffff'
-            // }).setOrigin(0.5);
-    
-            // button.setInteractive();
-    
-            // // Add a click event to the button
-            // button.on('pointerup', () => {
-            //     this.scene.start(level.scene);
-            // });
         });
     }
 

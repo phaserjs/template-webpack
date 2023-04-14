@@ -12,8 +12,7 @@ class Level {
   
     complete(score) {
       this.completed = true;
-      this.score = score;
-      // Add any additional logic for completing the level here
+      this.score = score > this.score ? score : this.score;
     }
 
     setUnlocked(unlocked){

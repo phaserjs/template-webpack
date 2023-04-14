@@ -6,6 +6,8 @@ class preloadScene extends Phaser.Scene {
 
     preload ()
     {
+        // button
+        this.load.image('button', 'src/assets/button.png');
         // load all assets for the game
         this.load.image('logo', 'src/assets/logo.png');
         this.load.image('menuBackground', 'src/assets/menuBackground.png');
