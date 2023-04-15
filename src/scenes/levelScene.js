@@ -27,14 +27,15 @@ class levelScene extends Phaser.Scene {
         background.setScale(this.cameras.main.width / background.width, this.cameras.main.height / background.height);
         
         // create tiles
-        this.setupTiles();
-
+        
         
         // Hodnoty na nastavenie rychlosti vyskoku adopadu
         // this.jumpSpedUp = 5;
         // this.jumpSpedDown = 2;
-
-        // this.initTilesGenerator();
+        
+        this.initTilesGenerator();
+        this.setupTiles();
+        this.playerPhysics();
        
 
         // // Iba na skusku
@@ -55,10 +56,197 @@ class levelScene extends Phaser.Scene {
         // else if (this.cursors.down.isDown) {
         //     this.moveUpTiles();
         // }
+
+        // Keeps slider in progressBarHorizontal
+        if (this.sliderHorizontal.x < 60) {
+            this.sliderHorizontal.emit('leftHorizontal');
+        } else if (this.sliderHorizontal.x > 140) {
+            this.sliderHorizontal.emit('rightHorizontal');
+        }
+        // Keeps slider in progressBarVertical
+        if (this.sliderVertical.y > 550) {
+            this.sliderVertical.emit('upVertical');
+        } else if (this.sliderVertical.y < 470) {
+            this.sliderVertical.emit('downVertical');
+        }
+        if(this.keys.A.isDown){   
+            // DEBUG PURPOSE ONLY      
+            // DELETE LATER     
+           this.player.x -= this.movementSpeed
+           this.directionFacing = "W"
+        }
+        if(this.keys.D.isDown){
+            // DEBUG PURPOSE ONLY
+            // DELETE LATER
+           this.player.x += this.movementSpeed
+           this.directionFacing = "E"
+        }
+        if(this.keys.W.isDown)
+        {
+            // DEBUG PURPOSE ONLY
+            // DELETE LATER
+           this.player.y -= this.movementSpeed
+           this.directionFacing = "N"
+        }
+        if(this.keys.S.isDown)
+        {
+            // DEBUG PURPOSE ONLY
+            // DELETE LATER
+           this.player.y += this.movementSpeed
+           this.directionFacing = "S"
+        }
+        if (this.player.body.velocity.y > 0 &&( playerJumpedUp || playerJumpedToSide)) {
+            // Player fliying up
+            this.player.setVelocity(0,0);
+            // Reset vertical slider
+            this.sliderVertical.body.position.set(188,537)                
+            if(playerJumpedUp){
+                this.physics.world.gravity = {x: 0, y:0}
+                // Turn on horizontal slider
+                this.sliderHorizontal.setVelocityX(25)
+            }
+        }
+        if(this.player.body.velocity.y < 0){
+            // Player flying dows
+            this.moveDownTiles()
+            // this.sliderVertical.setVelocityY(-25);
+        }
+        if (this.player.body.velocity.x < 0 ) {
+            // Player flying to left
+
+            // Turn on vertical slider
+            this.sliderVertical.setVelocityY(-25)
+            // Reset horizontal slider
+            this.sliderHorizontal.body.position.set(90,538)
+            if(playerJumpedToSide && this.physics.world.gravity.x < 0){
+                // Reset player velocity
+                this.player.setVelocity(0,0);
+                this.physics.world.gravity = {x: 0, y:500}
+                playerJumpedToSide =false
+            }
+        }
+        if (this.player.body.velocity.x > 0 ) {
+            // Player flying to right
+            
+            // Turn on vertical slider
+            this.sliderVertical.setVelocityY(-25)
+            // Reset horizontal slider
+            this.sliderHorizontal.body.position.set(90,538)
+            if(playerJumpedToSide && this.physics.world.gravity.x > 0){
+                // Reset player velocity
+                this.player.setVelocity(0,0);
+                this.physics.world.gravity = {x: 0, y:500}
+                playerJumpedToSide =false
+            }
+        }
+        if (this.input.keyboard.checkDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE), 300)) {
+            if(playerJumpedUp == false){
+                // Vertical Jump
+                playerJumpedUp = true;
+                playerJumpedToSide = false;
+                // Calculating power of jump we are not using this value now
+                // We use constant number
+                const calculatePower = (600 - this.sliderVertical.body.position.y )/25
+                this.jumpSpedUp = calculatePower
+                playerJumpedToSide = false;
+                // Making player jump
+                this.player.setVelocity(0,-175);
+                // Change gravity 
+                this.physics.world.gravity = {x: 0, y: 500}
+                // Reset vertical slider
+                this.sliderVertical.setVelocityY(0)
+                // this.sliderVertical.body.position.set(188,500)                
+            }
+            else if(playerJumpedUp == true){
+                // Horizontal jump
+                playerJumpedToSide = true
+                playerJumpedUp = false
+                // Power of jump
+                const calculatePower = this.sliderHorizontal.body.position.x > 100 ? (this.sliderHorizontal.body.position.x-90) : -(80 - this.sliderHorizontal.body.position.x)
+                // Change gravity depending on which side is player flying
+                this.physics.world.gravity = {x: calculatePower > 0 ? -250: 250, y: 0}
+                // Making player jump
+                this.player.setVelocity(calculatePower*20, 0)
+                // Reset horizontal slider
+                this.sliderHorizontal.setVelocityX(0)
+                this.sliderHorizontal.body.position.set(90,538)
+            }
+        }
        
     }
 
+    playerPhysics () {
+        //Setting boundaries for our world
+        this.physics.world.setBounds(0, 0, 800, 600);
+        const logo = this.add.image(800, 900, 'logo');
+      
+        //Seting our movement speed for WASD movements
+        this.movementSpeed = 6    
 
+        // Player config
+        let playerPosX = 400
+        let playerPosY = 600
+        this.player = this.physics.add.sprite(playerPosX,playerPosY,"person").setOrigin(0.5,0.5).setDisplaySize
+        (45,45)
+        this.player.setCollideWorldBounds(true)
+
+        // ProgressBarHorizontal config
+        let progressBarHorizontalPosX = 100
+        let pprogressBarHorizontalPosY = 550
+        this.progressBarHorizontal = this.physics.add.sprite(progressBarHorizontalPosX,pprogressBarHorizontalPosY,"progressBarHorizontal").setOrigin(0.5,0.5).setDisplaySize
+        (100,25)
+        this.progressBarHorizontal.setCollideWorldBounds(true)
+        this.progressBarHorizontal.body.allowGravity = false
+
+        // ProgressBarVertical config
+        let progressBarVerticalPosX = 200
+        let pprogressBarVerticalPosY = 510
+        this.progressBarVertical = this.physics.add.sprite(progressBarVerticalPosX,pprogressBarVerticalPosY,"progressBarVertical").setOrigin(0.5,0.5).setDisplaySize
+        (25,100)
+        this.progressBarVertical.setCollideWorldBounds(true)
+        this.progressBarVertical.body.allowGravity = false
+
+         // Slider config
+         let sliderHorizontalPosX = 100
+         let sliderHorizontalPosY = 550
+         this.sliderHorizontal = this.physics.add.sprite(sliderHorizontalPosX,sliderHorizontalPosY,"slider").setOrigin(0.5,0.5).setDisplaySize
+         (24,24)
+         this.sliderHorizontal.setCollideWorldBounds(true)
+         this.sliderHorizontal.body.allowGravity = false
+
+         // Slider config
+         let sliderVerticalPosX = 200
+         let sliderVerticalPosY = 540
+         this.sliderVertical = this.physics.add.sprite(sliderVerticalPosX,sliderVerticalPosY,"slider").setOrigin(0.5,0.5).setDisplaySize
+         (24,24)
+         this.sliderVertical.setCollideWorldBounds(true)
+         this.sliderVertical.body.allowGravity = false
+
+        // Set event listener for reaching left and right edges
+        this.sliderHorizontal.on('leftHorizontal', function () {
+            this.sliderHorizontal.setVelocityX(25);
+        }, this);
+        this.sliderHorizontal.on('rightHorizontal', function () {
+            this.sliderHorizontal.setVelocityX(-25);
+        }, this);
+
+        this.sliderVertical.setVelocityY(-25);
+        // Set event listener for reaching left and right edges
+        this.sliderVertical.on('downVertical', function () {
+            this.sliderVertical.setVelocityY(25);
+        }, this);
+        this.sliderVertical.on('upVertical', function () {
+            this.sliderVertical.setVelocityY(-25);
+        }, this);
+
+        // Keys config 
+        // DEBUG PURPOSE ONLY
+        let key_W = this.input.keyboard.addKey('W'); // Get key object
+        let key_S = this.input.keyboard.addKey('S'); // Get key object
+        let key_A = this.input.keyboard.addKey('A'); // Get key object
+        let key_D = this.input.keyboard.addKey('D'); // Get key object
+        this.keys = this.input.keyboard.addKeys('A,D,W,S')
+    }
 
     moveDownTiles(){
         this.showNumber=this.showNumber+ this.jumpSpedUp;
@@ -66,7 +254,6 @@ class levelScene extends Phaser.Scene {
             if(tile.showNum <= this.showNumber && tile.id.y < this.cameras.main.height*2 ){
                 tile.id.y += this.jumpSpedUp;
             }
-
         });
     }
 
@@ -77,7 +264,6 @@ class levelScene extends Phaser.Scene {
                 console.log(tile.id._tilePosition.y);
                 tile.id.y -= this.jumpSpedDown;
             }
-
         });
     }
 
