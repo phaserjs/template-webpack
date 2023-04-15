@@ -1,10 +1,6 @@
 const level1TileMap = [
   {x: 300, showNum: 0, tileType: 'standard', finishedTile: false},
-  {x: 250, showNum: 0, tileType: 'standard', finishedTile: false},
-  {x: 350, showNum: 0, tileType: 'standard', finishedTile: false},
   {x: 30, showNum: 400, tileType: 'standard', finishedTile: false},
-  {x: 80, showNum: 0, tileType: 'standard', finishedTile: false},
-  {x: 130, showNum: 0, tileType: 'standard', finishedTile: false},
   {x: 20, showNum: 100, tileType: 'standard', finishedTile: false},
   {x: 0, showNum: 130, tileType: 'standard', finishedTile: false},
   {x: 9, showNum: 140, tileType: 'standard', finishedTile: false},

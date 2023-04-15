@@ -27,18 +27,18 @@ class levelScene extends Phaser.Scene {
         background.setScale(this.cameras.main.width / background.width, this.cameras.main.height / background.height);
         
         // create tiles
-        this.setupTiles();
+        
 
         
         // Hodnoty na nastavenie rychlosti vyskoku adopadu
-        // this.jumpSpedUp = 5;
-        // this.jumpSpedDown = 2;
+         this.jumpSpedUp = 5;
+        this.jumpSpedDown = 2;
 
-        // this.initTilesGenerator();
-       
+        this.initTilesGenerator();
+        this.setupTiles();
 
         // // Iba na skusku
-        // this.cursors = this.input.keyboard.createCursorKeys();
+        this.cursors = this.input.keyboard.createCursorKeys();
               
     }
 
@@ -48,13 +48,13 @@ class levelScene extends Phaser.Scene {
        //Iba na skusku
         // console.log(this.showNumber);
 
-        // if (this.cursors.up.isDown) {
-        //     this.moveDownTiles();
+         if (this.cursors.up.isDown) {
+             this.moveDownTiles();
             
-        // }
-        // else if (this.cursors.down.isDown) {
-        //     this.moveUpTiles();
-        // }
+         }
+         else if (this.cursors.down.isDown) {
+             this.moveUpTiles();
+         }
        
     }
 
@@ -110,6 +110,7 @@ class levelScene extends Phaser.Scene {
                     tile.y= this.showNumber - tile.showNum;
                 }
                     console.log(tile);
+                    
                     tile.id = this.add.tileSprite(tile.x, tile.y, 50, 50, "menuBtn");
                     tile.id.setOrigin(0, 1);
             
