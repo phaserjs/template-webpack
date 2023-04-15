@@ -48,7 +48,7 @@
         "grassDownRight": {
             "frame": {"x":49,"y":19,"w":16,"h":18}
         },
-        "grassDownLeft`corner": {
+        "grassDownLeftcorner": {
             "frame": {"x":0,"y":53,"w":18,"h":18}
         },
         "grassDownRightcorner": {
@@ -76,19 +76,19 @@
             "frame": {"x":19,"y":34,"w":14,"h":16}
         },
         "spike1": {
-            "frame":{"x":66,"y":51,"width":14,"height":16} 
+            "frame":{"x":66,"y":51,"w":14,"h":16} 
         },
         "spike2":{
-            "frame":{"x":49,"y":38,"width":16,"height":14}
+            "frame":{"x":49,"y":38,"w":16,"h":14}
         },
         "spike3":{
-            "frame":{"x":66,"y":17,"width":16,"height":16}
+            "frame":{"x":66,"y":17,"w":16,"h":16}
         },
         "spike4":{
-            "frame":{"x":100,"y":74,"width":16,"height":14}
+            "frame":{"x":100,"y":74,"w":16,"h":14}
         },
         "spike5":{
-            "frame":{"x":34,"y":34,"width":14,"height":15}
+            "frame":{"x":34,"y":34,"w":14,"h":15}
         }
     }
 }
