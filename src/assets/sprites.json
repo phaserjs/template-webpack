@@ -1,165 +1,79 @@
 {
-    "frames":{
-       "brickRed":{
-          "frame":{
-             "x":17,
-             "y":19,
-             "w":16,
-             "h":16
-          }
-       },
-       "BrickWhite":{
-          "frame":{
-             "x":81,
-             "y":137,
-             "w":16,
-             "h":16
-          }
-       },
-       "BrickOrange":{
-          "frame":{
-             "x":51,
-             "y":120,
-             "w":16,
-             "h":16
-          }
-       },
-       "OrangeButton":{
-          "frame":{
-             "x":99,
-             "y":102,
-             "w":16,
-             "h":16
-          }
-       },
-       "plus":{
-          "frame":{
-             "x":99,
-             "y":85,
-             "w":16,
-             "h":16
-          }
-       },
-       "delete":{
-          "frame":{
-             "x":34,
-             "y":19,
-             "w":16,
-             "h":16
-          }
-       },
-       "ghost":{
-          "frame":{
-             "x":0,
-             "y":19,
-             "w":16,
-             "h":16
-          }
-       },
-       "groundTop":{
-          "frame":{
-             "x":80,
-             "y":90,
-             "w":16,
-             "h":14
-          }
-       },
-       "pipeHorizontal":{
-          "frame":{
-             "x":0,
-             "y":110,
-             "w":52,
-             "h":9
-          }
-       },
-       "groundBottom":{
-          "frame":{
-             "x":80,
-             "y":105,
-             "w":16,
-             "h":14
-          }
-       },
-       "grassTop":{
-          "frame":{
-             "x":0,
-             "y":91,
-             "w":50,
-             "h":18
-          }
-       },
-       "grassLeft":{
-          "frame":{
-             "x":99,
-             "y":0,
-             "w":18,
-             "h":53
-          }
-       },
-       "grassRight":{
-          "frame":{
-             "x":80,
-             "y":17,
-             "w":18,
-             "h":53
-          }
-       },
-       "pipe":{
-          "frame":{
-             "x":70,
-             "y":51,
-             "w":9,
-             "h":50
-          }
-       },
-       "grassCornerTopLeft":{
-          "frame":{
-             "x":99,
-             "y":54,
-             "w":18,
-             "h":18
-          }
-       },
-       "grassCornerTopRight":{
-          "frame":{
-             "x":80,
-             "y":71,
-             "w":18,
-             "h":18
-          }
-       },
-       "groundMid":{
-          "frame":{
-             "x":0,
-             "y":74,
-             "w":46,
-             "h":16
-          }
-       },
-       "grassDown":{
-          "frame":{
-             "x":0,
-             "y":0,
-             "w":50,
-             "h":18
-          }
-       },
-       "grassCornerDownLeft":{
-          "frame":{
-             "x":118,
-             "y":125,
-             "w":18,
-             "h":18
-          }
-       },
-       "grassCornerDownRight":{
-          "frame":{
-             "x":137,
-             "y":125,
-             "w":18,
-             "h":18
-          }
-       }
+    "frames": {
+        "brickRed": {
+            "frame": {"x":17,"y":0,"w":16,"h":16}
+        },
+        "brickWhite": {
+            "frame": {"x":66,"y":0,"w":16,"h":16}
+        },
+        "plus": {
+            "frame": {"x":66,"y":34,"w":16,"h":16}
+        },
+        "delete": {
+            "frame": {"x":83,"y":74,"w":16,"h":16}
+        },
+        "ghoust": {
+            "frame": {"x":64,"y":72,"w":16,"h":16}
+        },
+        "grassTopLeft": {
+            "frame": {"x":100,"y":55,"w":16,"h":18}
+        },
+        "grassTopMid": {
+            "frame": {"x":117,"y":55,"w":16,"h":18}
+        },
+        "grassTopRight": {
+            "frame": {"x":83,"y":55,"w":16,"h":18}
+        },
+        "grassTopLeft`corner": {
+            "frame": {"x":19,"y":53,"w":18,"h":18}
+        },
+        "grassTopRightcorner": {
+            "frame": {"x":38,"y":53,"w":18,"h":18}
+        },
+        "groundMidLeft": {
+            "frame": {"x":34,"y":17,"w":14,"h":16}
+        },
+        "groundMidMid": {
+            "frame": {"x":17,"y":72,"w":16,"h":16}
+        },
+        "groundMidRight": {
+            "frame": {"x":34,"y":72,"w":14,"h":16}
+        },
+        "grassDownLeft": {
+            "frame": {"x":49,"y":0,"w":16,"h":18}
+        },
+        "grassDownMid": {
+            "frame": {"x":0,"y":72,"w":16,"h":18}
+        },
+        "grassDownRight": {
+            "frame": {"x":49,"y":19,"w":16,"h":18}
+        },
+        "grassDownLeft`corner": {
+            "frame": {"x":0,"y":53,"w":18,"h":18}
+        },
+        "grassDownRightcorner": {
+            "frame": {"x":0,"y":34,"w":18,"h":18}
+        },
+        "waterPool": {
+            "frame": {"x":83,"y":0,"w":50,"h":54}
+        },
+        "groundTopLeft": {
+            "frame": {"x":34,"y":0,"w":14,"h":16}
+        },
+        "groundTopMid": {
+            "frame": {"x":0,"y":0,"w":16,"h":16}
+        },
+        "groundTopRight": {
+            "frame": {"x":49,"y":72,"w":14,"h":16}
+        },
+        "groundDownLeft": {
+            "frame": {"x":17,"y":17,"w":14,"h":16}
+        },
+        "groundDownMid": {
+            "frame": {"x":0,"y":17,"w":16,"h":16}
+        },
+        "groundDownRight": {
+            "frame": {"x":19,"y":34,"w":14,"h":16}
+        }
     }
 }
- 
