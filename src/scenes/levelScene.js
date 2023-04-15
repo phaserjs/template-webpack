@@ -4,6 +4,7 @@ var gameOver= {
     reason: null,
   };
 var score=0;
+var gameOverOverlay = false;
 
 
 
@@ -35,7 +36,6 @@ class levelScene extends Phaser.Scene {
         background.setScale(this.cameras.main.width / background.width, this.cameras.main.height / background.height);
         
         // create tiles
-
 
         
         // Hodnoty na nastavenie rychlosti vyskoku adopadu
@@ -88,7 +88,6 @@ class levelScene extends Phaser.Scene {
         // // Iba na skusku
         this.cursors = this.input.keyboard.createCursorKeys();
 
-
               
     }
 
@@ -99,10 +98,10 @@ class levelScene extends Phaser.Scene {
     update() {
         
        
-        if(gameOver.is==true){
+        if(gameOver.is && !gameOverOverlay){
             //akcia 4o sa stane;
             console.log(gameOver);
-
+            this.createGameOverPopup();
         }
         else{
 
@@ -251,7 +250,6 @@ class levelScene extends Phaser.Scene {
     playerPhysics () {
         //Setting boundaries for our world
         this.physics.world.setBounds(0, 0, 800, 600);
-        const logo = this.add.image(800, 900, 'logo');
       
         //Seting our movement speed for WASD movements
         this.movementSpeed = 6    
@@ -407,6 +405,88 @@ class levelScene extends Phaser.Scene {
             });
 
             
+    }
+
+    resetLevel() {
+        // Re-initialize the tilemap and game entities
+        this.create();
+    
+        // Reset any other game state variables as necessary
+        this.score = 0;
+    
+        // Start the game loop again
+        this.gameOver = {
+            is: false,
+            reason: null
+        };
+    }
+
+    createGameOverPopup(){
+        const won = gameOver.reason === 'finish' ? true : false;
+        if (won) this.level.complete(3);
+        // need to change this it will display only once
+        gameOverOverlay = true;
+        // black overlay
+        var overlay = this.add.graphics();
+        overlay.fillStyle(0x000000, 0.5);
+        overlay.fillRect(0, 0, this.game.config.width, this.game.config.height);
+
+        // game over box
+        this.add.image(this.cameras.main.width/2, this.cameras.main.height/2, 'gameOver');
+        this.add.text(this.cameras.main.width/2, 270, won ? 'YOU WON' : 'YOU LOSE', {fontSize: '35px',color: won ? '#58FF55' : '#FF5555',stroke: '#000000',strokeThickness: 8 })
+        .setOrigin(0.5)
+        .setFontFamily('Montserrat')
+        .setFontStyle('900');
+
+        // score display
+        this.add.text(this.cameras.main.width/2, 430, 'SCORE', {fontSize: '20px',color: '#ffffff',stroke: '#000000',strokeThickness: 8 })
+        .setOrigin(0.5)
+        .setFontFamily('Montserrat')
+        .setFontStyle('900');
+
+        this.add.text(this.cameras.main.width/2, 470, score, {fontSize: '35px',color: '#ffffff',stroke: '#000000',strokeThickness: 8 })
+        .setOrigin(0.5)
+        .setFontFamily('Montserrat')
+        .setFontStyle('900');
+
+        // time display
+        this.add.text((this.cameras.main.width/2)-120, 530, 'TIME', {fontSize: '20px',color: '#ffffff',stroke: '#000000',strokeThickness: 8 })
+        .setOrigin(0.5)
+        .setFontFamily('Montserrat')
+        .setFontStyle('900');
+
+        this.add.text((this.cameras.main.width/2)-120, 560, '35:00', {fontSize: '20px',color: '#ffffff',stroke: '#000000',strokeThickness: 8 })
+        .setOrigin(0.5)
+        .setFontFamily('Montserrat')
+        .setFontStyle('900');
+
+
+        // picked items display
+        this.add.text((this.cameras.main.width/2)+120, 530, 'PICKED ITEMS', {fontSize: '20px',color: '#ffffff',stroke: '#000000',strokeThickness: 8 })
+        .setOrigin(0.5)
+        .setFontFamily('Montserrat')
+        .setFontStyle('900');
+
+        this.add.text((this.cameras.main.width/2)+120, 560, '9', {fontSize: '20px',color: '#ffffff',stroke: '#000000',strokeThickness: 8 })
+        .setOrigin(0.5)
+        .setFontFamily('Montserrat')
+        .setFontStyle('900');
+
+        // buttons
+        const retry = this.add.image((this.cameras.main.width/2)-50, 670, 'retry').setScale(0.7);
+        const continueB = this.add.image((this.cameras.main.width/2)+50, 670, 'continue').setScale(0.7);
+        
+        retry.setInteractive();
+        continueB.setInteractive();
+
+        retry.on('pointerup', () => {
+            this.resetLevel();
+            this.scene.start('LevelScene', {level: this.level});
+        });
+
+        continueB.on('pointerup', () => {
+            this.scene.start('levelMenu');
+        });
     }
 
    

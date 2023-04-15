@@ -42,6 +42,10 @@ class preloadScene extends Phaser.Scene {
         this.load.image('spaceBar', 'src/assets/spaceBar.png');
         this.load.image('rulesLevel', 'src/assets/rulesLevel.png');
 
+        // gameOver assets
+        this.load.image('gameOver', 'src/assets/gameOver.png');
+        this.load.image('retry', 'src/assets/retry.png');
+        this.load.image('continue', 'src/assets/continue.png');
 
 
         // add a loading bar ################
