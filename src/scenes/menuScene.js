@@ -54,6 +54,7 @@ class menuScene extends Phaser.Scene {
         
         this.createTextOnBtn();
         this.createLabel();
+        this.createOptions();
 
         
         
@@ -62,38 +63,80 @@ class menuScene extends Phaser.Scene {
 
     createLabel(){
 
-        var text1 = this.add.text(150, 300, 'FROM', { 
+        var text1 = this.add.text(150, 200, 'FROM', { 
             fontSize: '50px',  
             fontFamily:'Montserrat',
             color:'white',
             fontStyle:'900',
+            stroke: '#000000',
+            strokeThickness: 8
         });
         text1.setOrigin(0.5);
     
 
-        var text2 = this.add.text(430, 300, 'NIGHTMARES', { 
+        var text2 = this.add.text(430, 200, 'NIGHTMARES', { 
             fontSize: '50px',  
             fontFamily:'Montserrat',
             color:'#121212',
             fontStyle:'900',
+            stroke: '#000000',
+            strokeThickness : 8
         });
         text2.setOrigin(0.5);
     
-        var text3 = this.add.text(110, 360, 'TO', { 
+        var text3 = this.add.text(110, 260, 'TO', { 
             fontSize: '50px',  
             fontFamily:'Montserrat',
             color:'white',
             fontStyle:'900',
+            stroke: '#000000',
+            strokeThickness: 8
         });
         text3.setOrigin(0.5);
     
-        var text4 = this.add.text(280, 360, 'DREAMS', { 
+        var text4 = this.add.text(280, 260, 'DREAMS', { 
             fontSize: '50px',  
             fontFamily:'Montserrat',
             color:'#F184CC',
             fontStyle:'900',
+            stroke: '#000000',
+            strokeThickness: 8
         });
         text4.setOrigin(0.5);
+    }
+
+    createOptions(){
+        const text1 = this.add.text(180, 400, '🎯 GAME RULES', { 
+            fontSize: '25px',  
+            fontFamily:'Montserrat',
+            color:'white',
+            fontStyle:'900',
+            stroke: '#000000',
+            strokeThickness: 8
+        });
+        text1.setOrigin(0.5);
+
+        const text2 = this.add.text(170, 440, '🎮 CONTROLS', { 
+            fontSize: '25px',  
+            fontFamily:'Montserrat',
+            color:'white',
+            fontStyle:'900',
+            stroke: '#000000',
+            strokeThickness: 8
+        });
+        text2.setOrigin(0.5);
+
+        text1.setInteractive();
+        text2.setInteractive()
+        
+        // Add a click event to the button
+        text1.on('pointerup', () => {
+            this.scene.start('gameRules');
+        });
+
+        text2.on('pointerup', () => {
+            this.scene.start('controls');
+        });
     }
 
     createTextOnBtn(){
@@ -103,6 +146,8 @@ class menuScene extends Phaser.Scene {
             fontFamily:'Montserrat',
             color:'white',
             fontStyle:'900',
+            stroke: '#000000',
+            strokeThickness: 8
         });
         text.setOrigin(0.5);
 
