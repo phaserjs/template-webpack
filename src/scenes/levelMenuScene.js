@@ -11,6 +11,7 @@ class levelMenuScene extends Phaser.Scene {
       
     create ()
     {
+
         // background image
         const menuBackground = this.add.image(0, 0, 'menuBackground');
         menuBackground.setOrigin(0);
@@ -122,6 +123,7 @@ class levelMenuScene extends Phaser.Scene {
         
                 // Add a click event to the button
                 button.on('pointerup', () => {
+                    //console.log(level)
                     this.scene.start('LevelScene', {level: level});
                 });
             }

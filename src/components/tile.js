@@ -1,5 +1,5 @@
 class Tile {
-    constructor(id, x ,y, showNum,blockType, tileType,tileTypeFirs,tileTypeLast,tileLenght, finishedTile) {
+    constructor(id, x ,y, showNum, blockType, tileType,tileTypeFirs,tileTypeLast,tileLenght, finishedTile) {
         this.id = new Set();
         this.x = x;
         this.y=y;
