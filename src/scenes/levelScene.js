@@ -104,7 +104,6 @@ class levelScene extends Phaser.Scene {
             console.log(gameOver);
 
         }
-        else{
 
         // Keeps slider in progressBarHorizontal
         if (this.sliderHorizontal.x < 60) {
@@ -241,8 +240,6 @@ class levelScene extends Phaser.Scene {
         else{
            
         }
-
-    }
        
     }
 
