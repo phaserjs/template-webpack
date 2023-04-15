@@ -1,4 +1,5 @@
-
+var gg = false;
+var stopVelocity =false;
 class levelScene extends Phaser.Scene {
     constructor (){
         super('LevelScene');
@@ -6,15 +7,15 @@ class levelScene extends Phaser.Scene {
 
     init(data) {
         this.level = data.level;
+        
     }
 
     preload ()
     {
     }
       
-    create ()
-    {
-
+    create (){
+        
         // create repeating tile sprite for background
         const background = this.add.tileSprite(0, 0, this.cameras.main.width, this.cameras.main.height, this.level.mapName);
             
@@ -40,15 +41,35 @@ class levelScene extends Phaser.Scene {
         // this.jumpSpedUp = 5;
         // this.jumpSpedDown = 2;
         
-        this.initTilesGenerator();
-        this.setupTiles();
         this.playerPhysics();
+        this.initTilesGenerator();
+        //this.setupTiles();
+
+
+
+        this.level.tileMap.forEach((tile, index) => {
+          
+
+              this.physics.add.collider(this.player, tile.id, function(player, block) {
+                gg=false;
+                stopVelocity=false;
+                console.log("Player touched block with blockType:");
+              });  
+
+    
+        });
+        
        
 
         // // Iba na skusku
         this.cursors = this.input.keyboard.createCursorKeys();
+
+
               
     }
+
+  
+
 
 
     update() {
@@ -125,7 +146,7 @@ class levelScene extends Phaser.Scene {
         }
         if (this.player.body.velocity.x < 0 ) {
             // Player flying to left
-
+           
             // Turn on vertical slider
             this.sliderVertical.setVelocityY(-25)
             // Reset horizontal slider
@@ -135,8 +156,15 @@ class levelScene extends Phaser.Scene {
                 this.player.setVelocity(0,0);
                 this.physics.world.gravity = {x: 0, y:500}
                 playerJumpedToSide =false
+             
+                //nastavenie reverznej gravitacie Martin
+                gg = true;
             }
         }
+   
+        
+
+
         if (this.player.body.velocity.x > 0 ) {
             // Player flying to right
             
@@ -149,6 +177,9 @@ class levelScene extends Phaser.Scene {
                 this.player.setVelocity(0,0);
                 this.physics.world.gravity = {x: 0, y:500}
                 playerJumpedToSide =false
+                
+                 //nastavenie reverznej gravitacie Martin
+                 gg=true;
             }
         }
         if (this.input.keyboard.checkDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE), 300)) {
@@ -185,9 +216,20 @@ class levelScene extends Phaser.Scene {
             }
         }
 
+
+      
+
+        if(gg == true){
+            this.moveUpTiles();
+        }
+        else{
+           
+        }
        
     }
 
+
+    
     playerPhysics () {
         //Setting boundaries for our world
         this.physics.world.setBounds(0, 0, 800, 600);
@@ -264,8 +306,13 @@ class levelScene extends Phaser.Scene {
     moveDownTiles(){
         this.showNumber=this.showNumber+ this.jumpSpedUp;
         this.level.tileMap.forEach((tile, index) => {
-            if(tile.showNum <= this.showNumber && tile.id.y < this.cameras.main.height*2 ){
-                tile.id.y += this.jumpSpedUp;
+
+            if(tile.showNum <= this.showNumber){
+                for (let block of tile.id) {
+                    block.y += this.jumpSpedUp;
+
+                    
+                }
             }
         });
     }
@@ -273,29 +320,21 @@ class levelScene extends Phaser.Scene {
     moveUpTiles(){
         this.showNumber=this.showNumber - this.jumpSpedDown;
         this.level.tileMap.forEach((tile, index) => {
-            if(tile.id.y > 0){
-                console.log(tile.id._tilePosition.y);
-                tile.id.y -= this.jumpSpedDown;
+            if(tile.id.values().next().value.y > 0){
+                for (let block of tile.id) {
+                block.y -= this.jumpSpedDown;
+            }
             }
         });
     }
 
 
+
     initTilesGenerator(){
         this.showNumber = 900;
-        this.showNumPrev = 300;
+        this.showNumPrev = 264;
+        
 
-            // create repeating tile sprite for background
-            const background = this.add.tileSprite(0, 0, this.cameras.main.width, this.cameras.main.height, this.level.mapName);
-            // set origin to top-left corner
-            background.setScale(window.innerWidth / background.width, window.innerHeight / background.height);
-
-            background.setOrigin(0, 0);
-
-
-            const p = this.add.tileSprite(0, 0, 50, 50, "menuBtn");
-                   p.setOrigin(0, 1);
-            // set scale to fill the entire screen
            
 
             this.level.tileMap.forEach((tile, index) => {
@@ -304,19 +343,45 @@ class levelScene extends Phaser.Scene {
                     this.showNumPrev += tile.showNum;
                     tile.showNum = this.showNumPrev;
                     
-                
+                var tileWH = 32
+
                 if(tile.showNum <= this.showNumber ){
                     tile.y= this.showNumber - tile.showNum;
                 }
-                    console.log(tile);
+
+                    tile.id=[];
+                    this.blockName;
+                    var moveBlock=0;
+                    for (let i = 0; i < tile.tileLenght; i++) {
                     
-                    tile.id = this.add.tileSprite(tile.x, tile.y, 50, 50, "menuBtn");
-                    tile.id.setOrigin(0, 1);
+                        if(i==0 && tile.tileTypeFirst != null){
+                            this.blockName=tile.tileTypeFirst;
+                        }
+                        else if(i==tile.tileLenght-1 && tile.tileTypeLast != null){
+                            this.blockName=tile.tileTypeLast;
+
+                        }
+                        else{
+                            this.blockName=tile.tileType;
+                        }
+                       
+                        let block = this.physics.add.sprite(tile.x+moveBlock, tile.y, 'tileMap', this.blockName).setScale(2);;
+                        block.setOrigin(0, 1);
+                        console.log(block);
+                        block.body.allowGravity=false;
+                        block.body.immovable=true;
+                        tile.id.push(block);
+                        moveBlock +=tileWH; 
+                      }
             
             });
 
             
     }
+
+   
+
+    
 
     setupTiles(){
         for(let x = 0; x<= this.game.canvas.width; x = x+32){

@@ -1,17 +1,17 @@
 const level1TileMap = [
-  {x: 300, showNum: 0, tileType: 'standard', finishedTile: false},
-  {x: 30, showNum: 400, tileType: 'standard', finishedTile: false},
-  {x: 20, showNum: 100, tileType: 'standard', finishedTile: false},
-  {x: 0, showNum: 130, tileType: 'standard', finishedTile: false},
-  {x: 9, showNum: 140, tileType: 'standard', finishedTile: false},
-  {x: 50, showNum: 150, tileType: 'standard', finishedTile: false},
-  {x: 150, showNum: 200, tileType: 'standard', finishedTile: false},
-  {x: 31, showNum: 312, tileType: 'standard', finishedTile: false},
-  {x: 48, showNum: 390, tileType: 'standard', finishedTile: false},
-  {x: 28, showNum: 459, tileType: 'standard', finishedTile: false},
-  {x: 200, showNum: 497, tileType: 'standard', finishedTile: false},
-  {x: 800, showNum: 510, tileType: 'standard', finishedTile: false},
-  {x: 90, showNum: 514, tileType: 'standard', finishedTile: true}
+  {x: 300, showNum: -32, tileType: 'groundDownMid',tileTypeFirst: 'groundDownLeft',tileTypeLast: 'groundDownRight',tileLenght:10, finishedTile: false},
+  {x: 300, showNum: 32, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 20, showNum: 100, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 0, showNum: 130, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 9, showNum: 140, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 50, showNum: 150, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 150, showNum: 200, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 31, showNum: 312, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 48, showNum: 390, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 28, showNum: 459, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 200, showNum: 497, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 800, showNum: 510, tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: false},
+  {x: 90, showNum: 514, tileType: 'standard',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5, finishedTile: true}
 ];
 
 const level2TileMap = [
