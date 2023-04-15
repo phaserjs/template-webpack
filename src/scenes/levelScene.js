@@ -119,9 +119,19 @@ class levelScene extends Phaser.Scene {
     }
 
     setupTiles(){
-        for(let x = 0; x<= this.game.canvas.width; x = x+16){
-            this.add.sprite(x, this.game.canvas.height, 'tileMap', 'grassTopMid').setOrigin(1, 1);
+        for(let x = 0; x<= this.game.canvas.width; x = x+32){
+            this.add.sprite(x, this.game.canvas.height, 'tileMap', 'grassTopMid').setOrigin(1, 1).setScale(2);
         }
+        this.add.sprite(200, 200, 'tileMap', 'grassTopLeft').setScale(2);
+        this.add.sprite(232, 200, 'tileMap', 'grassTopMid').setScale(2);
+        this.add.sprite(264, 200, 'tileMap', 'grassTopRight').setScale(2);
+        this.add.sprite(200, 232, 'tileMap', 'groundDownLeft').setScale(2);
+        this.add.sprite(232, 232, 'tileMap', 'groundDownMid').setScale(2);
+        this.add.sprite(264, 232, 'tileMap', 'groundDownRight').setScale(2);
+
+        this.add.sprite(300, 232, 'tileMap', 'spike1').setScale(2);
+        this.add.sprite(332, 232, 'tileMap', 'spike1').setScale(2);
+        this.add.sprite(364, 232, 'tileMap', 'spike1').setScale(2);
     }
 
     
