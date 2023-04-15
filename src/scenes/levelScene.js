@@ -96,13 +96,6 @@ class levelScene extends Phaser.Scene {
 
 
     update() {
-
-        if (this.cursors.up.isDown) {
-            this.moveDownTiles();
-        }
-        else if (this.cursors.down.isDown) {
-            this.moveUpTiles();
-        }
         
        
         if(gameOver.is && !gameOverOverlay){
@@ -110,6 +103,7 @@ class levelScene extends Phaser.Scene {
             console.log(gameOver);
             this.createGameOverPopup();
         }
+        else{
 
         // Keeps slider in progressBarHorizontal
         if (this.sliderHorizontal.x < 60) {
@@ -210,7 +204,6 @@ class levelScene extends Phaser.Scene {
                 playerJumpedToSide = false;
                 // Calculating power of jump we are not using this value now
                 // We use constant number
-                console.log(this.sliderVertical.body.position.y );
                 const calculatePower = (600 - this.sliderVertical.body.position.y )/25
                 this.jumpSpedUp = calculatePower
                 playerJumpedToSide = false;
@@ -247,6 +240,8 @@ class levelScene extends Phaser.Scene {
         else{
            
         }
+
+    }
        
     }
 
