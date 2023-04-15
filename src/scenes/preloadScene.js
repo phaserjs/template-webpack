@@ -31,7 +31,7 @@ class preloadScene extends Phaser.Scene {
         this.load.image('menuBtn', 'src/assets/btn1.png');
         this.load.image('background', 'src/assets/movementBackground.png');
         // load tile map
-
+        this.load.atlas('tileMap','src/assets/spritesheet.png', 'src/assets/sprites.json');
 
 
         // add a loading bar ################
