@@ -36,14 +36,10 @@ class levelScene extends Phaser.Scene {
         
         // create tiles
 
-
-        
         // Hodnoty na nastavenie rychlosti vyskoku adopadu
         this.jumpSpedUp = 5;
         this.jumpSpedDown = 2;
 
-
-        
         // Hodnoty na nastavenie rychlosti vyskoku adopadu
         // this.jumpSpedUp = 5;
         // this.jumpSpedDown = 2;
@@ -52,13 +48,8 @@ class levelScene extends Phaser.Scene {
         this.initTilesGenerator();
         //this.setupTiles();
 
-
-
         this.level.tileMap.forEach((tile, index) => {
-          
-
               this.physics.add.collider(this.player, tile.id, function(player, block) {
-
                 if (block.blockType === 'dead'){
                     gameOver.is=true;
                     gameOver.reason=block.blockType;
@@ -79,171 +70,124 @@ class levelScene extends Phaser.Scene {
                 player.setVelocityY(0);
                 //console.log("Player touched block with blockType:");
               });  
-
-    
         });
-        
-       
-
         // // Iba na skusku
         this.cursors = this.input.keyboard.createCursorKeys();
-
-
-              
     }
-
-  
-
-
-
-    update() {
-        
-       
+    update() {       
+        // if(true == true){
+        //     console.log(this.sliderDot.body.position)
+        // }
         if(gameOver.is==true){
             //akcia 4o sa stane;
             console.log(gameOver);
-
         }
-
-        // Keeps slider in progressBarHorizontal
-        if (this.sliderHorizontal.x < 60) {
-            this.sliderHorizontal.emit('leftHorizontal');
-        } else if (this.sliderHorizontal.x > 140) {
-            this.sliderHorizontal.emit('rightHorizontal');
+        // Vertical movement of sliderDot
+        if (this.sliderDot.y > 774) {
+            this.sliderDot.emit('up');
+        } else if (this.sliderDot.y < 626) {
+            this.sliderDot.emit('down');
         }
-        // Keeps slider in progressBarVertical
-        if (this.sliderVertical.y > 550) {
-            this.sliderVertical.emit('upVertical');
-        } else if (this.sliderVertical.y < 470) {
-            this.sliderVertical.emit('downVertical');
+        // Horizontal movement of sliderDot
+        if (this.sliderDot.x > 224) {
+            this.sliderDot.emit('left');
+        } else if (this.sliderDot.x < 76) {
+            this.sliderDot.emit('right');
         }
-        if(this.keys.A.isDown){   
-            // DEBUG PURPOSE ONLY      
-            // DELETE LATER     
-           this.player.x -= this.movementSpeed
-           this.directionFacing = "W"
-        }
-        if(this.keys.D.isDown){
-            // DEBUG PURPOSE ONLY
-            // DELETE LATER
-           this.player.x += this.movementSpeed
-           this.directionFacing = "E"
-        }
-        if(this.keys.W.isDown)
-        {
-            // DEBUG PURPOSE ONLY
-            // DELETE LATER
-           this.player.y -= this.movementSpeed
-           this.directionFacing = "N"
-        }
-        if(this.keys.S.isDown)
-        {
-            // DEBUG PURPOSE ONLY
-            // DELETE LATER
-           this.player.y += this.movementSpeed
-           this.directionFacing = "S"
-        }
-        if (this.player.body.velocity.y > 0 &&( playerJumpedUp || playerJumpedToSide)) {
-            
+        if (this.player.body.velocity.y > 0 &&( playerJumpedUp || playerJumpedToSide)) { 
             // Player fliying up
             this.player.setVelocity(0,0);
-            // Reset vertical slider
-            this.sliderVertical.body.position.set(188,537)                
+            // Reset vertical slider           
+            this.sliderDot.setVelocityX(140) 
+            console.log("z")
             if(playerJumpedUp){
                 this.physics.world.gravity = {x: 0, y:0}
                 // Turn on horizontal slider
-                this.sliderHorizontal.setVelocityX(25)
             }
         }
         if(this.player.body.velocity.y < 0){
-                this.moveDownTiles()
-            // this.sliderVertical.setVelocityY(-25);
+            // Turn off horizontal movement
+            this.sliderDot.setVelocityY(0)
+            // Set sliderDot to center after vertical jump
+            this.sliderDot.body.position.set(137,688) 
+            this.moveDownTiles()
         }
         if (this.player.body.velocity.x < 0 ) {
             // Player flying to left
-           
-            // Turn on vertical slider
-            this.sliderVertical.setVelocityY(-25)
-            // Reset horizontal slider
-            this.sliderHorizontal.body.position.set(90,538)
+           console.log("left")
+            // Turn off vertical movement
+            this.sliderDot.setVelocityX(0)
+            // Set sliderDot to bottom after horizontal jump
+            this.sliderDot.body.position.set(137,762) 
+
             if(playerJumpedToSide && this.physics.world.gravity.x < 0){
                 // Reset player velocity
                 this.player.setVelocity(0,0);
                 this.physics.world.gravity = {x: 0, y:500}
                 playerJumpedToSide =false
-             
                 //nastavenie reverznej gravitacie Martin
                 gg = true;
             }
         }
-   
-        
-
-
         if (this.player.body.velocity.x > 0 ) {
             // Player flying to right
-            
-            // Turn on vertical slider
-            this.sliderVertical.setVelocityY(-25)
-            // Reset horizontal slider
-            this.sliderHorizontal.body.position.set(90,538)
+            console.log("right")
+            // Turn off vertical movement
+            this.sliderDot.setVelocityX(0)
+            // Set sliderDot to bottom after horizontal jump
+            this.sliderDot.body.position.set(137,762) 
             if(playerJumpedToSide && this.physics.world.gravity.x > 0){
                 // Reset player velocity
                 this.player.setVelocity(0,0);
                 this.physics.world.gravity = {x: 0, y:500}
                 playerJumpedToSide =false
-                
                  //nastavenie reverznej gravitacie Martin
-                 gg=true;
+                gg=true;
             }
         }
         if (this.input.keyboard.checkDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE), 300)) {
+            
+            console.log(playerJumpedUp)
+            console.log(playerJumpedToSide)
             if(playerJumpedUp == false){
+                console.log("Vertical Jump")
                 // Vertical Jump
                 playerJumpedUp = true;
                 playerJumpedToSide = false;
                 // Calculating power of jump we are not using this value now
                 // We use constant number
-                const calculatePower = (600 - this.sliderVertical.body.position.y )/25
-                this.jumpSpedUp = calculatePower
+                console.log(this.sliderDot.body.position.y)
+                // console.log(this.sliderDot.body.position.x)
+                const calculateVerticalPower = (770-this.sliderDot.body.position.y) / 15
+                this.jumpSpedUp = calculateVerticalPower
                 playerJumpedToSide = false;
                 // Making player jump
-                this.player.setVelocity(0,-175);
+                this.player.setVelocity(0,-100);
                 // Change gravity 
                 this.physics.world.gravity = {x: 0, y: 500}
+                this.sliderDot.body.position.set(137,688) 
+                this.sliderDot.setVelocityX(140)
                 // Reset vertical slider
-                this.sliderVertical.setVelocityY(0)
-                // this.sliderVertical.body.position.set(188,500)                
             }
             else if(playerJumpedUp == true){
+                console.log("Horizontal Jump")
                 // Horizontal jump
                 playerJumpedToSide = true
                 playerJumpedUp = false
                 // Power of jump
-                const calculatePower = this.sliderHorizontal.body.position.x > 100 ? (this.sliderHorizontal.body.position.x-90) : -(80 - this.sliderHorizontal.body.position.x)
+                const calculatePowerHorizontal = -((138 - this.sliderDot.body.position.x) * 15) / 33
                 // Change gravity depending on which side is player flying
-                this.physics.world.gravity = {x: calculatePower > 0 ? -250: 250, y: 0}
+                this.physics.world.gravity = {x: calculatePowerHorizontal > 0 ? -200: 200, y: 0}
                 // Making player jump
-                this.player.setVelocity(calculatePower*20, 0)
-                // Reset horizontal slider
-                this.sliderHorizontal.setVelocityX(0)
-                this.sliderHorizontal.body.position.set(90,538)
+                this.player.setVelocity(calculatePowerHorizontal*20, 0)
             }
         }
-
-
-      
-
         if(gg == true){
             this.moveUpTiles();
         }
-        else{
-           
+        else{           
         }
-       
     }
-
-
     
     playerPhysics () {
         //Setting boundaries for our world
@@ -251,7 +195,7 @@ class levelScene extends Phaser.Scene {
         const logo = this.add.image(800, 900, 'logo');
       
         //Seting our movement speed for WASD movements
-        this.movementSpeed = 6    
+        this.movementSpeed = 10    
 
         // Player config
         let playerPosX = 400
@@ -260,78 +204,51 @@ class levelScene extends Phaser.Scene {
         (45,45)
         this.player.setCollideWorldBounds(true)
 
-        // ProgressBarHorizontal config
-        let progressBarHorizontalPosX = 100
-        let pprogressBarHorizontalPosY = 550
-        this.progressBarHorizontal = this.physics.add.sprite(progressBarHorizontalPosX,pprogressBarHorizontalPosY,"progressBarHorizontal").setOrigin(0.5,0.5).setDisplaySize
-        (100,25)
-        this.progressBarHorizontal.setCollideWorldBounds(true)
-        this.progressBarHorizontal.body.allowGravity = false
+        // Slider Cross config
+        let sliderPosX = 150
+        let sliderPosY = 700
+        this.slider = this.physics.add.sprite(sliderPosX,sliderPosY,"sliderCross").setOrigin(0.5,0.5).setDisplaySize
+        (176,176)
+        this.slider.setCollideWorldBounds(false)
+        this.slider.body.allowGravity = false
 
-        // ProgressBarVertical config
-        let progressBarVerticalPosX = 200
-        let pprogressBarVerticalPosY = 510
-        this.progressBarVertical = this.physics.add.sprite(progressBarVerticalPosX,pprogressBarVerticalPosY,"progressBarVertical").setOrigin(0.5,0.5).setDisplaySize
-        (25,100)
-        this.progressBarVertical.setCollideWorldBounds(true)
-        this.progressBarVertical.body.allowGravity = false
+        // Slider dot config
+        // 774 dole v strede
+        let sliderDotPosX = 150
+        let sliderDotPosY = 774
+        this.sliderDot = this.physics.add.sprite(sliderDotPosX,sliderDotPosY,"sliderDot").setOrigin(0.5,0.5).setDisplaySize
+        (25,25)
+        this.sliderDot.setCollideWorldBounds(false)
+        this.sliderDot.body.allowGravity = false
 
-         // Slider config
-         let sliderHorizontalPosX = 100
-         let sliderHorizontalPosY = 550
-         this.sliderHorizontal = this.physics.add.sprite(sliderHorizontalPosX,sliderHorizontalPosY,"slider").setOrigin(0.5,0.5).setDisplaySize
-         (24,24)
-         this.sliderHorizontal.setCollideWorldBounds(true)
-         this.sliderHorizontal.body.allowGravity = false
-
-         // Slider config
-         let sliderVerticalPosX = 200
-         let sliderVerticalPosY = 540
-         this.sliderVertical = this.physics.add.sprite(sliderVerticalPosX,sliderVerticalPosY,"slider").setOrigin(0.5,0.5).setDisplaySize
-         (24,24)
-         this.sliderVertical.setCollideWorldBounds(true)
-         this.sliderVertical.body.allowGravity = false
-
+        this.sliderDot.setVelocityY(-140);
         // Set event listener for reaching left and right edges
-        this.sliderHorizontal.on('leftHorizontal', function () {
-            this.sliderHorizontal.setVelocityX(25);
+        this.sliderDot.on('down', function () {
+            this.sliderDot.setVelocityY(140);
         }, this);
-        this.sliderHorizontal.on('rightHorizontal', function () {
-            this.sliderHorizontal.setVelocityX(-25);
+        this.sliderDot.on('up', function () {
+            this.sliderDot.setVelocityY(-140);
         }, this);
-
-        this.sliderVertical.setVelocityY(-25);
         // Set event listener for reaching left and right edges
-        this.sliderVertical.on('downVertical', function () {
-            this.sliderVertical.setVelocityY(25);
+        this.sliderDot.on('left', function () {
+            this.sliderDot.setVelocityX(-140);
         }, this);
-        this.sliderVertical.on('upVertical', function () {
-            this.sliderVertical.setVelocityY(-25);
+        this.sliderDot.on('right', function () {
+            this.sliderDot.setVelocityX(140);
         }, this);
-
-        // Keys config 
-        // DEBUG PURPOSE ONLY
-        let key_W = this.input.keyboard.addKey('W'); // Get key object
-        let key_S = this.input.keyboard.addKey('S'); // Get key object
-        let key_A = this.input.keyboard.addKey('A'); // Get key object
-        let key_D = this.input.keyboard.addKey('D'); // Get key object
-        this.keys = this.input.keyboard.addKeys('A,D,W,S')
     }
 
     moveDownTiles(){
         if(gameOver.is == false){
-        this.showNumber=this.showNumber+ this.jumpSpedUp;
-        this.level.tileMap.forEach((tile, index) => {
-
-            if(tile.showNum <= this.showNumber){
-                for (let block of tile.id) {
-                    block.y += this.jumpSpedUp;
-
-                    
+            this.showNumber=this.showNumber+ this.jumpSpedUp;
+            this.level.tileMap.forEach((tile, index) => {
+                if(tile.showNum <= this.showNumber){
+                    for (let block of tile.id) {
+                        block.y += this.jumpSpedUp; 
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
     }
 
     moveUpTiles(){
@@ -357,22 +274,14 @@ class levelScene extends Phaser.Scene {
     initTilesGenerator(){
         this.showNumber = 900;
         this.showNumPrev = 265;
-        
-
-           
-
             this.level.tileMap.forEach((tile, index) => {
-                
                     tile.y=0
                     this.showNumPrev += tile.showNum;
-                    tile.showNum = this.showNumPrev;
-                    
+                    tile.showNum = this.showNumPrev; 
                 var tileWH = 32
-
                 if(tile.showNum <= this.showNumber ){
                     tile.y= this.showNumber - tile.showNum;
                 }
-
                     tile.id=[];
                     this.blockName;
                     var moveBlock=0;

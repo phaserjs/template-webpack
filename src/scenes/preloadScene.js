@@ -15,9 +15,8 @@ class preloadScene extends Phaser.Scene {
         this.load.image('logo', 'src/assets/logo.png');
 
         this.load.image('person', 'src/assets/person.png');
-        this.load.image('slider', 'src/assets/bullet.png');
-        this.load.image('progressBarHorizontal', 'src/assets/progressBarHorizontal.png');
-        this.load.image('progressBarVertical', 'src/assets/progressBarVertical.png');
+        this.load.image('sliderDot', 'src/assets/sliderDot.png');
+        this.load.image('sliderCross', 'src/assets/slider.png');
         
 
         // load level preview images
@@ -42,8 +41,6 @@ class preloadScene extends Phaser.Scene {
         this.load.image('spaceBar', 'src/assets/spaceBar.png');
         this.load.image('rulesLevel', 'src/assets/rulesLevel.png');
 
-
-
         // add a loading bar ################
         var loadingBar = this.add.graphics({
             fillStyle: {
@@ -61,7 +58,6 @@ class preloadScene extends Phaser.Scene {
             loadingBar.destroy();
         });
         //loading ################
-
     }
       
     create ()
