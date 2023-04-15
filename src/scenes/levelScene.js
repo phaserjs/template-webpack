@@ -1,5 +1,12 @@
 var gg = false;
-var stopVelocity =false;
+var gameOver= {
+    is: false,
+    reason: null,
+  };
+var score=0;
+
+
+
 class levelScene extends Phaser.Scene {
     constructor (){
         super('LevelScene');
@@ -51,9 +58,26 @@ class levelScene extends Phaser.Scene {
           
 
               this.physics.add.collider(this.player, tile.id, function(player, block) {
+
+                if (block.blockType === 'dead'){
+                    gameOver.is=true;
+                    gameOver.reason=block.blockType;
+                }
+                if (block.blockType === 'bonus'){
+                    score ++;
+                }
+                if (block.blockType === 'finish'){
+                    gameOver.is=true;
+                    gameOver.reason=block.blockType;
+                }
+                if (block.blockType === 'standard'){
+                    
+                }
+                //console.log(block.blockType);
                 gg=false;
-                stopVelocity=false;
-                console.log("Player touched block with blockType:");
+                player.setVelocityX(0);
+                player.setVelocityY(0);
+                //console.log("Player touched block with blockType:");
               });  
 
     
@@ -74,21 +98,13 @@ class levelScene extends Phaser.Scene {
 
     update() {
         
-       //Iba na skusku
-        // console.log(this.showNumber);
+       
+        if(gameOver.is==true){
+            //akcia 4o sa stane;
+            console.log(gameOver);
 
-         if (this.cursors.up.isDown) {
-             this.moveDownTiles();
-            
-         }
-         else if (this.cursors.down.isDown) {
-             this.moveUpTiles();
-         }
-
-        // }
-        // else if (this.cursors.down.isDown) {
-        //     this.moveUpTiles();
-        // }
+        }
+        else{
 
         // Keeps slider in progressBarHorizontal
         if (this.sliderHorizontal.x < 60) {
@@ -129,6 +145,7 @@ class levelScene extends Phaser.Scene {
            this.directionFacing = "S"
         }
         if (this.player.body.velocity.y > 0 &&( playerJumpedUp || playerJumpedToSide)) {
+            
             // Player fliying up
             this.player.setVelocity(0,0);
             // Reset vertical slider
@@ -140,8 +157,7 @@ class levelScene extends Phaser.Scene {
             }
         }
         if(this.player.body.velocity.y < 0){
-            // Player flying dows
-            this.moveDownTiles()
+                this.moveDownTiles()
             // this.sliderVertical.setVelocityY(-25);
         }
         if (this.player.body.velocity.x < 0 ) {
@@ -225,6 +241,8 @@ class levelScene extends Phaser.Scene {
         else{
            
         }
+
+    }
        
     }
 
@@ -304,6 +322,7 @@ class levelScene extends Phaser.Scene {
     }
 
     moveDownTiles(){
+        if(gameOver.is == false){
         this.showNumber=this.showNumber+ this.jumpSpedUp;
         this.level.tileMap.forEach((tile, index) => {
 
@@ -316,10 +335,17 @@ class levelScene extends Phaser.Scene {
             }
         });
     }
+    }
 
     moveUpTiles(){
+        if(gameOver.is == false){
         this.showNumber=this.showNumber - this.jumpSpedDown;
         this.level.tileMap.forEach((tile, index) => {
+            if(this.showNumber<800){
+                //koniec hry bo spadol;
+                gameOver.is=true;
+                gameOver.reason="fallDown";
+            }
             if(tile.id.values().next().value.y > 0){
                 for (let block of tile.id) {
                 block.y -= this.jumpSpedDown;
@@ -327,12 +353,13 @@ class levelScene extends Phaser.Scene {
             }
         });
     }
+    }
 
 
 
     initTilesGenerator(){
         this.showNumber = 900;
-        this.showNumPrev = 264;
+        this.showNumPrev = 265;
         
 
            
@@ -367,9 +394,12 @@ class levelScene extends Phaser.Scene {
                        
                         let block = this.physics.add.sprite(tile.x+moveBlock, tile.y, 'tileMap', this.blockName).setScale(2);;
                         block.setOrigin(0, 1);
-                        console.log(block);
+                        //console.log(block);
                         block.body.allowGravity=false;
                         block.body.immovable=true;
+                        block.body.allowDrag=false;
+                        block.body.mass=1000;
+                        block.blockType = tile.blockType;
                         tile.id.push(block);
                         moveBlock +=tileWH; 
                       }
