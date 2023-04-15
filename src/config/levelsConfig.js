@@ -10,7 +10,7 @@
 
 
 const level1TileMap = [
-  {x: 300, showNum: -32, blockType:'standard', tileType: 'grassdDownMid',tileTypeFirst: 'grassDownLeft',tileTypeLast: 'grassDownRight',tileLenght:5,  },
+  {x: 300, showNum: -32, blockType:'standard', tileType: 'grassDownMid',tileTypeFirst: 'grassDownLeft',tileTypeLast: 'grassDownRight',tileLenght:5,  },
   {x: 300, showNum: 32, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5,  },
   {x: 200, showNum: 150, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:4,  },
   {x: 400, showNum: 110, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileLenght:3,  },

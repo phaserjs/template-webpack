@@ -5,7 +5,7 @@ var gameOver= {
   };
 var score=0;
 var gameOverOverlay = false;
-
+var time= 0;
 
 
 class levelScene extends Phaser.Scene {
@@ -14,6 +14,7 @@ class levelScene extends Phaser.Scene {
     }
 
     init(data) {
+        //console.log(data);
         this.level = data.level;
         
     }
@@ -23,6 +24,22 @@ class levelScene extends Phaser.Scene {
     }
       
     create (){
+        gg=false;
+        gameOver.is=false;
+        gameOver.reason=null;
+        score=0;
+        gameOverOverlay=false;
+        time = 0; // začiatočný čas
+
+        // Spustenie časovača každú sekundu
+        this.time.addEvent({
+          delay: 1,
+          callback: function() {
+            time++; // Inkrementujeme čas
+          },
+          callbackScope: this,
+          loop: true
+        });
         
         // create repeating tile sprite for background
         const background = this.add.tileSprite(0, 0, this.cameras.main.width, this.cameras.main.height, this.level.mapName);
@@ -54,7 +71,7 @@ class levelScene extends Phaser.Scene {
 
 
 
-        this.level.tileMap.forEach((tile, index) => {
+        this.tileBlocks.forEach((tile, index) => {
           
 
               this.physics.add.collider(this.player, tile.id, function(player, block) {
@@ -327,7 +344,7 @@ class levelScene extends Phaser.Scene {
     moveDownTiles(){
         if(gameOver.is == false){
         this.showNumber=this.showNumber+ this.jumpSpedUp;
-        this.level.tileMap.forEach((tile, index) => {
+        this.tileBlocks.forEach((tile, index) => {
 
             if(tile.showNum <= this.showNumber){
                 for (let block of tile.id) {
@@ -343,7 +360,7 @@ class levelScene extends Phaser.Scene {
     moveUpTiles(){
         if(gameOver.is == false){
         this.showNumber=this.showNumber - this.jumpSpedDown;
-        this.level.tileMap.forEach((tile, index) => {
+        this.tileBlocks.forEach((tile, index) => {
             if(this.showNumber<800){
                 //koniec hry bo spadol;
                 gameOver.is=true;
@@ -366,8 +383,9 @@ class levelScene extends Phaser.Scene {
         
 
            
+            this.tileBlocks= JSON.parse(JSON.stringify(this.level.tileMap));  
 
-            this.level.tileMap.forEach((tile, index) => {
+            this.tileBlocks.forEach((tile, index) => {
                 
                     tile.y=0
                     this.showNumPrev += tile.showNum;
