@@ -7,7 +7,8 @@ class preloadScene extends Phaser.Scene {
     preload ()
     {
         this.load.image('menuBackground', 'src/assets/menuBackground.png');
-        
+        this.load.image('menuBackgroundBlur', 'src/assets/menuBackgroundBlur.png');
+
         // button
         this.load.image('button', 'src/assets/button.png');
         // load all assets for the game
@@ -35,6 +36,13 @@ class preloadScene extends Phaser.Scene {
         // load tile map
         this.load.atlas('tileMap','src/assets/spritesheet.png', 'src/assets/sprites.json');
 
+        // gameRules and controls
+        this.load.image('gameRules', 'src/assets/gameRulesEnd.png');
+        this.load.image('powerBar', 'src/assets/powerBar.png');
+        this.load.image('spaceBar', 'src/assets/spaceBar.png');
+        this.load.image('rulesLevel', 'src/assets/rulesLevel.png');
+
+
 
         // add a loading bar ################
         var loadingBar = this.add.graphics({
@@ -58,6 +66,6 @@ class preloadScene extends Phaser.Scene {
       
     create ()
     {   
-        this.scene.start('levelMenu');
+        this.scene.start('menu');
     }
 }

@@ -1,3 +1,11 @@
 body {
     font-family: 'Montserrat', sans-serif;
-  }
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: #213C74;
+}
