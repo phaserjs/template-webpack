@@ -10,19 +10,37 @@
 
 
 const level1TileMap = [
-  {x: 300, showNum: -32, blockType:'standard', tileType: 'groundDownMid',tileTypeFirst: 'groundDownLeft',tileTypeLast: 'groundDownRight',tileLenght:10,  },
+  {x: 300, showNum: -32, blockType:'standard', tileType: 'grassdDownMid',tileTypeFirst: 'grassDownLeft',tileTypeLast: 'grassDownRight',tileLenght:5,  },
   {x: 300, showNum: 32, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5,  },
-  {x: 300, showNum: 150, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5,  },
-  {x: 0, showNum: 130, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5,  },
-  {x: 9, showNum: 140, blockType:'dead',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5,  },
-  {x: 50, showNum: 150, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5,  },
-  {x: 150, showNum: 200, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5,  },
-  {x: 31, showNum: 312,blockType:'standard', tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5 },
-  {x: 48, showNum: 390, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5 },
-  {x: 28, showNum: 459, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5 },
-  {x: 200, showNum: 497, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5},
-  {x: 800, showNum: 510, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5},
-  {x: 90, showNum: 514,blockType:'finish', tileType: 'standard',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:5}
+  {x: 200, showNum: 150, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:4,  },
+  {x: 400, showNum: 110, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileLenght:3,  },
+  {x: 496, showNum: 0, blockType:'dead',tileType: 'delete',tileLenght:1,  },
+  {x: 528, showNum: 0, blockType:'standard',tileType: 'grassTopRight',tileLenght:1,  },
+
+
+  {x: 200, showNum: 100, blockType:'dead',tileType: 'spike3',tileLenght:5,  },
+  {x: 200, showNum: 32, blockType:'standard',tileType: 'grassTopMid',tileLenght:5,},
+
+  {x: 0, showNum:64, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileLenght:4,  },
+  {x: 128, showNum:0, blockType:'dead',tileType: 'delete',tileLenght:1,  },
+
+
+  {x: 300, showNum: 150, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileTypeLast: 'grassTopRight',tileLenght:4,  },
+  {x: 550, showNum: 110, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileLenght:3,  },
+  {x: 646, showNum: 0, blockType:'dead',tileType: 'delete',tileLenght:1,  },
+
+
+  {x: 300, showNum: 100, blockType:'dead',tileType: 'spike3',tileLenght:5,  },
+  {x: 300, showNum: 32, blockType:'standard',tileType: 'grassTopMid',tileLenght:5,},
+
+  {x:100, showNum:64, blockType:'standard',tileType: 'grassTopMid',tileTypeFirst: 'grassTopLeft',tileLenght:4,  },
+  {x: 228, showNum:0, blockType:'dead',tileType: 'delete',tileLenght:1,  },
+  {x: 0, showNum:100, blockType:'standard',tileType: 'grassTopMid',tileLenght:5,  },
+  
+  {x: 300, showNum:100, blockType:'standard',tileType: 'grassDownMid',tileTypeFirst: 'grassDownLeftcorner',tileTypeLast: 'grassDownRightcorner',tileLenght:5,  },
+  {x: 332, showNum:32, blockType:'finish',tileType: 'plus',tileLenght:3,  },
+  {x: 300, showNum:0, blockType:'standard',tileType: 'grassTopLeftcorner',tileLenght:1,  },
+  {x: 428, showNum:0, blockType:'standard',tileType: 'grassTopRightcorner',tileLenght:1,  },
 ];
 
 
