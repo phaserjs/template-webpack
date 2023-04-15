@@ -74,6 +74,21 @@
         },
         "groundDownRight": {
             "frame": {"x":19,"y":34,"w":14,"h":16}
+        },
+        "spike1": {
+            "frame":{"x":66,"y":51,"width":14,"height":16} 
+        },
+        "spike2":{
+            "frame":{"x":49,"y":38,"width":16,"height":14}
+        },
+        "spike3":{
+            "frame":{"x":66,"y":17,"width":16,"height":16}
+        },
+        "spike4":{
+            "frame":{"x":100,"y":74,"width":16,"height":14}
+        },
+        "spike5":{
+            "frame":{"x":34,"y":34,"width":14,"height":15}
         }
     }
 }
