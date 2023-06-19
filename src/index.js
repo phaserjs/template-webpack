@@ -4,6 +4,8 @@ import logoImg from './assets/logo.png';
 import assetsMap from  './assets/tilemap_packed.png'
 import mapJson from './assets/map.json'
 import playerPNG from './assets/player.png'
+import enemyPNG from './assets/enimy.png'
+import Enemies from './Enemies';
 
 class MyGame extends Phaser.Scene
 {
@@ -19,6 +21,7 @@ class MyGame extends Phaser.Scene
         this.load.tilemapTiledJSON('map', mapJson)
 
         this.load.spritesheet('player', playerPNG, {frameWidth: 32, frameHeight: 32} )
+        this.load.spritesheet('enimy', enemyPNG, {frameWidth: 32, frameHeight: 32} )
     }
       
     create ()
@@ -29,11 +32,31 @@ class MyGame extends Phaser.Scene
         const ground = map.createLayer('ground', tileset, 0, 0)
         const objectCollider = map.createLayer('objectCollider', tileset, 0, 0)
         const aboveObject = map.createLayer('aboveObject', tileset, 0, 0)
-        // enimy
-        
+    
+        // atribuida a colisão pela propriedade definida no map.json
+        objectCollider.setCollisionByProperty({collides: true})
+        objectCollider.setDepth(10)
+
         // player
-        this.player = this.physics.add.sprite(176, 274, 'player')
+        const spawingPoint = map.findObject("player", obj => obj.name === 'spawing_point')
+        console.log({spawingPoint})
+
+        this.player = this.physics.add.sprite(spawingPoint.x, spawingPoint.y, 'player')
         console.log({player: this.player})
+        
+        // adicionado fisica de colisão 
+        this.physics.add.collider(this.player, objectCollider)
+
+        // enimy
+        this.enemies = map.createFromObjects("enimy", 'enimy', {})
+        console.log({ enemy: this.enemies })
+        this.enemiesGroup = new Enemies(this.physics.world, this, [], this.enemies)
+        
+        this.physics.add.collider(this.enemiesGroup, this.player, this.hitEnemy, null, this)
+
+        // colisão dos enimigos com o mapa
+        this.physics.add.collider(this.enemiesGroup, objectCollider)
+
 
         // animations
         const animate = this.anims
@@ -121,6 +144,10 @@ class MyGame extends Phaser.Scene
             else if(this.prevVelocity.y < 0) this.player.setTexture("player", "back")
             else if(this.prevVelocity.y > 0) this.player.setTexture("player", "front")
         }
+    }
+
+    hitEnemy (player, enemiesGroup) {
+        this.scene.restart()
     }
 }
 
