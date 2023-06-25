@@ -7,7 +7,7 @@ export default class Actor extends Phaser.Physics.Arcade.Sprite {
     this.scene.add.existing(this)
     this.scene.physics.add.existing(this);
     this.getBody().setCollideWorldBounds(true);
-    this.live = 1;
+    this.life = 1;
   }
 
   getDamage(value) {
@@ -18,7 +18,7 @@ export default class Actor extends Phaser.Physics.Arcade.Sprite {
       yoyo: true,
       alpha: 0.5,
       onStart: () => {
-        if(value) this.live = this.live - value
+        if(value) this.life = this.life - value
       },
       onComplete: () => {
         this.setAlpha(1)
@@ -26,8 +26,8 @@ export default class Actor extends Phaser.Physics.Arcade.Sprite {
     })
   }
 
-  getLive() {
-    return this.live;
+  getLife() {
+    return this.life;
   }
 
   // método para checar e girar o ator para a esquerda ou direitra

@@ -1,3 +1,5 @@
+import EventName from "../consts/event-name"
+import gameStatus from "../consts/game-status";
 import Actor from "./actor";
 
 export default class Player extends Actor {
@@ -19,7 +21,18 @@ export default class Player extends Actor {
     // this.getBody().setOffset(8, 0);
 
     this.initAnimation();
+
+    // this.on('destroy', () => [
+    //   this.keySpace.removeListener
+    // ])
     
+  }
+
+  getDamage(value) {
+    super.getDamage(value);
+    // this.life.setText(this.life.toString())
+    if(this.life <= 0)
+      this.scene.game.events.emit(EventName.gameEnd, gameStatus.lose)
   }
 
   update() {

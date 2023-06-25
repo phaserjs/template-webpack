@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import LoadingScene from './scenes/loading';
 import Level1 from './scenes/level-1';
 import Level2 from './scenes/level-2';
+import Level4 from './scenes/level-4';
 import UIScene from './scenes/ui';
 
 const config = {
@@ -15,7 +16,8 @@ const config = {
             gravity: { y: 0 }
         }
     },
-    scene: [LoadingScene, Level1, Level2, UIScene]
+    scene: [LoadingScene, Level1, Level2, Level4, UIScene]
+    
 };
 
 const game = new Phaser.Game(config);
