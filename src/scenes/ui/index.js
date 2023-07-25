@@ -3,10 +3,12 @@ import Score from "../../classes/score";
 import EventName from "../../consts/event-name";
 import GameStatus from "../../consts/game-status";
 import Text from "../../classes/text";
+import iconPlay from "../../assets/buttons/Icon_Play.png";
 
 export default class UIScene extends Phaser.Scene {
   constructor() {
-    super('ui-scene')
+    // super('ui-scene')
+    super({ key: 'ui-scene', active: true})
   }
 
   create () {
@@ -23,17 +25,18 @@ export default class UIScene extends Phaser.Scene {
     }
   }
 
-  gameEndHandler (status) {
-    console.log({status})
+  gameEndHandler ({status, level}) {
+    console.log({status, level})
+    console.log({ game: this.game, scene: this.game.scene })
     this.cameras.main.setBackgroundColor('rgba(0,0,0,0.6)');
-    this.game.scene.pause('level-4-scene')
+    this.game.scene.pause('level-4-test')
     this.gameEndPhase = new Text(
       this,
       this.game.scale.width / 2,
       this.game.scale.height * 0.4,
       status === GameStatus.lose
-        ? `WASTED! \nCLICK TO RESTART`
-        : `YOU ARE CRASHER \nCLICK TO RESTART`
+        ? `NÃO FOI DESSA VEZ,\n MAS VOCÊ PODE TENTAR NOVAMENTE! \nCLIQUE PARA TENTAR NOVAMENTE`
+        : `PARABÉNS! VOCÊ COMPLETOU A FASE!\nCLIQUE PARA INICIAR A PRÓXIMA FASE`
     )
     .setAlign('center')
     .setColor(status === GameStatus.lose ? '#ff0000' : '#ffffff')
@@ -46,8 +49,22 @@ export default class UIScene extends Phaser.Scene {
     this.input.on('pointerdown', () => {
       this.game.events.off(EventName.chestLoot, this.chestLootHandler)
       this.game.events.off(EventName.gameEnd, this.gameEndHandler)
-      this.scene.get('level-4-scene').scene.restart()
-      this.scene.restart()
+      if(status === GameStatus.lose) {
+        this.scene.get(level).scene.restart()
+        this.scene.get('ui-scene').scene.restart()
+        this.scene.get('movement-scene').scene.restart()
+        // this.scene.restart()
+      } else {
+        this.scene.stop()
+        this.scene.remove()
+
+        this.scene.start('ui-scene')
+        this.scene.start('movement-scene')
+        this.scene.start('level-4-scene')
+        // this.scene.get('movement-scene')
+        // this.scene.get('ui-scene')
+
+      }
     })
   }
 

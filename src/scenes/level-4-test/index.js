@@ -1,32 +1,40 @@
 import Phaser from "phaser";
 import assetsMap from "../../assets/tilemap_packed.png";
-import mapJson from "../../assets/map-01.json";
+import mapJson from "../../assets/map-04.json";
 import playerPNG from "../../assets/player.png";
 import Player from "../../classes/player";
-import direction from "../../consts/direction";
 import EventName from "../../consts/event-name";
+import Enemy from "../../classes/enemy";
+import direction from "../../consts/direction";
 import gameStatus from "../../consts/game-status";
 
 export default class MyGame extends Phaser.Scene {
   constructor() {
-    super('level-1-scene');
+    super('level-4-test');
   }
 
-  preload() {
+  preload() {    
     this.load.image("tiles", assetsMap);
-    this.load.tilemapTiledJSON("map_1", mapJson);
+    this.load.tilemapTiledJSON("map", mapJson);
 
     this.load.spritesheet("player", playerPNG, {
       frameWidth: 32,
       frameHeight: 32,
     });
+
+    this.load.spritesheet("tiles_spr", assetsMap, {
+      frameWidth: 32,
+      frameHeight: 32,
+    });
+
   }
 
   create() {
-    this.map = this.make.tilemap({ key: "map_1" });
-    console.log("level 1 " ,{ map: this.map })
+    this.map = this.make.tilemap({ key: "map" });
     this.tileset = this.map.addTilesetImage("tilemap_packed", "tiles");
 
+    console.log({ map: this.map })
+    
     this.ground = this.map.createLayer("ground", this.tileset, 0, 0);
     this.objectCollider = this.map.createLayer("objectCollider", this.tileset, 0, 0);
     this.aboveObject = this.map.createLayer("aboveObject", this.tileset, 0, 0);
@@ -51,13 +59,17 @@ export default class MyGame extends Phaser.Scene {
       console.log({ obj1, obj2, property: obj2.properties })
       if(obj2.properties.winner)
         this.game.events.emit(EventName.gameEnd, { gameStatus: gameStatus.win, level: this.scene.key })
+        // this.game.events.emit(EventName.gameEnd, gameStatus.win)
 
       if(this.steps.length > 0) {
         this.steps.shift();
       }
     })
-
+    
+    this.initEnemies()
+    this.initReward()
     this.initListeners()
+    
 
     // camera
     const camera = this.cameras.main;
@@ -100,7 +112,44 @@ export default class MyGame extends Phaser.Scene {
   levelCompleted(player, goal) {
     this.scene.restart();
   }
-  
+
+  initReward() {
+    // const rewards = this.map.createFromObjects('reward', 'reward', {})
+    // const rewardPoints = rewards.forEach(sprite => {})
+    // gameObjectsToObjectPoints = (gameObjects: unknown[]): ObjectPoint[] => {
+    //   return gameObjects.map(gameObject => gameObject as ObjectPoint);
+    // };
+    const rewardPoints = this.map.filterObjects('reward', obj => obj.name === 'reward')
+
+    this.rewards = rewardPoints.map(reward => 
+      // sprite id - 113, 114, 115, 116 -> são as porções
+      this.physics.add.sprite(reward.x, reward.y, 'tiles_spr', 89).setScale(0.8)
+    )
+
+    this.rewards.forEach(reward => {
+      this.physics.add.overlap(this.player, reward, (obj1, obj2) => {
+        this.game.events.emit(EventName.chestLoot)
+        obj2.destroy()
+        this.cameras.main.flash()
+      })
+    })
+  }
+
+  initEnemies () {
+    const enemiesPoints = this.map.filterObjects('enemy', obj => obj.name === 'enemy')
+    
+    this.enemies = enemiesPoints.map(
+      enemy => new Enemy(this, enemy.x, enemy.y, 'tiles_spr', this.player, 121)
+        .setName(enemy.id.toString())
+    )
+
+    this.physics.add.collider(this.enemies, this.objectCollider)
+    this.physics.add.collider(this.enemies, this.enemies)
+    this.physics.add.collider(this.player, this.enemies, (obj1, obj2) => {
+      obj1.getDamage(1)
+    })
+  }
+
   executeStepsHandler (event, { steps })
   {
     console.log("executeStepsHandler " + event)
@@ -133,4 +182,5 @@ export default class MyGame extends Phaser.Scene {
   initListeners() {
     this.game.events.on(EventName.executeSteps, this.executeStepsHandler, this)
   }
+
 }
