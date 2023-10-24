@@ -1,7 +1,7 @@
-const webpack = require("webpack");
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -30,8 +30,14 @@ module.exports = {
       root: path.resolve(__dirname, "../")
     }),
     new webpack.DefinePlugin({
-      CANVAS_RENDERER: JSON.stringify(true),
-      WEBGL_RENDERER: JSON.stringify(true)
+      "typeof CANVAS_RENDERER": JSON.stringify(true),
+      "typeof WEBGL_RENDERER": JSON.stringify(true),
+      "typeof WEBGL_DEBUG": JSON.stringify(true),
+      "typeof EXPERIMENTAL": JSON.stringify(true),
+      "typeof PLUGIN_3D": JSON.stringify(false),
+      "typeof PLUGIN_CAMERA3D": JSON.stringify(false),
+      "typeof PLUGIN_FBINSTANT": JSON.stringify(false),
+      "typeof FEATURE_SOUND": JSON.stringify(true)
     }),
     new HtmlWebpackPlugin({
       template: "./index.html"

@@ -10,11 +10,17 @@ class MyGame extends Phaser.Scene
 
     preload ()
     {
+        //  This is an example of a bundled image:
         this.load.image('logo', logoImg);
+
+        //  This is an example of loading a static image from the public folder:
+        this.load.image('background', 'assets/bg.jpg');
     }
       
     create ()
     {
+        this.add.image(400, 300, 'background');
+
         const logo = this.add.image(400, 150, 'logo');
       
         this.tweens.add({
