@@ -1,39 +1,38 @@
 {
-  "name": "phaser3-project-template",
-  "version": "2.0.0",
-  "description": "A Phaser 3 Project Template",
-  "main": "src/index.js",
-  "scripts": {
-    "build": "webpack --config webpack/prod.js ",
-    "start": "webpack-dev-server --config webpack/base.js --open"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/photonstorm/phaser3-project-template.git"
-  },
-  "author": "Richard Davey <rdavey@gmail.com> (http://www.photonstorm.com)",
-  "license": "MIT",
-  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
-  "bugs": {
-    "url": "https://github.com/photonstorm/phaser3-project-template/issues"
-  },
-  "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
-  "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/preset-env": "^7.23.2",
-    "babel-loader": "^9.1.3",
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^11.0.0",
-    "file-loader": "^6.2.0",
-    "html-webpack-plugin": "^5.5.3",
-    "raw-loader": "^4.0.2",
-    "terser-webpack-plugin": "^5.3.9",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1",
-    "webpack-merge": "^5.10.0"
-  },
-  "dependencies": {
-    "phaser": "^3.70.0"
-  }
+    "name": "template-webpack",
+    "version": "3.0.0",
+    "main": "src/main.js",
+    "scripts": {
+        "dev": "webpack-dev-server --config webpack/config.js --open",
+        "build": "webpack --config webpack/config.prod.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/phaserjs/template-webpack.git"
+    },
+    "author": "Phaser Studio <support@phaser.io> (https://phaser.io/)",
+    "license": "MIT",
+    "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
+    "bugs": {
+        "url": "https://github.com/phaserjs/template-webpack/issues"
+    },
+    "homepage": "https://github.com/phaserjs/template-webpack#readme",
+    "devDependencies": {
+        "@babel/core": "^7.23.2",
+        "@babel/preset-env": "^7.23.2",
+        "babel-loader": "^9.1.3",
+        "clean-webpack-plugin": "^4.0.0",
+        "copy-webpack-plugin": "^11.0.0",
+        "file-loader": "^6.2.0",
+        "html-webpack-plugin": "^5.5.3",
+        "raw-loader": "^4.0.2",
+        "terser-webpack-plugin": "^5.3.9",
+        "webpack": "^5.89.0",
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^4.15.1",
+        "webpack-merge": "^5.10.0"
+    },
+    "dependencies": {
+        "phaser": "^3.70.0"
+    }
 }
