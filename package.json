@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "main": "src/main.js",
     "scripts": {
-        "dev": "webpack-dev-server --config webpack/config.js --open",
+        "dev": "webpack-dev-server --config webpack/config.js",
         "build": "webpack --config webpack/config.prod.js"
     },
     "repository": {
