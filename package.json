@@ -1,6 +1,6 @@
 {
-    "name": "template-webpack",
-    "version": "3.1.1",
+    "name": "set-stats",
+    "version": "0.0.1",
     "main": "src/main.js",
     "scripts": {
         "dev": "webpack-dev-server --config webpack/config.js --open",
@@ -8,9 +8,9 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/phaserjs/template-webpack.git"
+        "url": "git+https://github.com/davidyarbrough/set-stats.git"
     },
-    "author": "Phaser Studio <support@phaser.io> (https://phaser.io/)",
+    "author": "David Yarbrough",
     "license": "MIT",
     "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
     "bugs": {
