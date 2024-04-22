@@ -3,9 +3,9 @@ import { Scene } from 'phaser';
 export class Game extends Scene
 {
     numbers = [1, 2, 3]
-    colors = ["red", "green", "purple"]
+    colors = ["green", "purple", "red"]
     symbols = ["diamond", "pill", "squiggly"]
-    fills = ["hollow", "shaded", "filled"]
+    fills = ["filled", "hollow", "shaded"]
     
     gridConfiguration = {
         x: 113,
@@ -56,6 +56,28 @@ export class Game extends Scene
     create ()
     {
         this.cameras.main.setBackgroundColor(0x00ff00);
+        for (const number in this.numbers) {
+            if (Object.hasOwnProperty.call(this.numbers, number)) {
+                for (const color in this.colors) {
+                    if (Object.hasOwnProperty.call(this.colors, color)) {
+                        for (const symbol in this.symbols) {
+                            if (Object.hasOwnProperty.call(this.symbols, symbol)) {
+                                for (const fill in this.fills) {
+                                    if (Object.hasOwnProperty.call(this.fills, fill)) {
+                                        const currentNumber = this.numbers[number];
+                                        const currentColor = this.colors[color];
+                                        const currentSymbol = this.symbols[symbol];
+                                        const currentFill = this.fills[fill];
+                                        const cardName = [currentNumber, currentColor, currentSymbol, currentFill].join('-') 
+                                        console.log(cardName.trim())
+            }
+        }
+    }
+}
+                    }
+                }
+            }
+        }
 
         this.add.image(512, 384, 'background').setAlpha(0.5);
         console.log(this.createNewGrid())
