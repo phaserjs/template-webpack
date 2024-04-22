@@ -69,6 +69,38 @@ export class Game extends Scene
         return cards
     }
 
+    selectedCards = []
+    evaluateSelected() {
+        console.log(this.selectedCards)
+        if (this.selectedCards.length < 3 ) {
+            console.log("not enough selected")
+            return;
+        }
+        console.log("Ready to evaluate!")
+        this.checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card)
+    }
+
+    checkIfValidSet(cardOne, cardTwo, cardThree) {
+        for (let attribute of ['number', 'color', 'symbol', 'fill']) {
+            const attr1 = cardOne[attribute]
+            const attr2 = cardTwo[attribute]
+            const attr3 = cardThree[attribute]
+
+            if (
+                !(attr1 === attr2 && attr2 === attr3) // all of this attribute the same
+                && !(attr1 !== attr2 && attr2 !== attr3 && attr1 !== attr3) // all of this attribute different
+            ) {
+                console.log(`Failed on attribute ${attribute} with values ${attr1}, ${attr2}, ${attr3}`)
+                return false;
+            }
+        }
+        console.log("Found a set!")
+        console.log([cardOne, cardTwo, cardThree])
+        this.selectedCards = []
+        this.scene.start('Game');
+        return true;
+    }
+
     create ()
     {
         //initialize the grid
@@ -80,13 +112,31 @@ export class Game extends Scene
         let yPos = startY;
 
         this.add.image(512, 384, 'background').setAlpha(0.5);
+
         //fill the grid with cards
         let cards = this.createNewGrid()
         console.log(cards)
         cards.forEach(card => {
             const sprite = this.add.sprite(xPos, yPos, card.assetKey);
+            sprite.card = card
             sprite.setOrigin(0);
             sprite.setScale(100 / sprite.width)
+            sprite.setInteractive();
+            sprite.on('pointerdown', () => {
+                if (!sprite.selected) {
+                    sprite.setTint(0xAAAA00);
+                    sprite.selected = true;
+                    this.selectedCards.push(sprite)
+                } else {
+                    sprite.clearTint();
+                    sprite.selected = false;
+                    const index = this.selectedCards.indexOf(sprite);
+                    if (index != -1) {
+                        this.selectedCards.splice(index, 1);
+                    }
+                }
+                this.evaluateSelected()
+            })
 
             xPos += this.gridConfiguration.cardWidth + this.gridConfiguration.paddingX
             if (xPos >= startX + totalWidth) { //end of line
@@ -101,10 +151,10 @@ export class Game extends Scene
         //     align: 'center'
         // }).setOrigin(0.5);
 
-        this.input.once('pointerdown', () => {
+        // this.input.once('pointerdown', () => {
 
-            this.scene.start('GameOver');
+        //     this.scene.start('Game');
 
-        });
+        // });
     }
 }
