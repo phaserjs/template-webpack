@@ -2,6 +2,8 @@ import { Scene } from 'phaser';
 
 export class Game extends Scene
 {
+    
+    numberOfCards = 12 //TODO extract to config or something
     numbers = [1, 2, 3]
     colors = ["green", "purple", "red"]
     symbols = ["diamond", "pill", "squiggly"]
@@ -60,13 +62,24 @@ export class Game extends Scene
     }
 
     createNewGrid() {
-        var numberOfCards = 12 //TODO extract to config or something
         var cards = []
 
-        for (var i = 0; i < numberOfCards; i++) {
-            cards.push(this.newRandomCard())
+        while (cards.length < this.numberOfCards) {
+            const newCard = this.newRandomCard();
+            if (!cards.some(card => this.cardsAreEqual(card, newCard))) {
+                cards.push(newCard)
+            }
         }
         return cards
+    }
+
+    cardsAreEqual(cardOne, cardTwo) {
+        return (
+            cardOne.number === cardTwo.number &&
+            cardOne.color === cardTwo.color &&
+            cardOne.symbol === cardTwo.symbol &&
+            cardOne.fill === cardTwo.fill
+        )
     }
 
     selectedCards = []
