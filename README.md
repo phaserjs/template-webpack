@@ -1,17 +1,22 @@
-# Phaser Webpack Template
+# Phaser 3 Set game
 
-This is a Phaser 3 project template that uses webpack for bundling. It supports hot-reloading for quick development workflow and includes scripts to generate production-ready builds.
+This is a basic game of Set that I wrote to teach myself Phaser 3. The idea is to
+play rounds of set with randomly generated decks of 12 cards, and see which types of 
+sets you find the fastest. My theory is that I tend to see certain kinds of sets 
+(all one number, all one symbol, all different fills, etc.) more easily than others,
+and I want to test that theory.
 
-**[This Template is also available as a TypeScript version.](https://github.com/phaserjs/template-webpack-ts)**
+If you stumbled across this repo and are interested in it, feel free to fork or submit
+PRs. 
+
+this project is based on https://github.com/phaserjs/template-webpack
+
+All code is licensed under the MIT license.
+All assets are licensed under CC BY-SA 4.0
 
 ### Versions
 
-This template has been updated for:
-
-- [Phaser 3.80.1](https://github.com/phaserjs/phaser)
-- [Webpack 5.90.3](https://github.com/webpack/webpack)
-
-![screenshot](screenshot.png)
+This project is currently in development and is pre-1.0
 
 ## Requirements
 
