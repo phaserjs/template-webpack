@@ -11,6 +11,7 @@ export class Game extends Scene
     cards = []
     selectedCards = []
     validSets = []
+    startTime = null;
     
     gridConfiguration = {
         gridWidth: 3,
@@ -79,7 +80,23 @@ export class Game extends Scene
             return;
         }
         console.log("Ready to evaluate!")
-        this.checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card)
+        this.endGame()
+    }
+
+    endGame() {
+        const secondsTaken = (Date.now() - this.startTime) / 1000;
+        console.log(`Your time was ${secondsTaken} seconds.`)
+        if ( this.checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card) ) {
+            console.log(`You found a Set! your Set:`)
+        } else {
+            console.log("Sorry, you didn't find a Set. Your set (lowercase...):")
+        }
+        console.log([this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card])
+        console.log("All valid sets in this deck:")
+        console.log(this.validSets)
+        this.selectedCards = []
+        this.scene.start('Game');
+
     }
 
     checkIfValidSet(cardOne, cardTwo, cardThree) {
@@ -92,14 +109,12 @@ export class Game extends Scene
                 !(attr1 === attr2 && attr2 === attr3) // all of this attribute the same
                 && !(attr1 !== attr2 && attr2 !== attr3 && attr1 !== attr3) // all of this attribute different
             ) {
-                console.log(`Failed on attribute ${attribute} with values ${attr1}, ${attr2}, ${attr3}`)
+                // console.log(`Failed on attribute ${attribute} with values ${attr1}, ${attr2}, ${attr3}`)
                 return false;
             }
         }
-        console.log("Found a set!")
-        console.log([cardOne, cardTwo, cardThree])
-        this.selectedCards = []
-        // this.scene.start('Game');
+        // console.log("Found a set!")
+        // console.log([cardOne, cardTwo, cardThree])
         return true;
     }
 
@@ -179,6 +194,7 @@ export class Game extends Scene
             }
         })
         this.cameras.main.setBackgroundColor(0x00ff00);
+        this.startTime = Date.now();
         console.log(`There are ${this.validSets.length} sets`)
         console.log(this.validSets)
         // this.add.text(512, 384, "Test", {
