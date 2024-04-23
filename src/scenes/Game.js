@@ -8,19 +8,9 @@ export class Game extends Scene
     colors = ["green", "purple", "red"]
     symbols = ["diamond", "pill", "squiggly"]
     fills = ["filled", "hollow", "shaded"]
-
-    preload () {
-        this.numbers.forEach(number => {
-            this.colors.forEach(color => {
-                this.symbols.forEach(symbol => {
-                    this.fills.forEach(fill => {
-                        const assetKey = `${number}-${color}-${symbol}-${fill}`
-                        this.load.image(assetKey, `assets/cards/${assetKey}.png`)
-                    })
-                })
-            })
-        })
-    }
+    cards = []
+    selectedCards = []
+    validSets = []
     
     gridConfiguration = {
         gridWidth: 3,
@@ -82,7 +72,6 @@ export class Game extends Scene
         )
     }
 
-    selectedCards = []
     evaluateSelected() {
         console.log(this.selectedCards)
         if (this.selectedCards.length < 3 ) {
@@ -110,8 +99,41 @@ export class Game extends Scene
         console.log("Found a set!")
         console.log([cardOne, cardTwo, cardThree])
         this.selectedCards = []
-        this.scene.start('Game');
+        // this.scene.start('Game');
         return true;
+    }
+
+    findAllValidSets(cards) {
+        const validSets = [];
+
+        for (let i = 0; i < this.cards.length - 2; i++) {
+            for (let j = i + 1; j < this.cards.length - 1; j++) {
+                for (let k = j + 1; k < this.cards.length; k++) {
+                    const card1 = this.cards[i];
+                    const card2 = this.cards[j];
+                    const card3 = this.cards[k];
+                    if (this.checkIfValidSet(card1, card2, card3)) {
+                        validSets.push([card1, card2, card3])
+                    }
+                }
+            }
+        }
+        return validSets
+    }
+
+    preload () {
+        this.numbers.forEach(number => {
+            this.colors.forEach(color => {
+                this.symbols.forEach(symbol => {
+                    this.fills.forEach(fill => {
+                        const assetKey = `${number}-${color}-${symbol}-${fill}`
+                        this.load.image(assetKey, `assets/cards/${assetKey}.png`)
+                    })
+                })
+            })
+        })
+        this.cards = this.createNewGrid()
+        this.validSets = this.findAllValidSets()
     }
 
     create ()
@@ -127,9 +149,8 @@ export class Game extends Scene
         this.add.image(512, 384, 'background').setAlpha(0.5);
 
         //fill the grid with cards
-        let cards = this.createNewGrid()
-        console.log(cards)
-        cards.forEach(card => {
+        console.log(this.cards)
+        this.cards.forEach(card => {
             const sprite = this.add.sprite(xPos, yPos, card.assetKey);
             sprite.card = card
             sprite.setOrigin(0);
@@ -158,6 +179,8 @@ export class Game extends Scene
             }
         })
         this.cameras.main.setBackgroundColor(0x00ff00);
+        console.log(`There are ${this.validSets.length} sets`)
+        console.log(this.validSets)
         // this.add.text(512, 384, "Test", {
         //     fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
         //     stroke: '#000000', strokeThickness: 8,
