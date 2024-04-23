@@ -4,7 +4,9 @@
     "main": "src/main.js",
     "scripts": {
         "dev": "webpack-dev-server --config webpack/config.js",
-        "build": "webpack --config webpack/config.prod.js"
+        "build": "webpack --config webpack/config.prod.js",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist"
     },
     "repository": {
         "type": "git",
@@ -24,6 +26,7 @@
         "clean-webpack-plugin": "^4.0.0",
         "copy-webpack-plugin": "^12.0.2",
         "file-loader": "^6.2.0",
+        "gh-pages": "^6.1.1",
         "html-webpack-plugin": "^5.6.0",
         "raw-loader": "^4.0.2",
         "terser-webpack-plugin": "^5.3.10",
