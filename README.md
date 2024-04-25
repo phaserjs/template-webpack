@@ -6,6 +6,9 @@ sets you find the fastest. My theory is that I tend to see certain kinds of sets
 (all one number, all one symbol, all different fills, etc.) more easily than others,
 and I want to test that theory.
 
+You can try it out here:
+https://davidyarbrough.github.io/set-stats/
+
 If you stumbled across this repo and are interested in it, feel free to fork or submit
 PRs. 
 
