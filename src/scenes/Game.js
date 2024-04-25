@@ -109,12 +109,9 @@ export class Game extends Scene
                 !(attr1 === attr2 && attr2 === attr3) // all of this attribute the same
                 && !(attr1 !== attr2 && attr2 !== attr3 && attr1 !== attr3) // all of this attribute different
             ) {
-                // console.log(`Failed on attribute ${attribute} with values ${attr1}, ${attr2}, ${attr3}`)
                 return false;
             }
         }
-        // console.log("Found a set!")
-        // console.log([cardOne, cardTwo, cardThree])
         return true;
     }
 
