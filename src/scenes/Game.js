@@ -134,6 +134,8 @@ export class Game extends Scene
     }
 
     preload () {
+        
+    this.load.image('resetButton', 'assets/icons8-reset-50.png');
         this.numbers.forEach(number => {
             this.colors.forEach(color => {
                 this.symbols.forEach(symbol => {
@@ -194,6 +196,13 @@ export class Game extends Scene
         this.startTime = Date.now();
         console.log(`There are ${this.validSets.length} sets`)
         console.log(this.validSets)
+        const resetButton = this.add.image(950, 550, 'resetButton').setOrigin(1, 1).setTint(0x0000ff).setInteractive();
+
+        // Add a pointer up event to the reset button
+        resetButton.on('pointerup', function () {
+            // Reset the scene
+            this.scene.restart();
+        }, this);
         // this.add.text(512, 384, "Test", {
         //     fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
         //     stroke: '#000000', strokeThickness: 8,
