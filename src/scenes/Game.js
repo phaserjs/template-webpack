@@ -22,6 +22,13 @@ export class Game extends Scene
         paddingY: 10
     }
 
+    previousGameData = {
+        message: "Welcome to SET!",
+        secondsTaken: null,
+        foundSet: null,
+        numberOfSets: null
+    }
+
     constructor ()
     {
         super('Game');
@@ -86,14 +93,20 @@ export class Game extends Scene
     endGame() {
         const secondsTaken = (Date.now() - this.startTime) / 1000;
         console.log(`Your time was ${secondsTaken} seconds.`)
-        if ( this.checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card) ) {
+        this.previousGameData.secondsTaken = `Your time was ${secondsTaken} seconds.`
+        if (this.selectedCards.length == 3 && this.checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card) ) {
             console.log(`You found a Set! your Set:`)
+            this.previousGameData.message = "You found a Set!"
+            this.previousGameData.foundSet = [this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card]
         } else {
             console.log("Sorry, you didn't find a Set. Your set (lowercase...):")
+            this.previousGameData.message = "Sorry, you didn't find a Set."
+            this.previousGameData.foundSet = null
         }
         console.log([this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card])
         console.log("All valid sets in this deck:")
         console.log(this.validSets)
+        this.previousGameData.numberOfSets = this.validSets.length
         this.selectedCards = []
         this.scene.start('Game');
 
@@ -161,6 +174,12 @@ export class Game extends Scene
         let yPos = startY;
 
         this.add.image(512, 384, 'background').setAlpha(0.5);
+
+        this.add.text(10, 10, this.previousGameData.message, { color: '#ffffff', fontSize: '20px' });
+
+        if (this.previousGameData.secondsTaken) {
+            this.add.text(10, 30, this.previousGameData.secondsTaken, { color: '#ffffff', fontSize: '20px' });
+        }
 
         //fill the grid with cards
         console.log(this.cards)
