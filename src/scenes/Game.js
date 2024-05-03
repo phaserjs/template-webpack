@@ -94,14 +94,15 @@ export class Game extends Scene
         const secondsTaken = (Date.now() - this.startTime) / 1000;
         console.log(`Your time was ${secondsTaken} seconds.`)
         this.previousGameData.secondsTaken = `Your time was ${secondsTaken} seconds.`
-        if (this.selectedCards.length == 3 && this.checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card) ) {
+        if (this.selectedCards.length == 3) {
+            this.previousGameData.foundSet = [this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card]
+        }
+        if (this.checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card) ) {
             console.log(`You found a Set! your Set:`)
             this.previousGameData.message = "You found a Set!"
-            this.previousGameData.foundSet = [this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card]
         } else {
             console.log("Sorry, you didn't find a Set. Your set (lowercase...):")
             this.previousGameData.message = "Sorry, you didn't find a Set."
-            this.previousGameData.foundSet = null
         }
         console.log([this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card])
         console.log("All valid sets in this deck:")
@@ -146,6 +147,26 @@ export class Game extends Scene
         return validSets
     }
 
+    characterizeSet(cardOne, cardTwo, cardThree) {
+        let characteristics = {}
+        for (let attribute of ['number', 'color', 'symbol', 'fill']) {
+            const attr1 = cardOne[attribute]
+            const attr2 = cardTwo[attribute]
+            const attr3 = cardThree[attribute]
+
+            if (attr1 === attr2 && attr2 === attr3) {
+                characteristics[attribute] = attr1
+            }
+            else if (attr1 !== attr2 && attr2 !== attr3 && attr1 !== attr3) {
+                characteristics[attribute] = "heterogeneous"
+            } 
+            else {
+                characteristics[attribute] = "invalid"
+            }
+        }
+        return characteristics
+    }
+
     preload () {
         
     this.load.image('resetButton', 'assets/icons8-reset-50.png');
@@ -179,6 +200,17 @@ export class Game extends Scene
 
         if (this.previousGameData.secondsTaken) {
             this.add.text(10, 30, this.previousGameData.secondsTaken, { color: '#ffffff', fontSize: '20px' });
+        }
+        if (this.previousGameData.foundSet) {
+            let characteristics = this.characterizeSet(...this.previousGameData.foundSet)
+            this.add.text(10, 50, "Last round set", { color: '#ffffff', fontSize: '20px' });
+            this.add.text(10, 70, `Number: ${characteristics.number}`, { color: '#ffffff', fontSize: '20px' });
+            this.add.text(10, 90,  `Color: ${characteristics.color}`, { color: '#ffffff', fontSize: '20px' });
+            this.add.text(10, 110,  `Symbol: ${characteristics.symbol}`, { color: '#ffffff', fontSize: '20px' });
+            this.add.text(10, 130,  `Fill: ${characteristics.fill}`, { color: '#ffffff', fontSize: '20px' });
+        }
+        if (this.previousGameData.numberOfSets) {
+            this.add.text(10, 150, `Sets last round: ${this.previousGameData.numberOfSets}`, { color: '#ffffff', fontSize: '20px' });
         }
 
         //fill the grid with cards
