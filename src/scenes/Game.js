@@ -87,29 +87,50 @@ export class Game extends Scene
             return;
         }
         console.log("Ready to evaluate!")
-        this.endGame()
+        this.endGame({mode: 'fullSet'})
     }
 
-    endGame() {
+    endGame(endGameMode) {
+        if (endGameMode.mode === 'reset'){
+            this.previousGameData.numberOfSets = this.validSets.length
+            this.previousGameData.message = "You reset the board"
+            this.previousGameData.foundSet = null
+            this.selectedCards = []
+            this.scene.start('Game');
+        }
+        else if (endGameMode.mode === 'noSet'){
+            this.previousGameData.numberOfSets = this.validSets.length
+            if (this.validSets.length) {
+                this.previousGameData.message = `Sorry, there were some Sets`
+            } else {
+                this.previousGameData.message = `Correct! there were no Sets`
+            }
+            this.previousGameData.foundSet = null
+            this.selectedCards = []
+            this.scene.start('Game');
+        } else {
         const secondsTaken = (Date.now() - this.startTime) / 1000;
         console.log(`Your time was ${secondsTaken} seconds.`)
         this.previousGameData.secondsTaken = `Your time was ${secondsTaken} seconds.`
         if (this.selectedCards.length == 3) {
             this.previousGameData.foundSet = [this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card]
+        } else {
+            this.previousGameData.foundSet = null
         }
-        if (this.checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card) ) {
+        if (this.selectedCards.length == 3 && this.checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card) ) {
             console.log(`You found a Set! your Set:`)
             this.previousGameData.message = "You found a Set!"
         } else {
             console.log("Sorry, you didn't find a Set. Your set (lowercase...):")
             this.previousGameData.message = "Sorry, you didn't find a Set."
         }
-        console.log([this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card])
+        console.log(this.previousGameData.foundSet)
         console.log("All valid sets in this deck:")
         console.log(this.validSets)
         this.previousGameData.numberOfSets = this.validSets.length
         this.selectedCards = []
         this.scene.start('Game');
+    }
 
     }
 
@@ -167,9 +188,18 @@ export class Game extends Scene
         return characteristics
     }
 
+    onResetPressed() {
+        this.endGame({mode: 'reset'})
+    }
+
+    onNoSetPressed() {
+        this.endGame({mode: 'noSet'})
+    }
+
     preload () {
         
-    this.load.image('resetButton', 'assets/icons8-reset-50.png');
+    this.load.image('resetButton', 'assets/icons8-update-left-rotation-96.png');
+    this.load.image('noSetButton', 'assets/icons8-null-set-100.png');
         this.numbers.forEach(number => {
             this.colors.forEach(color => {
                 this.symbols.forEach(symbol => {
@@ -203,13 +233,13 @@ export class Game extends Scene
         }
         if (this.previousGameData.foundSet) {
             let characteristics = this.characterizeSet(...this.previousGameData.foundSet)
-            this.add.text(10, 50, "Last round set", { color: '#ffffff', fontSize: '20px' });
-            this.add.text(10, 70, `Number: ${characteristics.number}`, { color: '#ffffff', fontSize: '20px' });
-            this.add.text(10, 90,  `Color: ${characteristics.color}`, { color: '#ffffff', fontSize: '20px' });
+            this.add.text(10, 50, "Last round picks:", { color: '#ffffff', fontSize: '20px' });
+            this.add.text(10, 70,   `Number: ${characteristics.number}`, { color: '#ffffff', fontSize: '20px' });
+            this.add.text(10, 90,   `Color:  ${characteristics.color}`, { color: '#ffffff', fontSize: '20px' });
             this.add.text(10, 110,  `Symbol: ${characteristics.symbol}`, { color: '#ffffff', fontSize: '20px' });
-            this.add.text(10, 130,  `Fill: ${characteristics.fill}`, { color: '#ffffff', fontSize: '20px' });
+            this.add.text(10, 130,  `Fill:   ${characteristics.fill}`, { color: '#ffffff', fontSize: '20px' });
         }
-        if (this.previousGameData.numberOfSets) {
+        if (this.previousGameData.numberOfSets !== null) {
             this.add.text(10, 150, `Sets last round: ${this.previousGameData.numberOfSets}`, { color: '#ffffff', fontSize: '20px' });
         }
 
@@ -247,12 +277,16 @@ export class Game extends Scene
         this.startTime = Date.now();
         console.log(`There are ${this.validSets.length} sets`)
         console.log(this.validSets)
-        const resetButton = this.add.image(950, 550, 'resetButton').setOrigin(1, 1).setTint(0x0000ff).setInteractive();
+        const resetButton = this.add.image(950, 450, 'resetButton').setOrigin(1, 1).setTint(0x0000ff).setInteractive();
+        const noSettButton = this.add.image(950, 650, 'noSetButton').setOrigin(1, 1).setTint(0x0000ff).setInteractive();
 
-        // Add a pointer up event to the reset button
         resetButton.on('pointerup', function () {
             // Reset the scene
-            this.scene.restart();
+            this.onResetPressed()
+        }, this);
+        noSettButton.on('pointerup', function () {
+            // Reset the scene
+            this.onNoSetPressed()
         }, this);
         // this.add.text(512, 384, "Test", {
         //     fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
