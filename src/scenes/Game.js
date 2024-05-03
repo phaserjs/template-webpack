@@ -91,6 +91,9 @@ export class Game extends Scene
     }
 
     endGame(endGameMode) {
+        const secondsTaken = (Date.now() - this.startTime) / 1000;
+        console.log(`Your time was ${secondsTaken} seconds.`)
+        this.previousGameData.secondsTaken = `Your time was ${secondsTaken} seconds.`
         if (endGameMode.mode === 'reset'){
             this.previousGameData.numberOfSets = this.validSets.length
             this.previousGameData.message = "You reset the board"
@@ -109,9 +112,6 @@ export class Game extends Scene
             this.selectedCards = []
             this.scene.start('Game');
         } else {
-        const secondsTaken = (Date.now() - this.startTime) / 1000;
-        console.log(`Your time was ${secondsTaken} seconds.`)
-        this.previousGameData.secondsTaken = `Your time was ${secondsTaken} seconds.`
         if (this.selectedCards.length == 3) {
             this.previousGameData.foundSet = [this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card]
         } else {
