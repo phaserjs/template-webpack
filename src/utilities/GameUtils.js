@@ -75,12 +75,12 @@ export function characterizeSet(cardOne, cardTwo, cardThree) {
 export function findAllValidSets(cards) {
     const validSets = [];
 
-    for (let i = 0; i < this.cards.length - 2; i++) {
-        for (let j = i + 1; j < this.cards.length - 1; j++) {
-            for (let k = j + 1; k < this.cards.length; k++) {
-                const card1 = this.cards[i];
-                const card2 = this.cards[j];
-                const card3 = this.cards[k];
+    for (let i = 0; i < cards.length - 2; i++) {
+        for (let j = i + 1; j < cards.length - 1; j++) {
+            for (let k = j + 1; k < cards.length; k++) {
+                const card1 = cards[i];
+                const card2 = cards[j];
+                const card3 = cards[k];
                 if (checkIfValidSet(card1, card2, card3)) {
                     validSets.push([card1, card2, card3])
                 }

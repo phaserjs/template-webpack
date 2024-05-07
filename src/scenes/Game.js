@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
-import { gridConfiguration, numberOfCards, numbers, colors, symbols, fills } from '../constants/GameConstants';
-import { newRandomCard, newRandomDeck, checkIfValidSet, characterizeSet, findAllValidSets } from '../utilities/GameUtils';
+import { gridConfiguration, numbers, colors, symbols, fills } from '../constants/GameConstants';
+import { newRandomDeck, checkIfValidSet, characterizeSet, findAllValidSets } from '../utilities/GameUtils';
 
 export class Game extends Scene {
     cards = []
@@ -86,7 +86,7 @@ export class Game extends Scene {
             })
         })
         this.cards = newRandomDeck()
-        this.validSets = findAllValidSets()
+        this.validSets = findAllValidSets(this.cards)
     }
 
     create() {
