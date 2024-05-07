@@ -15,7 +15,8 @@ PRs.
 this project is based on https://github.com/phaserjs/template-webpack
 
 All code is licensed under the MIT license.
-All assets are licensed under CC BY-SA 4.0
+All card image assets are licensed under CC BY-SA 4.0
+Icons courtesy of icons8.com
 
 ### Versions
 
