@@ -1,4 +1,4 @@
-import { gridConfiguration, numberOfCards, numbers, colors, symbols, fills } from '../constants/GameConstants';
+import { mainGridConfiguration, numberOfCards, numbers, colors, symbols, fills } from '../constants/GameConstants';
 
 export function newRandomCard() {
     var numberIndex = Math.floor(Math.random() * numbers.length)

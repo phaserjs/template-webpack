@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import { gridConfiguration, numbers, colors, symbols, fills } from '../constants/GameConstants';
+import { mainGridConfiguration, numbers, colors, symbols, fills, sideGridConfiguration } from '../constants/GameConstants';
 import { newRandomDeck, checkIfValidSet, characterizeSet, findAllValidSets } from '../utilities/GameUtils';
 
 export class Game extends Scene {
@@ -11,8 +11,8 @@ export class Game extends Scene {
     previousGameData = {
         message: "Welcome to SET!",
         secondsTaken: null,
-        foundSet: null,
-        numberOfSets: null
+        validSets: null,
+        foundSet: null
     }
 
     constructor() {
@@ -41,13 +41,12 @@ export class Game extends Scene {
     endGame(endGameMode) {
         const secondsTaken = (Date.now() - this.startTime) / 1000;
         this.previousGameData.secondsTaken = `Your time was ${secondsTaken} seconds.`
+        this.previousGameData.validSets = this.validSets
         if (endGameMode.mode === 'reset') {
-            this.previousGameData.numberOfSets = this.validSets.length
             this.previousGameData.message = "You reset the board"
             this.previousGameData.foundSet = null
         }
         else if (endGameMode.mode === 'noSet') {
-            this.previousGameData.numberOfSets = this.validSets.length
             if (this.validSets.length) {
                 this.previousGameData.message = `Sorry, there were some Sets`
             } else {
@@ -65,7 +64,6 @@ export class Game extends Scene {
             } else {
                 this.previousGameData.message = "Sorry, you didn't find a Set."
             }
-            this.previousGameData.numberOfSets = this.validSets.length
         }
         this.selectedCards = []
         this.scene.start('Game');
@@ -90,13 +88,11 @@ export class Game extends Scene {
     }
 
     create() {
-        //initialize the grid
-        const totalWidth = gridConfiguration.gridWidth * (gridConfiguration.cardWidth + gridConfiguration.paddingX) - gridConfiguration.paddingX;
-        const totalHeight = gridConfiguration.gridHeight * (gridConfiguration.cardHeight + gridConfiguration.paddingY) - gridConfiguration.paddingY;
+        //initialize the main grid
+        const totalWidth = mainGridConfiguration.gridWidth * (mainGridConfiguration.cardWidth + mainGridConfiguration.paddingX) - mainGridConfiguration.paddingX;
+        const totalHeight = mainGridConfiguration.gridHeight * (mainGridConfiguration.cardHeight + mainGridConfiguration.paddingY) - mainGridConfiguration.paddingY;
         const startX = (this.sys.game.config.width - totalWidth) / 2;
         const startY = (this.sys.game.config.height - totalHeight) / 2;
-        let xPos = startX;
-        let yPos = startY;
 
         this.add.image(512, 384, 'background').setAlpha(0.5);
 
@@ -114,11 +110,25 @@ export class Game extends Scene {
             this.add.text(10, 110, `Symbol: ${characteristics.symbol}`, { color: '#ffffff', fontSize: '20px' });
             this.add.text(10, 130, `Fill:   ${characteristics.fill}`, { color: '#ffffff', fontSize: '20px' });
         }
-        if (this.previousGameData.numberOfSets !== null) {
-            this.add.text(10, 150, `Sets last round: ${this.previousGameData.numberOfSets}`, { color: '#ffffff', fontSize: '20px' });
+        if (this.previousGameData.validSets !== null) {
+            this.add.text(10, 150, `Sets last round: ${this.previousGameData.validSets.length}`, { color: '#ffffff', fontSize: '20px' });
+            let sideY = 170
+            this.previousGameData.validSets.forEach(set => {
+                let sideX = 10;
+                set.forEach(card => {
+                    const sprite = this.add.sprite(sideX, sideY, card.assetKey);
+                    sprite.setOrigin(0);
+                    sprite.setScale(50 / sprite.width)
+                    sideX += sideGridConfiguration.cardWidth + sideGridConfiguration.paddingX
+                })
+                sideY += sideGridConfiguration.cardHeight + sideGridConfiguration.paddingY
+            })
         }
 
-        //fill the grid with cards
+        //fill the main grid with cards
+        
+        let xPos = startX;
+        let yPos = startY;
         this.cards.forEach(card => {
             const sprite = this.add.sprite(xPos, yPos, card.assetKey);
             sprite.card = card
@@ -141,10 +151,10 @@ export class Game extends Scene {
                 this.evaluateSelected()
             })
 
-            xPos += gridConfiguration.cardWidth + gridConfiguration.paddingX
+            xPos += mainGridConfiguration.cardWidth + mainGridConfiguration.paddingX
             if (xPos >= startX + totalWidth) { //end of line
                 xPos = startX; //carriage return
-                yPos += gridConfiguration.cardHeight + gridConfiguration.paddingY; // line feed
+                yPos += mainGridConfiguration.cardHeight + mainGridConfiguration.paddingY; // line feed
             }
         })
         this.cameras.main.setBackgroundColor(0x00ff00);
