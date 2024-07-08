@@ -1,20 +1,43 @@
 from itertools import combinations
 import time
+import argparse
 # This script iterates over all 81choose12 combinations of SET cards and checks whether the combination
 # has exactly N Sets (three cards, where each card has four characteristics, each may have one of three
 # values, and each characteristic is either the same across all three cards e.g. [1, 1, 1] or all 
 # different e.g. [2, 1, 3])
 
-setCount = 0
+startTime = time.time()
+filePath = '../../data/smallDecks.txt'
+deckSize = 12
+setsPerDeck = -1
+maxDecks = -1
+logIncrement = 1000000
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--file_path', default="../../data/smallDecks.txt")
+    parser.add_argument('-d', '--size', help="Number of cards per deck", default=12)
+    parser.add_argument('-s', '--sets', help="Number of sets per deck (default records all decks)", default=-1)
+    parser.add_argument('--max_decks', help="Number of decks to generate before exiting (default finds all possible decks)", default=-1)
+    parser.add_argument('--log_increment', help="Number of iterations between timing messages (default 1000000)", default=1000000)
+    args = parser.parse_args()
+    filePath = args.file_path
+    deckSize = args.size
+    setsPerDeck = args.Sets
+    maxDecks = args.max_decks
+    logIncrement = args.log_increment
+
+
+    iterateDecks()
+    endTime = time.time()
+    print("Total time taken: {} seconds".format((endTime - startTime)))
 
 def iterateDecks():
-    startTime = time.time()
-    counter = 10
+    counter = 0
     matches = buildMatchDictionary()
-    with open(f"../../data/{setCount}_set_decks.csv", "w") as file:
-        for deck in combinations(range(81), 12):
-            # counter-=1
-            if counter < 1:
+    with open(f"../../data/{maxDecks}_set_decks.csv", "w") as file:
+        for deck in combinations(range(81), deckSize):
+            if maxDecks > 0 and counter >= maxDecks:
                 return
             sets = []
             for cards in combinations(deck, 2):
@@ -24,14 +47,16 @@ def iterateDecks():
                     validSet.sort()
                     if not validSet in sets:
                         sets.append(validSet)
-                        if len(sets) > setCount:
+                        if len(sets) > setsPerDeck:
                             break
-            if len(sets) == setCount:
-                counter -= 1
+            if setsPerDeck > 0 and len(sets) == setsPerDeck:
+                counter += 1
                 findTime = time.time()
                 print('time to find: {} seconds'.format((findTime - startTime)))
                 print(f'{deck},{sets}')
                 file.write(f'{deck},{sets}\n')
+            if counter % logIncrement == 0:
+                print(f'Analyzed {counter} decks in {time.time() - startTime} seconds')
 
 def buildMatchDictionary():
     matches = {}
@@ -60,22 +85,5 @@ def convertToArray(n):
     # print(nTern)
     return nTern
 
-def findSetsInDeck(deck):
-    sets = []
-    for cards in combinations(deck, 2):
-        match = [
-        (2* cards[0][0] - cards[1][0])%3,
-        (2* cards[0][1] - cards[1][1])%3,
-        (2* cards[0][2] - cards[1][2])%3,
-        (2* cards[0][3] - cards[1][3])%3
-        ]
-        if match in deck[deck.index(cards[1]) + 1:]:
-            sets.append([cards[0], cards[1], match])
-    return sets
-
-def main():
-    startTime = time.time()
-    iterateDecks()
-    endTime = time.time()
-    print("Time taken: {} seconds".format((endTime - startTime)))
+    
 main()
