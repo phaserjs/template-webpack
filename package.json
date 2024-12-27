@@ -1,6 +1,6 @@
 {
     "name": "template-webpack",
-    "version": "3.2.1",
+    "version": "3.2.2",
     "main": "src/main.js",
     "scripts": {
         "dev": "node log.js dev & webpack-dev-server --config webpack/config.js --open",
