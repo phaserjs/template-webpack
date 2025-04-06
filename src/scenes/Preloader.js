@@ -29,10 +29,15 @@ export class Preloader extends Scene
 
     preload ()
     {
-        //  Load the assets for the game - Replace with your own assets
+        //  Load the assets for the game
         this.load.setPath('assets');
 
-        this.load.image('logo', 'logo.png');
+        // Load card assets
+        this.load.image('card-back', 'card-back.png');
+        this.load.spritesheet('cards', 'cards.png', {
+            frameWidth: 140,
+            frameHeight: 190
+        });
     }
 
     create ()

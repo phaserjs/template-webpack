@@ -60,13 +60,27 @@ export class Game extends Scene {
                 this.previousGameData.foundSet = null
             }
             if (this.selectedCards.length == 3 && checkIfValidSet(this.selectedCards[0].card, this.selectedCards[1].card, this.selectedCards[2].card)) {
-                this.previousGameData.message = "You found a Set!"
+                this.previousGameData.message = "You found a Set!";
+                this.previousGameData.foundSet = this.selectedCards.map(c => c.card);
+                const characteristics = characterizeSet(
+                    this.selectedCards[0].card,
+                    this.selectedCards[1].card,
+                    this.selectedCards[2].card
+                );
+                
+                this.previousGameData.setStats = {
+                    colors: characteristics.color === 'heterogeneous' ? 'All different' : characteristics.color,
+                    numbers: characteristics.number === 'heterogeneous' ? 'All different' : characteristics.number,
+                    shapes: characteristics.symbol === 'heterogeneous' ? 'All different' : characteristics.symbol,
+                    fills: characteristics.fill === 'heterogeneous' ? 'All different' : characteristics.fill
+                };
             } else {
-                this.previousGameData.message = "Sorry, you didn't find a Set."
+                this.previousGameData.message = "Sorry, you didn't find a Set.";
+                this.previousGameData.setStats = null
             }
         }
         this.selectedCards = []
-        this.scene.start('Game');
+        this.scene.start('GameOver', this.previousGameData);
     }
 
     preload() {
