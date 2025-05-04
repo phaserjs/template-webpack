@@ -27,13 +27,18 @@ This template has been updated for:
 | `npm run dev-nolog` | Launch a development web server without sending anonymous data (see "About log.js" below) |
 | `npm run build-nolog` | Create a production build in the `dist` folder without sending anonymous data (see "About log.js" below) |
 
-## Writing Code
+## Getting started
 
-After cloning the repo, run `npm install` from your project directory. Then, you can start the local development server by running `npm run dev`.
+1. Either clone this repo, or download and unzip in a new project directory  
+2. Go to your project directory in the command prompt  
+3. Run `npm install` to install all dependencies  
+4. Run `npm run dev` to start the game from a local development server  
+5. Code and debug your game (this step will take the most time 😉)  
+6. Start `npm run build` to build the distributable package  
 
-The local development server runs on `http://localhost:8080` by default. Please see the webpack documentation if you wish to change this, or add SSL support.
+Note, the local development server runs on `http://localhost:8080` by default. Please see the webpack documentation if you wish to change this, or add SSL support.
 
-Once the server is running you can edit any of the files in the `src` folder. Webpack will automatically recompile your code and then reload the browser.
+Once the server is running you can edit any of the files in the `src` folder. Webpack will automatically recompile your code and then reload the browser. Press `CTRL+C` to close the server.
 
 ## Template Project Structure
 
