@@ -8,7 +8,7 @@ This is a Phaser 3 project template that uses webpack for bundling. It supports 
 
 This template has been updated for:
 
-- [Phaser 3.88.2](https://github.com/phaserjs/phaser)
+- [Phaser 3.90.0](https://github.com/phaserjs/phaser)
 - [Webpack 5.99.6](https://github.com/webpack/webpack)
 
 ![screenshot](screenshot.png)
